@@ -1,16 +1,22 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Button } from "./atoms";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { id: "atelier",    label: "Atelier" },
-  { id: "collection", label: "Collection" },
-  { id: "journal",    label: "Log" },
+  { label: "Leistungen",     href: "/leistungen" },
+  { label: "Use Cases",      href: "/use-cases" },
+  { label: "Methode",        href: "/methode" },
+  { label: "KI Tool Kompass",href: "/ki-tool-kompass" },
+  { label: "Wissen",         href: "/wissen" },
+  { label: "Über mich",      href: "/ueber-mich" },
 ];
 
-export default function Header({ current, onNav }: { current: string; onNav: (id: string) => void }) {
+export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -21,41 +27,46 @@ export default function Header({ current, onNav }: { current: string; onNav: (id
   return (
     <header style={{
       position: "sticky", top: 0, zIndex: 20,
-      background: scrolled ? "rgba(10,32,40,0.78)" : "transparent",
-      backdropFilter: scrolled ? "blur(24px)" : "none",
-      WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(205,206,210,.1)" : "1px solid transparent",
-      transition: "all 320ms cubic-bezier(.22,.61,.36,1)",
+      background: scrolled ? "rgba(10,32,40,0.88)" : "rgba(10,32,40,0.6)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      borderBottom: "1px solid rgba(205,206,210,.1)",
+      transition: "background 320ms cubic-bezier(.22,.61,.36,1)",
     }}>
-      <div style={{
-        maxWidth: 1240, margin: "0 auto",
-        padding: "20px 48px",
-        display: "flex", alignItems: "center", gap: 32,
-      }}>
-        <button onClick={() => onNav("atelier")} style={{ display: "flex", alignItems: "center", gap: 12, background: "none", border: 0, cursor: "pointer", padding: 0 }}>
-          <Image src="/logo-star.png" alt="Neural Nautic" width={32} height={32} style={{ objectFit: "contain" }} />
-          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-            <span style={{ fontFamily: "var(--font-italiana), Italiana, serif", fontSize: 18, color: "var(--fg-1)", letterSpacing: ".04em" }}>Neural Nautic</span>
-            <span style={{ fontFamily: "var(--font-inter), Inter, sans-serif", fontSize: 9, color: "var(--fg-3)", letterSpacing: ".28em", textTransform: "uppercase", marginTop: 2 }}>Atelier · est. MMXXV</span>
-          </div>
-        </button>
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", height: 64 }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", border: 0, flexShrink: 0 }}>
+          <Image src="/logo-star.png" alt="NeuralNautic" width={28} height={28} style={{ objectFit: "contain" }} />
+          <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 20, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
+        </Link>
 
-        <nav style={{ display: "flex", gap: 28, marginLeft: "auto" }}>
-          {LINKS.map(({ id, label }) => (
-            <button key={id} onClick={() => onNav(id)} style={{
-              background: "none", border: 0, cursor: "pointer",
-              fontFamily: "var(--font-inter), Inter, sans-serif",
-              fontSize: 11, fontWeight: 500,
-              textTransform: "uppercase", letterSpacing: "0.22em",
-              color: current === id ? "var(--glow-cyan)" : "var(--fg-2)",
-              padding: "8px 0",
-              borderBottom: current === id ? "1px solid var(--glow-cyan)" : "1px solid transparent",
+        <nav style={{ display: "flex", gap: 24, marginLeft: "auto", marginRight: 24 }}>
+          {LINKS.map(({ href, label }) => (
+            <Link key={href} href={href} style={{
+              fontFamily: "var(--font-inter), sans-serif",
+              fontSize: 12, fontWeight: 500,
+              textTransform: "uppercase", letterSpacing: "0.12em",
+              color: pathname === href ? "var(--glow-cyan)" : "var(--fg-2)",
+              textDecoration: "none",
+              borderBottom: pathname === href ? "1px solid var(--glow-cyan)" : "1px solid transparent",
+              padding: "4px 0",
               transition: "all 180ms",
-            }}>{label}</button>
+              whiteSpace: "nowrap",
+            }}>{label}</Link>
           ))}
         </nav>
 
-        <Button variant="secondary">Sign in</Button>
+        <Link href="/kontakt" style={{
+          fontFamily: "var(--font-inter), sans-serif",
+          fontSize: 12, fontWeight: 500,
+          letterSpacing: "0.08em",
+          padding: "9px 20px",
+          borderRadius: 4,
+          background: "var(--glow-cyan)",
+          color: "var(--ink-abyss)",
+          textDecoration: "none",
+          whiteSpace: "nowrap",
+          flexShrink: 0,
+        }}>KI-Check buchen</Link>
       </div>
     </header>
   );

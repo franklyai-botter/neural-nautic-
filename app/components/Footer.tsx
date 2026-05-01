@@ -1,49 +1,73 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const COLS = [
-  ["Atelier",     ["The workshop", "The log", "Commissions", "Press"]],
-  ["Collection",  ["Chronometers", "Instruments", "Paper goods", "Archive"]],
-  ["Waypoints",   ["Contact", "Mailing list", "Charts", "Copyright"]],
-] as const;
+  ["Leistungen", [
+    ["KI-Potenzialanalyse", "/leistungen"],
+    ["Controlled Pilot",    "/leistungen"],
+    ["KI-Automatisierung",  "/leistungen"],
+    ["KI-Governance",       "/leistungen"],
+    ["KI-Schulung",         "/leistungen"],
+  ]],
+  ["Angebote", [
+    ["Use Cases",      "/use-cases"],
+    ["Methode",        "/methode"],
+    ["KI Tool Kompass","/ki-tool-kompass"],
+    ["Wissen",         "/wissen"],
+  ]],
+  ["Kontakt", [
+    ["Über mich",  "/ueber-mich"],
+    ["Anfrage senden", "/kontakt"],
+  ]],
+] as [string, [string, string][]][];
 
 export default function Footer() {
   return (
     <footer style={{
       position: "relative", overflow: "hidden",
       background: "var(--ink-abyss)",
-      padding: "96px 48px 40px",
+      padding: "80px 32px 40px",
       marginTop: 80, borderTop: "1px solid var(--border-1)",
     }}>
       <div style={{ position: "absolute", inset: 0 }}>
-        <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.2 }} />
+        <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.12 }} />
       </div>
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.3), rgba(6,20,25,.95) 80%)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.4), rgba(6,20,25,.97) 70%)" }} />
 
       <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 72 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <Image src="/logo-star.png" alt="" width={40} height={40} style={{ objectFit: "contain" }} />
-              <span style={{ fontFamily: "var(--font-italiana), Italiana, serif", fontSize: 22, color: "var(--fg-1)", letterSpacing: ".04em" }}>Neural Nautic</span>
+              <Image src="/logo-star.png" alt="" width={36} height={36} style={{ objectFit: "contain" }} />
+              <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 20, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
             </div>
-            <p style={{ fontFamily: "var(--font-cormorant), Cormorant Garamond, serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, marginTop: 20, maxWidth: "38ch" }}>
-              A small atelier, keeping a slow log. Goods and software, forged in brushed platinum.
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, marginTop: 20, maxWidth: "38ch" }}>
+              Pragmatische KI-Beratung für den Mittelstand. Von der Idee zum messbaren Pilotprojekt.
+            </p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", marginTop: 12 }}>
+              Berlin · Brandenburg · Remote DACH
             </p>
           </div>
 
           {COLS.map(([heading, items]) => (
             <div key={heading}>
-              <div style={{ fontFamily: "var(--font-inter), Inter, sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: ".24em", color: "var(--glow-cyan)", marginBottom: 18 }}>{heading}</div>
-              {items.map(item => (
-                <a key={item} href="#" style={{ display: "block", fontFamily: "var(--font-inter), Inter, sans-serif", fontSize: 13, color: "var(--fg-2)", textDecoration: "none", padding: "6px 0" }}>{item}</a>
+              <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: ".24em", color: "var(--glow-cyan)", marginBottom: 16 }}>{heading}</div>
+              {items.map(([label, href]) => (
+                <Link key={label} href={href} style={{ display: "block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", textDecoration: "none", padding: "5px 0" }}>{label}</Link>
               ))}
             </div>
           ))}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 32, borderTop: "1px solid var(--border-1)" }}>
-          <div style={{ fontFamily: "var(--font-jetbrains), JetBrains Mono, monospace", fontSize: 10, color: "var(--fg-3)", letterSpacing: ".12em" }}>© MMXXVI · Neural Nautic Atelier · Amsterdam · N 52°22′</div>
-          <div style={{ fontFamily: "var(--font-inter), Inter, sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: ".24em", color: "var(--fg-3)" }}>✦  A quiet gleam</div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 28, borderTop: "1px solid var(--border-1)" }}>
+          <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--fg-3)", letterSpacing: ".1em" }}>
+            © {new Date().getFullYear()} · NeuralNautic · Frank Schütt
+          </div>
+          <div style={{ display: "flex", gap: 24 }}>
+            {["Impressum", "Datenschutz"].map(l => (
+              <Link key={l} href="/kontakt" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", textDecoration: "none", letterSpacing: ".08em" }}>{l}</Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

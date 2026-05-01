@@ -8,13 +8,14 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrains = JetBrains_Mono({ weight: ["400","500"], subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: "Neural Nautic — Atelier",
-  description: "A small atelier of goods and software — forged in brushed platinum, navigated by a luminous mesh.",
+  title: "KI-Beratung für den Mittelstand | NeuralNautic",
+  description: "Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Tool-Auswahl.",
+  keywords: "KI-Beratung Mittelstand, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${italiana.variable} ${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
+    <html lang="de" className={`${italiana.variable} ${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body>{children}</body>
     </html>
   );
