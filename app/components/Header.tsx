@@ -35,8 +35,8 @@ export default function Header() {
     }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", height: 64 }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", border: 0, flexShrink: 0 }}>
-          <Image src="/logo-star.png" alt="NeuralNautic" width={28} height={28} style={{ objectFit: "contain" }} />
-          <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 20, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
+          <Image src="/logo-star.png" alt="NeuralNautic" width={44} height={44} style={{ objectFit: "contain" }} />
+          <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 22, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
         </Link>
 
         <nav style={{ display: "flex", gap: 24, marginLeft: "auto", marginRight: 24 }}>
