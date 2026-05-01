@@ -56,7 +56,7 @@ export default function Home() {
           <div style={{ position: "absolute", inset: 0 }}>
             <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover" }} priority />
           </div>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 35% 50%, transparent 15%, rgba(6,20,25,.92) 70%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 28% 50%, transparent 22%, rgba(6,20,25,.85) 78%)" }} />
           <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%" }}>
             <div style={{ maxWidth: 680 }}>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>✦ KI-Beratung · Mittelstand · DACH</span>
@@ -80,7 +80,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <Image src="/logo-star.png" alt="" width={72} height={72} style={{ position: "absolute", bottom: 40, right: 48, objectFit: "contain", opacity: 0.6, filter: "drop-shadow(0 0 24px rgba(63,212,224,.4))" }} />
         </section>
 
         {/* PROBLEM */}

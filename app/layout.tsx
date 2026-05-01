@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Italiana, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 const italiana = Italiana({ weight: "400", subsets: ["latin"], variable: "--font-italiana" });
@@ -16,7 +17,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`${italiana.variable} ${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Image
+          src="/logo-star.png"
+          alt="NeuralNautic"
+          width={72}
+          height={72}
+          style={{ position: "fixed", bottom: 40, right: 48, objectFit: "contain", opacity: 0.6, filter: "drop-shadow(0 0 24px rgba(63,212,224,.4))", zIndex: 50, pointerEvents: "none" }}
+        />
+      </body>
     </html>
   );
 }
