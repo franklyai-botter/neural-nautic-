@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink-abyss:      #061419;
+  --ink-deep:       #0A2028;
+  --ink-tide:       #0E2B36;
+  --ink-current:    #123844;
+  --ink-shoal:      #1A4E5E;
+
+  --glow-faint:     #2D8A9A;
+  --glow-cyan:      #3FD4E0;
+  --glow-aqua:      #6FEFF5;
+  --glow-mist:      #B8F5F9;
+
+  --silver-deep:    #707078;
+  --silver-mid:     #9C9CA4;
+  --silver-bright:  #CDCED2;
+  --silver-light:   #E6E7EA;
+  --silver-white:   #F5F5F2;
+
+  --ivory:          #F5F2EB;
+  --ivory-soft:     #EFEBE0;
+  --parchment:      #E4DFD1;
+
+  --signal-ok:      #6FEFC7;
+  --signal-warn:    #F5C97A;
+  --signal-alert:   #F08A7A;
+
+  --bg-1:           var(--ink-deep);
+  --bg-2:           var(--ink-tide);
+  --bg-3:           var(--ink-current);
+  --bg-4:           var(--ink-shoal);
+
+  --fg-1:           var(--silver-white);
+  --fg-2:           var(--silver-bright);
+  --fg-3:           var(--silver-mid);
+  --fg-4:           var(--silver-deep);
+
+  --accent:         var(--glow-cyan);
+  --accent-hover:   var(--glow-aqua);
+  --accent-faint:   var(--glow-faint);
+
+  --border-1:       rgba(205, 206, 210, 0.10);
+  --border-2:       rgba(205, 206, 210, 0.18);
+  --border-3:       rgba(63, 212, 224, 0.30);
+
+  --shadow-sm:    0 1px 2px rgba(0,0,0,0.25);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-lg:    0 16px 48px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.35);
+  --shadow-xl:    0 32px 80px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.4);
+
+  --glow-accent:  0 0 24px rgba(63, 212, 224, 0.35), 0 0 6px rgba(63, 212, 224, 0.6);
+  --glow-silver:  0 0 32px rgba(205, 206, 210, 0.20), 0 2px 4px rgba(0,0,0,0.5);
+  --inner-rim:    inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3);
+
+  --ease-sail:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+
+  --dur-fast:   180ms;
+  --dur-med:    320ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html, body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::selection {
+  background: rgba(63, 212, 224, 0.35);
+  color: var(--silver-white);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover {
+  color: var(--accent-hover);
 }
