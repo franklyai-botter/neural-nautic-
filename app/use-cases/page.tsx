@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Image from "next/image";
 import Link from "next/link";
 
 const CATEGORIES = [
@@ -26,8 +27,12 @@ export default function UseCases() {
     <>
       <Header />
       <main>
-        <section style={{ padding: "80px 32px 60px", background: "var(--ink-tide)", borderBottom: "1px solid var(--border-1)" }}>
-          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+        <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
+          <div style={{ position: "absolute", inset: 0 }}>
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.35 }} />
+          </div>
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.2), rgba(6,20,25,.75) 80%)" }} />
+          <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Use Cases</span>
             <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05, color: "var(--fg-1)", margin: "20px 0 20px" }}>
               KI-Use-Cases für echte Geschäftsprozesse
