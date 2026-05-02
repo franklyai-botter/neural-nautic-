@@ -22,8 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Image
           src="/logo-star.png"
           alt="NeuralNautic"
-          width={96}
-          height={96}
+          width={72}
+          height={72}
           style={{ position: "fixed", bottom: 40, right: 48, objectFit: "contain", opacity: 0.6, filter: "drop-shadow(0 0 24px rgba(63,212,224,.4))", zIndex: 50, pointerEvents: "none" }}
         />
       </body>
