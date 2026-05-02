@@ -1,17 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import Link from "next/link";
-
-const ARTICLES = [
-  { title: "Was ist ein Controlled AI Pilot?",     excerpt: "Warum kontrollierte Praxistests der sicherste Weg zur KI-Einführung sind — und wie sie funktionieren.", mins: 6 },
-  { title: "Warum KI-Prototypen oft scheitern",    excerpt: "Die häufigsten Fehler bei der KI-Einführung und wie Sie sie von Anfang an vermeiden.", mins: 8 },
-  { title: "RAG einfach erklärt",                  excerpt: "Retrieval-Augmented Generation: Wie KI-Systeme auf Basis eigener Dokumente antworten.", mins: 5 },
-  { title: "KI-Governance für den Mittelstand",    excerpt: "Klare Regeln für den KI-Einsatz — ohne Bürokratie, aber mit der nötigen Sorgfalt.", mins: 7 },
-  { title: "Voicebots im Kundenservice",           excerpt: "Wann ein Voicebot sinnvoll ist, was er kann und was nicht — und wie die Einführung gelingt.", mins: 6 },
-  { title: "KI im Vertrieb",                       excerpt: "Lead-Qualifizierung, Angebotserstellung, CRM — wo KI den Vertrieb wirklich unterstützt.", mins: 5 },
-  { title: "Der KI Tool Kompass",                  excerpt: "Wie Sie KI-Tools systematisch bewerten und die richtige Wahl für Ihr Unternehmen treffen.", mins: 9 },
-];
 
 const GLOSSARY = [
   { term: "Use Case",        def: "Ein konkreter Anwendungsfall, bei dem KI einen messbaren Nutzen erzeugt." },
@@ -44,24 +33,7 @@ export default function Wissen() {
         </section>
 
         <div style={{ maxWidth: 900, margin: "0 auto", padding: "80px 32px" }}>
-          <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 36, color: "var(--fg-1)", margin: "0 0 8px" }}>Artikel</h2>
-          <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-3)", margin: "0 0 40px" }}>Erscheint demnächst — tragen Sie sich für Updates ein.</p>
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {ARTICLES.map((a, i) => (
-              <div key={a.title} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 24, padding: "28px 0", borderBottom: i < ARTICLES.length - 1 ? "1px solid var(--border-1)" : "none", alignItems: "start" }}>
-                <div>
-                  <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 26, color: "var(--fg-1)", margin: "0 0 8px", lineHeight: 1.2 }}>{a.title}</h3>
-                  <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", margin: 0, lineHeight: 1.6, maxWidth: "58ch" }}>{a.excerpt}</p>
-                </div>
-                <div style={{ textAlign: "right", whiteSpace: "nowrap" }}>
-                  <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase" }}>{a.mins} Min.</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ marginTop: 80, paddingTop: 64, borderTop: "1px solid var(--border-1)" }}>
+          <div style={{ marginTop: 0 }}>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 36, color: "var(--fg-1)", margin: "0 0 40px" }}>Glossar</h2>
             <div style={{ display: "flex", flexDirection: "column" }}>
               {GLOSSARY.map((g, i) => (
