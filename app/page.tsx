@@ -93,7 +93,7 @@ export default function Home() {
               Der KI-Markt ist laut, schnell und oft unübersichtlich. Neue Tools erscheinen beinahe wöchentlich, Anbieter versprechen Automatisierung auf Knopfdruck — interne Teams fragen sich, welche Lösungen wirklich sicher, wirtschaftlich und alltagstauglich sind.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+          <div className="grid-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
             {PAIN.map((p) => (
               <div key={p} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "24px 28px", display: "flex", alignItems: "flex-start", gap: 16 }}>
                 <span style={{ color: "var(--signal-alert)", fontSize: 18, flexShrink: 0 }}>✕</span>
@@ -115,7 +115,7 @@ export default function Home() {
                 Ich begleite Unternehmen von der ersten Potenzialanalyse bis zur operativen Umsetzung — mit konkreten KI-Anwendungen, die messbare Ergebnisse liefern.
               </p>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
+            <div className="grid-4col" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
               {STEPS.map((s, i) => (
                 <div key={s.n} style={{ background: "var(--ink-current)", borderRadius: i === 0 ? "6px 0 0 6px" : i === 3 ? "0 6px 6px 0" : 0, padding: "40px 32px", position: "relative" }}>
                   <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--glow-cyan)", letterSpacing: ".12em", marginBottom: 16 }}>{s.n}</div>
@@ -144,7 +144,7 @@ export default function Home() {
             </div>
             <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Leistungen →</Link>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div className="grid-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {SERVICES.map((s) => (
               <div key={s.title} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "32px 28px" }}>
                 <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, fontWeight: 600, color: "var(--fg-1)", margin: "0 0 12px", letterSpacing: ".02em" }}>{s.title}</h3>
@@ -166,7 +166,7 @@ export default function Home() {
               </div>
               <Link href="/use-cases" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Use Cases →</Link>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
+            <div className="grid-5col" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
               {USE_CASES.map((u) => (
                 <div key={u} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "18px 20px" }}>
                   <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", lineHeight: 1.4 }}>{u}</span>
@@ -190,7 +190,7 @@ export default function Home() {
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", maxWidth: "60ch", margin: "0 auto 56px", lineHeight: 1.7 }}>
               Mein Ansatz verbindet technisches Verständnis, Prozessdenken und Change-Kompetenz. Ich spreche mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, textAlign: "left", maxWidth: 900, margin: "0 auto" }}>
+            <div className="grid-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, textAlign: "left", maxWidth: 900, margin: "0 auto" }}>
               {TRUST.map((t) => (
                 <div key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <span style={{ color: "var(--glow-cyan)", fontSize: 16, flexShrink: 0, marginTop: 2 }}>✓</span>

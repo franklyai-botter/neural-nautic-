@@ -83,3 +83,19 @@ a {
 a:hover {
   color: var(--accent-hover);
 }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header-nav  { display: none !important; }
+  .header-cta  { display: none !important; }
+  .header-burger { display: flex !important; }
+
+  /* Page grids → single column */
+  .grid-3col { grid-template-columns: 1fr !important; }
+  .grid-4col { grid-template-columns: 1fr 1fr !important; }
+  .grid-5col { grid-template-columns: 1fr 1fr !important; }
+  .grid-2col { grid-template-columns: 1fr !important; }
+
+  /* Footer grid */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+}

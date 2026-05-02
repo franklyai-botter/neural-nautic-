@@ -49,7 +49,7 @@ export default function UseCases() {
               <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 36, color: "var(--fg-1)", margin: "0 0 32px", paddingBottom: 20, borderBottom: "1px solid var(--border-1)" }}>
                 {cat.title}
               </h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
+              <div className="grid-5col" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
                 {cat.cases.map((c) => (
                   <div key={c} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "20px 20px" }}>
                     <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", lineHeight: 1.5 }}>{c}</span>

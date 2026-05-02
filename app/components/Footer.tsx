@@ -35,7 +35,7 @@ export default function Footer() {
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.4), rgba(6,20,25,.97) 70%)" }} />
 
       <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
+        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
           <div>
             <div>
               <Image src="/logo-monogram.png" alt="NeuralNautic" width={54} height={54} style={{ objectFit: "contain" }} />

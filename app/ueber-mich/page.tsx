@@ -34,7 +34,7 @@ export default function UeberMich() {
         </section>
 
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
+          <div className="grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
               <div style={{ aspectRatio: "3/4", background: "linear-gradient(160deg, var(--ink-shoal), var(--ink-current))", borderRadius: 8, border: "1px solid var(--border-2)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0 }}>

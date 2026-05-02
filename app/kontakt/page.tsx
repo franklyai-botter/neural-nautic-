@@ -79,7 +79,7 @@ export default function Kontakt() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Name *</label>
                   <input name="name" required style={input} placeholder="Ihr Name" />
@@ -90,7 +90,7 @@ export default function Kontakt() {
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>E-Mail *</label>
                   <input name="email" required type="email" style={input} placeholder="ihre@email.de" />
