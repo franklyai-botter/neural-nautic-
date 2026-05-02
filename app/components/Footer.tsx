@@ -38,8 +38,8 @@ export default function Footer() {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <Image src="/logo-star.png" alt="" width={36} height={36} style={{ objectFit: "contain" }} />
-              <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 20, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
+              <Image src="/logo-star.png" alt="" width={52} height={52} style={{ objectFit: "contain" }} />
+              <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
             </div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, marginTop: 20, maxWidth: "38ch" }}>
               Pragmatische KI-Beratung für den Mittelstand. Von der Idee zum messbaren Pilotprojekt.
@@ -64,8 +64,8 @@ export default function Footer() {
             © {new Date().getFullYear()} · NeuralNautic · Frank Schütt
           </div>
           <div style={{ display: "flex", gap: 24 }}>
-            {["Impressum", "Datenschutz"].map(l => (
-              <Link key={l} href="/kontakt" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", textDecoration: "none", letterSpacing: ".08em" }}>{l}</Link>
+            {([["Impressum", "/impressum"], ["Datenschutz", "/datenschutz"]] as [string, string][]).map(([l, href]) => (
+              <Link key={l} href={href} style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", textDecoration: "none", letterSpacing: ".08em" }}>{l}</Link>
             ))}
           </div>
         </div>
