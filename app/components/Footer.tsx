@@ -38,7 +38,7 @@ export default function Footer() {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
           <div>
             <div>
-              <Image src="/logo-monogram.png" alt="NeuralNautic" width={72} height={72} style={{ objectFit: "contain" }} />
+              <Image src="/logo-monogram.png" alt="NeuralNautic" width={54} height={54} style={{ objectFit: "contain" }} />
             </div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, marginTop: 20, maxWidth: "38ch" }}>
               Pragmatische KI-Beratung für den Mittelstand. Von der Idee zum messbaren Pilotprojekt.
