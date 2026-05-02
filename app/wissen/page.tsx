@@ -3,12 +3,30 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 
 const GLOSSARY = [
-  { term: "Use Case",        def: "Ein konkreter Anwendungsfall, bei dem KI einen messbaren Nutzen erzeugt." },
-  { term: "RAG",             def: "Retrieval-Augmented Generation. Ein KI-System, das Antworten auf Basis ausgewählter Dokumente oder Datenquellen erstellt." },
-  { term: "Prompting",       def: "Die strukturierte Eingabe von Anweisungen an ein KI-System." },
-  { term: "KI-Governance",   def: "Regeln, Rollen und Prozesse für sicheren und verantwortungsvollen KI-Einsatz." },
-  { term: "Controlled Pilot",def: "Ein begrenzter, messbarer Praxistest für einen KI-Anwendungsfall." },
-  { term: "Vendor Lock-in",  def: "Abhängigkeit von einem Anbieter, die spätere Wechsel erschwert." },
+  { term: "Use Case",             def: "Ein konkreter Anwendungsfall, bei dem KI einen messbaren Nutzen erzeugt." },
+  { term: "RAG",                  def: "Retrieval-Augmented Generation. Ein KI-System, das Antworten auf Basis ausgewählter Dokumente oder Datenquellen erstellt." },
+  { term: "Prompting",            def: "Die strukturierte Eingabe von Anweisungen an ein KI-System, um gezielt nützliche Ergebnisse zu erhalten." },
+  { term: "KI-Governance",        def: "Regeln, Rollen und Prozesse für sicheren und verantwortungsvollen KI-Einsatz im Unternehmen." },
+  { term: "Controlled Pilot",     def: "Ein begrenzter, messbarer Praxistest für einen KI-Anwendungsfall — mit klarem Ziel, Zeitrahmen und Erfolgskriterien." },
+  { term: "Vendor Lock-in",       def: "Abhängigkeit von einem Anbieter, die spätere Wechsel technisch oder wirtschaftlich erschwert." },
+  { term: "LLM",                  def: "Large Language Model. Ein KI-Modell, das auf großen Textmengen trainiert wurde und natürliche Sprache versteht und erzeugt — z. B. GPT-4, Claude oder Gemini." },
+  { term: "GPT",                  def: "Generative Pre-trained Transformer. Die Architektur hinter vielen modernen Sprachmodellen wie ChatGPT." },
+  { term: "Token",                def: "Die kleinste Verarbeitungseinheit eines Sprachmodells — grob ein Wort oder Wortteil. Bestimmt Kosten und Kontextgröße." },
+  { term: "Kontextfenster",       def: "Die Menge an Text, die ein KI-Modell in einem Durchgang lesen und verarbeiten kann. Je größer, desto mehr Dokumente passen hinein." },
+  { term: "Embedding",            def: "Eine numerische Darstellung von Text, mit der KI-Systeme Bedeutung und Ähnlichkeit von Inhalten erkennen können." },
+  { term: "Vektordatenbank",      def: "Eine Datenbank, die Embeddings speichert und schnelle Ähnlichkeitssuchen ermöglicht — Grundlage vieler RAG-Systeme." },
+  { term: "Fine-Tuning",          def: "Das Nachtrainieren eines Basismodells auf eigenen Daten, um es für einen spezifischen Zweck zu spezialisieren." },
+  { term: "Halluzination",        def: "Wenn ein KI-Modell falsche oder erfundene Informationen mit hoher Überzeugung ausgibt. Wichtiger Risikofaktor im Unternehmenseinsatz." },
+  { term: "AI Agent",             def: "Ein KI-System, das selbstständig Aufgaben plant, Werkzeuge nutzt und mehrere Schritte ausführt — ohne ständige menschliche Eingabe." },
+  { term: "Automation",           def: "Automatisierung wiederkehrender Aufgaben durch Software oder KI, um manuelle Arbeit zu reduzieren und Prozesse zu beschleunigen." },
+  { term: "Prompt Engineering",   def: "Die systematische Entwicklung und Optimierung von Eingaben an KI-Modelle, um konsistent hochwertige Ergebnisse zu erzielen." },
+  { term: "Zero-Shot",            def: "Eine KI löst eine Aufgabe ohne vorherige Beispiele — nur durch die Beschreibung im Prompt." },
+  { term: "Few-Shot",             def: "Eine KI erhält wenige Beispiele im Prompt und überträgt das Muster auf neue Aufgaben." },
+  { term: "Chain of Thought",     def: "Eine Prompting-Technik, bei der das Modell Zwischenschritte explizit durchdenkt — verbessert Genauigkeit bei komplexen Aufgaben." },
+  { term: "API",                  def: "Application Programming Interface. Eine Schnittstelle, über die Software-Systeme miteinander kommunizieren — z. B. um ein KI-Modell in eine eigene Anwendung einzubinden." },
+  { term: "Multimodal",           def: "KI-Systeme, die mehrere Eingabetypen verarbeiten können — z. B. Text, Bilder, Audio oder Dokumente in einem Modell." },
+  { term: "Inferenz",             def: "Der Vorgang, bei dem ein trainiertes KI-Modell eine Anfrage verarbeitet und eine Antwort generiert." },
+  { term: "Latenz",               def: "Die Zeit, die ein KI-System benötigt, um auf eine Anfrage zu antworten. Relevant für Echtzeit-Anwendungen wie Chatbots oder Voicebots." },
 ];
 
 export default function Wissen() {
