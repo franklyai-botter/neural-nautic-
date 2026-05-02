@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const LINKS = [
   { label: "Leistungen",     href: "/leistungen" },
-  { label: "Use Cases",      href: "/use-cases" },
+  { label: "Anwendungsfälle", href: "/use-cases" },
   { label: "Methode",        href: "/methode" },
   { label: "KI Tool Kompass",href: "/ki-tool-kompass" },
   { label: "Wissen",         href: "/wissen" },
