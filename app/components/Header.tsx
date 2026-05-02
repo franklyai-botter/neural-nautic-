@@ -35,7 +35,7 @@ export default function Header() {
     }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", height: 64 }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", border: 0, flexShrink: 0 }}>
-          <Image src="/logo-star.png" alt="NeuralNautic" width={52} height={52} style={{ objectFit: "contain" }} />
+          <Image src="/logo-star.png" alt="NeuralNautic" width={72} height={72} style={{ objectFit: "contain" }} />
           <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 22, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
         </Link>
 
