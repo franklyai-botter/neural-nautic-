@@ -20,10 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <Image
-          src="/logo-monogram.png"
+          src="/logo-star.png"
           alt="NeuralNautic"
-          width={44}
-          height={44}
+          width={96}
+          height={96}
           style={{ position: "fixed", bottom: 40, right: 48, objectFit: "contain", opacity: 0.6, filter: "drop-shadow(0 0 24px rgba(63,212,224,.4))", zIndex: 50, pointerEvents: "none" }}
         />
       </body>
