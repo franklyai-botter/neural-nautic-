@@ -37,15 +37,14 @@ export default function Footer() {
       <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <Image src="/logo-star.png" alt="" width={52} height={52} style={{ objectFit: "contain" }} />
-              <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
+            <div>
+              <Image src="/logo-monogram.png" alt="NeuralNautic" width={72} height={72} style={{ objectFit: "contain" }} />
             </div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, marginTop: 20, maxWidth: "38ch" }}>
               Pragmatische KI-Beratung für den Mittelstand. Von der Idee zum messbaren Pilotprojekt.
             </p>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", marginTop: 12 }}>
-              Berlin · Brandenburg · Remote DACH
+              Berlin · Deutschland · DACH
             </p>
           </div>
 
