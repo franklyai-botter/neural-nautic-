@@ -19,10 +19,33 @@ const input: React.CSSProperties = {
 
 export default function Kontakt() {
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError("");
+    const fd = new FormData(e.currentTarget);
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name:    fd.get("name"),
+        company: fd.get("company"),
+        email:   fd.get("email"),
+        phone:   fd.get("phone"),
+        topic:   fd.get("topic"),
+        message: fd.get("message"),
+      }),
+    });
+    setLoading(false);
+    if (res.ok) {
+      setSent(true);
+    } else {
+      const data = await res.json();
+      setError(data.error ?? "Unbekannter Fehler. Bitte versuchen Sie es erneut.");
+    }
   };
 
   return (
@@ -59,28 +82,28 @@ export default function Kontakt() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Name *</label>
-                  <input required style={input} placeholder="Ihr Name" />
+                  <input name="name" required style={input} placeholder="Ihr Name" />
                 </div>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Unternehmen *</label>
-                  <input required style={input} placeholder="Ihr Unternehmen" />
+                  <input name="company" required style={input} placeholder="Ihr Unternehmen" />
                 </div>
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>E-Mail *</label>
-                  <input required type="email" style={input} placeholder="ihre@email.de" />
+                  <input name="email" required type="email" style={input} placeholder="ihre@email.de" />
                 </div>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Telefon (optional)</label>
-                  <input style={input} placeholder="+49 ..." />
+                  <input name="phone" style={input} placeholder="+49 ..." />
                 </div>
               </div>
 
               <div>
                 <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Anliegen *</label>
-                <select required style={{ ...input, appearance: "none" }}>
+                <select name="topic" required style={{ ...input, appearance: "none" }}>
                   <option value="">Bitte wählen …</option>
                   {TOPICS.map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
@@ -88,12 +111,14 @@ export default function Kontakt() {
 
               <div>
                 <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Nachricht *</label>
-                <textarea required rows={6} style={{ ...input, resize: "vertical" }} placeholder="Beschreiben Sie kurz Ihr Anliegen oder Ihren Use Case …" />
+                <textarea name="message" required rows={6} style={{ ...input, resize: "vertical" }} placeholder="Beschreiben Sie kurz Ihr Anliegen oder Ihren Use Case …" />
               </div>
 
-              <button type="submit" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", border: "none", cursor: "pointer", alignSelf: "flex-start" }}>
-                Anfrage senden →
+              <button type="submit" disabled={loading} style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", border: "none", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, alignSelf: "flex-start" }}>
+                {loading ? "Wird gesendet …" : "Anfrage senden →"}
               </button>
+
+              {error && <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--signal-alert)", margin: 0 }}>{error}</p>}
 
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", lineHeight: 1.6, margin: 0 }}>
                 Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
