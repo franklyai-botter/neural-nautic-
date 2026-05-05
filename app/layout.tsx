@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Italiana, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 import ChatWidget from "./components/ChatWidget";
@@ -8,6 +8,12 @@ const italiana = Italiana({ weight: "400", subsets: ["latin"], variable: "--font
 const cormorant = Cormorant_Garamond({ weight: ["300","400","500"], style: ["normal","italic"], subsets: ["latin"], variable: "--font-cormorant" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrains = JetBrains_Mono({ weight: ["400","500"], subsets: ["latin"], variable: "--font-jetbrains" });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "KI-Beratung für den Mittelstand | NeuralNautic",
