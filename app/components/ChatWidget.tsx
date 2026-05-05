@@ -217,8 +217,8 @@ export default function ChatWidget() {
             <img
               src="/logo-star.png"
               alt=""
-              width={48}
-              height={48}
+              width={80}
+              height={80}
               style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(63,212,224,0.5))", flexShrink: 0 }}
             />
             <span style={{ fontSize: 13, fontWeight: 600, color: "var(--fg-1)", letterSpacing: ".03em" }}>
