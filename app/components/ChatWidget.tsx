@@ -124,7 +124,7 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Toggle Button — rechts unten, 60px */}
+      {/* Toggle Button — rechts unten */}
       <button
         onClick={() => setOpen(v => !v)}
         aria-label={open ? "Chat schließen" : "Chat öffnen"}
@@ -133,18 +133,21 @@ export default function ChatWidget() {
           bottom: btnBottom,
           right: btnRight,
           zIndex: 61,
-          width: btnSize, height: btnSize,
-          minWidth: btnSize, minHeight: btnSize,
-          borderRadius: "50%",
-          background: open ? "var(--ink-shoal)" : "var(--glow-cyan)",
-          border: open ? "1px solid rgba(205,206,210,0.2)" : "none",
-          boxShadow: open ? "none" : "0 0 28px rgba(63,212,224,0.5), 0 4px 20px rgba(0,0,0,0.45)",
+          width: open ? btnSize : 64,
+          height: open ? btnSize : 76,
+          minWidth: open ? btnSize : 64,
+          minHeight: open ? btnSize : 76,
+          borderRadius: open ? "50%" : 0,
+          background: open ? "rgba(11,31,38,0.95)" : "transparent",
+          border: open ? "1px solid rgba(63,212,224,0.22)" : "none",
+          boxShadow: open ? "0 2px 16px rgba(0,0,0,0.4)" : "none",
           cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "all 280ms cubic-bezier(.22,.61,.36,1)",
-          color: open ? "var(--fg-2)" : "var(--ink-abyss)",
+          transition: "background 280ms cubic-bezier(.22,.61,.36,1), border-radius 280ms cubic-bezier(.22,.61,.36,1)",
+          color: "var(--fg-2)",
           touchAction: "manipulation",
           WebkitTapHighlightColor: "transparent",
+          padding: 0,
         } as React.CSSProperties}
       >
         {open ? (
@@ -152,9 +155,34 @@ export default function ChatWidget() {
             <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M20 14a2 2 0 01-2 2H6l-3 3V6a2 2 0 012-2h13a2 2 0 012 2v8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
-          </svg>
+          <div style={{ position: "relative", width: 64, height: 76, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* Sprechblasen-Form als SVG */}
+            <svg
+              style={{ position: "absolute", inset: 0, filter: "drop-shadow(0 0 18px rgba(63,212,224,0.4)) drop-shadow(0 4px 24px rgba(0,0,0,0.55))" }}
+              width="64" height="76" viewBox="0 0 64 76" fill="none"
+            >
+              <path
+                d="M14 0H50Q64 0 64 14V50Q64 64 50 64H40L32 76L24 64H14Q0 64 0 50V14Q0 0 14 0Z"
+                fill="rgba(6,20,26,0.94)"
+                stroke="rgba(63,212,224,0.28)"
+                strokeWidth="1.5"
+              />
+            </svg>
+            {/* Kompassrose — leicht nach oben versetzt damit sie im Blasen-Body zentriert wirkt */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-star.png"
+              alt=""
+              width={36}
+              height={36}
+              style={{
+                position: "relative",
+                objectFit: "contain",
+                filter: "drop-shadow(0 0 8px rgba(63,212,224,0.45))",
+                marginTop: -6,
+              }}
+            />
+          </div>
         )}
       </button>
 
@@ -339,9 +367,6 @@ export default function ChatWidget() {
         @keyframes nn-slide-up {
           from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
-        }
-        @media (max-width: 639px) {
-          .nn-logo-fixed { display: none !important; }
         }
       `}</style>
     </>

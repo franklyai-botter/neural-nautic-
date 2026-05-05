@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Italiana, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
-import Image from "next/image";
 import ChatWidget from "./components/ChatWidget";
 import "./globals.css";
 
@@ -27,14 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <ChatWidget />
-        <Image
-          src="/logo-star.png"
-          alt="NeuralNautic"
-          width={72}
-          height={72}
-          className="nn-logo-fixed"
-          style={{ position: "fixed", bottom: 40, right: 120, objectFit: "contain", opacity: 0.6, filter: "drop-shadow(0 0 24px rgba(63,212,224,.4))", zIndex: 50, pointerEvents: "none" }}
-        />
       </body>
     </html>
   );
