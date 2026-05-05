@@ -81,10 +81,10 @@ export default function ChatWidget() {
   const btnBottom = "max(20px, calc(20px + env(safe-area-inset-bottom)))";
   const btnRight = 20;
   const btnSize = 60;
+  const bubbleH = 76; // Sprechblasen-Button-Höhe (inkl. Schwanz)
 
   // Mobile: Chat-Position über dem Button
-  // btnTopFromVVBottom = tatsächlicher Abstand von Viewport-Unterkante bis Oberkante des Buttons
-  const btnTopFromVVBottom = btnSize + 20 + safeAreaBottom; // 60 + 20 + safe-area
+  const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom; // 76 + 20 + safe-area
   const chatHeight = isMobile && vvHeight > 0
     ? Math.max(100, Math.min(vvHeight - btnTopFromVVBottom - 8, 480))
     : 0;
@@ -108,10 +108,11 @@ export default function ChatWidget() {
     animation: "nn-slide-up 240ms cubic-bezier(.22,.61,.36,1) both",
   } : {
     position: "fixed",
-    bottom: 100,
+    bottom: 116,
     right: btnRight,
     zIndex: 60,
     width: "min(380px, calc(100vw - 40px))",
+    maxHeight: "calc(100vh - 140px)",
     background: "var(--ink-deep)",
     border: "1px solid rgba(63,212,224,0.2)",
     borderRadius: 16,
@@ -212,11 +213,14 @@ export default function ChatWidget() {
             display: "flex", alignItems: "center", gap: 10,
             flexShrink: 0,
           }}>
-            <div style={{
-              width: 8, height: 8, borderRadius: "50%",
-              background: "var(--glow-cyan)",
-              boxShadow: "0 0 6px var(--glow-cyan)",
-            }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-star.png"
+              alt=""
+              width={32}
+              height={32}
+              style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(63,212,224,0.5))", flexShrink: 0 }}
+            />
             <span style={{ fontSize: 13, fontWeight: 600, color: "var(--fg-1)", letterSpacing: ".03em" }}>
               NeuralNautic Assistent
             </span>
