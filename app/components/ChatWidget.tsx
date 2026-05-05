@@ -4,13 +4,6 @@ import Link from "next/link";
 
 type Message = { role: "user" | "assistant"; content: string };
 
-const STARTERS = [
-  "Was fordert der EU AI Act von meinem Unternehmen?",
-  "Bin ich DSGVO-konform wenn ich KI einsetze?",
-  "Was passiert bei einer Datenschutz-Abmahnung?",
-  "Wie sichere ich meine Daten beim KI-Einsatz?",
-];
-
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -135,21 +128,9 @@ export default function ChatWidget() {
             maxHeight: 340, minHeight: 160,
           }}>
             {messages.length === 0 && (
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <p style={{ fontSize: 13, color: "var(--fg-3)", margin: 0 }}>
-                  Stell mir eine Frage zu DSGVO, EU AI Act oder Datensicherheit:
-                </p>
-                {STARTERS.map(s => (
-                  <button key={s} onClick={() => send(s)} style={{
-                    background: "rgba(63,212,224,0.06)",
-                    border: "1px solid rgba(63,212,224,0.18)",
-                    borderRadius: 8, padding: "8px 12px",
-                    fontSize: 12, color: "var(--fg-2)",
-                    cursor: "pointer", textAlign: "left",
-                    transition: "all 180ms",
-                  }}>{s}</button>
-                ))}
-              </div>
+              <p style={{ fontSize: 13, color: "var(--fg-3)", margin: 0 }}>
+                Hallo! Ich bin der Assistent von NeuralNautic. Stell mir deine Frage — zu KI, DSGVO, EU AI Act oder Datensicherheit.
+              </p>
             )}
 
             {messages.map((m, i) => (
