@@ -54,7 +54,7 @@ export default function Home() {
         {/* HERO */}
         <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover" }} priority />
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center" }} priority />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 28% 50%, transparent 22%, rgba(6,20,25,.85) 78%)" }} />
           <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%" }}>
@@ -179,7 +179,7 @@ export default function Home() {
         {/* TRUST */}
         <section style={{ position: "relative", padding: "100px 32px", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.18 }} />
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.18 }} />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, transparent 20%, rgba(6,20,25,.92) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
