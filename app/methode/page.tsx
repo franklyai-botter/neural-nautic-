@@ -27,7 +27,7 @@ export default function Methode() {
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.35 }} />
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.35 }} />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.2), rgba(6,20,25,.75) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
@@ -69,7 +69,7 @@ export default function Methode() {
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 40, color: "var(--fg-1)", margin: "0 0 48px", textAlign: "center" }}>
               Sechs Prinzipien, die meine Arbeit leiten.
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+            <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
               {PRINCIPLES.map((pr) => (
                 <div key={pr.title} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "28px 28px" }}>
                   <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--glow-cyan)", letterSpacing: ".08em", textTransform: "uppercase", margin: "0 0 10px" }}>{pr.title}</h3>

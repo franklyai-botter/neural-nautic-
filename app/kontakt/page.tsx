@@ -54,7 +54,7 @@ export default function Kontakt() {
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.35 }} />
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.35 }} />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.2), rgba(6,20,25,.75) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
@@ -79,7 +79,7 @@ export default function Kontakt() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="nn-form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Name *</label>
                   <input name="name" required style={input} placeholder="Ihr Name" />
@@ -90,7 +90,7 @@ export default function Kontakt() {
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="nn-form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>E-Mail *</label>
                   <input name="email" required type="email" style={input} placeholder="ihre@email.de" />

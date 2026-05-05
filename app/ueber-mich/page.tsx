@@ -19,7 +19,7 @@ export default function UeberMich() {
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.35 }} />
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.35 }} />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.2), rgba(6,20,25,.75) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
@@ -34,7 +34,7 @@ export default function UeberMich() {
         </section>
 
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
+          <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
               <div style={{ aspectRatio: "3/4", background: "linear-gradient(160deg, var(--ink-shoal), var(--ink-current))", borderRadius: 8, border: "1px solid var(--border-2)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0 }}>

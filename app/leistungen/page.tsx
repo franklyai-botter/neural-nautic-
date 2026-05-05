@@ -61,7 +61,7 @@ export default function Leistungen() {
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.35 }} />
+            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.35 }} />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.2), rgba(6,20,25,.75) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
@@ -77,7 +77,7 @@ export default function Leistungen() {
 
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
           {SERVICES.map((s, i) => (
-            <div key={s.title} style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 64, padding: "64px 0", borderBottom: i < SERVICES.length - 1 ? "1px solid var(--border-1)" : "none" }}>
+            <div key={s.title} className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 64, padding: "64px 0", borderBottom: i < SERVICES.length - 1 ? "1px solid var(--border-1)" : "none" }}>
               <div>
                 <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--glow-cyan)", letterSpacing: ".12em", marginBottom: 12 }}>0{i + 1}</div>
                 <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: 36, color: "var(--fg-1)", margin: "0 0 16px", lineHeight: 1.15 }}>{s.title}</h2>
