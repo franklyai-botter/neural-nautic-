@@ -266,9 +266,70 @@ export default function ChatWidget() {
             minHeight: 120,
           } as React.CSSProperties}>
             {messages.length === 0 && (
-              <p style={{ fontSize: 14, color: "var(--fg-3)", margin: 0, lineHeight: 1.6 }}>
-                Hallo! Stell mir deine Frage zu KI, DSGVO, EU AI Act oder Datensicherheit.
-              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                <p style={{ fontSize: 14, color: "var(--fg-3)", margin: 0, lineHeight: 1.6 }}>
+                  Hallo! Stell mir deine Frage zu KI, DSGVO, EU AI Act oder Datensicherheit.
+                </p>
+                {/* Horizontale Vorschläge-Chips */}
+                <div style={{ position: "relative" }}>
+                  <div
+                    className="nn-chips-scroll"
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      overflowX: "auto",
+                      scrollbarWidth: "none",
+                      paddingBottom: 2,
+                      WebkitOverflowScrolling: "touch",
+                    } as React.CSSProperties}
+                  >
+                    {[
+                      "Was kostet eine KI-Beratung?",
+                      "Wie läuft ein Potenzialcheck ab?",
+                      "Ist das DSGVO-konform?",
+                      "Welche Workflows gibt es?",
+                      "Was ist der EU AI Act?",
+                      "Wie sicher sind meine Daten?",
+                    ].map((q) => (
+                      <button
+                        key={q}
+                        onClick={() => send(q)}
+                        style={{
+                          flexShrink: 0,
+                          background: "rgba(63,212,224,0.06)",
+                          border: "1px solid rgba(63,212,224,0.18)",
+                          borderRadius: 20,
+                          padding: "7px 14px",
+                          fontSize: 12,
+                          color: "var(--fg-2)",
+                          cursor: "pointer",
+                          whiteSpace: "nowrap",
+                          fontFamily: "inherit",
+                          touchAction: "manipulation",
+                          WebkitTapHighlightColor: "transparent",
+                          transition: "background 160ms, border-color 160ms",
+                        } as React.CSSProperties}
+                        onMouseEnter={e => {
+                          (e.currentTarget as HTMLButtonElement).style.background = "rgba(63,212,224,0.13)";
+                          (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(63,212,224,0.4)";
+                        }}
+                        onMouseLeave={e => {
+                          (e.currentTarget as HTMLButtonElement).style.background = "rgba(63,212,224,0.06)";
+                          (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(63,212,224,0.18)";
+                        }}
+                      >{q}</button>
+                    ))}
+                  </div>
+                  {/* Fade-Hinweis dass mehr Chips vorhanden */}
+                  <div style={{
+                    position: "absolute",
+                    right: 0, top: 0, bottom: 2,
+                    width: 36,
+                    background: "linear-gradient(to right, transparent, var(--ink-deep))",
+                    pointerEvents: "none",
+                  }} />
+                </div>
+              </div>
             )}
 
             {messages.map((m, i) => (
@@ -372,6 +433,7 @@ export default function ChatWidget() {
           from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
         }
+        .nn-chips-scroll::-webkit-scrollbar { display: none; }
       `}</style>
     </>
   );
