@@ -34,13 +34,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Keine Nachrichten." }, { status: 400 });
     }
 
-    // Validate + sanitize: only allow user/assistant roles, truncate long messages
     const messages: Message[] = raw
-      .filter((m): m is Message =>
-        typeof m === "object" && m !== null &&
-        (m as Message).role === "user" || (m as Message).role === "assistant" &&
-        typeof (m as Message).content === "string"
-      )
+      .filter((m): m is Message => {
+        if (typeof m !== "object" || m === null) return false;
+        const msg = m as Record<string, unknown>;
+        return (msg.role === "user" || msg.role === "assistant") && typeof msg.content === "string";
+      })
       .slice(-MAX_HISTORY)
       .map(m => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_LENGTH) }));
 
