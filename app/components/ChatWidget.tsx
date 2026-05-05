@@ -11,7 +11,8 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const [notice, setNotice] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const [vvHeight, setVvHeight] = useState(0);
+  const [vvTop, setVvTop] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,18 +22,23 @@ export default function ChatWidget() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // visualViewport tracken — einzige zuverlässige Methode auf iOS Safari
   useEffect(() => {
     const vv = window.visualViewport;
-    if (!vv) return;
-    const onResize = () => {
-      const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      setKeyboardOffset(offset);
+    if (!vv) {
+      setVvHeight(window.innerHeight);
+      return;
+    }
+    const update = () => {
+      setVvHeight(vv.height);
+      setVvTop(vv.offsetTop);
     };
-    vv.addEventListener("resize", onResize);
-    vv.addEventListener("scroll", onResize);
+    update();
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
     return () => {
-      vv.removeEventListener("resize", onResize);
-      vv.removeEventListener("scroll", onResize);
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
     };
   }, []);
 
@@ -65,13 +71,17 @@ export default function ChatWidget() {
   const btnRight = 20;
   const btnSize = 60;
 
-  // Chat-Fenster je nach Gerät
-  const chatWindow: React.CSSProperties = isMobile ? {
+  // Mobile: top+height aus visualViewport — funktioniert auf iOS mit und ohne Tastatur
+  const BTN_AREA = btnSize + 16; // Button + Abstand
+  const chatTop = isMobile && vvHeight > 0 ? Math.max(vvTop + 8, vvTop + vvHeight - BTN_AREA - Math.min(vvHeight - BTN_AREA - 8, 480)) : 0;
+  const chatHeight = isMobile && vvHeight > 0 ? vvHeight - BTN_AREA - 8 : 0;
+
+  const chatWindow: React.CSSProperties = isMobile && vvHeight > 0 ? {
     position: "fixed",
-    bottom: keyboardOffset > 0 ? keyboardOffset + 8 : `calc(${btnSize + 16}px + max(20px, calc(20px + env(safe-area-inset-bottom))))`,
+    top: chatTop,
     left: 0, right: 0,
+    height: chatHeight,
     zIndex: 60,
-    maxHeight: "72dvh",
     background: "var(--ink-deep)",
     border: "1px solid rgba(63,212,224,0.18)",
     borderRadius: "20px 20px 0 0",
