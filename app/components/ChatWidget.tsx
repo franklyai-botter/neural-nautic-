@@ -21,7 +21,6 @@ export default function ChatWidget() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Track keyboard height via visualViewport (iOS + Android)
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
@@ -38,7 +37,7 @@ export default function ChatWidget() {
   }, []);
 
   useEffect(() => {
-    if (open) setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
+    if (open) setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 80);
   }, [messages, open]);
 
   async function send(text: string) {
@@ -61,50 +60,59 @@ export default function ChatWidget() {
     setLoading(false);
   }
 
+  // Button: rechts unten, respektiert iOS Home-Indicator
+  const btnBottom = "max(20px, calc(20px + env(safe-area-inset-bottom)))";
+  const btnRight = 20;
+  const btnSize = 60;
+
+  // Chat-Fenster je nach Gerät
   const chatWindow: React.CSSProperties = isMobile ? {
     position: "fixed",
-    bottom: keyboardOffset + 80,
+    bottom: keyboardOffset > 0 ? keyboardOffset + 8 : `calc(${btnSize + 16}px + max(20px, calc(20px + env(safe-area-inset-bottom))))`,
     left: 0, right: 0,
     zIndex: 60,
-    maxHeight: "70dvh",
+    maxHeight: "72dvh",
     background: "var(--ink-deep)",
-    border: "1px solid rgba(63,212,224,0.2)",
-    borderRadius: "16px 16px 0 0",
-    boxShadow: "0 -8px 40px rgba(0,0,0,0.55)",
+    border: "1px solid rgba(63,212,224,0.18)",
+    borderRadius: "20px 20px 0 0",
+    boxShadow: "0 -12px 48px rgba(0,0,0,0.6)",
     display: "flex", flexDirection: "column",
     overflow: "hidden",
     fontFamily: "var(--font-inter), sans-serif",
+    animation: "nn-slide-up 240ms cubic-bezier(.22,.61,.36,1) both",
   } : {
     position: "fixed",
-    bottom: 92, left: 28,
+    bottom: 100,
+    right: btnRight,
     zIndex: 60,
     width: "min(380px, calc(100vw - 40px))",
     background: "var(--ink-deep)",
     border: "1px solid rgba(63,212,224,0.2)",
-    borderRadius: 12,
+    borderRadius: 16,
     boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(63,212,224,0.08)",
     display: "flex", flexDirection: "column",
     overflow: "hidden",
     fontFamily: "var(--font-inter), sans-serif",
+    animation: "nn-slide-up 240ms cubic-bezier(.22,.61,.36,1) both",
   };
 
   return (
     <>
-      {/* Toggle Button */}
+      {/* Toggle Button — rechts unten, 60px */}
       <button
         onClick={() => setOpen(v => !v)}
         aria-label={open ? "Chat schließen" : "Chat öffnen"}
         style={{
           position: "fixed",
-          bottom: 28,
-          left: 28,
-          zIndex: 60,
-          width: 52, height: 52,
-          minWidth: 52, minHeight: 52,
+          bottom: btnBottom,
+          right: btnRight,
+          zIndex: 61,
+          width: btnSize, height: btnSize,
+          minWidth: btnSize, minHeight: btnSize,
           borderRadius: "50%",
           background: open ? "var(--ink-shoal)" : "var(--glow-cyan)",
-          border: "1px solid rgba(205,206,210,0.15)",
-          boxShadow: open ? "none" : "0 0 24px rgba(63,212,224,0.45), 0 4px 16px rgba(0,0,0,0.4)",
+          border: open ? "1px solid rgba(205,206,210,0.2)" : "none",
+          boxShadow: open ? "none" : "0 0 28px rgba(63,212,224,0.5), 0 4px 20px rgba(0,0,0,0.45)",
           cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 280ms cubic-bezier(.22,.61,.36,1)",
@@ -114,12 +122,12 @@ export default function ChatWidget() {
         } as React.CSSProperties}
       >
         {open ? (
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         ) : (
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M17 12a2 2 0 01-2 2H5l-3 3V5a2 2 0 012-2h11a2 2 0 012 2v7z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M20 14a2 2 0 01-2 2H6l-3 3V6a2 2 0 012-2h13a2 2 0 012 2v8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
           </svg>
         )}
       </button>
@@ -128,9 +136,23 @@ export default function ChatWidget() {
       {open && (
         <div style={chatWindow}>
 
+          {/* Drag Handle (nur Mobile) */}
+          {isMobile && (
+            <div style={{
+              display: "flex", justifyContent: "center",
+              padding: "10px 0 4px",
+              flexShrink: 0,
+            }}>
+              <div style={{
+                width: 36, height: 4, borderRadius: 2,
+                background: "rgba(205,206,210,0.25)",
+              }} />
+            </div>
+          )}
+
           {/* Header */}
           <div style={{
-            padding: "14px 18px",
+            padding: isMobile ? "10px 18px 12px" : "14px 18px",
             borderBottom: "1px solid rgba(205,206,210,0.1)",
             background: "var(--ink-tide)",
             display: "flex", alignItems: "center", gap: 10,
@@ -170,7 +192,8 @@ export default function ChatWidget() {
                 style={{
                   background: "none", border: "none", color: "var(--glow-cyan)",
                   cursor: "pointer", fontSize: 11, padding: 0,
-                  touchAction: "manipulation", WebkitTapHighlightColor: "transparent",
+                  touchAction: "manipulation",
+                  WebkitTapHighlightColor: "transparent",
                 } as React.CSSProperties}
               >OK</button>
             </div>
@@ -185,8 +208,8 @@ export default function ChatWidget() {
             minHeight: 120,
           } as React.CSSProperties}>
             {messages.length === 0 && (
-              <p style={{ fontSize: 13, color: "var(--fg-3)", margin: 0 }}>
-                Hallo! Ich bin der Assistent von NeuralNautic. Stell mir deine Frage — zu KI, DSGVO, EU AI Act oder Datensicherheit.
+              <p style={{ fontSize: 14, color: "var(--fg-3)", margin: 0, lineHeight: 1.6 }}>
+                Hallo! Stell mir deine Frage zu KI, DSGVO, EU AI Act oder Datensicherheit.
               </p>
             )}
 
@@ -197,14 +220,14 @@ export default function ChatWidget() {
               }}>
                 <div style={{
                   maxWidth: "85%",
-                  padding: "9px 13px",
-                  borderRadius: m.role === "user" ? "12px 12px 3px 12px" : "12px 12px 12px 3px",
+                  padding: "10px 14px",
+                  borderRadius: m.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
                   background: m.role === "user" ? "rgba(63,212,224,0.15)" : "rgba(255,255,255,0.05)",
                   border: "1px solid",
                   borderColor: m.role === "user" ? "rgba(63,212,224,0.25)" : "rgba(205,206,210,0.08)",
-                  fontSize: 13,
+                  fontSize: 14,
                   color: "var(--fg-1)",
-                  lineHeight: 1.55,
+                  lineHeight: 1.6,
                   whiteSpace: "pre-wrap",
                   wordBreak: "break-word",
                 }}>
@@ -214,10 +237,10 @@ export default function ChatWidget() {
             ))}
 
             {loading && (
-              <div style={{ display: "flex", gap: 4, padding: "6px 12px" }}>
+              <div style={{ display: "flex", gap: 5, padding: "8px 14px" }}>
                 {[0, 1, 2].map(i => (
                   <span key={i} style={{
-                    width: 6, height: 6, borderRadius: "50%",
+                    width: 7, height: 7, borderRadius: "50%",
                     background: "var(--glow-cyan)",
                     animation: `nn-pulse 1.2s ease-in-out ${i * 0.2}s infinite`,
                   }} />
@@ -229,11 +252,12 @@ export default function ChatWidget() {
 
           {/* Input */}
           <div style={{
-            padding: "10px 14px",
-            paddingBottom: isMobile ? "max(10px, env(safe-area-inset-bottom))" : "10px",
+            padding: "12px 14px",
+            paddingBottom: isMobile ? "max(14px, env(safe-area-inset-bottom))" : "12px",
             borderTop: "1px solid rgba(205,206,210,0.1)",
-            display: "flex", gap: 8,
+            display: "flex", gap: 10,
             flexShrink: 0,
+            background: "var(--ink-deep)",
           }}>
             <input
               value={input}
@@ -244,11 +268,11 @@ export default function ChatWidget() {
               disabled={loading}
               style={{
                 flex: 1,
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(205,206,210,0.12)",
-                borderRadius: 8,
-                padding: "9px 12px",
-                fontSize: 16, // 16px verhindert iOS Auto-Zoom
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(205,206,210,0.15)",
+                borderRadius: 10,
+                padding: "11px 14px",
+                fontSize: 16,
                 color: "var(--fg-1)",
                 outline: "none",
                 fontFamily: "inherit",
@@ -261,8 +285,8 @@ export default function ChatWidget() {
               style={{
                 width: 44, height: 44,
                 minWidth: 44, minHeight: 44,
-                borderRadius: 8, flexShrink: 0,
-                background: input.trim() ? "var(--glow-cyan)" : "rgba(63,212,224,0.15)",
+                borderRadius: 10, flexShrink: 0,
+                background: input.trim() ? "var(--glow-cyan)" : "rgba(63,212,224,0.12)",
                 border: "none",
                 cursor: input.trim() ? "pointer" : "default",
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -270,10 +294,11 @@ export default function ChatWidget() {
                 color: input.trim() ? "var(--ink-abyss)" : "var(--glow-faint)",
                 touchAction: "manipulation",
                 WebkitTapHighlightColor: "transparent",
+                alignSelf: "flex-end",
               } as React.CSSProperties}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M14 8H2M14 8l-5-5M14 8l-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M16 9H2M16 9l-6-6M16 9l-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
@@ -283,7 +308,14 @@ export default function ChatWidget() {
       <style>{`
         @keyframes nn-pulse {
           0%, 100% { opacity: 0.3; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.1); }
+          50% { opacity: 1; transform: scale(1.15); }
+        }
+        @keyframes nn-slide-up {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 639px) {
+          .nn-logo-fixed { display: none !important; }
         }
       `}</style>
     </>
