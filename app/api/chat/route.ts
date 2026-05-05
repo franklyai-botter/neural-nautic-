@@ -16,14 +16,36 @@ Regeln:
 - Wenn jemand konkrete Beratung braucht: weise freundlich auf den KI-Check mit Frank hin (/kontakt)
 - Du speicherst keine Gesprächsdaten, kein Tracking`;
 
+const MAX_MESSAGE_LENGTH = 2000;
+const MAX_HISTORY = 20;
+
 type Message = { role: "user" | "assistant"; content: string };
 
 export async function POST(req: Request) {
-  try {
-    const { messages } = await req.json() as { messages: Message[] };
+  if (!process.env.MISTRAL_API_KEY) {
+    return NextResponse.json({ error: "Chatbot nicht konfiguriert." }, { status: 503 });
+  }
 
-    if (!Array.isArray(messages) || messages.length === 0) {
+  try {
+    const body = await req.json();
+    const raw: unknown[] = Array.isArray(body?.messages) ? body.messages : [];
+
+    if (raw.length === 0) {
       return NextResponse.json({ error: "Keine Nachrichten." }, { status: 400 });
+    }
+
+    // Validate + sanitize: only allow user/assistant roles, truncate long messages
+    const messages: Message[] = raw
+      .filter((m): m is Message =>
+        typeof m === "object" && m !== null &&
+        (m as Message).role === "user" || (m as Message).role === "assistant" &&
+        typeof (m as Message).content === "string"
+      )
+      .slice(-MAX_HISTORY)
+      .map(m => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_LENGTH) }));
+
+    if (messages.length === 0) {
+      return NextResponse.json({ error: "Ungültige Nachrichten." }, { status: 400 });
     }
 
     const res = await fetch("https://api.mistral.ai/v1/chat/completions", {
@@ -41,11 +63,12 @@ export async function POST(req: Request) {
 
     const data = await res.json();
     if (!res.ok) {
-      return NextResponse.json({ error: `Mistral Fehler: ${data?.message ?? res.status}` }, { status: 502 });
+      return NextResponse.json({ error: "KI-Dienst vorübergehend nicht erreichbar." }, { status: 502 });
     }
+
     const text = data.choices?.[0]?.message?.content ?? "Keine Antwort erhalten.";
     return NextResponse.json({ message: text });
-  } catch (err) {
-    return NextResponse.json({ error: `Serverfehler: ${String(err)}` }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: "Anfrage konnte nicht verarbeitet werden." }, { status: 500 });
   }
 }

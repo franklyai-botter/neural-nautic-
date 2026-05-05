@@ -29,7 +29,7 @@ export default function ChatWidget() {
         body: JSON.stringify({ messages: next }),
       });
       const data = await res.json();
-      setMessages([...next, { role: "assistant", content: data.message || "Fehler beim Laden der Antwort." }]);
+      setMessages([...next, { role: "assistant", content: data.message || data.error || "Fehler beim Laden der Antwort." }]);
     } catch {
       setMessages([...next, { role: "assistant", content: "Verbindungsfehler. Bitte versuche es erneut." }]);
     }
@@ -184,6 +184,7 @@ export default function ChatWidget() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && !e.shiftKey && (e.preventDefault(), send(input))}
               placeholder="Deine Frage…"
+              maxLength={2000}
               disabled={loading}
               style={{
                 flex: 1, background: "rgba(255,255,255,0.05)",
