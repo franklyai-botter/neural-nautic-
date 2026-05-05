@@ -57,7 +57,7 @@ export default function Home() {
             <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center" }} priority />
           </div>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 28% 50%, transparent 22%, rgba(6,20,25,.85) 78%)" }} />
-          <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%" }}>
+          <div className="nn-hero-inner" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%" }}>
             <div style={{ maxWidth: 680 }}>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>✦ KI-Beratung · Mittelstand · DACH</span>
               <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(48px, 7vw, 96px)", lineHeight: 1.0, letterSpacing: "-0.01em", color: "var(--fg-1)", margin: "24px 0 0" }}>
@@ -83,7 +83,7 @@ export default function Home() {
         </section>
 
         {/* PROBLEM */}
-        <section style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
+        <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", marginBottom: 64 }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Die Herausforderung</span>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px 0 24px" }}>
@@ -104,7 +104,7 @@ export default function Home() {
         </section>
 
         {/* SOLUTION */}
-        <section style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
+        <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Mein Ansatz</span>
@@ -134,8 +134,8 @@ export default function Home() {
         </section>
 
         {/* SERVICES */}
-        <section style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56 }}>
+        <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
+          <div className="nn-services-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56 }}>
             <div>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Leistungen</span>
               <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "16px 0 0", maxWidth: "20ch" }}>
@@ -155,9 +155,9 @@ export default function Home() {
         </section>
 
         {/* USE CASES */}
-        <section style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
+        <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
+            <div className="nn-uc-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
               <div>
                 <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Use Cases</span>
                 <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "16px 0 0" }}>
@@ -177,7 +177,7 @@ export default function Home() {
         </section>
 
         {/* TRUST */}
-        <section style={{ position: "relative", padding: "100px 32px", overflow: "hidden" }}>
+        <section className="nn-section" style={{ position: "relative", padding: "100px 32px", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0 }}>
             <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.18 }} />
           </div>
@@ -202,7 +202,7 @@ export default function Home() {
         </section>
 
         {/* FINAL CTA */}
-        <section style={{ padding: "100px 32px", textAlign: "center", background: "var(--ink-abyss)" }}>
+        <section className="nn-section" style={{ padding: "100px 32px", textAlign: "center", background: "var(--ink-abyss)" }}>
           <div style={{ maxWidth: 640, margin: "0 auto" }}>
             <Image src="/logo-monogram.png" alt="" width={80} height={64} style={{ objectFit: "contain", opacity: 0.7, marginBottom: 32, filter: "drop-shadow(0 0 20px rgba(63,212,224,.2))" }} />
             <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.1, color: "var(--fg-1)", margin: "0 0 20px" }}>

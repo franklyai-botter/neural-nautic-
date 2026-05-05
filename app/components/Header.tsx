@@ -120,7 +120,7 @@ export default function Header() {
               transition: "color 150ms",
             }}>{label}</Link>
           ))}
-          <div style={{ padding: "24px" }}>
+          <div style={{ padding: "24px", paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}>
             <Link href="/kontakt" style={{
               display: "block",
               fontFamily: "var(--font-inter), sans-serif",
