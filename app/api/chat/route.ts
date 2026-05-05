@@ -40,9 +40,12 @@ export async function POST(req: Request) {
     });
 
     const data = await res.json();
+    if (!res.ok) {
+      return NextResponse.json({ error: `Mistral Fehler: ${data?.message ?? res.status}` }, { status: 502 });
+    }
     const text = data.choices?.[0]?.message?.content ?? "Keine Antwort erhalten.";
     return NextResponse.json({ message: text });
-  } catch {
-    return NextResponse.json({ error: "Fehler beim Verarbeiten der Anfrage." }, { status: 500 });
+  } catch (err) {
+    return NextResponse.json({ error: `Serverfehler: ${String(err)}` }, { status: 500 });
   }
 }
