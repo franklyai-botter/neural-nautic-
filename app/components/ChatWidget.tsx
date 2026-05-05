@@ -13,6 +13,7 @@ export default function ChatWidget() {
   const [isMobile, setIsMobile] = useState(false);
   const [vvHeight, setVvHeight] = useState(0);
   const [vvTop, setVvTop] = useState(0);
+  const [safeAreaBottom, setSafeAreaBottom] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,6 +41,16 @@ export default function ChatWidget() {
       vv.removeEventListener("resize", update);
       vv.removeEventListener("scroll", update);
     };
+  }, []);
+
+  // safe-area-inset-bottom per CSS-Probe messen (kann nicht direkt in JS gelesen werden)
+  useEffect(() => {
+    const probe = document.createElement("div");
+    probe.style.cssText =
+      "position:fixed;bottom:0;height:env(safe-area-inset-bottom,0px);pointer-events:none;visibility:hidden";
+    document.body.appendChild(probe);
+    setSafeAreaBottom(probe.offsetHeight);
+    document.body.removeChild(probe);
   }, []);
 
   useEffect(() => {
@@ -71,10 +82,15 @@ export default function ChatWidget() {
   const btnRight = 20;
   const btnSize = 60;
 
-  // Mobile: top+height aus visualViewport — funktioniert auf iOS mit und ohne Tastatur
-  const BTN_AREA = btnSize + 16; // Button + Abstand
-  const chatTop = isMobile && vvHeight > 0 ? Math.max(vvTop + 8, vvTop + vvHeight - BTN_AREA - Math.min(vvHeight - BTN_AREA - 8, 480)) : 0;
-  const chatHeight = isMobile && vvHeight > 0 ? vvHeight - BTN_AREA - 8 : 0;
+  // Mobile: Chat-Position über dem Button
+  // btnTopFromVVBottom = tatsächlicher Abstand von Viewport-Unterkante bis Oberkante des Buttons
+  const btnTopFromVVBottom = btnSize + 20 + safeAreaBottom; // 60 + 20 + safe-area
+  const chatHeight = isMobile && vvHeight > 0
+    ? Math.max(100, Math.min(vvHeight - btnTopFromVVBottom - 8, 480))
+    : 0;
+  const chatTop = isMobile && vvHeight > 0
+    ? vvTop + vvHeight - btnTopFromVVBottom - 8 - chatHeight
+    : 0;
 
   const chatWindow: React.CSSProperties = isMobile && vvHeight > 0 ? {
     position: "fixed",
