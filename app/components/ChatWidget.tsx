@@ -1,0 +1,243 @@
+"use client";
+import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+
+type Message = { role: "user" | "assistant"; content: string };
+
+const STARTERS = [
+  "Was fordert der EU AI Act von meinem Unternehmen?",
+  "Bin ich DSGVO-konform wenn ich KI einsetze?",
+  "Was passiert bei einer Datenschutz-Abmahnung?",
+  "Wie sichere ich meine Daten beim KI-Einsatz?",
+];
+
+export default function ChatWidget() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [notice, setNotice] = useState(true);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, open]);
+
+  async function send(text: string) {
+    if (!text.trim() || loading) return;
+    const next: Message[] = [...messages, { role: "user", content: text }];
+    setMessages(next);
+    setInput("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: next }),
+      });
+      const data = await res.json();
+      setMessages([...next, { role: "assistant", content: data.message || "Fehler beim Laden der Antwort." }]);
+    } catch {
+      setMessages([...next, { role: "assistant", content: "Verbindungsfehler. Bitte versuche es erneut." }]);
+    }
+    setLoading(false);
+  }
+
+  return (
+    <>
+      {/* Toggle Button */}
+      <button
+        onClick={() => setOpen(v => !v)}
+        aria-label={open ? "Chat schließen" : "Chat öffnen"}
+        style={{
+          position: "fixed", bottom: 28, left: 28, zIndex: 60,
+          width: 52, height: 52, borderRadius: "50%",
+          background: open ? "var(--ink-shoal)" : "var(--glow-cyan)",
+          border: "1px solid rgba(205,206,210,0.15)",
+          boxShadow: open ? "none" : "0 0 24px rgba(63,212,224,0.45), 0 4px 16px rgba(0,0,0,0.4)",
+          cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "all 280ms cubic-bezier(.22,.61,.36,1)",
+          color: open ? "var(--fg-2)" : "var(--ink-abyss)",
+        }}
+      >
+        {open ? (
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          </svg>
+        ) : (
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17 12a2 2 0 01-2 2H5l-3 3V5a2 2 0 012-2h11a2 2 0 012 2v7z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
+          </svg>
+        )}
+      </button>
+
+      {/* Chat Window */}
+      {open && (
+        <div style={{
+          position: "fixed", bottom: 92, left: 28, zIndex: 60,
+          width: "min(380px, calc(100vw - 40px))",
+          background: "var(--ink-deep)",
+          border: "1px solid rgba(63,212,224,0.2)",
+          borderRadius: 12,
+          boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(63,212,224,0.08)",
+          display: "flex", flexDirection: "column",
+          overflow: "hidden",
+          fontFamily: "var(--font-inter), sans-serif",
+        }}>
+
+          {/* Header */}
+          <div style={{
+            padding: "14px 18px",
+            borderBottom: "1px solid rgba(205,206,210,0.1)",
+            background: "var(--ink-tide)",
+            display: "flex", alignItems: "center", gap: 10,
+          }}>
+            <div style={{
+              width: 8, height: 8, borderRadius: "50%",
+              background: "var(--glow-cyan)",
+              boxShadow: "0 0 6px var(--glow-cyan)",
+            }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: "var(--fg-1)", letterSpacing: ".03em" }}>
+              NeuralNautic Assistent
+            </span>
+            <span style={{ fontSize: 11, color: "var(--fg-4)", marginLeft: "auto" }}>
+              DSGVO · EU AI Act
+            </span>
+          </div>
+
+          {/* DSGVO-Hinweis */}
+          {notice && (
+            <div style={{
+              margin: "12px 14px 0",
+              padding: "10px 12px",
+              background: "rgba(63,212,224,0.06)",
+              border: "1px solid rgba(63,212,224,0.15)",
+              borderRadius: 8,
+              fontSize: 11,
+              color: "var(--fg-3)",
+              lineHeight: 1.5,
+            }}>
+              Deine Fragen werden anonym verarbeitet, nicht gespeichert und nicht für KI-Training genutzt.
+              Anbieter: Mistral AI (Frankreich, EU). Mehr in der{" "}
+              <Link href="/datenschutz" style={{ color: "var(--glow-cyan)" }}>Datenschutzerklärung</Link>.{" "}
+              <button onClick={() => setNotice(false)} style={{
+                background: "none", border: "none", color: "var(--glow-cyan)",
+                cursor: "pointer", fontSize: 11, padding: 0,
+              }}>OK</button>
+            </div>
+          )}
+
+          {/* Messages */}
+          <div style={{
+            flex: 1, overflowY: "auto", padding: "14px",
+            display: "flex", flexDirection: "column", gap: 10,
+            maxHeight: 340, minHeight: 160,
+          }}>
+            {messages.length === 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <p style={{ fontSize: 13, color: "var(--fg-3)", margin: 0 }}>
+                  Stell mir eine Frage zu DSGVO, EU AI Act oder Datensicherheit:
+                </p>
+                {STARTERS.map(s => (
+                  <button key={s} onClick={() => send(s)} style={{
+                    background: "rgba(63,212,224,0.06)",
+                    border: "1px solid rgba(63,212,224,0.18)",
+                    borderRadius: 8, padding: "8px 12px",
+                    fontSize: 12, color: "var(--fg-2)",
+                    cursor: "pointer", textAlign: "left",
+                    transition: "all 180ms",
+                  }}>{s}</button>
+                ))}
+              </div>
+            )}
+
+            {messages.map((m, i) => (
+              <div key={i} style={{
+                display: "flex",
+                justifyContent: m.role === "user" ? "flex-end" : "flex-start",
+              }}>
+                <div style={{
+                  maxWidth: "85%",
+                  padding: "9px 13px",
+                  borderRadius: m.role === "user" ? "12px 12px 3px 12px" : "12px 12px 12px 3px",
+                  background: m.role === "user"
+                    ? "rgba(63,212,224,0.15)"
+                    : "rgba(255,255,255,0.05)",
+                  border: "1px solid",
+                  borderColor: m.role === "user"
+                    ? "rgba(63,212,224,0.25)"
+                    : "rgba(205,206,210,0.08)",
+                  fontSize: 13,
+                  color: "var(--fg-1)",
+                  lineHeight: 1.55,
+                  whiteSpace: "pre-wrap",
+                }}>
+                  {m.content}
+                </div>
+              </div>
+            ))}
+
+            {loading && (
+              <div style={{ display: "flex", gap: 4, padding: "6px 12px" }}>
+                {[0, 1, 2].map(i => (
+                  <span key={i} style={{
+                    width: 6, height: 6, borderRadius: "50%",
+                    background: "var(--glow-cyan)",
+                    animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite`,
+                  }} />
+                ))}
+              </div>
+            )}
+            <div ref={bottomRef} />
+          </div>
+
+          {/* Input */}
+          <div style={{
+            padding: "10px 14px",
+            borderTop: "1px solid rgba(205,206,210,0.1)",
+            display: "flex", gap: 8,
+          }}>
+            <input
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && !e.shiftKey && (e.preventDefault(), send(input))}
+              placeholder="Deine Frage…"
+              disabled={loading}
+              style={{
+                flex: 1, background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(205,206,210,0.12)",
+                borderRadius: 8, padding: "9px 12px",
+                fontSize: 13, color: "var(--fg-1)",
+                outline: "none", fontFamily: "inherit",
+              }}
+            />
+            <button
+              onClick={() => send(input)}
+              disabled={loading || !input.trim()}
+              style={{
+                width: 38, height: 38, borderRadius: 8, flexShrink: 0,
+                background: input.trim() ? "var(--glow-cyan)" : "rgba(63,212,224,0.15)",
+                border: "none", cursor: input.trim() ? "pointer" : "default",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                transition: "all 180ms",
+                color: input.trim() ? "var(--ink-abyss)" : "var(--glow-faint)",
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M14 8H2M14 8l-5-5M14 8l-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+      `}</style>
+    </>
+  );
+}

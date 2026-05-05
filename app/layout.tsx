@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Italiana, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
+import ChatWidget from "./components/ChatWidget";
 import "./globals.css";
 
 const italiana = Italiana({ weight: "400", subsets: ["latin"], variable: "--font-italiana" });
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${italiana.variable} ${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body>
         {children}
+        <ChatWidget />
         <Image
           src="/logo-star.png"
           alt="NeuralNautic"
