@@ -83,7 +83,7 @@ export default function ChatWidget() {
   const btnSize = 60;
   const bubbleW = 128; // Sprechblasen-Button-Breite
   const bubbleH = 152; // Sprechblasen-Button-Höhe (inkl. Schwanz)
-  const logoSize = 72; // Kompassrose im Button
+  const logoSize = 96; // Kompassrose im Button
 
   // Mobile: Chat-Position über dem Button
   const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom; // 76 + 20 + safe-area
