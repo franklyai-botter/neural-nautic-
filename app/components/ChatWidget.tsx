@@ -81,7 +81,9 @@ export default function ChatWidget() {
   const btnBottom = "max(20px, calc(20px + env(safe-area-inset-bottom)))";
   const btnRight = 20;
   const btnSize = 60;
-  const bubbleH = 76; // Sprechblasen-Button-Höhe (inkl. Schwanz)
+  const bubbleW = 128; // Sprechblasen-Button-Breite
+  const bubbleH = 152; // Sprechblasen-Button-Höhe (inkl. Schwanz)
+  const logoSize = 72; // Kompassrose im Button
 
   // Mobile: Chat-Position über dem Button
   const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom; // 76 + 20 + safe-area
@@ -108,7 +110,7 @@ export default function ChatWidget() {
     animation: "nn-slide-up 240ms cubic-bezier(.22,.61,.36,1) both",
   } : {
     position: "fixed",
-    bottom: 116,
+    bottom: bubbleH + 40,
     right: btnRight,
     zIndex: 60,
     width: "min(380px, calc(100vw - 40px))",
@@ -134,10 +136,10 @@ export default function ChatWidget() {
           bottom: btnBottom,
           right: btnRight,
           zIndex: 61,
-          width: open ? btnSize : 64,
-          height: open ? btnSize : 76,
-          minWidth: open ? btnSize : 64,
-          minHeight: open ? btnSize : 76,
+          width: open ? btnSize : bubbleW,
+          height: open ? btnSize : bubbleH,
+          minWidth: open ? btnSize : bubbleW,
+          minHeight: open ? btnSize : bubbleH,
           borderRadius: open ? "50%" : 0,
           background: open ? "rgba(11,31,38,0.95)" : "transparent",
           border: open ? "1px solid rgba(63,212,224,0.22)" : "none",
@@ -156,11 +158,12 @@ export default function ChatWidget() {
             <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         ) : (
-          <div style={{ position: "relative", width: 64, height: 76, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ position: "relative", width: bubbleW, height: bubbleH, display: "flex", alignItems: "center", justifyContent: "center" }}>
             {/* Sprechblasen-Form als SVG */}
             <svg
               style={{ position: "absolute", inset: 0, filter: "drop-shadow(0 0 18px rgba(63,212,224,0.4)) drop-shadow(0 4px 24px rgba(0,0,0,0.55))" }}
-              width="64" height="76" viewBox="0 0 64 76" fill="none"
+              width={bubbleW} height={bubbleH} viewBox="0 0 64 76" fill="none"
+              preserveAspectRatio="none"
             >
               <path
                 d="M14 0H50Q64 0 64 14V50Q64 64 50 64H40L32 76L24 64H14Q0 64 0 50V14Q0 0 14 0Z"
@@ -174,13 +177,13 @@ export default function ChatWidget() {
             <img
               src="/logo-star.png"
               alt=""
-              width={36}
-              height={36}
+              width={logoSize}
+              height={logoSize}
               style={{
                 position: "relative",
                 objectFit: "contain",
                 filter: "drop-shadow(0 0 8px rgba(63,212,224,0.45))",
-                marginTop: -6,
+                marginTop: -12,
               }}
             />
           </div>
