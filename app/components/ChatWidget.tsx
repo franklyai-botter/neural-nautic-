@@ -85,13 +85,16 @@ export default function ChatWidget() {
   const bubbleH = 152; // Sprechblasen-Button-Höhe (inkl. Schwanz)
   const logoSize = 96; // Kompassrose im Button
 
-  // Mobile: Chat-Position über dem Button
-  const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom; // 76 + 20 + safe-area
+  // Mobile: Chat-Position über dem Button — clampt damit obere Kante nie aus dem Viewport ragt
+  const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom;
+  const topMargin = 8;
+  const maxAvailableHeight = Math.max(0, vvHeight - btnTopFromVVBottom - topMargin);
   const chatHeight = isMobile && vvHeight > 0
-    ? Math.max(100, Math.min(vvHeight - btnTopFromVVBottom - 8, 480))
+    ? Math.min(480, Math.max(100, maxAvailableHeight))
     : 0;
+  const idealChatTop = vvTop + vvHeight - btnTopFromVVBottom - 8 - chatHeight;
   const chatTop = isMobile && vvHeight > 0
-    ? vvTop + vvHeight - btnTopFromVVBottom - 8 - chatHeight
+    ? Math.max(vvTop + topMargin, idealChatTop)
     : 0;
 
   const chatWindow: React.CSSProperties = isMobile && vvHeight > 0 ? {
@@ -114,7 +117,7 @@ export default function ChatWidget() {
     right: btnRight,
     zIndex: 60,
     width: "min(380px, calc(100vw - 40px))",
-    maxHeight: "calc(100vh - 140px)",
+    maxHeight: `calc(100dvh - ${bubbleH + 60}px)`,
     background: "var(--ink-deep)",
     border: "1px solid rgba(63,212,224,0.2)",
     borderRadius: 16,
@@ -266,7 +269,7 @@ export default function ChatWidget() {
             display: "flex", flexDirection: "column", gap: 10,
             WebkitOverflowScrolling: "touch",
             overscrollBehavior: "contain",
-            minHeight: 120,
+            minHeight: 0,
           } as React.CSSProperties}>
             {messages.length === 0 && (
               <p style={{ fontSize: 14, color: "var(--fg-3)", margin: 0, lineHeight: 1.6 }}>
