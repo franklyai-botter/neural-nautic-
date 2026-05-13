@@ -14,7 +14,23 @@ export default function ChatWidget() {
   const [vvHeight, setVvHeight] = useState(0);
   const [vvTop, setVvTop] = useState(0);
   const [safeAreaBottom, setSafeAreaBottom] = useState(0);
+  const [showTip, setShowTip] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Tooltip nach 3 Sek beim ersten Seitenbesuch (nicht wenn Chat schon offen oder Hinweis weggeklickt)
+  useEffect(() => {
+    if (typeof window === "undefined" || open) return;
+    let seen = false;
+    try { seen = sessionStorage.getItem("nn-chat-tip-seen") === "1"; } catch {}
+    if (seen) return;
+    const t = setTimeout(() => setShowTip(true), 3000);
+    return () => clearTimeout(t);
+  }, [open]);
+
+  const dismissTip = () => {
+    setShowTip(false);
+    try { sessionStorage.setItem("nn-chat-tip-seen", "1"); } catch {}
+  };
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640);
@@ -130,9 +146,54 @@ export default function ChatWidget() {
 
   return (
     <>
+      {/* Tooltip-Hinweis ueber dem Button — beim ersten Besuch */}
+      {!open && showTip && (
+        <div style={{
+          position: "fixed",
+          right: 24,
+          bottom: `calc(${bubbleH + 28}px + env(safe-area-inset-bottom, 0px))`,
+          zIndex: 59,
+          background: "rgba(11,31,38,0.96)",
+          border: "1px solid rgba(63,212,224,0.35)",
+          borderRadius: 14,
+          padding: "10px 32px 10px 14px",
+          maxWidth: 220,
+          fontSize: 13,
+          color: "var(--fg-1)",
+          lineHeight: 1.45,
+          fontFamily: "var(--font-inter), sans-serif",
+          boxShadow: "0 6px 24px rgba(0,0,0,0.5), 0 0 18px rgba(63,212,224,0.2)",
+          animation: "nn-tip-in 320ms cubic-bezier(.22,.61,.36,1) both",
+        } as React.CSSProperties}>
+          Fragen zu KI? Ich helfe.
+          <button
+            onClick={(e) => { e.stopPropagation(); dismissTip(); }}
+            aria-label="Hinweis schliessen"
+            style={{
+              position: "absolute", top: 4, right: 6,
+              background: "none", border: "none",
+              color: "var(--fg-4)", cursor: "pointer",
+              padding: 4, lineHeight: 1, fontSize: 16,
+              touchAction: "manipulation",
+              WebkitTapHighlightColor: "transparent",
+            } as React.CSSProperties}
+          >×</button>
+          {/* Pfeil nach unten Richtung Button */}
+          <div style={{
+            position: "absolute",
+            bottom: -7, right: 40,
+            width: 12, height: 12,
+            background: "rgba(11,31,38,0.96)",
+            borderRight: "1px solid rgba(63,212,224,0.35)",
+            borderBottom: "1px solid rgba(63,212,224,0.35)",
+            transform: "rotate(45deg)",
+          }} />
+        </div>
+      )}
+
       {/* Toggle Button — rechts unten */}
       <button
-        onClick={() => setOpen(v => !v)}
+        onClick={() => { setOpen(v => !v); dismissTip(); }}
         aria-label={open ? "Chat schließen" : "Chat öffnen"}
         style={{
           position: "fixed",
@@ -391,6 +452,10 @@ export default function ChatWidget() {
         @keyframes nn-slide-up {
           from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes nn-tip-in {
+          from { opacity: 0; transform: translateY(6px) scale(0.96); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
         }
         .nn-chips-scroll::-webkit-scrollbar { display: none; }
       `}</style>
