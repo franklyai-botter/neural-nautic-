@@ -193,7 +193,7 @@ export default function ChatWidget() {
 
       {/* Toggle Button — rechts unten */}
       <button
-        onClick={() => { setOpen(v => !v); dismissTip(); }}
+        onClick={() => { if (showTip) dismissTip(); setOpen(v => !v); }}
         aria-label={open ? "Chat schließen" : "Chat öffnen"}
         style={{
           position: "fixed",
