@@ -36,11 +36,9 @@ export default function UeberMich() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
-              <div style={{ aspectRatio: "3/4", background: "linear-gradient(160deg, var(--ink-shoal), var(--ink-current))", borderRadius: 8, border: "1px solid var(--border-2)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                <div style={{ position: "absolute", inset: 0 }}>
-                  <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.2 }} />
-                </div>
-                <Image src="/logo-monogram.png" alt="Frank Schütt" width={160} height={128} style={{ objectFit: "contain", opacity: 0.8, position: "relative", filter: "drop-shadow(0 8px 32px rgba(63,212,224,.2))" }} />
+              <div style={{ position: "relative", aspectRatio: "3/4", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
+                <Image src="/frank-portrait.jpg" alt="Frank Schütt — Porträt" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center top" }} />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,0) 60%, rgba(6,20,25,0.55) 100%)", pointerEvents: "none" }} />
               </div>
               <div style={{ marginTop: 24 }}>
                 <p style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", margin: "0 0 4px" }}>Frank Schütt</p>
