@@ -76,6 +76,63 @@ export default function UeberMich() {
             </div>
           </div>
         </div>
+
+        {/* ZERTIFIKATE */}
+        <section id="zertifikate" style={{ position: "relative", padding: "80px 32px", borderTop: "1px solid var(--border-1)", background: "linear-gradient(180deg, var(--bg-1) 0%, var(--ink-deep) 100%)" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: 56 }}>
+              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Qualifikationen</span>
+              <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(32px, 4vw, 48px)", lineHeight: 1.1, color: "var(--fg-1)", margin: "16px 0 16px" }}>
+                Zertifizierte KI-Expertise
+              </h2>
+              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-3)", maxWidth: "48ch", margin: "0 auto", lineHeight: 1.7 }}>
+                Geprüfte Qualifikationen — unabhängig validiert und nachvollziehbar.
+              </p>
+            </div>
+
+            <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
+
+              {/* TÜV SÜD */}
+              <article style={{ position: "relative", background: "linear-gradient(160deg, rgba(10,32,40,0.7), rgba(14,43,54,0.45))", border: "1px solid var(--border-2)", borderRadius: 8, padding: 36, display: "flex", flexDirection: "column" }}>
+                <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)", marginBottom: 14 }}>
+                  TÜV SÜD Akademie
+                </div>
+                <h3 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: 26, lineHeight: 1.2, color: "var(--fg-1)", margin: "0 0 12px" }}>
+                  AI Strategy &amp; Application Expert
+                </h3>
+                <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.06em", marginBottom: 20 }}>
+                  04.12.2025  ·  Zertifikat Z-001124711
+                </div>
+                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
+                  Umfassende Kenntnisse zur unternehmensweiten KI-Transformation: strategische Ziele und Roadmaps, Change- und Kommunikationsprozesse, Effizienz- und Innovationspotenziale, Infrastruktur, Implementierung und Risikomanagement im KI-Ökosystem.
+                </p>
+                <a href="/cert-tuev-sued.pdf" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "var(--glow-cyan)" }}>
+                  Zertifikat ansehen →
+                </a>
+              </article>
+
+              {/* Neurawork */}
+              <article style={{ position: "relative", background: "linear-gradient(160deg, rgba(10,32,40,0.7), rgba(14,43,54,0.45))", border: "1px solid var(--border-2)", borderRadius: 8, padding: 36, display: "flex", flexDirection: "column" }}>
+                <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)", marginBottom: 14 }}>
+                  Neurawork Akademie
+                </div>
+                <h3 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: 26, lineHeight: 1.2, color: "var(--fg-1)", margin: "0 0 12px" }}>
+                  KI-Workflows mit Vibe Coding &amp; n8n
+                </h3>
+                <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.06em", marginBottom: 20 }}>
+                  16 modulare Live-Sessions
+                </div>
+                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
+                  Praxisnahe KI-Workflow-Entwicklung: 8× Build mit Vibe Coding und 8× Orchestrate mit n8n — vom Use Case bis zum lauffähigen, produktiv eingesetzten Automatisierungs-Workflow.
+                </p>
+                <a href="https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "var(--glow-cyan)" }}>
+                  Zertifikat verifizieren →
+                </a>
+              </article>
+
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
