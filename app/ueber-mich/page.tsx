@@ -36,9 +36,8 @@ export default function UeberMich() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
-              <div style={{ position: "relative", aspectRatio: "3/4", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
-                <Image src="/frank-portrait.jpg" alt="Frank Schütt — Porträt" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center top" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,0) 60%, rgba(6,20,25,0.55) 100%)", pointerEvents: "none" }} />
+              <div style={{ position: "relative", aspectRatio: "5/4", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
+                <Image src="/frank-portrait.jpg" alt="Frank Schütt — Berlin, Spreeufer" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center" }} />
               </div>
               <div style={{ marginTop: 24 }}>
                 <p style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", margin: "0 0 4px" }}>Frank Schütt</p>
