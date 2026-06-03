@@ -82,6 +82,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* TRUST-BAND */}
+        <section style={{ background: "var(--ink-tide)", padding: "40px 32px", borderTop: "1px solid var(--border-1)", borderBottom: "1px solid var(--border-1)" }}>
+          <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
+            <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "var(--glow-cyan)", marginBottom: 18 }}>
+              Externe Validierung
+            </div>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
+              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)" }}>
+                TÜV SÜD AKADEMIE
+              </span>
+              <span style={{ color: "var(--border-2)", fontSize: 16 }}>·</span>
+              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)" }}>
+                NEURAWORK
+              </span>
+              <Link href="/ueber-mich#zertifikate" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".08em", color: "var(--glow-cyan)", textDecoration: "none" }}>
+                → Qualifikationen
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* PROBLEM */}
         <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", marginBottom: 64 }}>
