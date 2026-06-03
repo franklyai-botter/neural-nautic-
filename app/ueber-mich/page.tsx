@@ -138,7 +138,7 @@ export default function UeberMich() {
                   14.01.2025 – 14.07.2026  ·  Virtualbadge verifiziert
                 </div>
                 <a href="https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "var(--glow-cyan)" }}>
-                  Zertifikat verifizieren →
+                  Zertifikat ansehen →
                 </a>
               </article>
 
