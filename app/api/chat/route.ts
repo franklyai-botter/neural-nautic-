@@ -80,7 +80,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: "mistral-large-latest",
         messages: [{ role: "system", content: SYSTEM }, ...messages],
-        max_tokens: 800,
+        max_tokens: 5000,
       }),
     });
 
