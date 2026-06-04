@@ -392,14 +392,15 @@ export default function ChatWidget() {
               disabled={loading}
               style={{
                 flex: 1,
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(205,206,210,0.15)",
-                borderRadius: 10,
-                padding: "11px 14px",
+                boxSizing: "border-box",
+                background: "var(--ink-current)",
+                border: "1px solid var(--border-2)",
+                borderRadius: 4,
+                padding: "12px 16px",
                 fontSize: 16,
                 color: "var(--fg-1)",
                 outline: "none",
-                fontFamily: "inherit",
+                fontFamily: "var(--font-inter), sans-serif",
                 minHeight: 44,
               }}
             />
