@@ -37,7 +37,7 @@ export default function UeberMich() {
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
               <div style={{ position: "relative", aspectRatio: "5/4", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
-                <Image src="/frank-portrait.webp" alt="Frank Schütt — Berlin, Spreeufer" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center" }} />
+                <Image src="/frank-portrait.webp" alt="Frank Schütt — Porträt" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center" }} />
               </div>
               <div style={{ marginTop: 24 }}>
                 <p style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", margin: "0 0 4px" }}>Frank Schütt</p>
