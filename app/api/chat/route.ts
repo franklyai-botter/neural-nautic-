@@ -78,9 +78,9 @@ export async function POST(req: Request) {
         "Authorization": `Bearer ${process.env.MISTRAL_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "mistral-small-latest",
+        model: "mistral-large-2512",
         messages: [{ role: "system", content: SYSTEM }, ...messages],
-        max_tokens: 5000,
+        max_tokens: 1500,
       }),
     });
 
