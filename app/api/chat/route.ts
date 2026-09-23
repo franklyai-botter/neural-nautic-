@@ -86,7 +86,8 @@ export async function POST(req: Request) {
 
     const data = await res.json();
     if (!res.ok) {
-      return NextResponse.json({ error: "KI-Dienst vorübergehend nicht erreichbar." }, { status: 502 });
+      console.error("Mistral API error", res.status, JSON.stringify(data).slice(0, 500));
+      return NextResponse.json({ error: "KI-Dienst vorübergehend nicht erreichbar.", upstream: res.status }, { status: 502 });
     }
 
     const text = data.choices?.[0]?.message?.content ?? "Keine Antwort erhalten.";
