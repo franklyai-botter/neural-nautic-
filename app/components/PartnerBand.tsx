@@ -2,8 +2,9 @@
 // Laufband von links nach rechts. Die Partnerliste wird so oft wiederholt, dass eine Hälfte
 // breiter ist als jeder Bildschirm; die zweite Hälfte ist die Kopie für die nahtlose Schleife.
 const PARTNERS = [
-  // for42 in Originalfarben (Ink + Steel) — braucht hellen Grund, daher ist das Band hell.
-  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark.svg", width: 169, height: 32 },
+  // for42 in Seitenfarben (Franks Wunsch): FOR42 Silver-White, .ai Glow-Cyan. Abgeleitet aus
+  // Brand-Assets/for42/for42-wordmark.svg, nur die Füllfarben getauscht.
+  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark-nn.svg", width: 169, height: 32 },
 ];
 
 const PRO_HAELFTE = 8;
@@ -14,8 +15,8 @@ export default function PartnerBand() {
   const items = [...haelfte, ...haelfte];
 
   return (
-    <section style={{ background: "#f5f6f7", padding: "40px 0" }}>
-      <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "#215089", marginBottom: 22, textAlign: "center" }}>
+    <section style={{ padding: "40px 0" }}>
+      <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "var(--glow-cyan)", marginBottom: 22, textAlign: "center" }}>
         Partner &amp; Netzwerk
       </div>
       <div className="nn-marquee">
