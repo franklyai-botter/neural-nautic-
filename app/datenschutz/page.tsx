@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -31,10 +30,6 @@ export default function Datenschutz() {
       <Header />
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
-          <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.25 }} />
-          </div>
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.2), rgba(6,20,25,.80) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Rechtliches</span>
             <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.05, color: "var(--fg-1)", margin: "20px 0 20px" }}>

@@ -54,10 +54,6 @@ export default function Home() {
 
         {/* HERO */}
         <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center" }} priority />
-          </div>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 28% 50%, transparent 22%, rgba(6,20,25,.85) 78%)" }} />
           <div className="nn-hero-inner" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%" }}>
             <div style={{ maxWidth: 680 }}>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>✦ KI-Beratung · Mittelstand · DACH</span>
@@ -200,10 +196,6 @@ export default function Home() {
 
         {/* TRUST */}
         <section className="nn-section" style={{ position: "relative", padding: "100px 32px", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0 }}>
-            <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.18 }} />
-          </div>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, transparent 20%, rgba(6,20,25,.92) 80%)" }} />
           <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Mein Versprechen</span>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px auto 16px", maxWidth: "22ch" }}>

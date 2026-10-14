@@ -30,10 +30,6 @@ export default function Footer() {
       padding: "80px 32px 40px",
       marginTop: 80, borderTop: "1px solid var(--border-1)",
     }}>
-      <div style={{ position: "absolute", inset: 0 }}>
-        <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", objectPosition: "right center", opacity: 0.12 }} />
-      </div>
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(6,20,25,.4), rgba(6,20,25,.97) 70%)" }} />
 
       <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto" }}>
         <div className="nn-footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 64 }}>
