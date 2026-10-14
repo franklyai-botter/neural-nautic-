@@ -91,6 +91,9 @@ export default function UeberMich() {
 
               {/* TÜV SÜD */}
               <article style={{ position: "relative", background: "linear-gradient(160deg, rgba(10,32,40,0.7), rgba(14,43,54,0.45))", border: "1px solid var(--border-2)", borderRadius: 8, padding: 36, display: "flex", flexDirection: "column" }}>
+                <a href={"/cert-tuev-sued.pdf"} target="_blank" rel="noopener noreferrer" aria-label="Zertifikat TÜV SÜD Akademie – AI Strategy & Application Expert ansehen" style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 170, marginBottom: 28, background: "rgba(6,20,25,0.45)", border: "1px solid var(--border-1)", borderRadius: 6, padding: 14 }}>
+                  <Image src="/zertifikate/tuev-sued-vorschau.webp" alt="Zertifikat TÜV SÜD Akademie – AI Strategy & Application Expert" width={509} height={720} style={{ height: 150, width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: 2, boxShadow: "0 6px 18px rgba(0,0,0,0.45)" }} />
+                </a>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)", marginBottom: 6 }}>
                   TÜV SÜD AKADEMIE
                 </div>
@@ -116,6 +119,9 @@ export default function UeberMich() {
 
               {/* Neurawork */}
               <article style={{ position: "relative", background: "linear-gradient(160deg, rgba(10,32,40,0.7), rgba(14,43,54,0.45))", border: "1px solid var(--border-2)", borderRadius: 8, padding: 36, display: "flex", flexDirection: "column" }}>
+                <a href={"https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01"} target="_blank" rel="noopener noreferrer" aria-label="Zertifikat Neurawork ansehen" style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 170, marginBottom: 28, background: "rgba(6,20,25,0.45)", border: "1px solid var(--border-1)", borderRadius: 6, padding: 14 }}>
+                  <Image src="/zertifikate/neurawork-vorschau.webp" alt="Zertifikat Neurawork" width={720} height={556} style={{ height: 112, width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: 2, boxShadow: "0 6px 18px rgba(0,0,0,0.45)" }} />
+                </a>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)", marginBottom: 6 }}>
                   NEURAWORK
                 </div>
