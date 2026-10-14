@@ -18,6 +18,7 @@ const COLS = [
   ["Kontakt", [
     ["Über mich",  "/ueber-mich"],
     ["Anfrage senden", "/kontakt"],
+    ["FOR42.ai ↗", "https://for42.ai"],
   ]],
 ] as [string, [string, string][]][];
 
@@ -51,9 +52,12 @@ export default function Footer() {
           {COLS.map(([heading, items]) => (
             <div key={heading}>
               <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: ".24em", color: "var(--glow-cyan)", marginBottom: 16 }}>{heading}</div>
-              {items.map(([label, href]) => (
-                <Link key={label} href={href} style={{ display: "block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", textDecoration: "none", padding: "5px 0" }}>{label}</Link>
-              ))}
+              {items.map(([label, href]) => {
+                const style = { display: "block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", textDecoration: "none", padding: "5px 0" };
+                return href.startsWith("http")
+                  ? <a key={label} href={href} target="_blank" rel="noopener" style={style}>{label}</a>
+                  : <Link key={label} href={href} style={style}>{label}</Link>;
+              })}
             </div>
           ))}
         </div>
