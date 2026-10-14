@@ -127,3 +127,11 @@ a:hover {
   .nn-services-header { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 40px !important; }
   .nn-uc-header       { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 36px !important; }
 }
+
+/* Partner-Ticker (PartnerBand) — Inhalt ist doppelt gesetzt, -50 % ergibt eine nahtlose Schleife */
+@keyframes nn-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.nn-marquee-track { animation: nn-marquee 40s linear infinite; }
+.nn-marquee:hover .nn-marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .nn-marquee-track { animation: none; flex-wrap: wrap; justify-content: center !important; width: auto !important; }
+}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PartnerBand from "./components/PartnerBand";
 
 const SERVICES = [
   { title: "KI-Potenzialanalyse", desc: "Identifikation sinnvoller KI-Anwendungsfälle mit Aufwand-Nutzen-Bewertung und priorisierter Roadmap." },
@@ -221,6 +222,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* PARTNER */}
+        <PartnerBand />
 
         {/* FINAL CTA */}
         <section className="nn-section" style={{ padding: "100px 32px", textAlign: "center", background: "var(--ink-abyss)" }}>
