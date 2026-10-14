@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "KI-Beratung für den Mittelstand | NeuralNautic",
   description: "Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Tool-Auswahl.",
   keywords: "KI-Beratung Mittelstand, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
+  // Google Search Console, Property https://neuralnautic.de/ — muss bleiben,
+  // sonst verliert das Konto die Bestaetigung und damit den Zugriff auf die Daten.
+  verification: { google: "typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
