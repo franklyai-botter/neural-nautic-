@@ -128,10 +128,14 @@ a:hover {
   .nn-uc-header       { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 36px !important; }
 }
 
-/* Partner-Ticker (PartnerBand) — Inhalt ist doppelt gesetzt, -50 % ergibt eine nahtlose Schleife */
-@keyframes nn-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.nn-marquee-track { animation: nn-marquee 40s linear infinite; }
+/* Partner-Laufband (PartnerBand), läuft von links nach rechts. Inhalt ist doppelt gesetzt:
+   von -50 % nach 0 ergibt eine nahtlose Schleife. Abstand per padding statt gap, sonst springt es. */
+@keyframes nn-marquee { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.nn-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.nn-marquee-track { display: flex; align-items: center; width: max-content; animation: nn-marquee 40s linear infinite; }
 .nn-marquee:hover .nn-marquee-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
-  .nn-marquee-track { animation: none; flex-wrap: wrap; justify-content: center !important; width: auto !important; }
+  .nn-marquee { -webkit-mask-image: none; mask-image: none; }
+  .nn-marquee-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; }
+  .nn-marquee-track [aria-hidden="true"] { display: none !important; }
 }

@@ -1,32 +1,34 @@
 // Partner & Netzwerk. Logos nur aus ObsidianVault\Ressourcen\Brand-Assets (unverändert kopiert).
-// Ab MARQUEE_AB Partnern läuft das Band als Ticker, darunter steht es still — ein einzelnes
-// Logo, das endlos an sich selbst vorbeiläuft, sähe nach Platzhalter aus.
+// Laufband von links nach rechts. Die Partnerliste wird so oft wiederholt, dass eine Hälfte
+// breiter ist als jeder Bildschirm; die zweite Hälfte ist die Kopie für die nahtlose Schleife.
 const PARTNERS = [
-  // for42: auf dunklem Grund die einfarbig weiße Fassung (BRAND.md).
-  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark-weiss.svg", width: 169, height: 32 },
+  // for42 in Originalfarben (Ink + Steel) — braucht hellen Grund, daher ist das Band hell.
+  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark.svg", width: 169, height: 32 },
 ];
 
-const MARQUEE_AB = 3;
+const PRO_HAELFTE = 8;
 
 export default function PartnerBand() {
-  const marquee = PARTNERS.length >= MARQUEE_AB;
-  const items = marquee ? [...PARTNERS, ...PARTNERS] : PARTNERS;
+  const runden = Math.ceil(PRO_HAELFTE / PARTNERS.length);
+  const haelfte = Array.from({ length: runden }, () => PARTNERS).flat();
+  const items = [...haelfte, ...haelfte];
 
   return (
-    <section style={{ background: "var(--ink-tide)", padding: "40px 32px", borderTop: "1px solid var(--border-1)", borderBottom: "1px solid var(--border-1)" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "var(--glow-cyan)", marginBottom: 22 }}>
-          Partner &amp; Netzwerk
-        </div>
-        <div className={marquee ? "nn-marquee" : undefined} style={{ overflow: "hidden" }}>
-          <div className={marquee ? "nn-marquee-track" : undefined} style={{ display: "flex", alignItems: "center", justifyContent: marquee ? "flex-start" : "center", gap: 64, width: marquee ? "max-content" : "auto" }}>
-            {items.map((p, i) => (
-              <a key={`${p.name}-${i}`} href={p.href} target="_blank" rel="noopener" aria-label={p.name} aria-hidden={i >= PARTNERS.length || undefined} tabIndex={i >= PARTNERS.length ? -1 : undefined} style={{ display: "inline-flex", opacity: 0.85 }}>
+    <section style={{ background: "#f5f6f7", padding: "40px 0" }}>
+      <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "#215089", marginBottom: 22, textAlign: "center" }}>
+        Partner &amp; Netzwerk
+      </div>
+      <div className="nn-marquee">
+        <div className="nn-marquee-track">
+          {items.map((p, i) => {
+            const kopie = i >= PARTNERS.length;
+            return (
+              <a key={`${p.name}-${i}`} href={p.href} target="_blank" rel="noopener" aria-label={p.name} aria-hidden={kopie || undefined} tabIndex={kopie ? -1 : undefined} style={{ display: "inline-flex", padding: "0 48px" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.logo} alt={p.name} width={p.width} height={p.height} style={{ height: p.height, width: "auto" }} />
+                <img src={p.logo} alt={kopie ? "" : p.name} width={p.width} height={p.height} style={{ height: p.height, width: "auto" }} />
               </a>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
