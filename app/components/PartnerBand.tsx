@@ -2,8 +2,8 @@
 // Ab MARQUEE_AB Partnern läuft das Band als Ticker, darunter steht es still — ein einzelnes
 // Logo, das endlos an sich selbst vorbeiläuft, sähe nach Platzhalter aus.
 const PARTNERS = [
-  // for42: auf dunklem Grund einfarbig weiß (BRAND.md), daher der Filter.
-  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark.svg", width: 160, height: 35, invert: true },
+  // for42: auf dunklem Grund die einfarbig weiße Fassung (BRAND.md).
+  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark-weiss.svg", width: 169, height: 32 },
 ];
 
 const MARQUEE_AB = 3;
@@ -23,7 +23,7 @@ export default function PartnerBand() {
             {items.map((p, i) => (
               <a key={`${p.name}-${i}`} href={p.href} target="_blank" rel="noopener" aria-label={p.name} aria-hidden={i >= PARTNERS.length || undefined} tabIndex={i >= PARTNERS.length ? -1 : undefined} style={{ display: "inline-flex", opacity: 0.85 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.logo} alt={p.name} width={p.width} height={p.height} style={{ height: p.height, width: "auto", filter: p.invert ? "brightness(0) invert(1)" : undefined }} />
+                <img src={p.logo} alt={p.name} width={p.width} height={p.height} style={{ height: p.height, width: "auto" }} />
               </a>
             ))}
           </div>
