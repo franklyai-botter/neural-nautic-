@@ -83,7 +83,7 @@ export default function UeberMich() {
                 Geprüft nach Norm. Bewährt in der Praxis.
               </h2>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-3)", maxWidth: "52ch", margin: "0 auto", lineHeight: 1.7 }}>
-                Zwei unabhängige Nachweise — einer aus der Strategie-Norm, einer aus der Mittelstandspraxis.
+                Zwei Nachweise auf zwei Ebenen — Strategie nach geprüfter Norm, Umsetzung aus der Praxis.
               </p>
             </div>
 
