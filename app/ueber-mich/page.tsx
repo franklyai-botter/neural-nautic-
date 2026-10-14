@@ -120,7 +120,7 @@ export default function UeberMich() {
               {/* Neurawork */}
               <article style={{ position: "relative", background: "linear-gradient(160deg, rgba(10,32,40,0.7), rgba(14,43,54,0.45))", border: "1px solid var(--border-2)", borderRadius: 8, padding: 36, display: "flex", flexDirection: "column" }}>
                 <a href={"https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01"} target="_blank" rel="noopener noreferrer" aria-label="Zertifikat Neurawork ansehen" style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 170, marginBottom: 28, background: "rgba(6,20,25,0.45)", border: "1px solid var(--border-1)", borderRadius: 6, padding: 14 }}>
-                  <Image src="/zertifikate/neurawork-vorschau.webp" alt="Zertifikat Neurawork" width={720} height={556} style={{ height: 112, width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: 2, boxShadow: "0 6px 18px rgba(0,0,0,0.45)" }} />
+                  <Image src="/zertifikate/neurawork-vorschau.webp" alt="Zertifikat Neurawork – KI Applikations- und Strategieexperte" width={720} height={556} style={{ height: 112, width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: 2, boxShadow: "0 6px 18px rgba(0,0,0,0.45)" }} />
                 </a>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)", marginBottom: 6 }}>
                   NEURAWORK
@@ -129,16 +129,17 @@ export default function UeberMich() {
                   Umsetzungs-Kompetenz
                 </div>
                 <h3 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: 26, lineHeight: 1.2, color: "var(--fg-1)", margin: "0 0 16px" }}>
-                  AI Business Coaching
+                  KI Applikations- und Strategieexperte
                 </h3>
                 <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, margin: "0 0 20px" }}>
                   „Praxis-Umsetzung im DACH-Mittelstand — partnergeprüft."
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
-                  Business Cases · Workflow-Automatisierung · Skalierung · KI-Geschäftsmodelle
+                  Erworben im Programm KI Business Coaching<br />
+                  KI-First-Strategie · Change Management · Prozessintegration · Automatisierung
                 </div>
                 <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.06em", marginBottom: 14 }}>
-                  14.01.2025 – 14.07.2026  ·  Virtualbadge verifiziert
+                  04.08.2025  ·  Virtualbadge verifiziert
                 </div>
                 <a href="https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "var(--glow-cyan)" }}>
                   Zertifikat ansehen →
