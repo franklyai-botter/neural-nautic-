@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LINKEDIN_URL } from "../site";
+import { LinkedInMark } from "./LinkedInButton";
 
 const COLS = [
   ["Leistungen", [
@@ -52,6 +53,11 @@ export default function Footer() {
               <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: ".24em", color: "var(--glow-cyan)", marginBottom: 16 }}>{heading}</div>
               {items.map(([label, href]) => {
                 const style = { display: "block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", textDecoration: "none", padding: "5px 0" };
+                if (href === LINKEDIN_URL) return (
+                  <a key={label} href={href} target="_blank" rel="noopener" style={{ ...style, display: "flex", alignItems: "center", gap: 8 }}>
+                    <LinkedInMark size={16} />{label}
+                  </a>
+                );
                 return href.startsWith("http")
                   ? <a key={label} href={href} target="_blank" rel="noopener" style={style}>{label}</a>
                   : <Link key={label} href={href} style={style}>{label}</Link>;
