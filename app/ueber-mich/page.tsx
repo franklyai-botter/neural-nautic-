@@ -21,7 +21,7 @@ export default function UeberMich() {
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Über mich</span>
             <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05, color: "var(--fg-1)", margin: "20px 0 20px" }}>
-              Ich bringe KI in echte Arbeitsprozesse.
+              Gemeinsam KI in echte Arbeitsprozesse bringen.
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "52ch", margin: "0 auto" }}>
               Mein Fokus liegt auf pragmatischer KI-Einführung für Unternehmen: verständlich, sicher, messbar und umsetzbar.
