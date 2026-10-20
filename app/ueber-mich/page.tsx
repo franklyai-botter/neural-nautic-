@@ -4,6 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import LinkedInButton from "../components/LinkedInButton";
 import { LINKEDIN_URL, SITE_URL } from "../site";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Über mich: Frank Schütt, KI-Berater | NeuralNautic",
+  description: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand in Berlin. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Datenschutz klären, Lösungen umsetzen.",
+  openGraph: {
+    type: "profile",
+    title: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand",
+    description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Datenschutz klären, Lösungen umsetzen.",
+    url: "/ueber-mich",
+    images: [{ url: "/og/frank-schuett.jpg", width: 1200, height: 627, alt: "Frank Schütt" }],
+  },
+};
 
 // Strukturierte Daten fuer Suchmaschinen und KI-Suche: dieselbe Person wie auf LinkedIn (sameAs).
 // Angaben gleich halten mit dem LinkedIn-Profil (AI Aquise: strategie/partner/frank/linkedin-profil.md).
