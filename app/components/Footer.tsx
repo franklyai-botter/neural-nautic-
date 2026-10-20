@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LINKEDIN_URL } from "../site";
 
 const COLS = [
   ["Leistungen", [
@@ -18,6 +19,7 @@ const COLS = [
   ["Kontakt", [
     ["Über mich",  "/ueber-mich"],
     ["Anfrage senden", "/kontakt"],
+    ["LinkedIn ↗", LINKEDIN_URL],
     ["FOR42.ai ↗", "https://for42.ai"],
   ]],
 ] as [string, [string, string][]][];

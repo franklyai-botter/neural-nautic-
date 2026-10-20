@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import { LINKEDIN_URL } from "../site";
 
 const STRENGTHS = [
   "Verständliche Übersetzung komplexer KI-Themen",
@@ -66,6 +67,9 @@ export default function UeberMich() {
               <Link href="/kontakt" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
                 Gespräch anfragen
               </Link>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener" style={{ display: "inline-block", marginLeft: 12, fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "13px 27px", borderRadius: 4, border: "1px solid var(--glow-cyan)", color: "var(--glow-cyan)", textDecoration: "none" }}>
+                LinkedIn-Profil ↗
+              </a>
             </div>
           </div>
         </div>
