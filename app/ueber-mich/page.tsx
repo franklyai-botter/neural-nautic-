@@ -3,6 +3,44 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import LinkedInButton from "../components/LinkedInButton";
+import { LINKEDIN_URL, SITE_URL } from "../site";
+
+// Strukturierte Daten fuer Suchmaschinen und KI-Suche: dieselbe Person wie auf LinkedIn (sameAs).
+// Angaben gleich halten mit dem LinkedIn-Profil (AI Aquise: strategie/partner/frank/linkedin-profil.md).
+const PERSON_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/ueber-mich#frank-schuett`,
+  name: "Frank Schütt",
+  jobTitle: "KI-Berater für Kanzleien und Mittelstand",
+  description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Datenschutz klären, Lösungen umsetzen.",
+  url: `${SITE_URL}/ueber-mich`,
+  image: `${SITE_URL}/frank-portrait.webp`,
+  sameAs: [LINKEDIN_URL],
+  worksFor: { "@type": "Organization", name: "NeuralNautic", url: SITE_URL },
+  affiliation: { "@type": "Organization", name: "for42.ai", url: "https://for42.ai" },
+  address: { "@type": "PostalAddress", addressLocality: "Berlin", addressCountry: "DE" },
+  areaServed: ["Berlin", "Brandenburg", "DACH"],
+  knowsAbout: ["KI-Strategie", "KI-Einführung", "Retrieval-Augmented Generation", "Prozessautomatisierung", "Datenschutz (DSGVO)", "EU AI Act", "Veränderungsmanagement"],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "AI Strategy & Application Expert",
+      credentialCategory: "Zertifikat",
+      identifier: "Z-001124711",
+      dateCreated: "2025-12-04",
+      url: `${SITE_URL}/cert-tuev-sued.pdf`,
+      recognizedBy: { "@type": "Organization", name: "TÜV SÜD Akademie" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "KI Applikations- und Strategieexperte",
+      credentialCategory: "Zertifikat",
+      dateCreated: "2025-08-04",
+      recognizedBy: { "@type": "Organization", name: "Neurawork" },
+    },
+  ],
+};
 
 const STRENGTHS = [
   "Verständliche Übersetzung komplexer KI-Themen",
@@ -16,6 +54,10 @@ const STRENGTHS = [
 export default function UeberMich() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD).replace(/</g, "\\u003c") }}
+      />
       <Header />
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
