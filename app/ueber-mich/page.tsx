@@ -88,7 +88,7 @@ export default function UeberMich() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
-              <div style={{ position: "relative", aspectRatio: "5/4", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
+              <div style={{ position: "relative", aspectRatio: "1/1", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
                 <Image src="/frank-portrait.webp" alt="Frank Schütt — Porträt" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center" }} />
               </div>
               <div style={{ marginTop: 24 }}>
