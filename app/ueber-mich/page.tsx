@@ -33,7 +33,7 @@ const PERSON_JSON_LD = {
   worksFor: { "@type": "Organization", name: "NeuralNautic", url: SITE_URL },
   affiliation: { "@type": "Organization", name: "for42.ai", url: "https://for42.ai" },
   address: { "@type": "PostalAddress", addressLocality: "Berlin", addressCountry: "DE" },
-  areaServed: ["Berlin", "Brandenburg", "DACH"],
+  areaServed: ["Berlin", "Deutschland", "DACH"],
   knowsAbout: ["KI-Strategie", "KI-Einführung", "Retrieval-Augmented Generation", "Prozessautomatisierung", "Datenschutz (DSGVO)", "EU AI Act", "Veränderungsmanagement"],
   hasCredential: [
     {
@@ -94,7 +94,7 @@ export default function UeberMich() {
               <div style={{ marginTop: 24 }}>
                 <p style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", margin: "0 0 4px" }}>Frank Schütt</p>
                 <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--glow-cyan)", letterSpacing: ".12em", textTransform: "uppercase", margin: "0 0 4px" }}>KI-Berater</p>
-                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", margin: 0 }}>Berlin · Brandenburg · Remote DACH</p>
+                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", margin: 0 }}>Berlin · Bundesweit · DACH</p>
               </div>
             </div>
 

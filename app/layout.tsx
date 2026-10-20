@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
     siteName: "NeuralNautic",
     title: "NeuralNautic: Gemeinsam KI in echte Arbeitsprozesse bringen",
-    description: "KI-Beratung für Kanzleien und Mittelstand in Berlin, Brandenburg und remote im DACH-Raum.",
+    description: "KI-Beratung für Kanzleien und Mittelstand: in Berlin, bundesweit und im DACH-Raum.",
     url: "/",
     images: [{ url: "/og/neuralnautic-og.png", width: 1200, height: 627, alt: "NeuralNautic: Gemeinsam KI in echte Arbeitsprozesse bringen" }],
   },

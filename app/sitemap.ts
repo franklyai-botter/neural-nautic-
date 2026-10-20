@@ -10,7 +10,7 @@ const pages: { path: string; lastModified: string; priority: number }[] = [
   { path: "/methode", lastModified: "2026-05-05", priority: 0.8 },
   { path: "/ki-tool-kompass", lastModified: "2026-05-01", priority: 0.8 },
   { path: "/wissen", lastModified: "2026-05-02", priority: 0.7 },
-  { path: "/ueber-mich", lastModified: "2026-07-03", priority: 0.7 },
+  { path: "/ueber-mich", lastModified: "2026-10-20", priority: 0.7 },
   { path: "/kontakt", lastModified: "2026-05-05", priority: 0.6 },
   { path: "/impressum", lastModified: "2026-05-02", priority: 0.2 },
   { path: "/datenschutz", lastModified: "2026-05-02", priority: 0.2 },
