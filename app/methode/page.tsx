@@ -1,11 +1,18 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Methode: Verstehen, Priorisieren, Pilotieren, Skalieren | NeuralNautic",
+  description: "Wie wir KI im Mittelstand einführen: erst den Prozess verstehen, dann priorisieren, kontrolliert pilotieren und erst danach skalieren.",
+  openGraph: { title: "Methode: Verstehen, Priorisieren, Pilotieren, Skalieren", description: "Wie wir KI im Mittelstand einführen: erst den Prozess verstehen, dann priorisieren, kontrolliert pilotieren und erst danach skalieren.", url: "/methode" },
+};
+
 
 const PHASES = [
-  { n: "01", title: "Verstehen",    desc: "Am Anfang steht kein Tool, sondern das Problem. Wir analysieren Prozesse, Ziele, Daten, Systeme und Risiken — bevor irgendeine KI-Lösung ins Spiel kommt.", result: "Klares Bild der Ausgangssituation" },
+  { n: "01", title: "Verstehen",    desc: "Am Anfang steht kein Tool, sondern das Problem. Wir analysieren Prozesse, Ziele, Daten, Systeme und Risiken, bevor irgendeine KI-Lösung ins Spiel kommt.", result: "Klares Bild der Ausgangssituation" },
   { n: "02", title: "Priorisieren", desc: "Mögliche Use Cases werden nach Nutzen, Aufwand, Risiko, Datenlage und Umsetzbarkeit bewertet. So entsteht eine fundierte Entscheidungsgrundlage statt Aktionismus.", result: "Priorisierte KI-Roadmap" },
-  { n: "03", title: "Pilotieren",   desc: "Der beste Use Case wird in einem Controlled Pilot getestet — mit echten Prozessen, echten Nutzern und messbaren Kennzahlen, in einem begrenzten, sicheren Rahmen.", result: "Messbarer Praxistest" },
+  { n: "03", title: "Pilotieren",   desc: "Der beste Use Case wird in einem Controlled Pilot getestet: mit echten Prozessen, echten Nutzern und messbaren Kennzahlen, in einem begrenzten, kontrollierten Rahmen.", result: "Messbarer Praxistest" },
   { n: "04", title: "Automatisieren", desc: "Erfolgreiche Piloten werden in stabile, operative Workflows überführt. Dokumentation, Schnittstellen und klare Zuständigkeiten sorgen für nachhaltigen Betrieb.", result: "Operativer KI-Workflow" },
   { n: "05", title: "Skalieren",    desc: "Lösungen werden dokumentiert, geschult und in Governance-Strukturen eingebettet. Mitarbeitende werden befähigt, KI sicher und produktiv zu nutzen.", result: "Nachhaltige Einführung mit Governance und Schulung" },
 ];
@@ -15,8 +22,8 @@ const PRINCIPLES = [
   { title: "Messbar",          desc: "Jedes Projekt hat klare Ziele, Metriken und eine Entscheidungsgrundlage." },
   { title: "Sicher",           desc: "Datenschutz und Governance sind kein Nachgedanke, sondern Grundlage." },
   { title: "Verständlich",     desc: "Komplexe KI-Themen werden so erklärt, dass alle Beteiligten mitreden können." },
-  { title: "Menschzentriert",  desc: "KI unterstützt Menschen — sie ersetzt sie nicht." },
-  { title: "Tool-neutral",     desc: "Ich bin an keinen Anbieter gebunden und empfehle, was zu Ihnen passt." },
+  { title: "Menschzentriert",  desc: "KI unterstützt Menschen, sie ersetzt sie nicht." },
+  { title: "Tool-neutral",     desc: "Wir sind an keinen Anbieter gebunden und empfehlen, was zu Ihnen passt." },
 ];
 
 export default function Methode() {

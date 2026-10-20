@@ -62,7 +62,7 @@ export default function Home() {
                 <em style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}>für den Mittelstand.</em>
               </h1>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 18, lineHeight: 1.65, color: "var(--fg-2)", maxWidth: "52ch", margin: "28px 0 0" }}>
-                Von der Idee zum messbaren Pilotprojekt. Ich helfe Unternehmen, KI sicher, verständlich und operativ nutzbar zu machen.
+                Von der Idee zum messbaren Pilotprojekt. Gemeinsam mit Ihnen machen wir KI verständlich und im Betrieb nutzbar.
               </p>
               <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 16, color: "var(--fg-3)", margin: "16px 0 36px" }}>
                 Keine KI-Spielereien. Keine Buzzword-Show. Konkrete Lösungen für echte Geschäftsprozesse.
@@ -105,10 +105,10 @@ export default function Home() {
           <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", marginBottom: 64 }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Die Herausforderung</span>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px 0 24px" }}>
-              Viele Unternehmen wollen KI nutzen — aber wissen nicht, wo sie sinnvoll starten sollen.
+              Viele Unternehmen wollen KI nutzen, wissen aber nicht, wo sie sinnvoll starten sollen.
             </h2>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, lineHeight: 1.7, color: "var(--fg-2)" }}>
-              Der KI-Markt ist laut, schnell und oft unübersichtlich. Neue Tools erscheinen beinahe wöchentlich, Anbieter versprechen Automatisierung auf Knopfdruck — interne Teams fragen sich, welche Lösungen wirklich sicher, wirtschaftlich und alltagstauglich sind.
+              Der KI-Markt ist laut, schnell und oft unübersichtlich. Neue Tools erscheinen beinahe wöchentlich, Anbieter versprechen Automatisierung auf Knopfdruck. Interne Teams fragen sich, welche Lösungen wirklich sicher, wirtschaftlich und alltagstauglich sind.
             </p>
           </div>
           <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
@@ -125,12 +125,12 @@ export default function Home() {
         <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Mein Ansatz</span>
+              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Unser Ansatz</span>
               <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px 0 16px" }}>
                 KI-Einführung mit Struktur: analysieren, pilotieren, automatisieren, skalieren.
               </h2>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", maxWidth: "60ch", margin: "0 auto" }}>
-                Ich begleite Unternehmen von der ersten Potenzialanalyse bis zur operativen Umsetzung — mit konkreten KI-Anwendungen, die messbare Ergebnisse liefern.
+                Wir begleiten Sie von der ersten Potenzialanalyse bis zur operativen Umsetzung, mit konkreten KI-Anwendungen, die messbare Ergebnisse liefern.
               </p>
             </div>
             <div className="nn-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
@@ -157,7 +157,7 @@ export default function Home() {
             <div>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Leistungen</span>
               <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "16px 0 0", maxWidth: "20ch" }}>
-                Was ich für Ihr Unternehmen tue.
+                Was wir für Ihr Unternehmen tun.
               </h2>
             </div>
             <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Leistungen →</Link>
@@ -197,12 +197,12 @@ export default function Home() {
         {/* TRUST */}
         <section className="nn-section" style={{ position: "relative", padding: "100px 32px", overflow: "hidden" }}>
           <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Mein Versprechen</span>
+            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Unser Versprechen</span>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px auto 16px", maxWidth: "22ch" }}>
               Für Unternehmen, die KI pragmatisch statt panisch einführen wollen.
             </h2>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", maxWidth: "60ch", margin: "0 auto 56px", lineHeight: 1.7 }}>
-              Mein Ansatz verbindet technisches Verständnis, Prozessdenken und Change-Kompetenz. Ich spreche mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.
+              Unser Ansatz verbindet technisches Verständnis, Prozessdenken und Change-Kompetenz. Wir sprechen mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.
             </p>
             <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, textAlign: "left", maxWidth: 900, margin: "0 auto" }}>
               {TRUST.map((t) => (
@@ -226,7 +226,7 @@ export default function Home() {
               Bereit für den ersten sinnvollen KI-Schritt?
             </h2>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 36px" }}>
-              Lassen Sie uns gemeinsam prüfen, wo KI in Ihrem Unternehmen echten Mehrwert schafft — sicher, messbar und verständlich.
+              Lassen Sie uns gemeinsam prüfen, wo KI in Ihrem Unternehmen echten Mehrwert schafft: messbar und verständlich.
             </p>
             <Link href="/kontakt" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 36px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
               KI-Potenzialcheck buchen

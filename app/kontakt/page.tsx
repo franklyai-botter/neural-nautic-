@@ -58,7 +58,7 @@ export default function Kontakt() {
               Lassen Sie uns über sinnvolle KI in Ihrem Unternehmen sprechen.
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "52ch", margin: "0 auto" }}>
-              Ob erste Orientierung, konkreter Use Case oder geplantes Pilotprojekt — ich freue mich auf Ihre Anfrage.
+              Ob erste Orientierung, konkreter Use Case oder geplantes Pilotprojekt: Ich freue mich auf Ihre Anfrage.
             </p>
           </div>
         </section>

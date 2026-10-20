@@ -1,11 +1,18 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Leistungen: KI-Beratung für den Mittelstand | NeuralNautic",
+  description: "KI-Potenzialanalyse, Controlled Pilot, KI-Automatisierung, KI-Governance, Schulung und Tool-Auswahl für Mittelstand und KMU. In Berlin, bundesweit und im DACH-Raum.",
+  openGraph: { title: "Leistungen: KI-Beratung für den Mittelstand", description: "KI-Potenzialanalyse, Controlled Pilot, KI-Automatisierung, KI-Governance, Schulung und Tool-Auswahl für Mittelstand und KMU. In Berlin, bundesweit und im DACH-Raum.", url: "/leistungen" },
+};
+
 
 const SERVICES = [
   {
     title: "KI-Potenzialanalyse",
-    short: "Wir identifizieren, wo künstliche Intelligenz in Ihrem Unternehmen sinnvoll eingesetzt werden kann — und wo nicht.",
+    short: "Wir identifizieren, wo künstliche Intelligenz in Ihrem Unternehmen sinnvoll eingesetzt werden kann, und wo nicht.",
     long: "Viele Unternehmen starten mit KI-Tools, bevor klar ist, welches Problem eigentlich gelöst werden soll. Die KI-Potenzialanalyse schafft Orientierung. Gemeinsam betrachten wir Prozesse, Daten, Systeme, Teams und Ziele. Daraus entsteht eine priorisierte Übersicht möglicher KI-Anwendungsfälle.",
     items: ["Prozessaufnahme", "Tool- und Systemanalyse", "Identifikation relevanter KI-Use-Cases", "Aufwand-Nutzen-Bewertung", "Risiko- und Datenschutz-Ersteinschätzung", "Priorisierung nach Wirkung und Machbarkeit"],
     result: "Eine klare KI-Roadmap mit konkreten Handlungsempfehlungen.",
@@ -14,7 +21,7 @@ const SERVICES = [
   {
     title: "Controlled Pilot",
     short: "KI sicher testen, bevor sie breit ausgerollt wird.",
-    long: "Ein Controlled Pilot ist ein kontrollierter Praxistest für einen klar definierten KI-Use-Case. Dabei arbeiten wir mit echten Prozessen, echten Nutzern und messbaren Kennzahlen — aber in einem begrenzten, sicheren Rahmen.",
+    long: "Ein Controlled Pilot ist ein kontrollierter Praxistest für einen klar definierten KI-Use-Case. Dabei arbeiten wir mit echten Prozessen, echten Nutzern und messbaren Kennzahlen, aber in einem begrenzten, kontrollierten Rahmen.",
     items: ["Definition des Pilotziels", "Auswahl des passenden Use Cases", "Festlegung messbarer Kennzahlen", "Aufbau der technischen Lösung", "Einbindung relevanter Mitarbeitender", "Feedback- und Optimierungsschleifen", "Entscheidungsvorlage für Skalierung"],
     result: "Eine belastbare Entscheidungsgrundlage: skalieren, anpassen oder stoppen.",
     cta: "Pilotprojekt starten",
@@ -22,7 +29,7 @@ const SERVICES = [
   {
     title: "KI-Automatisierung",
     short: "Wiederkehrende Aufgaben mit KI, Workflows und APIs automatisieren.",
-    long: "KI entfaltet ihren größten Nutzen dort, wo sie konkrete Arbeitsabläufe unterstützt. Ich helfe beim Aufbau operativer KI-Workflows — etwa für E-Mail-Verarbeitung, Angebotserstellung, Dokumentenanalyse, Voicebots, CRM-Prozesse oder interne Wissenssysteme.",
+    long: "KI entfaltet ihren größten Nutzen dort, wo sie konkrete Arbeitsabläufe unterstützt. Gemeinsam bauen wir operative KI-Workflows auf, etwa für E-Mail-Verarbeitung, Angebotserstellung, Dokumentenanalyse, Voicebots, CRM-Prozesse oder interne Wissenssysteme.",
     items: ["Automatische Angebotserstellung", "Voicebot für Anrufannahme", "E-Mail-Klassifizierung und Antwortvorschläge", "Dokumenten- und Belegverarbeitung", "CRM-Zusammenfassungen", "Lead-Vorqualifizierung", "Interne Wissensassistenten", "n8n-, Make- oder API-basierte Workflows"],
     result: "Ein produktiver KI-Workflow mit Dokumentation, Übergabe und klaren Zuständigkeiten.",
     cta: "Automatisierung prüfen",
@@ -30,7 +37,7 @@ const SERVICES = [
   {
     title: "KI-Governance und Sicherheit",
     short: "Klare Regeln für sicheren, nachvollziehbaren und verantwortungsvollen KI-Einsatz.",
-    long: "KI braucht nicht nur Technologie, sondern auch Regeln. Ich unterstütze Unternehmen beim Aufbau verständlicher Governance-Strukturen — mit Blick auf Datenschutz, EU AI Act, Rollen, Verantwortlichkeiten, Tool-Freigaben und interne Kommunikation.",
+    long: "KI braucht nicht nur Technologie, sondern auch Regeln. Gemeinsam mit Ihnen bauen wir verständliche Governance-Strukturen auf, mit Blick auf Datenschutz, EU AI Act, Rollen, Verantwortlichkeiten, Tool-Freigaben und interne Kommunikation.",
     items: ["KI-Richtlinien", "Tool-Freigabeprozesse", "Datenschutz-Ersteinschätzung", "Risikoklassifizierung von KI-Anwendungen", "Rollen- und Rechtekonzepte", "Dokumentationsvorlagen", "Einbindung von Datenschutz, IT und Betriebsrat"],
     result: "Ein klarer Rahmen, in dem KI sicher und akzeptiert genutzt werden kann.",
     cta: "Governance besprechen",
@@ -38,7 +45,7 @@ const SERVICES = [
   {
     title: "KI-Schulung und Enablement",
     short: "Mitarbeitende befähigen, KI sicher und produktiv im Arbeitsalltag einzusetzen.",
-    long: "Der Erfolg von KI hängt nicht nur von Tools ab, sondern von Menschen. Ich entwickle Schulungsformate für Geschäftsführung, Fachabteilungen, Vertrieb, Marketing, Verwaltung und interne AI Champions.",
+    long: "Der Erfolg von KI hängt nicht nur von Tools ab, sondern von Menschen. Wir entwickeln Schulungsformate für Geschäftsführung, Fachabteilungen, Vertrieb, Marketing, Verwaltung und interne AI Champions.",
     items: ["KI-Grundlagenworkshop", "Prompting für Fachabteilungen", "KI im Vertrieb", "KI im Backoffice", "KI für Führungskräfte", "Governance-Schulung", "Tool-Kompass-Workshop", "AI-Champion-Programm"],
     result: "Teams verstehen, wo KI hilft, wo Grenzen liegen und wie sie Tools sicher einsetzen.",
     cta: "Schulung anfragen",
@@ -46,7 +53,7 @@ const SERVICES = [
   {
     title: "KI Tool Kompass",
     short: "Bewertung und Auswahl passender KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit.",
-    long: "Der KI-Markt ist unübersichtlich. Ich helfe Unternehmen, passende Tools zu bewerten, sinnvoll einzuführen und sicher zu nutzen — tool-agnostisch und ohne Herstellerinteressen.",
+    long: "Der KI-Markt ist unübersichtlich. Gemeinsam mit Ihnen bewerten wir passende Tools, führen sie sinnvoll ein und legen fest, wie sie genutzt werden: tool-agnostisch und ohne Herstellerinteressen.",
     items: ["Text- und Chat-KI", "Automatisierungstools", "Wissensmanagement", "Voicebots", "Office- und Produktivitätstools", "Open-Source- und lokale KI", "CRM- und Sales-Automation"],
     result: "Eine fundierte Tool-Entscheidung, die zu Ihren Prozessen, Ihrem Budget und Ihrer Datenschutzstrategie passt.",
     cta: "Tool-Auswahl prüfen lassen",

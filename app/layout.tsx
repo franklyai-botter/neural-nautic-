@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "KI-Beratung für den Mittelstand | NeuralNautic",
   description: "Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Tool-Auswahl.",
-  keywords: "KI-Beratung Mittelstand, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
+  keywords: "KI-Beratung Mittelstand, KI-Beratung KMU, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
   // Google Search Console, Property https://neuralnautic.de/ — muss bleiben,
   // sonst verliert das Konto die Bestaetigung und damit den Zugriff auf die Daten.
   verification: { google: "typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg" },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
     siteName: "NeuralNautic",
     title: "NeuralNautic: Gemeinsam KI in echte Arbeitsprozesse bringen",
-    description: "KI-Beratung für Kanzleien und Mittelstand: in Berlin, bundesweit und im DACH-Raum.",
+    description: "KI-Beratung für den Mittelstand: in Berlin, bundesweit und im DACH-Raum.",
     url: "/",
     images: [{ url: "/og/neuralnautic-og.png", width: 1200, height: 627, alt: "NeuralNautic: Gemeinsam KI in echte Arbeitsprozesse bringen" }],
   },

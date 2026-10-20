@@ -1,6 +1,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "KI Tool Kompass: KI-Tools richtig auswählen | NeuralNautic",
+  description: "Fragen, mit denen Sie KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit bewerten, bevor Sie kaufen. Tool-neutral, für den Mittelstand.",
+  openGraph: { title: "KI Tool Kompass: KI-Tools richtig auswählen", description: "Fragen, mit denen Sie KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit bewerten, bevor Sie kaufen. Tool-neutral, für den Mittelstand.", url: "/ki-tool-kompass" },
+};
+
 
 const CATEGORIES = [
   "Text- und Chat-KI", "Automatisierung", "Wissensmanagement",
@@ -9,13 +16,13 @@ const CATEGORIES = [
 ];
 
 const CRITERIA = [
-  { n: "01", q: "Welches Problem löst das Tool?",                  desc: "Startpunkt ist immer das konkrete Problem — nicht das Tool." },
+  { n: "01", q: "Welches Problem löst das Tool?",                  desc: "Startpunkt ist immer das konkrete Problem, nicht das Tool." },
   { n: "02", q: "Passt es zu bestehenden Prozessen?",              desc: "Tools müssen sich in Ihre Abläufe einfügen, nicht umgekehrt." },
   { n: "03", q: "Wie hoch sind Lizenz- und Betriebskosten?",       desc: "TCO statt nur Lizenzkosten betrachten." },
-  { n: "04", q: "Welche Daten werden verarbeitet?",                desc: "Datenflüsse verstehen — vor der Einführung, nicht danach." },
+  { n: "04", q: "Welche Daten werden verarbeitet?",                desc: "Datenflüsse verstehen: vor der Einführung, nicht danach." },
   { n: "05", q: "Ist das Tool DSGVO-konform einsetzbar?",          desc: "Besonders bei Cloud-Diensten: Serverstandort, AVV, Auftragsverarbeitung." },
   { n: "06", q: "Gibt es Schnittstellen zu bestehenden Systemen?", desc: "API-Verfügbarkeit, Standardkonnektoren, Integrationaufwand." },
-  { n: "07", q: "Wie hoch ist der Schulungsaufwand?",              desc: "Adoption scheitert oft an fehlender Einführung — nicht am Tool." },
+  { n: "07", q: "Wie hoch ist der Schulungsaufwand?",              desc: "Adoption scheitert oft an fehlender Einführung, nicht am Tool." },
   { n: "08", q: "Entsteht ein Vendor Lock-in?",                    desc: "Exportierbarkeit, Portabilität, Alternativanbieter prüfen." },
   { n: "09", q: "Ist die Lösung skalierbar?",                      desc: "Was für 5 User funktioniert, muss auch für 50 taugen." },
 ];
@@ -32,7 +39,7 @@ export default function KiToolKompass() {
               Die richtigen Tools für Ihr Unternehmen
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "56ch", margin: "0 auto" }}>
-              Der KI-Markt ist unübersichtlich. Ich helfe Unternehmen, passende Tools zu bewerten, sinnvoll einzuführen und sicher zu nutzen.
+              Der KI-Markt ist unübersichtlich. Gemeinsam mit Ihnen bewerten wir passende Tools, führen sie sinnvoll ein und legen fest, wie sie genutzt werden.
             </p>
           </div>
         </section>

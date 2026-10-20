@@ -8,10 +8,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Über mich: Frank Schütt, KI-Berater | NeuralNautic",
-  description: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand in Berlin. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
+  description: "Frank Schütt, KI-Berater für den Mittelstand in Berlin, bundesweit und im DACH-Raum. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   openGraph: {
     type: "profile",
-    title: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand",
+    title: "Frank Schütt, KI-Berater für den Mittelstand",
     description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
     url: "/ueber-mich",
     images: [{ url: "/og/frank-schuett.jpg", width: 1200, height: 627, alt: "Frank Schütt" }],
@@ -25,7 +25,7 @@ const PERSON_JSON_LD = {
   "@type": "Person",
   "@id": `${SITE_URL}/ueber-mich#frank-schuett`,
   name: "Frank Schütt",
-  jobTitle: "KI-Berater für Kanzleien und Mittelstand",
+  jobTitle: "KI-Berater für den Mittelstand",
   description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   url: `${SITE_URL}/ueber-mich`,
   image: `${SITE_URL}/frank-portrait.webp`,
@@ -89,7 +89,7 @@ export default function UeberMich() {
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
               <div style={{ position: "relative", aspectRatio: "1/1", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
-                <Image src="/frank-portrait.webp" alt="Frank Schütt — Porträt" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center" }} />
+                <Image src="/frank-portrait.webp" alt="Frank Schütt, Porträt" fill priority sizes="(max-width: 1024px) 100vw, 460px" style={{ objectFit: "cover", objectPosition: "center" }} />
               </div>
               <div style={{ marginTop: 24 }}>
                 <p style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", margin: "0 0 4px" }}>Frank Schütt</p>
@@ -106,7 +106,7 @@ export default function UeberMich() {
                 Dabei verbinde ich KI-Verständnis, Prozessdenken, Tool-Kompetenz und Change-Perspektive. Mein Ansatz ist pragmatisch: Erst verstehen wir das Problem, dann wählen wir die passende Lösung.
               </p>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-2)", lineHeight: 1.75, margin: "0 0 40px" }}>
-                Ich arbeite besonders gern an Schnittstellen zwischen Geschäftsführung, IT, Fachabteilungen, Datenschutz und operativen Teams. Denn erfolgreiche KI-Einführung ist nicht nur eine technische Aufgabe — sie ist auch eine Frage von Akzeptanz, Verantwortung und klarer Kommunikation.
+                Ich arbeite besonders gern an Schnittstellen zwischen Geschäftsführung, IT, Fachabteilungen, Datenschutz und operativen Teams. Denn erfolgreiche KI-Einführung ist nicht nur eine technische Aufgabe. Sie ist auch eine Frage von Akzeptanz, Verantwortung und klarer Kommunikation.
               </p>
 
               <h2 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".2em", color: "var(--glow-cyan)", margin: "0 0 20px" }}>Was mich auszeichnet</h2>
@@ -138,7 +138,7 @@ export default function UeberMich() {
                 Geprüft nach Norm. Bewährt in der Praxis.
               </h2>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-3)", maxWidth: "52ch", margin: "0 auto", lineHeight: 1.7 }}>
-                Zwei Nachweise auf zwei Ebenen — Strategie nach geprüfter Norm, Umsetzung aus der Praxis.
+                Zwei Nachweise auf zwei Ebenen: Strategie nach geprüfter Norm, Umsetzung aus der Praxis.
               </p>
             </div>
 
@@ -159,7 +159,7 @@ export default function UeberMich() {
                   AI Strategy &amp; Application Expert
                 </h3>
                 <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, margin: "0 0 20px" }}>
-                  „Strukturierte KI-Führung — nach Akademie-Norm geprüft."
+                  „Strukturierte KI-Führung, nach Akademie-Norm geprüft."
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
                   Strategie · Roadmaps · Governance · Risikomanagement
@@ -187,7 +187,7 @@ export default function UeberMich() {
                   KI Applikations- und Strategieexperte
                 </h3>
                 <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, margin: "0 0 20px" }}>
-                  „Praxis-Umsetzung im DACH-Mittelstand — partnergeprüft."
+                  „Praxis-Umsetzung im DACH-Mittelstand, partnergeprüft."
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
                   Erworben im Programm KI Business Coaching<br />

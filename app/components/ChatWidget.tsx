@@ -440,7 +440,7 @@ export default function ChatWidget() {
             lineHeight: 1.45,
             flexShrink: 0,
           }}>
-            Keine Rechtsberatung — Antworten sind unverbindliche Empfehlungen ohne Gewähr.
+            Keine Rechtsberatung. Antworten sind unverbindliche Empfehlungen ohne Gewähr.
           </div>
         </div>
       )}

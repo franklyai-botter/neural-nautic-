@@ -1,6 +1,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Anwendungsfälle: KI im Mittelstand | NeuralNautic",
+  description: "Konkrete KI-Anwendungsfälle für Mittelstand und KMU: Angebotserstellung, E-Mail-Automatisierung, Dokumentenanalyse, interner Wissensbot, Kundenservice und mehr.",
+  openGraph: { title: "Anwendungsfälle: KI im Mittelstand", description: "Konkrete KI-Anwendungsfälle für Mittelstand und KMU: Angebotserstellung, E-Mail-Automatisierung, Dokumentenanalyse, interner Wissensbot, Kundenservice und mehr.", url: "/use-cases" },
+};
+
 
 const CATEGORIES = [
   {
@@ -60,7 +67,7 @@ export default function UseCases() {
             Ihr Use Case ist nicht dabei?
           </h2>
           <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", margin: "0 auto 32px", maxWidth: "48ch", lineHeight: 1.7 }}>
-            Sprechen Sie mich an — ich prüfe gerne, ob und wie KI in Ihrem spezifischen Fall sinnvoll ist.
+            Sprechen Sie mich an. Gemeinsam prüfen wir, ob und wie KI in Ihrem Fall sinnvoll ist.
           </p>
           <Link href="/kontakt" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "14px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
             Anfrage stellen
