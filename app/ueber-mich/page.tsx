@@ -8,11 +8,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Über mich: Frank Schütt, KI-Berater | NeuralNautic",
-  description: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand in Berlin. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Datenschutz klären, Lösungen umsetzen.",
+  description: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand in Berlin. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   openGraph: {
     type: "profile",
     title: "Frank Schütt, KI-Berater für Kanzleien und Mittelstand",
-    description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Datenschutz klären, Lösungen umsetzen.",
+    description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
     url: "/ueber-mich",
     images: [{ url: "/og/frank-schuett.jpg", width: 1200, height: 627, alt: "Frank Schütt" }],
   },
@@ -26,7 +26,7 @@ const PERSON_JSON_LD = {
   "@id": `${SITE_URL}/ueber-mich#frank-schuett`,
   name: "Frank Schütt",
   jobTitle: "KI-Berater für Kanzleien und Mittelstand",
-  description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Datenschutz klären, Lösungen umsetzen.",
+  description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   url: `${SITE_URL}/ueber-mich`,
   image: `${SITE_URL}/frank-portrait.webp`,
   sameAs: [LINKEDIN_URL],
