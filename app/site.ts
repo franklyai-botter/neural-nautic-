@@ -4,3 +4,6 @@ export const SITE_URL = "https://neuralnautic.de";
 
 // LinkedIn-Profil von Frank (Personal Brand). Aendert sich die Profil-URL, nur hier nachziehen.
 export const LINKEDIN_URL = "https://www.linkedin.com/in/frank-schuett/";
+
+// LinkedIn-Unternehmensseite NeuralNautic (angelegt 20.10.2026, verwaltet ueber Franks Profil).
+export const LINKEDIN_COMPANY_URL = "https://www.linkedin.com/company/neuralnautic/";

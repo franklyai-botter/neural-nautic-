@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LINKEDIN_URL } from "../site";
+import { LINKEDIN_COMPANY_URL, LINKEDIN_URL } from "../site";
 import { LinkedInMark } from "./LinkedInButton";
 
 const COLS = [
@@ -20,7 +20,8 @@ const COLS = [
   ["Kontakt", [
     ["Über mich",  "/ueber-mich"],
     ["Anfrage senden", "/kontakt"],
-    ["LinkedIn ↗", LINKEDIN_URL],
+    ["LinkedIn Frank ↗", LINKEDIN_URL],
+    ["LinkedIn NeuralNautic ↗", LINKEDIN_COMPANY_URL],
     ["FOR42.ai ↗", "https://for42.ai"],
   ]],
 ] as [string, [string, string][]][];
@@ -53,7 +54,7 @@ export default function Footer() {
               <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: ".24em", color: "var(--glow-cyan)", marginBottom: 16 }}>{heading}</div>
               {items.map(([label, href]) => {
                 const style = { display: "block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", textDecoration: "none", padding: "5px 0" };
-                if (href === LINKEDIN_URL) return (
+                if (href === LINKEDIN_URL || href === LINKEDIN_COMPANY_URL) return (
                   <a key={label} href={href} target="_blank" rel="noopener" style={{ ...style, display: "flex", alignItems: "center", gap: 8 }}>
                     <LinkedInMark size={16} />{label}
                   </a>
