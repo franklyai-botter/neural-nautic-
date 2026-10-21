@@ -21,7 +21,11 @@ export const metadata: Metadata = {
   keywords: "KI-Beratung Mittelstand, KI-Beratung KMU, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
   // Google Search Console, Property https://neuralnautic.de/ — muss bleiben,
   // sonst verliert das Konto die Bestaetigung und damit den Zugriff auf die Daten.
-  verification: { google: "typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg" },
+  // Bing Webmaster Tools (seit 21.10.2026, Microsoft-Konto von Frank): msvalidate.01 — ebenso bleiben.
+  verification: {
+    google: "typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg",
+    other: { "msvalidate.01": "3C8697890156E133718E943ECB712C0E" },
+  },
   // Vorschau beim Teilen (LinkedIn, Messenger). Ohne diese Angaben baut LinkedIn keine Link-Vorschau.
   metadataBase: new URL("https://neuralnautic.de"),
   openGraph: {
