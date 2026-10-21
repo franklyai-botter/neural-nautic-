@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Datenschutz | NeuralNautic",
+  alternates: { canonical: "/datenschutz" },
   description: "Datenschutzerklärung von NeuralNautic zur Verarbeitung personenbezogener Daten, Hosting, Kontaktaufnahme, Terminbuchung und Videokonferenzen.",
   robots: { index: false, follow: true },
 };

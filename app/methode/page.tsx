@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Methode: Verstehen, Priorisieren, Pilotieren, Skalieren | NeuralNautic",
+  alternates: { canonical: "/methode" },
   description: "Wie wir KI im Mittelstand einführen: erst den Prozess verstehen, dann priorisieren, kontrolliert pilotieren und erst danach skalieren.",
   openGraph: { title: "Methode: Verstehen, Priorisieren, Pilotieren, Skalieren", description: "Wie wir KI im Mittelstand einführen: erst den Prozess verstehen, dann priorisieren, kontrolliert pilotieren und erst danach skalieren.", url: "/methode" },
 };

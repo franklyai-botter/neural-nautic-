@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Über mich: Frank Schütt, KI-Berater | NeuralNautic",
+  alternates: { canonical: "/ueber-mich" },
   description: "Frank Schütt, KI-Berater für den Mittelstand in Berlin, bundesweit und im DACH-Raum. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   openGraph: {
     type: "profile",

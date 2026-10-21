@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "KI Tool Kompass: KI-Tools richtig auswählen | NeuralNautic",
+  alternates: { canonical: "/ki-tool-kompass" },
   description: "Fragen, mit denen Sie KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit bewerten, bevor Sie kaufen. Tool-neutral, für den Mittelstand.",
   openGraph: { title: "KI Tool Kompass: KI-Tools richtig auswählen", description: "Fragen, mit denen Sie KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit bewerten, bevor Sie kaufen. Tool-neutral, für den Mittelstand.", url: "/ki-tool-kompass" },
 };

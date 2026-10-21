@@ -3,6 +3,12 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PartnerBand from "./components/PartnerBand";
+import type { Metadata } from "next";
+
+// Kanonische Adresse je Seite, sonst waehlt Google selbst (Search Console: „Vom Nutzer angegebene kanonische URL: Keine“).
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const SERVICES = [
   { title: "KI-Potenzialanalyse", desc: "Identifikation sinnvoller KI-Anwendungsfälle mit Aufwand-Nutzen-Bewertung und priorisierter Roadmap." },

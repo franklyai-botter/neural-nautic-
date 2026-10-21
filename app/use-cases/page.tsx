@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Anwendungsfälle: KI im Mittelstand | NeuralNautic",
+  alternates: { canonical: "/use-cases" },
   description: "Konkrete KI-Anwendungsfälle für Mittelstand und KMU: Angebotserstellung, E-Mail-Automatisierung, Dokumentenanalyse, interner Wissensbot, Kundenservice und mehr.",
   openGraph: { title: "Anwendungsfälle: KI im Mittelstand", description: "Konkrete KI-Anwendungsfälle für Mittelstand und KMU: Angebotserstellung, E-Mail-Automatisierung, Dokumentenanalyse, interner Wissensbot, Kundenservice und mehr.", url: "/use-cases" },
 };

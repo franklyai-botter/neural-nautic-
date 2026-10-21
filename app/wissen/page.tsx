@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Wissen: KI-Begriffe einfach erklärt | NeuralNautic",
+  alternates: { canonical: "/wissen" },
   description: "Die wichtigsten KI-Begriffe für Entscheider im Mittelstand, kurz und verständlich erklärt: von Controlled Pilot bis Token.",
   openGraph: { title: "Wissen: KI-Begriffe einfach erklärt", description: "Die wichtigsten KI-Begriffe für Entscheider im Mittelstand, kurz und verständlich erklärt: von Controlled Pilot bis Token.", url: "/wissen" },
 };

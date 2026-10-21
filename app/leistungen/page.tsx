@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Leistungen: KI-Beratung für den Mittelstand | NeuralNautic",
+  alternates: { canonical: "/leistungen" },
   description: "KI-Potenzialanalyse, Controlled Pilot, KI-Automatisierung, KI-Governance, Schulung und Tool-Auswahl für Mittelstand und KMU. In Berlin, bundesweit und im DACH-Raum.",
   openGraph: { title: "Leistungen: KI-Beratung für den Mittelstand", description: "KI-Potenzialanalyse, Controlled Pilot, KI-Automatisierung, KI-Governance, Schulung und Tool-Auswahl für Mittelstand und KMU. In Berlin, bundesweit und im DACH-Raum.", url: "/leistungen" },
 };

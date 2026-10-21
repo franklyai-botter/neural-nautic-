@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Impressum | NeuralNautic",
+  alternates: { canonical: "/impressum" },
   description: "Impressum von NeuralNautic – Frank Schütt, KI-Beratung für den Mittelstand.",
   robots: { index: false, follow: true },
 };
