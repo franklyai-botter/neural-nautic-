@@ -91,6 +91,9 @@ export default function Home() {
             <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "var(--glow-cyan)", marginBottom: 18 }}>
               Externe Validierung
             </div>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.3, color: "var(--fg-1)", margin: "0 0 20px" }}>
+              Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.
+            </p>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)" }}>
                 TÜV SÜD AKADEMIE

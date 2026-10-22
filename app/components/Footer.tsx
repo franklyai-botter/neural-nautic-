@@ -42,7 +42,7 @@ export default function Footer() {
               <Image src="/logo-monogram.png" alt="NeuralNautic" width={54} height={54} style={{ objectFit: "contain" }} />
             </div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, marginTop: 20, maxWidth: "38ch" }}>
-              Pragmatische KI-Beratung für den Mittelstand. Von der Idee zum messbaren Pilotprojekt.
+              Pragmatische KI-Beratung. Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.
             </p>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", marginTop: 12 }}>
               Berlin · Deutschland · DACH
