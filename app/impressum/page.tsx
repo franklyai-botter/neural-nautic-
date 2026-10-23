@@ -43,7 +43,8 @@ export default function Impressum() {
           <div style={block}>
             <p style={h2}>Anbieter</p>
             <p style={body}>
-              NeuralNautic<br />
+              {/* „in Gründung“ entfernen, sobald Gewerbe/Finanzamt angemeldet sind; dann Steuernummer bzw. USt-ID eintragen */}
+              NeuralNautic (in Gründung)<br />
               Frank Schütt<br />
               Berolinastr. 21<br />
               10178 Berlin<br />

@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div className="nn-footer-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 28, borderTop: "1px solid var(--border-1)" }}>
           <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--fg-3)", letterSpacing: ".1em" }}>
-            © {new Date().getFullYear()} · NeuralNautic · Frank Schütt
+            © {new Date().getFullYear()} · NeuralNautic · in Gründung · Frank Schütt
           </div>
           <div style={{ display: "flex", gap: 24 }}>
             {([["Impressum", "/impressum"], ["Datenschutz", "/datenschutz"]] as [string, string][]).map(([l, href]) => (
