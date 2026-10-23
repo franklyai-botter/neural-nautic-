@@ -188,7 +188,7 @@ export default function UeberMich() {
                   KI Applikations- und Strategieexperte
                 </h3>
                 <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, margin: "0 0 20px" }}>
-                  Umsetzung in der Praxis, erworben im Programm KI Business Coaching.
+                  KI in die Praxis bringen: Prozesse, Automatisierung, Veränderung im Team.
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
                   Erworben im Programm KI Business Coaching<br />
