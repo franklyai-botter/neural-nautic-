@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import LinkedInButton from "../components/LinkedInButton";
-import { LINKEDIN_COMPANY_URL, LINKEDIN_URL, SITE_URL } from "../site";
+import { LINKEDIN_COMPANY_URL, LINKEDIN_URL, SITE_URL, X_URL } from "../site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ const PERSON_JSON_LD = {
   description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   url: `${SITE_URL}/ueber-mich`,
   image: `${SITE_URL}/frank-portrait.webp`,
-  sameAs: [LINKEDIN_URL],
+  sameAs: [LINKEDIN_URL, X_URL],
   worksFor: { "@type": "Organization", name: "NeuralNautic", url: SITE_URL, sameAs: [LINKEDIN_COMPANY_URL] },
   affiliation: { "@type": "Organization", name: "for42.ai", url: "https://for42.ai" },
   address: { "@type": "PostalAddress", addressLocality: "Berlin", addressCountry: "DE" },

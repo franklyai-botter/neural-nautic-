@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LINKEDIN_COMPANY_URL, LINKEDIN_URL } from "../site";
+import { LINKEDIN_COMPANY_URL, LINKEDIN_URL, X_URL } from "../site";
 import { LinkedInMark } from "./LinkedInButton";
 
 const COLS = [
@@ -22,6 +22,7 @@ const COLS = [
     ["Anfrage senden", "/kontakt"],
     ["LinkedIn Frank ↗", LINKEDIN_URL],
     ["LinkedIn NeuralNautic ↗", LINKEDIN_COMPANY_URL],
+    ["X @FSchuettNN ↗", X_URL],
     ["FOR42.ai ↗", "https://for42.ai"],
   ]],
 ] as [string, [string, string][]][];
@@ -45,7 +46,7 @@ export default function Footer() {
               Pragmatische KI-Beratung. Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.
             </p>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", marginTop: 12 }}>
-              Berlin · Deutschland · DACH
+              Berlin · Bundesweit · DACH
             </p>
           </div>
 
