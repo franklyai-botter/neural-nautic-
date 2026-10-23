@@ -102,10 +102,10 @@ export default function Datenschutz() {
           <div style={block}>
             <p style={h2}>4. Hosting und technische Bereitstellung der Website</p>
             <p style={body}>
-              Diese Website wird über Vercel bereitgestellt.
+              Diese Website wird über Cloudflare bereitgestellt (Cloudflare Workers).
             </p>
             <p style={{ ...body, marginTop: 12 }}>
-              Anbieter: Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, USA
+              Anbieter: Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA
             </p>
             <p style={{ ...body, marginTop: 12 }}>
               Beim Aufruf der Website werden technisch notwendige Daten verarbeitet, damit die Website
@@ -118,14 +118,22 @@ export default function Datenschutz() {
               Interesse liegt in der sicheren, stabilen und effizienten Bereitstellung der Website.
             </p>
             <p style={{ ...body, marginTop: 12 }}>
-              Da Vercel ein Anbieter mit Sitz in den USA ist, kann eine Übermittlung personenbezogener
-              Daten in ein Drittland nicht ausgeschlossen werden. Für solche Übermittlungen kommen geeignete
-              Garantien nach DSGVO, insbesondere Standardvertragsklauseln, in Betracht.
+              Bei der Auslieferung der Inhalte und für die Protokolldaten, die uns als Betreiber im
+              Cloudflare-Konto zur Verfügung stehen, ist Cloudflare Auftragsverarbeiter auf Grundlage des
+              Cloudflare Customer Data Processing Addendum. Diese Protokolle (Workers Logs) nutzen wir zur
+              Fehlersuche und zum sicheren Betrieb; sie werden nach höchstens sieben Tagen automatisch
+              gelöscht. Verbindungsdaten wie die IP-Adresse verarbeitet Cloudflare nach eigener
+              Datenschutzerklärung zusätzlich als eigener Verantwortlicher, etwa für Betrieb und Sicherheit
+              des Netzes; eine feste Speicherfrist nennt Cloudflare dafür nicht.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Eine Übermittlung in die USA ist möglich. Cloudflare ist unter dem EU-US Data Privacy
+              Framework zertifiziert; zusätzlich gelten die Standardvertragsklauseln der EU-Kommission.
             </p>
             <p style={{ ...body, marginTop: 12 }}>
               Weitere Informationen:{" "}
-              <a href="https://vercel.com/legal/privacy-policy" style={extLink} target="_blank" rel="noopener noreferrer">
-                vercel.com/legal/privacy-policy
+              <a href="https://www.cloudflare.com/privacypolicy/" style={extLink} target="_blank" rel="noopener noreferrer">
+                cloudflare.com/privacypolicy
               </a>
             </p>
           </div>
