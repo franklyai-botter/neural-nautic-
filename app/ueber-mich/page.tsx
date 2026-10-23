@@ -136,10 +136,10 @@ export default function UeberMich() {
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Externe Validierung</span>
               <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(32px, 4vw, 48px)", lineHeight: 1.1, color: "var(--fg-1)", margin: "16px 0 16px" }}>
-                Geprüft nach Norm. Bewährt in der Praxis.
+                Geprüft bei TÜV SÜD. Bewährt in der Praxis.
               </h2>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-3)", maxWidth: "52ch", margin: "0 auto", lineHeight: 1.7 }}>
-                Zwei Nachweise auf zwei Ebenen: Strategie nach geprüfter Norm, Umsetzung aus der Praxis.
+                Zwei Nachweise auf zwei Ebenen: Strategie mit Prüfung der TÜV SÜD Akademie, Umsetzung aus der Praxis.
               </p>
             </div>
 
@@ -160,10 +160,10 @@ export default function UeberMich() {
                   AI Strategy &amp; Application Expert
                 </h3>
                 <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, margin: "0 0 20px" }}>
-                  „Strukturierte KI-Führung, nach Akademie-Norm geprüft."
+                  Strategische KI-Kompetenz, online geprüft bei der TÜV SÜD Akademie.
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
-                  Strategie · Roadmaps · Governance · Risikomanagement
+                  Strategie · Roadmaps · Implementierung · Risikomanagement
                 </div>
                 <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.06em", marginBottom: 14 }}>
                   04.12.2025  ·  Z-001124711
@@ -188,7 +188,7 @@ export default function UeberMich() {
                   KI Applikations- und Strategieexperte
                 </h3>
                 <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 18, color: "var(--fg-2)", lineHeight: 1.55, margin: "0 0 20px" }}>
-                  „Praxis-Umsetzung im DACH-Mittelstand, partnergeprüft."
+                  Umsetzung in der Praxis, erworben im Programm KI Business Coaching.
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
                   Erworben im Programm KI Business Coaching<br />
