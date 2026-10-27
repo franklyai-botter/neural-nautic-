@@ -39,6 +39,8 @@ export default function Header() {
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", height: 64 }}>
 
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", border: 0, flexShrink: 0 }}>
+            {/* /logo-star.png = Brand-Assets/neuralnautic/nn-stern-2026-10-kompass.png, byte-gleich (seit 27.10.2026).
+                Ebenso app/icon.png; app/favicon.ico und app/apple-icon.png aus Brand-Assets/neuralnautic/abgeleitet/. */}
             <Image src="/logo-star.png" alt="NeuralNautic" width={48} height={48} style={{ objectFit: "contain" }} />
             <span style={{ fontFamily: "var(--font-italiana), serif", fontSize: 20, color: "var(--fg-1)", letterSpacing: ".04em" }}>NeuralNautic</span>
           </Link>
