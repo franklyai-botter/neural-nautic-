@@ -12,8 +12,10 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   { title: "KI-Potenzialanalyse", desc: "Identifikation sinnvoller KI-Anwendungsfälle mit Aufwand-Nutzen-Bewertung und priorisierter Roadmap." },
+  { title: "KI-Architektur",      desc: "Tragfähige Grundlage für KI: Datenresidenz, Modellwahl, Gateway und Kosten im Griff." },
   { title: "Controlled Pilot",    desc: "Kontrollierter Praxistest eines KI-Use-Cases mit klaren Zielen, Metriken und Skalierungsempfehlung." },
   { title: "KI-Automatisierung",  desc: "Automatisierung wiederkehrender Prozesse mit KI, Workflows, APIs und passenden Tools." },
+  { title: "Agentic Engineering", desc: "Individuelle Software und Automatisierungen, entwickelt mit KI-Agenten: maßgeschneidert, getestet, schnell." },
   { title: "KI-Governance",       desc: "Regeln, Rollen und Prozesse für sicheren, nachvollziehbaren und verantwortungsvollen KI-Einsatz." },
   { title: "KI-Schulung",         desc: "Workshops und Enablement für Führungskräfte, Fachabteilungen und AI Champions." },
   { title: "KI Tool Kompass",     desc: "Bewertung und Auswahl passender KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit." },
@@ -171,7 +173,7 @@ export default function Home() {
             </div>
             <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Leistungen →</Link>
           </div>
-          <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div className="nn-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
             {SERVICES.map((s) => (
               <div key={s.title} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "32px 28px" }}>
                 <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, fontWeight: 600, color: "var(--fg-1)", margin: "0 0 12px", letterSpacing: ".02em" }}>{s.title}</h3>

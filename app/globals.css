@@ -100,6 +100,7 @@ a:hover {
   .nn-steps-grid           { grid-template-columns: repeat(2, 1fr) !important; }
   .nn-steps-grid > *       { border-radius: 6px !important; }
   .nn-step-arrow           { display: none !important; }
+  .nn-grid-4               { grid-template-columns: repeat(2, 1fr) !important; }
   .nn-grid-5               { grid-template-columns: repeat(3, 1fr) !important; }
   .nn-footer-grid          { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
   .nn-grid-2               { grid-template-columns: 1fr !important; gap: 40px !important; }
@@ -108,6 +109,7 @@ a:hover {
 /* Grids — mobile */
 @media (max-width: 640px) {
   .nn-grid-3               { grid-template-columns: 1fr !important; }
+  .nn-grid-4               { grid-template-columns: 1fr !important; }
   .nn-steps-grid           { grid-template-columns: 1fr !important; }
   .nn-grid-5               { grid-template-columns: 1fr 1fr !important; }
   .nn-footer-grid          { grid-template-columns: 1fr 1fr !important; gap: 20px !important; margin-bottom: 32px !important; }

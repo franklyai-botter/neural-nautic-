@@ -5,8 +5,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Leistungen: KI-Beratung für den Mittelstand | NeuralNautic",
   alternates: { canonical: "/leistungen" },
-  description: "KI-Potenzialanalyse, Controlled Pilot, KI-Automatisierung, KI-Governance, Schulung und Tool-Auswahl für Mittelstand und KMU. In Berlin, bundesweit und im DACH-Raum.",
-  openGraph: { title: "Leistungen: KI-Beratung für den Mittelstand", description: "KI-Potenzialanalyse, Controlled Pilot, KI-Automatisierung, KI-Governance, Schulung und Tool-Auswahl für Mittelstand und KMU. In Berlin, bundesweit und im DACH-Raum.", url: "/leistungen" },
+  description: "KI-Potenzialanalyse, KI-Architektur, Controlled Pilot, Automatisierung, Agentic Engineering, Governance, Schulung und Tool-Auswahl für KMU in Berlin und DACH.",
+  openGraph: { title: "Leistungen: KI-Beratung für den Mittelstand", description: "KI-Potenzialanalyse, KI-Architektur, Controlled Pilot, Automatisierung, Agentic Engineering, Governance, Schulung und Tool-Auswahl für KMU in Berlin und DACH.", url: "/leistungen" },
 };
 
 
@@ -18,6 +18,14 @@ const SERVICES = [
     items: ["Prozessaufnahme", "Tool- und Systemanalyse", "Identifikation relevanter KI-Use-Cases", "Aufwand-Nutzen-Bewertung", "Risiko- und Datenschutz-Ersteinschätzung", "Priorisierung nach Wirkung und Machbarkeit"],
     result: "Eine klare KI-Roadmap mit konkreten Handlungsempfehlungen.",
     cta: "Potenzialanalyse anfragen",
+  },
+  {
+    title: "KI-Architektur",
+    short: "Die technische Grundlage für KI, die sicher, bezahlbar und austauschbar bleibt.",
+    long: "Wer heute KI einführt, legt Datenflüsse, Modelle, Kosten und Abhängigkeiten für Jahre fest. Gemeinsam entwerfen wir eine Architektur, die zu Ihren Daten und Systemen passt: mit EU-Datenresidenz, klarer Modellwahl je Aufgabe, einem zentralen Zugang zu den Sprachmodellen und ohne Bindung an einen einzelnen Anbieter.",
+    items: ["Zielarchitektur und Datenflüsse", "EU-Datenresidenz und Wahl des Modellanbieters (z. B. Claude über AWS Bedrock EU)", "LLM-Gateway mit Routing, Budgets und Kostenkontrolle", "Wissenssysteme mit RAG: Suche, Quellenangaben, Löschkonzept", "Kostenmodell monatlich und jährlich", "Lizenzprüfung der eingesetzten Komponenten", "Optionen von Cloud bis On-Premises"],
+    result: "Eine dokumentierte Zielarchitektur mit Entscheidungsvorlagen, die Ihre IT umsetzen kann, oder die wir gemeinsam umsetzen.",
+    cta: "Architektur besprechen",
   },
   {
     title: "Controlled Pilot",
@@ -34,6 +42,14 @@ const SERVICES = [
     items: ["Automatische Angebotserstellung", "Voicebot für Anrufannahme", "E-Mail-Klassifizierung und Antwortvorschläge", "Dokumenten- und Belegverarbeitung", "CRM-Zusammenfassungen", "Lead-Vorqualifizierung", "Interne Wissensassistenten", "n8n-, Make- oder API-basierte Workflows"],
     result: "Ein produktiver KI-Workflow mit Dokumentation, Übergabe und klaren Zuständigkeiten.",
     cta: "Automatisierung prüfen",
+  },
+  {
+    title: "Agentic Engineering",
+    short: "Individuelle Software und Automatisierungen für Ihr konkretes Problem, entwickelt mit KI-Agenten.",
+    long: "Standardsoftware passt oft nur zur Hälfte, klassische Individualentwicklung war bisher teuer und langsam. Mit Agentic Engineering entwickeln wir Software und Automatisierungen gemeinsam mit KI-Agenten, die planen, programmieren und testen. Gesteuert, geprüft und verantwortet von uns. So entstehen maßgeschneiderte Lösungen deutlich schneller als bisher, mit Tests, Dokumentation und Code, der Ihnen gehört.",
+    items: ["Individuelle Tools und Web-Anwendungen für Ihre Abläufe", "Automatisierungen und Schnittstellen zwischen Ihren Systemen", "Entwicklung mit KI-Agenten, gesteuert und geprüft durch uns", "Automatisierte Tests und Qualitätsprüfung vor jeder Auslieferung", "Dokumentation und Übergabe: der Code gehört Ihnen", "Betrieb in Ihrer Infrastruktur oder bei einem EU-Hoster", "Befähigung Ihres IT-Teams für agentische Entwicklung"],
+    result: "Eine maßgeschneiderte, getestete Lösung für Ihr Problem, schneller und günstiger als klassische Individualentwicklung.",
+    cta: "Lösung anfragen",
   },
   {
     title: "KI-Governance und Sicherheit",

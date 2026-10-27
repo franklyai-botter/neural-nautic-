@@ -6,8 +6,10 @@ import { LinkedInMark } from "./LinkedInButton";
 const COLS = [
   ["Leistungen", [
     ["KI-Potenzialanalyse", "/leistungen"],
+    ["KI-Architektur",      "/leistungen"],
     ["Controlled Pilot",    "/leistungen"],
     ["KI-Automatisierung",  "/leistungen"],
+    ["Agentic Engineering", "/leistungen"],
     ["KI-Governance",       "/leistungen"],
     ["KI-Schulung",         "/leistungen"],
   ]],

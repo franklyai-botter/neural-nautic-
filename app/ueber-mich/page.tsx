@@ -35,7 +35,7 @@ const PERSON_JSON_LD = {
   affiliation: { "@type": "Organization", name: "for42.ai", url: "https://for42.ai" },
   address: { "@type": "PostalAddress", addressLocality: "Berlin", addressCountry: "DE" },
   areaServed: ["Berlin", "Deutschland", "DACH"],
-  knowsAbout: ["KI-Strategie", "KI-Einführung", "Retrieval-Augmented Generation", "Prozessautomatisierung", "Datenschutz (DSGVO)", "EU AI Act", "Veränderungsmanagement"],
+  knowsAbout: ["KI-Strategie", "KI-Einführung", "KI-Architektur", "Retrieval-Augmented Generation", "Agentic Engineering", "Prozessautomatisierung", "Datenschutz (DSGVO)", "EU AI Act", "Veränderungsmanagement"],
   hasCredential: [
     {
       "@type": "EducationalOccupationalCredential",
