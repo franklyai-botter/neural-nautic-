@@ -1,10 +1,16 @@
 // Partner & Netzwerk. Logos nur aus ObsidianVault\Ressourcen\Brand-Assets (unverändert kopiert).
 // Laufband von links nach rechts. Die Partnerliste wird so oft wiederholt, dass eine Hälfte
 // breiter ist als jeder Bildschirm; die zweite Hälfte ist die Kopie für die nahtlose Schleife.
-const PARTNERS = [
+type Partner = { name: string; href: string; logo: string; width: number; height: number; hellerGrund?: boolean };
+
+const PARTNERS: Partner[] = [
   // for42 in Seitenfarben (Franks Wunsch): FOR42 Silver-White, .ai Glow-Cyan. Abgeleitet aus
   // Brand-Assets/for42/for42-wordmark.svg, nur die Füllfarben getauscht.
   { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark-nn.svg", width: 169, height: 32 },
+  // spring.gate unverändert aus Brand-Assets/springgate/springgate-logo.png (252×72, Standard laut BRAND.md).
+  // Die Datei hat einen weißen, nicht transparenten Grund; BRAND.md kennt keine helle Variante.
+  // Deshalb steht das Logo auf einer weißen Fläche, die diesen Grund fortsetzt — keine Umfärbung.
+  { name: "spring.gate", href: "https://funnel.springgate-ai.de", logo: "/partner/springgate-logo.png", width: 140, height: 40, hellerGrund: true },
 ];
 
 const PRO_HAELFTE = 8;
@@ -25,8 +31,10 @@ export default function PartnerBand() {
             const kopie = i >= PARTNERS.length;
             return (
               <a key={`${p.name}-${i}`} href={p.href} target="_blank" rel="noopener" aria-label={p.name} aria-hidden={kopie || undefined} tabIndex={kopie ? -1 : undefined} style={{ display: "inline-flex", padding: "0 48px" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.logo} alt={kopie ? "" : p.name} width={p.width} height={p.height} style={{ height: p.height, width: "auto" }} />
+                <span style={p.hellerGrund ? { display: "inline-flex", background: "#fff", borderRadius: 4, padding: "4px 10px" } : { display: "inline-flex" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.logo} alt={kopie ? "" : p.name} width={p.width} height={p.height} style={{ height: p.height, width: "auto" }} />
+                </span>
               </a>
             );
           })}
