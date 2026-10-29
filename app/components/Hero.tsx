@@ -47,7 +47,7 @@ export default function Hero({ onNav }: { onNav: (id: string) => void }) {
       <Image src="/logo-star.png" alt="" width={64} height={64} style={{
         position: "absolute", bottom: 36, right: 48,
         objectFit: "contain", opacity: 0.7,
-        filter: "drop-shadow(0 4px 18px rgba(63,212,224,.45))",
+        filter: "drop-shadow(0 4px 18px rgba(13,115,119,.45))",
       }} />
 
       <div style={{

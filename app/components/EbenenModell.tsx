@@ -12,7 +12,7 @@ function Ebene({ aktiv, kicker, title, rhythm, href, items, steps }: {
 }) {
   return (
     <div style={{
-      background: aktiv ? "rgba(63,212,224,.07)" : "var(--ink-current)",
+      background: aktiv ? "rgba(13,115,119,.07)" : "var(--ink-current)",
       border: aktiv ? "1px solid var(--glow-cyan)" : "1px solid var(--border-2)",
       borderRadius: 6, padding: "22px 24px",
     }}>

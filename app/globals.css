@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
+/* Heller Look wie for42.ai seit 29.10.2026: Flächen weiß, Schrift und Akzente grün (BRAND.md,
+   heller Grund: Deep Teal). Die alten Petrol-Werte stehen im git-Verlauf. */
 :root {
-  --ink-abyss:      #061419;
-  --ink-deep:       #0A2028;
-  --ink-tide:       #0E2B36;
-  --ink-current:    #123844;
-  --ink-shoal:      #1A4E5E;
+  --ink-abyss:      #FFFFFF;
+  --ink-deep:       #FFFFFF;
+  --ink-tide:       #F3F7F7;
+  --ink-current:    #FFFFFF;
+  --ink-shoal:      #E3EEEE;
 
-  --glow-faint:     #2D8A9A;
-  --glow-cyan:      #3FD4E0;
-  --glow-aqua:      #6FEFF5;
+  --glow-faint:     #5FA3A6;
+  --glow-cyan:      #0D7377;
+  --glow-aqua:      #0A4A4A;
   --glow-mist:      #B8F5F9;
 
   --silver-deep:    #707078;
@@ -31,22 +33,22 @@
   --bg-3:           var(--ink-current);
   --bg-4:           var(--ink-shoal);
 
-  --fg-1:           var(--silver-white);
-  --fg-2:           var(--silver-bright);
-  --fg-3:           var(--silver-mid);
-  --fg-4:           var(--silver-deep);
+  --fg-1:           #0A4A4A;
+  --fg-2:           #2E4F57;
+  --fg-3:           #5E777D;
+  --fg-4:           #8BA0A4;
 
   --accent:         var(--glow-cyan);
   --accent-hover:   var(--glow-aqua);
   --accent-faint:   var(--glow-faint);
 
-  --border-1:       rgba(205, 206, 210, 0.10);
-  --border-2:       rgba(205, 206, 210, 0.18);
-  --border-3:       rgba(63, 212, 224, 0.30);
+  --border-1:       rgba(14, 43, 54, 0.08);
+  --border-2:       rgba(14, 43, 54, 0.14);
+  --border-3:       rgba(13, 115, 119, 0.35);
 
   --shadow-sm:    0 1px 2px rgba(0,0,0,0.25);
   --shadow-md:    0 4px 16px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.3);
-  --shadow-lg:    0 16px 48px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.35);
+  --shadow-lg:    0 16px 48px rgba(6,20,25,0.12), 0 2px 6px rgba(6,20,25,0.08);
   --shadow-xl:    0 32px 80px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.4);
 
   --glow-accent:  0 0 24px rgba(63, 212, 224, 0.35), 0 0 6px rgba(63, 212, 224, 0.6);
@@ -82,6 +84,27 @@ a {
 }
 a:hover {
   color: var(--accent-hover);
+}
+
+/* ===== Überschriften wie for42.ai (29.10.2026) =====
+   Die Seiten setzen Schriften inline über var(--font-italiana) / var(--font-cormorant). Beide zeigen
+   jetzt auf Inter Tight; Kursiv und dünne Strichstärke der alten Zierschriften werden hier
+   neutralisiert, Größen auf die for42-Skala gekappt (Hero clamp(34px,5.2vw,62px), H2 clamp(26px,3.6vw,40px)).
+   Rückweg: Fonts in layout.tsx zurück und diesen Block entfernen. */
+:root:root {
+  --font-italiana:  var(--font-display);
+  --font-cormorant: var(--font-display);
+}
+[style*="--font-italiana"]  { font-style: normal !important; font-weight: 600 !important; letter-spacing: -0.02em !important; }
+[style*="--font-cormorant"] { font-style: normal !important; font-weight: 500 !important; letter-spacing: -0.01em !important; }
+h1[style*="--font-italiana"], h1[style*="--font-cormorant"] { font-size: clamp(34px, 5.2vw, 62px) !important; line-height: 1.05 !important; }
+h2[style*="--font-italiana"], h2[style*="--font-cormorant"] { font-size: clamp(26px, 3.6vw, 40px) !important; line-height: 1.15 !important; font-weight: 600 !important; }
+h1 em, h2 em { font-style: normal !important; }
+
+/* KI-Logo-Wirbel über dem Einstieg: auf dem Handy kleinere Kacheln */
+@media (max-width: 640px) {
+  .nn-wirbel-kachel     { width: 42px !important; height: 42px !important; border-radius: 12px !important; }
+  .nn-wirbel-kachel img { width: 22px !important; height: 22px !important; }
 }
 
 /* ===== Responsive ===== */

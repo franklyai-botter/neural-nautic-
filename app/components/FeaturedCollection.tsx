@@ -23,8 +23,8 @@ function ObjectCard({ o, onOpen }: { o: Obj; onOpen: () => void }) {
       onMouseEnter={e => {
         const el = e.currentTarget as HTMLElement;
         el.style.transform = "translateY(-4px)";
-        el.style.borderColor = "rgba(63,212,224,.4)";
-        el.style.boxShadow = "0 16px 48px rgba(0,0,0,.5), 0 0 24px rgba(63,212,224,.1)";
+        el.style.borderColor = "rgba(13,115,119,.4)";
+        el.style.boxShadow = "0 16px 48px rgba(0,0,0,.5), 0 0 24px rgba(13,115,119,.1)";
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLElement;
@@ -40,10 +40,10 @@ function ObjectCard({ o, onOpen }: { o: Obj; onOpen: () => void }) {
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
       }}>
         <Image src="/bg-neural-network.png" alt="" fill style={{ objectFit: "cover", opacity: 0.15 }} />
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 40%, rgba(205,206,210,.08), transparent 60%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 40%, rgba(14,43,54,.08), transparent 60%)" }} />
         <Image src="/logo-star.png" alt="" width={96} height={96} style={{
           objectFit: "contain", opacity: 0.9, position: "relative",
-          filter: "drop-shadow(0 6px 22px rgba(0,0,0,.6)) drop-shadow(0 0 30px rgba(63,212,224,.15))",
+          filter: "drop-shadow(0 6px 22px rgba(0,0,0,.6)) drop-shadow(0 0 30px rgba(13,115,119,.15))",
         }} />
         <div style={{ position: "absolute", top: 14, left: 14 }}>
           <Tag tone={o.tag === "Limited" ? "accent" : "neutral"}>{o.tag}</Tag>

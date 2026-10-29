@@ -33,10 +33,10 @@ export const Button = ({
     border: "1px solid transparent",
   };
   const variants: Record<string, React.CSSProperties> = {
-    primary: { ...base, background: "var(--glow-cyan)", color: "var(--ink-abyss)", boxShadow: "inset 0 1px 0 rgba(255,255,255,.3), 0 0 24px rgba(63,212,224,.25)" },
-    secondary: { ...base, background: "transparent", color: "var(--fg-1)", borderColor: "rgba(205,206,210,.4)" },
+    primary: { ...base, background: "var(--glow-cyan)", color: "var(--ink-abyss)", boxShadow: "inset 0 1px 0 rgba(255,255,255,.3), 0 0 24px rgba(13,115,119,.25)" },
+    secondary: { ...base, background: "transparent", color: "var(--fg-1)", borderColor: "rgba(14,43,54,.4)" },
     ghost: { ...base, background: "transparent", color: "var(--glow-cyan)", padding: "13px 14px" },
-    brushed: { ...base, background: "linear-gradient(180deg,#1A4E5E,#0E2B36)", color: "var(--fg-1)", borderColor: "rgba(205,206,210,.2)", borderRadius: 999, boxShadow: "inset 0 1px 0 rgba(255,255,255,.08), inset 0 -1px 0 rgba(0,0,0,.3)" },
+    brushed: { ...base, background: "linear-gradient(180deg,#1A4E5E,#0E2B36)", color: "var(--fg-1)", borderColor: "rgba(14,43,54,.2)", borderRadius: 999, boxShadow: "inset 0 1px 0 rgba(255,255,255,.08), inset 0 -1px 0 rgba(0,0,0,.3)" },
   };
   return (
     <button style={variants[variant]} onClick={onClick}>
@@ -48,8 +48,8 @@ export const Button = ({
 
 export const Tag = ({ children, tone = "neutral" }: { children: React.ReactNode; tone?: "neutral" | "accent" | "ok" }) => {
   const tones = {
-    neutral: { bg: "rgba(205,206,210,.08)", fg: "#CDCED2", border: "rgba(205,206,210,.18)" },
-    accent:  { bg: "rgba(63,212,224,.12)",  fg: "#6FEFF5", border: "rgba(63,212,224,.3)" },
+    neutral: { bg: "rgba(14,43,54,.08)", fg: "#CDCED2", border: "rgba(14,43,54,.18)" },
+    accent:  { bg: "rgba(13,115,119,.12)",  fg: "#6FEFF5", border: "rgba(13,115,119,.3)" },
     ok:      { bg: "rgba(111,239,199,.1)",  fg: "#6FEFC7", border: "rgba(111,239,199,.3)" },
   };
   const t = tones[tone];

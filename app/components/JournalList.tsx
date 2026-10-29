@@ -19,7 +19,7 @@ function LogEntry({ e, onOpen }: { e: Entry; onOpen: () => void }) {
         padding: "32px 0", borderBottom: "1px solid var(--border-1)",
         cursor: "pointer", transition: "all 180ms",
       }}
-      onMouseEnter={ev => { const el = ev.currentTarget as HTMLElement; el.style.paddingLeft = "12px"; el.style.background = "rgba(205,206,210,.02)"; }}
+      onMouseEnter={ev => { const el = ev.currentTarget as HTMLElement; el.style.paddingLeft = "12px"; el.style.background = "rgba(14,43,54,.02)"; }}
       onMouseLeave={ev => { const el = ev.currentTarget as HTMLElement; el.style.paddingLeft = "0"; el.style.background = ""; }}
     >
       <div>

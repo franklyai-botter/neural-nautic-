@@ -4,9 +4,9 @@
 type Partner = { name: string; href: string; logo: string; width: number; height: number; hellerGrund?: boolean };
 
 const PARTNERS: Partner[] = [
-  // for42 in Seitenfarben (Franks Wunsch): FOR42 Silver-White, .ai Glow-Cyan. Abgeleitet aus
-  // Brand-Assets/for42/for42-wordmark.svg, nur die Füllfarben getauscht.
-  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark-nn.svg", width: 169, height: 32 },
+  // for42 im Original aus Brand-Assets/for42/for42-wordmark.svg (Ink + Steel): seit dem hellen Look
+  // (29.10.2026) steht das Band auf Weiß. Die eingefärbte for42-wordmark-nn.svg war für dunklen Grund.
+  { name: "FOR42.ai", href: "https://for42.ai", logo: "/partner/for42-wordmark.svg", width: 169, height: 32 },
   // spring.gate unverändert aus Brand-Assets/springgate/springgate-logo.png (252×72, Standard laut BRAND.md).
   // Die Datei hat einen weißen, nicht transparenten Grund; BRAND.md kennt keine helle Variante.
   // Deshalb steht das Logo auf einer weißen Fläche, die diesen Grund fortsetzt — keine Umfärbung.

@@ -91,7 +91,7 @@ export default function ReifegradCheck() {
                   <label key={v} style={{
                     display: "flex", gap: 8, alignItems: "flex-start", cursor: "pointer",
                     border: an ? "1px solid var(--glow-cyan)" : "1px solid var(--border-1)",
-                    background: an ? "rgba(63,212,224,.08)" : "var(--ink-abyss)",
+                    background: an ? "rgba(13,115,119,.08)" : "var(--ink-abyss)",
                     borderRadius: 4, padding: "10px 12px",
                   }}>
                     <input type="radio" name={`rg-${d.key}`} checked={an} onChange={() => setWerte(w => ({ ...w, [d.key]: v }))}
@@ -107,7 +107,7 @@ export default function ReifegradCheck() {
         ))}
       </div>
 
-      <div aria-live="polite" style={{ marginTop: 24, border: alle ? "1px solid var(--glow-cyan)" : "1px dashed var(--border-2)", borderRadius: 6, padding: "24px 26px", background: alle ? "rgba(63,212,224,.06)" : "transparent" }}>
+      <div aria-live="polite" style={{ marginTop: 24, border: alle ? "1px solid var(--glow-cyan)" : "1px dashed var(--border-2)", borderRadius: 6, padding: "24px 26px", background: alle ? "rgba(13,115,119,.06)" : "transparent" }}>
         {!alle ? (
           <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-3)", margin: 0 }}>
             Noch {DIMS.filter(d => werte[d.key] === undefined).length} von 6 Dimensionen offen. Das Ergebnis erscheint hier.

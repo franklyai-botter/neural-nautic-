@@ -80,7 +80,7 @@ export default function AiEngineering() {
                 <div role="row" key={r.dim} className="nn-vgl-row" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr 1.6fr", borderTop: "1px solid var(--border-1)" }}>
                   <div role="rowheader" style={{ padding: "16px 20px", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--fg-1)" }}>{r.dim}</div>
                   <div role="cell" style={{ padding: "16px 20px", ...body, color: "var(--fg-3)" }}><span className="nn-vgl-label">Vibe Coding: </span>{r.vibe}</div>
-                  <div role="cell" style={{ padding: "16px 20px", ...body, color: "var(--fg-1)", background: "rgba(63,212,224,.05)", borderLeft: "1px solid var(--border-3)" }}><span className="nn-vgl-label" style={{ color: "var(--glow-cyan)" }}>AI Engineering: </span>{r.eng}</div>
+                  <div role="cell" style={{ padding: "16px 20px", ...body, color: "var(--fg-1)", background: "rgba(13,115,119,.05)", borderLeft: "1px solid var(--border-3)" }}><span className="nn-vgl-label" style={{ color: "var(--glow-cyan)" }}>AI Engineering: </span>{r.eng}</div>
                 </div>
               ))}
             </div>
@@ -105,7 +105,7 @@ export default function AiEngineering() {
                 ))}
               </div>
               {RISIKO.map(r => (
-                <div role="row" key={r.klasse} className="nn-vgl-row" style={{ display: "grid", gridTemplateColumns: "0.8fr 1.4fr 1.4fr 1.2fr", borderTop: "1px solid var(--border-1)", background: r.wir ? "rgba(63,212,224,.05)" : undefined }}>
+                <div role="row" key={r.klasse} className="nn-vgl-row" style={{ display: "grid", gridTemplateColumns: "0.8fr 1.4fr 1.4fr 1.2fr", borderTop: "1px solid var(--border-1)", background: r.wir ? "rgba(13,115,119,.05)" : undefined }}>
                   <div role="rowheader" style={{ padding: "14px 18px", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: r.wir ? "var(--glow-cyan)" : "var(--fg-1)" }}>{r.klasse}</div>
                   <div role="cell" style={{ padding: "14px 18px", ...body }}><span className="nn-vgl-label">Lösung: </span>{r.loesung}</div>
                   <div role="cell" style={{ padding: "14px 18px", ...body, color: r.wir ? "var(--fg-1)" : body.color }}><span className="nn-vgl-label">Wer baut: </span>{r.wer}</div>

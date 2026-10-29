@@ -127,7 +127,7 @@ export default function ChatWidget() {
     height: chatHeight,
     zIndex: 60,
     background: "var(--ink-deep)",
-    border: "1px solid rgba(63,212,224,0.18)",
+    border: "1px solid rgba(13,115,119,0.18)",
     borderRadius: "20px 20px 0 0",
     boxShadow: "0 -12px 48px rgba(0,0,0,0.6)",
     display: "flex", flexDirection: "column",
@@ -142,9 +142,9 @@ export default function ChatWidget() {
     width: "min(380px, calc(100vw - 40px))",
     maxHeight: `calc(100dvh - ${bubbleH + 60}px)`,
     background: "var(--ink-deep)",
-    border: "1px solid rgba(63,212,224,0.2)",
+    border: "1px solid rgba(13,115,119,0.2)",
     borderRadius: 16,
-    boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(63,212,224,0.08)",
+    boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(13,115,119,0.08)",
     display: "flex", flexDirection: "column",
     overflow: "hidden",
     fontFamily: "var(--font-inter), sans-serif",
@@ -160,8 +160,8 @@ export default function ChatWidget() {
           right: 24,
           bottom: `calc(${bubbleH + 28}px + env(safe-area-inset-bottom, 0px))`,
           zIndex: 59,
-          background: "rgba(11,31,38,0.96)",
-          border: "1px solid rgba(63,212,224,0.35)",
+          background: "rgba(255,255,255,0.97)",
+          border: "1px solid rgba(13,115,119,0.35)",
           borderRadius: 14,
           padding: "10px 32px 10px 14px",
           maxWidth: 220,
@@ -169,7 +169,7 @@ export default function ChatWidget() {
           color: "var(--fg-1)",
           lineHeight: 1.45,
           fontFamily: "var(--font-inter), sans-serif",
-          boxShadow: "0 6px 24px rgba(0,0,0,0.5), 0 0 18px rgba(63,212,224,0.2)",
+          boxShadow: "0 6px 24px rgba(0,0,0,0.5), 0 0 18px rgba(13,115,119,0.2)",
           animation: "nn-tip-in 320ms cubic-bezier(.22,.61,.36,1) both",
         } as React.CSSProperties}>
           Fragen zu KI? Ich helfe.
@@ -190,9 +190,9 @@ export default function ChatWidget() {
             position: "absolute",
             bottom: -7, right: 40,
             width: 12, height: 12,
-            background: "rgba(11,31,38,0.96)",
-            borderRight: "1px solid rgba(63,212,224,0.35)",
-            borderBottom: "1px solid rgba(63,212,224,0.35)",
+            background: "rgba(255,255,255,0.97)",
+            borderRight: "1px solid rgba(13,115,119,0.35)",
+            borderBottom: "1px solid rgba(13,115,119,0.35)",
             transform: "rotate(45deg)",
           }} />
         </div>
@@ -212,8 +212,8 @@ export default function ChatWidget() {
           minWidth: open ? btnSize : bubbleW,
           minHeight: open ? btnSize : bubbleH,
           borderRadius: open ? "50%" : 0,
-          background: open ? "rgba(11,31,38,0.95)" : "transparent",
-          border: open ? "1px solid rgba(63,212,224,0.22)" : "none",
+          background: open ? "#0A4A4A" : "transparent",
+          border: open ? "1px solid rgba(13,115,119,0.22)" : "none",
           boxShadow: open ? "0 2px 16px rgba(0,0,0,0.4)" : "none",
           cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
@@ -232,14 +232,14 @@ export default function ChatWidget() {
           <div style={{ position: "relative", width: bubbleW, height: bubbleH, display: "flex", alignItems: "center", justifyContent: "center" }}>
             {/* Sprechblasen-Form als SVG */}
             <svg
-              style={{ position: "absolute", inset: 0, filter: "drop-shadow(0 0 18px rgba(63,212,224,0.4)) drop-shadow(0 4px 24px rgba(0,0,0,0.55))" }}
+              style={{ position: "absolute", inset: 0, filter: "drop-shadow(0 0 18px rgba(13,115,119,0.4)) drop-shadow(0 4px 24px rgba(0,0,0,0.55))" }}
               width={bubbleW} height={bubbleH} viewBox="0 0 64 76" fill="none"
               preserveAspectRatio="none"
             >
               <path
                 d="M14 0H50Q64 0 64 14V50Q64 64 50 64H40L32 76L24 64H14Q0 64 0 50V14Q0 0 14 0Z"
                 fill="rgba(6,20,26,0.94)"
-                stroke="rgba(63,212,224,0.28)"
+                stroke="rgba(13,115,119,0.28)"
                 strokeWidth="1.5"
               />
             </svg>
@@ -253,7 +253,7 @@ export default function ChatWidget() {
               style={{
                 position: "relative",
                 objectFit: "contain",
-                filter: "drop-shadow(0 0 8px rgba(63,212,224,0.45))",
+                filter: "drop-shadow(0 0 8px rgba(13,115,119,0.45))",
                 marginTop: -12,
               }}
             />
@@ -274,7 +274,7 @@ export default function ChatWidget() {
             }}>
               <div style={{
                 width: 36, height: 4, borderRadius: 2,
-                background: "rgba(205,206,210,0.25)",
+                background: "rgba(14,43,54,0.25)",
               }} />
             </div>
           )}
@@ -282,7 +282,7 @@ export default function ChatWidget() {
           {/* Header */}
           <div style={{
             padding: isMobile ? "10px 18px 12px" : "14px 18px",
-            borderBottom: "1px solid rgba(205,206,210,0.1)",
+            borderBottom: "1px solid rgba(14,43,54,0.1)",
             background: "var(--ink-tide)",
             display: "flex", alignItems: "center", gap: 10,
             flexShrink: 0,
@@ -293,7 +293,7 @@ export default function ChatWidget() {
               alt=""
               width={80}
               height={80}
-              style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(63,212,224,0.5))", flexShrink: 0 }}
+              style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(13,115,119,0.5))", flexShrink: 0 }}
             />
             <span style={{ fontSize: 13, fontWeight: 600, color: "var(--fg-1)", letterSpacing: ".03em" }}>
               NeuralNautic Assistent
@@ -308,8 +308,8 @@ export default function ChatWidget() {
             <div style={{
               margin: "12px 14px 0",
               padding: "10px 12px",
-              background: "rgba(63,212,224,0.06)",
-              border: "1px solid rgba(63,212,224,0.15)",
+              background: "rgba(13,115,119,0.06)",
+              border: "1px solid rgba(13,115,119,0.15)",
               borderRadius: 8,
               fontSize: 11,
               color: "var(--fg-3)",
@@ -354,9 +354,9 @@ export default function ChatWidget() {
                   maxWidth: "85%",
                   padding: "10px 14px",
                   borderRadius: m.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
-                  background: m.role === "user" ? "rgba(63,212,224,0.15)" : "rgba(255,255,255,0.05)",
+                  background: m.role === "user" ? "rgba(13,115,119,0.15)" : "rgba(14,43,54,0.05)",
                   border: "1px solid",
-                  borderColor: m.role === "user" ? "rgba(63,212,224,0.25)" : "rgba(205,206,210,0.08)",
+                  borderColor: m.role === "user" ? "rgba(13,115,119,0.25)" : "rgba(14,43,54,0.08)",
                   fontSize: 14,
                   color: "var(--fg-1)",
                   lineHeight: 1.6,
@@ -385,7 +385,7 @@ export default function ChatWidget() {
           {/* Input */}
           <div style={{
             padding: "12px 14px 10px",
-            borderTop: "1px solid rgba(205,206,210,0.1)",
+            borderTop: "1px solid rgba(14,43,54,0.1)",
             display: "flex", gap: 10,
             flexShrink: 0,
             background: "var(--ink-deep)",
@@ -418,7 +418,7 @@ export default function ChatWidget() {
                 width: 44, height: 44,
                 minWidth: 44, minHeight: 44,
                 borderRadius: 10, flexShrink: 0,
-                background: input.trim() ? "var(--glow-cyan)" : "rgba(63,212,224,0.12)",
+                background: input.trim() ? "var(--glow-cyan)" : "rgba(13,115,119,0.12)",
                 border: "none",
                 cursor: input.trim() ? "pointer" : "default",
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -440,7 +440,7 @@ export default function ChatWidget() {
             padding: "8px 14px",
             paddingBottom: isMobile ? "max(10px, env(safe-area-inset-bottom))" : "10px",
             background: "var(--ink-deep)",
-            borderTop: "1px solid rgba(205,206,210,0.06)",
+            borderTop: "1px solid rgba(14,43,54,0.06)",
             fontSize: 10,
             color: "var(--fg-4)",
             textAlign: "center",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PartnerBand from "./components/PartnerBand";
+import KiLogoWirbel from "./components/KiLogoWirbel";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { KI_CHECK_BUCHEN } from "./site";
@@ -37,9 +38,9 @@ const ZERTIFIKATE = [
   { src: "/zertifikate/neurawork-vorschau.webp", href: "https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01", titel: "Zertifikat Neurawork – KI Applikations- und Strategieexperte (Virtualbadge)" },
 ];
 
-// Erster Bildschirm hell wie bei for42.ai (Frank 29.10.2026), Rest der Seite bleibt Petrol.
-// Farben laut BRAND.md: auf hellem Grund Deep Teal hell als Akzent, Cyan nur auf dunklem Grund.
-const HELL = { grund: "#ffffff", schrift: "#061419", text: "#0e2b36", leise: "rgba(14,43,54,.62)", akzent: "#0D7377", linie: "rgba(14,43,54,.18)", papier: "#f5f2eb" };
+// Ganze Seite hell wie bei for42.ai (Frank 29.10.2026), Werte aus globals.css. Grund durchsichtig,
+// damit das neuronale Netz durchscheint.
+const HELL = { grund: "transparent", schrift: "var(--fg-1)", text: "var(--fg-2)", leise: "var(--fg-3)", akzent: "var(--accent)", linie: "var(--border-2)", papier: "var(--ivory)" };
 
 const linkKnopf: CSSProperties = { display: "inline-flex", alignItems: "center", height: 48, boxSizing: "border-box", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".04em", padding: "0 16px", borderRadius: 4, border: `1px solid ${HELL.linie}`, color: HELL.text, textDecoration: "none", whiteSpace: "nowrap" };
 const miniatur: CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, boxSizing: "border-box", borderRadius: 4, border: `1px solid ${HELL.linie}`, background: HELL.papier, flexShrink: 0 };
@@ -55,8 +56,16 @@ export default function Home() {
       <Header />
       <main>
 
+        {/* 0 ÜBER DEM EINSTIEG: NN-Stern, um den die Logos der Modellanbieter wirbeln */}
+        <section style={{ position: "relative", padding: "72px 0 0" }}>
+          <KiLogoWirbel />
+          <p style={{ textAlign: "center", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, lineHeight: 1.5, color: HELL.leise, margin: "4px auto 0", maxWidth: "70ch", padding: "0 20px" }}>
+            Wir arbeiten anbieterneutral mit den Modellen aller großen Hersteller. Die Logos gehören den jeweiligen Inhabern, eine Partnerschaft besteht nicht.
+          </p>
+        </section>
+
         {/* 1 ERSTER BILDSCHIRM: Problem mit Zahl, eigene Methode, ein Knopf, Beleg, echtes Foto */}
-        <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "104px 0 72px", background: HELL.grund }}>
+        <section style={{ position: "relative", display: "flex", alignItems: "center", overflow: "hidden", padding: "40px 0 72px", background: HELL.grund }}>
           <div className="nn-hero-inner nn-grid-2" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%", display: "grid", gridTemplateColumns: "minmax(0, 1.35fr) minmax(0, 1fr)", gap: 64, alignItems: "center" }}>
             <div>
               <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(42px, 5.6vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.01em", color: HELL.schrift, margin: 0 }}>
@@ -181,7 +190,7 @@ export default function Home() {
         {/* ABSCHLUSS */}
         <section className="nn-section" style={{ padding: "100px 32px", textAlign: "center", background: "var(--ink-abyss)" }}>
           <div style={{ maxWidth: 640, margin: "0 auto" }}>
-            <Image src="/logo-monogram.png" alt="" width={80} height={64} style={{ objectFit: "contain", opacity: 0.7, marginBottom: 32, filter: "drop-shadow(0 0 20px rgba(63,212,224,.2))" }} />
+            <Image src="/logo-monogram.png" alt="" width={80} height={64} style={{ objectFit: "contain", opacity: 0.7, marginBottom: 32, filter: "drop-shadow(0 0 20px rgba(13,115,119,.2))" }} />
             <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.1, color: "var(--fg-1)", margin: "0 0 20px" }}>
               Bereit für den ersten sinnvollen KI-Schritt?
             </h2>

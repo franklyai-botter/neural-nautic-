@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Italiana, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, Inter, JetBrains_Mono } from "next/font/google";
 import ChatWidget from "./components/ChatWidget";
 import NeuralBackground from "./components/NeuralBackground";
 import "./globals.css";
 
-const italiana = Italiana({ weight: "400", subsets: ["latin"], variable: "--font-italiana" });
-const cormorant = Cormorant_Garamond({ weight: ["300","400","500"], style: ["normal","italic"], subsets: ["latin"], variable: "--font-cormorant" });
+// Überschriften in Inter Tight wie for42.ai (Frank 29.10.2026). Italiana und Cormorant sind raus;
+// ihre Variablen --font-italiana / --font-cormorant zeigen in globals.css auf --font-display.
+const display = Inter_Tight({ weight: ["500", "600", "700"], subsets: ["latin"], variable: "--font-display" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrains = JetBrains_Mono({ weight: ["400","500"], subsets: ["latin"], variable: "--font-jetbrains" });
 
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${italiana.variable} ${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
+    <html lang="de" className={`${display.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body>
         <NeuralBackground />
         {children}

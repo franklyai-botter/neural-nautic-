@@ -1,0 +1,15 @@
+KI-Anbieter-Logos in diesem Ordner
+
+Quelle: LobeHub Icons, npm-Paket @lobehub/icons-static-svg 1.101.0
+https://github.com/lobehub/lobe-icons
+Lizenz der Sammlung: MIT (Copyright LobeHub). Dateien unverändert übernommen am 29.10.2026.
+
+Die Marken und Logos gehören den jeweiligen Inhabern (OpenAI, Anthropic, Google, DeepSeek, Meta,
+Mistral AI, xAI, Alibaba, Moonshot AI, Zhipu AI, MiniMax, Cohere, NVIDIA, Amazon Web Services,
+Microsoft, IBM, Perplexity, ByteDance, Baidu, Tencent, StepFun, AI21 Labs, Upstage, Liquid AI,
+Allen Institute for AI, LG AI Research, TII, Nous Research, Reka AI, Inception). Die MIT-Lizenz
+der Sammlung räumt keine Markenrechte ein. NeuralNautic zeigt sie nur zur Kennzeichnung der
+Modellanbieter, mit denen wir arbeiten und die wir vergleichen; eine Partnerschaft oder
+Empfehlung durch die Anbieter besteht nicht.
+
+Auswahl nach den Modellanbietern auf artificialanalysis.ai (abgerufen 29.10.2026).

@@ -131,7 +131,7 @@ export default function KiImBetrieb() {
             ].map(b => (
               <div key={b.v} style={{ marginBottom: 18 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                  <div style={{ flex: 1, background: "rgba(205,206,210,.05)", borderRadius: 3, height: 34, position: "relative" }}>
+                  <div style={{ flex: 1, background: "rgba(14,43,54,.05)", borderRadius: 3, height: 34, position: "relative" }}>
                     <div style={{ width: `${b.v}%`, minWidth: 54, height: "100%", background: b.color, borderRadius: 3, display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 12 }}>
                       <span style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 14, fontWeight: 500, color: b.text }}>{b.v} %</span>
                     </div>
