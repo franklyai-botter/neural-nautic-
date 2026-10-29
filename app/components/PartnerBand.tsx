@@ -11,6 +11,9 @@ const PARTNERS: Partner[] = [
   // Die Datei hat einen weißen, nicht transparenten Grund; BRAND.md kennt keine helle Variante.
   // Deshalb steht das Logo auf einer weißen Fläche, die diesen Grund fortsetzt — keine Umfärbung.
   { name: "spring.gate", href: "https://funnel.springgate-ai.de", logo: "/partner/springgate-logo.png", width: 140, height: 40, hellerGrund: true },
+  // Karlson unverändert aus Brand-Assets/karlson/karlson-logo.png (400×400, = karlson-website public/karlson/logo.png).
+  // Kein echter Alpha-Kanal, sehr blasses Schachbrett im Grund — deshalb wie spring.gate auf weißer Fläche.
+  { name: "Karlson – One-Man-Band", href: "https://karlson-solo-orchester.de", logo: "/partner/karlson-logo.png", width: 44, height: 44, hellerGrund: true },
 ];
 
 const PRO_HAELFTE = 8;
