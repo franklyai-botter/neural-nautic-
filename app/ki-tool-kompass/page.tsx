@@ -69,6 +69,17 @@ export default function KiToolKompass() {
           </div>
         </div>
 
+        {/* Kaufen oder bauen: Brücke zu AI Engineering */}
+        <section style={{ padding: "56px 32px", borderTop: "1px solid var(--border-1)" }}>
+          <Link href="/ai-engineering" style={{ display: "block", maxWidth: 900, margin: "0 auto", background: "var(--ink-current)", border: "1px solid var(--border-3)", borderRadius: 6, padding: "28px 32px", textDecoration: "none" }}>
+            <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--glow-cyan)", marginBottom: 10 }}>Kaufen oder bauen</div>
+            <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 30, color: "var(--fg-1)", lineHeight: 1.2, marginBottom: 10 }}>Kein Werkzeug passt? Dann entwickeln wir die Lösung mit Ihnen. →</div>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>
+              Wie wir KI-Software für den Betrieb entwickeln, mit Anforderungen, Tests und Qualitätsprüfung statt Vibe Coding, steht auf der Seite AI Engineering.
+            </p>
+          </Link>
+        </section>
+
         <section style={{ padding: "80px 32px", textAlign: "center", background: "var(--ink-abyss)", borderTop: "1px solid var(--border-1)" }}>
           <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 48px)", color: "var(--fg-1)", margin: "0 0 20px" }}>
             Werkzeugauswahl professionell begleiten lassen.

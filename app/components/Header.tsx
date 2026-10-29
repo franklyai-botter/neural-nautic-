@@ -13,9 +13,12 @@ const LINKS: NavLink[] = [
   { label: "Methode",         href: "/ki-im-unternehmen", children: [
     { label: "Im Unternehmen",  href: "/ki-im-unternehmen" },
     { label: "Im Projekt",      href: "/methode" },
-    { label: "AI Engineering",  href: "/ai-engineering" },
   ] },
-  { label: "KI Tool Kompass", href: "/ki-tool-kompass" },
+  // Kaufen oder bauen: fertige Werkzeuge auswählen oder selbst entwickeln.
+  { label: "KI Tool Kompass", href: "/ki-tool-kompass", children: [
+    { label: "Werkzeuge auswählen", href: "/ki-tool-kompass" },
+    { label: "Selbst entwickeln: AI Engineering", href: "/ai-engineering" },
+  ] },
   { label: "Wissen",          href: "/wissen" },
   { label: "Über mich",       href: "/ueber-mich" },
 ];
