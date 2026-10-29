@@ -19,7 +19,7 @@ const LINKS: NavLink[] = [
     { label: "Werkzeuge auswählen", href: "/ki-tool-kompass" },
     { label: "Selbst entwickeln: AI Engineering", href: "/ai-engineering" },
   ] },
-  { label: "Wissen",          href: "/wissen" },
+  { label: "Ausguck",         href: "/wissen" },
   { label: "Über mich",       href: "/ueber-mich" },
 ];
 

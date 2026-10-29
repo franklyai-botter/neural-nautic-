@@ -19,7 +19,7 @@ const COLS = [
     ["KI im Projekt",  "/methode"],
     ["AI Engineering", "/ai-engineering"],
     ["KI Tool Kompass","/ki-tool-kompass"],
-    ["Wissen",         "/wissen"],
+    ["Ausguck",        "/wissen"],
   ]],
   ["Kontakt", [
     ["Über mich",  "/ueber-mich"],
