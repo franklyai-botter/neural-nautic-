@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI-Checkliste Reifegrad und Risiko · NeuralNautic</title>
+<style>
+/* NeuralNautic Dokumentpalette laut Brand-Assets/neuralnautic/BRAND.md:
+   Deep Teal dunkel #0A4A4A, Deep Teal hell #0D7377, Cyan #00D4D4 (nur Fläche), Schrift Palatino Linotype.
+   Grau #A3ADAF ist laut BRAND.md eine Annahme. */
+:root{
+  --ink:#0A4A4A; --ink-2:#2f4a4a; --text:#1d2b2b; --muted:#5f6f70;
+  --accent:#0D7377; --cyan:#00D4D4; --grau:#A3ADAF;
+  --line:#d5dddd; --tint:#eef6f6; --tint-2:#f6f9f9;
+  --font:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--text);font-family:var(--font);font-size:9.2pt;line-height:1.38}
+@page{size:A4;margin:19mm 14mm 17mm}
+.runhead,.runfoot{display:none}
+h1,h2,h3{color:var(--ink);font-weight:700;margin:0}
+h1{font-size:21pt;line-height:1.12;margin:0 0 9pt}
+h2{font-size:13pt;line-height:1.2;margin:0 0 5pt;break-after:avoid}
+h3{break-after:avoid}
+.sec{margin-top:10pt;padding-top:6pt;border-top:.8pt solid var(--line)}
+h3{font-size:10.5pt;margin:0 0 3pt}
+p{margin:0 0 6pt}
+.pb{break-before:page}
+.eyebrow{font-size:7.6pt;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 6pt}
+.lead{font-size:11.3pt;line-height:1.38;color:var(--ink);margin:0 0 8pt}
+.cover-head{display:flex;align-items:center;justify-content:space-between;border-bottom:.6pt solid var(--line);padding-bottom:6pt;margin-bottom:14pt}
+.cover-head img{height:30px;width:auto;display:block}
+.cover-head span{font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sca{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8pt;margin:4pt 0 8pt}
+.sca div{border-top:2pt solid var(--grau);padding-top:4pt;font-size:8.9pt}
+.sca div.ans{border-top-color:var(--accent)}
+.sca b{display:block;color:var(--ink);font-size:7.4pt;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2pt}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:7pt;margin:2pt 0 10pt}
+.steps div{background:var(--tint);padding:6pt 7pt;font-size:8.6pt;border-left:2pt solid var(--accent)}
+.steps b{color:var(--ink)}
+section{margin:0 0 10pt}
+.part{font-size:7.6pt;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 2pt}
+.field{margin:6pt 0 2pt}
+.fhead{break-after:avoid}
+.fhead{display:flex;align-items:baseline;gap:7pt;border-bottom:.8pt solid var(--ink);padding-bottom:2pt;margin-bottom:3pt}
+.fnum{font-size:8pt;color:#fff;background:var(--ink);padding:0 5pt;border-radius:2pt}
+.fhead h3{margin:0;flex:1}
+.fhead .sum{font-size:8.2pt;color:var(--muted);white-space:nowrap}
+.fhint{font-size:8.4pt;color:var(--muted);font-style:italic;margin:0 0 3pt}
+.q{padding:3pt 0 3pt;border-bottom:.5pt solid var(--line);break-inside:avoid}
+.qt{font-weight:700;color:var(--ink-2);font-size:9pt;margin-bottom:2pt}
+.qt .n{display:inline-block;min-width:16pt;color:var(--accent)}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:5pt;padding-left:16pt}
+.opt{display:flex;gap:4pt;align-items:flex-start;font-size:8pt;line-height:1.22}
+.box{flex:none;width:8.5pt;height:8.5pt;border:.8pt solid var(--ink);border-radius:1pt;margin-top:1pt}
+.pt{flex:none;font-size:7pt;color:var(--accent);font-weight:700;margin-top:1pt;width:7pt}
+table{width:100%;border-collapse:collapse;margin:3pt 0 6pt;font-size:8.2pt;break-inside:avoid}
+th,td{text-align:left;vertical-align:top;padding:3pt 5pt;border-bottom:.5pt solid var(--line)}
+thead th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:.8pt solid var(--ink);font-weight:700}
+td b{color:var(--ink)}
+.fill td{height:22pt}
+.fill td.l{color:var(--muted);font-size:8pt}
+.blank{display:inline-block;min-width:34pt;border-bottom:.6pt solid var(--ink);height:11pt;vertical-align:bottom}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12pt}
+.callout{border-left:2.5pt solid var(--accent);background:var(--tint);padding:6pt 9pt;margin:6pt 0 8pt;font-size:8.8pt;break-inside:avoid}
+.callout .label{font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2pt}
+.note{font-size:8pt;color:var(--muted)}
+figure{margin:6pt 0 8pt;break-inside:avoid}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-size:8pt;color:var(--muted);margin-top:4pt}
+figcaption b{color:var(--ink-2)}
+figcaption .src{display:block;margin-top:2pt;padding-left:6pt;border-left:1.5pt solid var(--line)}
+.contact{display:grid;grid-template-columns:auto 1fr;gap:12pt;align-items:center;border:.8pt solid var(--line);border-top:2.5pt solid var(--accent);padding:6pt 10pt;margin:4pt 0 6pt;break-inside:avoid}
+.contact img{height:36px;width:auto;display:block}
+.contact p{margin:0 0 3pt}
+.refs{font-size:7.2pt;margin:2pt 0 4pt}
+.refs td{padding:1.5pt 4pt}
+.refs td:first-child{white-space:nowrap;width:34pt}
+.small h2{font-size:9.5pt;margin-top:3pt}
+</style>
+</head>
+<body>
+
+<!-- Kopf/Fuss ab Seite 2 stempelt stamp_pdf.py (Logo aus Brand-Assets), siehe build.py.
+     Der laufende Kopf hier bleibt im Druck ausgeblendet. -->
+<div class="runhead">
+  <img class="logo" src="file:///C:/Users/frank/ObsidianVault/Ressourcen/Brand-Assets/neuralnautic/nn-monogramm.png" alt="NeuralNautic">
+  <span class="t">KI-Checkliste Reifegrad und Risiko</span>
+</div>
+
+<!-- ═══ Seite 1 ═══ -->
+<div class="cover-head">
+  <img src="file:///C:/Users/frank/ObsidianVault/Ressourcen/Brand-Assets/neuralnautic/nn-monogramm.png" alt="NeuralNautic">
+  <span>NeuralNautic · Checkliste für den Mittelstand · Stand Oktober 2026</span>
+</div>
+
+<p class="eyebrow">KI-Checkliste · Reifegrad und Risiko</p>
+<h1>Wo Ihr Unternehmen bei KI steht, zeigen fünfzehn Fragen und ein Blick auf das Risiko</h1>
+<p class="lead">Wer vor dem ersten KI-Vorhaben seinen Ausgangswert und die Risikoklasse des Vorhabens kennt, wählt den passenden ersten Schritt, statt mit einem Werkzeugkauf zu beginnen.</p>
+
+<div class="sca">
+  <div><b>Ausgangslage</b>Viele Unternehmen im Mittelstand probieren KI bereits aus, oft in einzelnen Abteilungen und ohne gemeinsamen Rahmen.</div>
+  <div><b>Die Schwierigkeit</b>Offen bleibt, ob Ablage, Abläufe und Regeln einen Anwendungsfall tragen. Seit der EU-KI-Verordnung hängt jedes Vorhaben zudem an seiner Risikoklasse.</div>
+  <div class="ans"><b>Diese Checkliste</b>Teil 1 ergibt in rund fünfzehn Minuten einen Ausgangswert von 0 bis 100. Teil 2 ordnet jedes geplante Vorhaben einer Risikoklasse zu und sagt, was daraus folgt.</div>
+</div>
+
+<div class="steps">
+  <div><b>1. Ankreuzen.</b> Je Frage die Antwort, die heute zutrifft. Nicht die geplante.</div>
+  <div><b>2. Zählen.</b> Jede Antwort bringt 0 bis 3 Punkte. Summe je Feld eintragen.</div>
+  <div><b>3. Auswerten.</b> Gesamtpunkte in den Index umrechnen und die Stufe ablesen (ab Seite 2).</div>
+  <div><b>4. Vorhaben prüfen.</b> Jedes geplante Vorhaben in Teil 2 einordnen (Seite 3 und 4).</div>
+</div>
+
+<section>
+<p class="part">Teil 1 · Reifegrad</p>
+<h2>Fünfzehn Fragen in fünf Feldern ergeben Ihren Ausgangswert</h2>
+<p class="note">Sie füllen die Checkliste für sich aus. Niemand außer Ihnen sieht Ihre Antworten.</p>
+
+<div class="field">
+  <div class="fhead"><span class="fnum">1</span><h3>Digitale Infrastruktur</h3><span class="sum">Punkte Feld 1: <span class="blank"></span> von 9</span></div>
+  <p class="fhint">Systeme, Ablage und der bewusste Umgang mit vertraulichen Daten.</p>
+  <div class="q"><div class="qt"><span class="n">1</span>Womit arbeiten Sie im Alltag überwiegend?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Vor allem mit Word, Excel und E-Mail</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Mit Fachsoftware für einzelne Bereiche, etwa Warenwirtschaft</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Mit Fachsoftware und einem Dokumentenmanagement</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Mit verbundenen Systemen, Schnittstellen und klarer Ablage</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">2</span>Wie einheitlich ist Ihre Dokumentenablage?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Jeder legt nach eigenem System ab</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Teils strukturiert</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Überwiegend einheitlich</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Durchgängig strukturiert und auffindbar</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">3</span>Regeln Sie bewusst, welche Daten in die Cloud dürfen und welche im Haus bleiben?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nicht bewusst geregelt</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>In Einzelfällen</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Überwiegend geregelt</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Klar geregelt und dokumentiert</span></div>
+    </div></div>
+</div>
+
+<div class="field">
+  <div class="fhead"><span class="fnum">2</span><h3>Prozesse und Engpässe</h3><span class="sum">Punkte Feld 2: <span class="blank"></span> von 9</span></div>
+  <p class="fhint">Wiederkehrende Abläufe, Zeitfresser und erste Automatisierung.</p>
+  <div class="q"><div class="qt"><span class="n">4</span>Kennen Sie Ihren teuersten wiederkehrenden Zeitfresser?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Eine vage Vermutung</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Benannt</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Benannt und grob beziffert</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">5</span>Wie stark sind wiederkehrende Abläufe standardisiert?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Kaum</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Einzelne</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Viele</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Überwiegend, mit Vorlagen</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">6</span>Werden Aufgaben schon teilweise automatisiert?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Vereinzelt, auf eigene Faust einzelner Mitarbeitender</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Einzelne, offiziell eingeführt</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Mehrere, fest etabliert</span></div>
+    </div></div>
+</div>
+
+<div class="field" style="break-before:page">
+  <div class="fhead"><span class="fnum">3</span><h3>Wissen und Wissenssicherung</h3><span class="sum">Punkte Feld 3: <span class="blank"></span> von 9</span></div>
+  <p class="fhint">Erfahrungswissen, Vertretung und die Auffindbarkeit früherer Vorgänge.</p>
+  <div class="q"><div class="qt"><span class="n">7</span>Fällt eine erfahrene Kollegin oder ein erfahrener Kollege aus: Wie schnell ist das Wissen abrufbar?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Es geht mit der Person</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Mühsam aus Unterlagen</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Teils dokumentiert</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Im Haus gesichert und auffindbar</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">8</span>Liegen Vorlagen, Arbeitsanweisungen und interne Standards an einem zentralen Ort?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Verstreut</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Teils zentral</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Zentral und gepflegt</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">9</span>Wie gut finden neue Mitarbeitende frühere vergleichbare Vorgänge, etwa Angebote, Projekte oder Kundenfälle?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nur über Nachfragen</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Mit Aufwand</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Meist selbst</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Schnell und zuverlässig</span></div>
+    </div></div>
+</div>
+
+<div class="field">
+  <div class="fhead"><span class="fnum">4</span><h3>Regeln und Pflichten</h3><span class="sum">Punkte Feld 4: <span class="blank"></span> von 9</span></div>
+  <p class="fhint">Leitplanken, Vertraulichkeit und Nachweispflichten.</p>
+  <div class="q"><div class="qt"><span class="n">10</span>Gibt es eine Regel, welche KI-Werkzeuge mit welchen Daten genutzt werden dürfen?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Informell</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Schriftlich für Teile</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Verbindliche Liste freigegebener Werkzeuge</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">11</span>Ist die Pflicht zur KI-Kompetenz Ihrer Beschäftigten (EU-KI-Verordnung, Art. 4) angegangen?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Unbekannt</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Bekannt, nichts getan</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>In Arbeit</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Umgesetzt und nachweisbar</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">12</span>Ist der Schutz vertraulicher Daten beim KI-Einsatz geprüft, also Datenschutz, Geschäftsgeheimnisse und Vertraulichkeitszusagen an Kunden?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Grob bedacht</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Teils geprüft</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Geprüft und dokumentiert</span></div>
+    </div></div>
+</div>
+
+<div class="field">
+  <div class="fhead"><span class="fnum">5</span><h3>Kapazität und Nutzen</h3><span class="sum">Punkte Feld 5: <span class="blank"></span> von 9</span></div>
+  <p class="fhint">Klarheit über den Nutzen, freie Kapazität und die Haltung der Geschäftsführung.</p>
+  <div class="q"><div class="qt"><span class="n">13</span>Ist klar, wo KI in Ihrem Unternehmen den größten Nutzen brächte?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Eine Ahnung</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Benannt</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Benannt und in eine Reihenfolge gebracht</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">14</span>Haben Sie Kapazität, einen ersten Anwendungsfall zu begleiten?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Nein</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Nur schwierig</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Mit Freistellung</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Ja, eingeplant</span></div>
+    </div></div>
+  <div class="q"><div class="qt"><span class="n">15</span>Wie steht die Geschäftsführung zum Thema?</div>
+    <div class="opts">
+      <div class="opt"><span class="box"></span><span class="pt">0</span><span>Skeptisch oder abwartend</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">1</span><span>Offen, aber unentschieden</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">2</span><span>Interessiert</span></div>
+      <div class="opt"><span class="box"></span><span class="pt">3</span><span>Will aktiv vorangehen</span></div>
+    </div></div>
+</div>
+</section>
+
+<!-- ═══ Auswertung ═══ -->
+<section class="sec">
+<p class="part">Teil 1 · Auswertung</p>
+<h2>Der Index ordnet Sie einer von vier Stufen zu, Regeln und Ablage setzen ihr eine Obergrenze</h2>
+
+<h3>Schritt 1: Gesamtpunkte in den Index umrechnen</h3>
+<p>Addieren Sie die Punkte der fünf Felder (höchstens 45). Der Index ist der Anteil an der Höchstpunktzahl: <b>Index = Gesamtpunkte × 100 ÷ 45</b>, auf ganze Zahlen gerundet.
+&nbsp; Gesamtpunkte <span class="blank"></span> von 45 &nbsp;·&nbsp; Index <span class="blank"></span> von 100</p>
+<h3>Schritt 2: Vorläufige Stufe ablesen</h3>
+<table>
+  <thead><tr><th style="width:15%">Stufe</th><th style="width:10%">Index</th><th style="width:10%">Punkte</th><th style="width:30%">Was sie bedeutet</th><th>Sinnvoller nächster Schritt</th></tr></thead>
+  <tbody>
+    <tr><td><b>Grundlagen</b></td><td>0 bis 25</td><td>0 bis 11</td><td>Der Alltag läuft, aber vieles hängt an Personen und Papier.</td><td>Ordnung schaffen und einen ersten Engpass benennen, noch kein Werkzeug kaufen.</td></tr>
+    <tr><td><b>Aufbau</b></td><td>26 bis 50</td><td>12 bis 22</td><td>Erste Strukturen stehen.</td><td>Einen konkreten Ablauf beziffern und die Leitplanken setzen, bevor Sie automatisieren.</td></tr>
+    <tr><td><b>Etabliert</b></td><td>51 bis 75</td><td>23 bis 33</td><td>Prozesse und Ablage tragen, das Wissen ist teils gesichert.</td><td>Einen ersten echten Anwendungsfall auf dem eigenen Bestand umsetzen, vorher in Teil 2 einordnen.</td></tr>
+    <tr><td><b>Fortgeschritten</b></td><td>76 bis 100</td><td>34 bis 45</td><td>Mehrere Abläufe sind geordnet, Regeln sind gesetzt.</td><td>Ausbauen: mehr Abläufe, klare Regeln und ein Betrieb, der die Qualität hält.</td></tr>
+  </tbody>
+</table>
+<figure>
+  <svg viewBox="0 0 720 92" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Indexskala von 0 bis 100 mit vier Stufen">
+    <text x="0" y="14" font-family="Palatino Linotype,serif" font-size="13" font-weight="700" fill="#0A4A4A">Ab einem Index von 51 trägt Ihr eigener Bestand einen ersten echten Anwendungsfall</text>
+    <rect x="0" y="30" width="178" height="18" fill="#A3ADAF"/>
+    <rect x="180" y="30" width="178" height="18" fill="#A3ADAF"/>
+    <rect x="360" y="30" width="178" height="18" fill="#0D7377"/>
+    <rect x="540" y="30" width="180" height="18" fill="#A3ADAF"/>
+    <g font-family="Palatino Linotype,serif" font-size="11" fill="#0A4A4A">
+      <text x="4" y="64">Grundlagen</text>
+      <text x="184" y="64">Aufbau</text>
+      <text x="364" y="64" font-weight="700">Etabliert</text>
+      <text x="544" y="64">Fortgeschritten</text>
+    </g>
+    <g font-family="Palatino Linotype,serif" font-size="10" fill="#5f6f70">
+      <text x="4" y="80">0 bis 25</text>
+      <text x="184" y="80">26 bis 50</text>
+      <text x="364" y="80">51 bis 75</text>
+      <text x="544" y="80">76 bis 100</text>
+    </g>
+  </svg>
+  <figcaption>
+    <b>Abb. 1: Indexskala und Stufen.</b> Unterhalb von 51 lohnt es sich zuerst, Ablage, Abläufe und Regeln zu ordnen.
+    <span class="src">Quelle: eigene Darstellung nach dem for42-Readiness-Check (Olaf Pick, for42), Prototyp v02, Stand 22.09.2026, Schwellenwerte und Stufen unverändert übernommen · eingesehen 29.10.2026</span>
+  </figcaption>
+</figure>
+
+<h3>Schritt 3: Obergrenze durch Regeln und Ablage prüfen</h3>
+<p>Ein hoher Index trägt nur, wenn Daten und Leitplanken tragen. Nehmen Sie den <b>niedrigeren</b> Punktwert der Felder 1 (Digitale Infrastruktur) und 4 (Regeln und Pflichten). Er begrenzt die Stufe nach oben; es gilt die niedrigere der beiden Stufen aus Schritt 2 und Schritt 3.</p>
+<table>
+  <thead><tr><th>Niedrigerer Wert aus Feld 1 und Feld 4</th><th>0 bis 1 Punkte</th><th>2 bis 4 Punkte</th><th>5 bis 7 Punkte</th><th>8 bis 9 Punkte</th></tr></thead>
+  <tbody><tr><td><b>Höchstens erreichbare Stufe</b></td><td>Grundlagen</td><td>Aufbau</td><td>Etabliert</td><td>keine Begrenzung</td></tr></tbody>
+</table>
+<p>Ihre Stufe: <span class="blank" style="min-width:110pt"></span></p>
+
+<h3>Schritt 4: Die zwei Felder mit den wenigsten Punkten zeigen, wo Sie ansetzen</h3>
+<table>
+  <thead><tr><th style="width:24%">Feld</th><th>Wenn es zu Ihren zwei schwächsten Feldern gehört</th></tr></thead>
+  <tbody>
+    <tr><td><b>1 Digitale Infrastruktur</b></td><td><b>Ablage und Werkzeuge ordnen.</b> Eine einheitliche, auffindbare Ablage ist die Grundlage. Ein kurzer Blick auf Werkzeuge und Ablage bringt Klarheit, ohne Systemwechsel.</td></tr>
+    <tr><td><b>2 Prozesse und Engpässe</b></td><td><b>Den teuersten Ablauf benennen.</b> Benennen und beziffern Sie zuerst den wiederkehrenden Ablauf, der am meisten kostet. Er eignet sich als erster Anwendungsfall.</td></tr>
+    <tr><td><b>3 Wissen und Wissenssicherung</b></td><td><b>Erfahrungswissen sichern.</b> Ein Wissensverzeichnis an einem Ort macht sichtbar, was heute nur in Köpfen steht, und hilft bei Ausfall und Nachfolge.</td></tr>
+    <tr><td><b>4 Regeln und Pflichten</b></td><td><b>Leitplanken zuerst.</b> Klären Sie, welche Werkzeuge mit welchen Daten erlaubt sind, und die Schulung nach Art. 4. Das senkt das Haftungsrisiko und schafft die Grundlage für alles Weitere.</td></tr>
+    <tr><td><b>5 Kapazität und Nutzen</b></td><td><b>Geschäftsführung gewinnen, klein anfangen.</b> Benennen Sie einen kleinen, begleiteten ersten Anwendungsfall. Ohne Kapazität scheitert auch ein gutes Werkzeug.</td></tr>
+  </tbody>
+</table>
+</section>
+
+
+
+<!-- ═══ Teil 2 ═══ -->
+<section class="sec">
+<p class="part">Teil 2 · Risiko je Vorhaben</p>
+<h2>Die Risikoklasse entscheidet, ob ein Vorhaben starten darf</h2>
+<p>Die EU-KI-Verordnung (Verordnung (EU) 2024/1689) knüpft Pflichten an das Risiko einer Anwendung, nicht an die Technik. Ordnen Sie deshalb jedes geplante Vorhaben vor dem Start einer von vier Klassen zu.</p>
+
+<table>
+  <thead><tr><th style="width:17%">Klasse</th><th style="width:47%">Woran Sie sie erkennen (Beispiele)</th><th>Entscheidung</th></tr></thead>
+  <tbody>
+    <tr><td><b>Unzulässig</b></td><td>Verbotene Praktiken, etwa Emotionserkennung am Arbeitsplatz, Bewertung von Menschen nach ihrem Sozialverhalten oder manipulative Beeinflussung.</td><td><b>Stoppen</b> oder bei Zweifel sofort <b>rechtlich prüfen lassen</b>. Keine Freigabe.</td></tr>
+    <tr><td><b>Hohes Risiko</b></td><td>Erheblicher Einfluss auf Sicherheit, Rechte oder wichtige Entscheidungen über Menschen, etwa Auswahl von Bewerbern, Bewertung von Beschäftigten oder KI als Sicherheitsbauteil eines Produkts.</td><td><b>Rechtlich prüfen lassen</b>, Datenschutz einbinden, menschliche Aufsicht festlegen. Keine stille Freigabe.</td></tr>
+    <tr><td><b>Begrenzt</b></td><td>KI, die mit Menschen spricht oder Inhalte erzeugt, bei denen Kennzeichnung gefordert ist, etwa ein Chatbot im Kundenkontakt.</td><td><b>Zurückstellen</b>, bis Kennzeichnung, Information und Aufsicht benannt sind; dann freigeben.</td></tr>
+    <tr><td><b>Minimal</b></td><td>Übliche Assistenz im Rahmen Ihrer Werkzeugregeln, etwa Textentwürfe, Übersetzungen oder Suche in eigenen Unterlagen.</td><td><b>Freigeben</b>, wenn die Werkzeugregeln greifen und eine verantwortliche Person benannt ist.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <div class="label">Zwei Regeln gelten unabhängig von der Klasse</div>
+  Sind die Datenarten unklar oder werden personenbezogene Daten ohne Freigabe verarbeitet: <b>zurückstellen</b> oder <b>rechtlich prüfen lassen</b>, bis die Datenschutzfrage geklärt ist.
+  Fehlt der Nutzen oder ist das Vorhaben nicht machbar: <b>stoppen</b>, auch wenn das Risiko gering ist.
+</div>
+
+<h3>Ihre Vorhaben im Überblick</h3>
+<table class="fill">
+  <thead><tr><th style="width:22%">Vorhaben (Anwendungsfall)</th><th style="width:15%">Klasse<br>U · H · B · M</th><th style="width:23%">Begründung und Datenarten</th><th style="width:14%">Menschliche Aufsicht durch</th><th style="width:13%">Entscheidung</th><th>Verantwortlich</th></tr></thead>
+  <tbody>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+<p class="note">U unzulässig · H hohes Risiko · B begrenzt · M minimal. Entscheidung: freigeben, zurückstellen, stoppen oder rechtlich prüfen lassen.</p>
+<p class="note"><b>Orientierung, keine Rechtsberatung.</b> Diese Checkliste ersetzt keine rechtliche Prüfung und keine verbindliche Konformitätsbewertung. Bei Zweifel, Verdacht auf hohes Risiko oder unzulässige Praktiken ziehen Sie rechtlichen Rat und Ihre Datenschutzbeauftragte oder Ihren Datenschutzbeauftragten hinzu.</p>
+</section>
+
+<!-- ═══ Schluss ═══ -->
+<section>
+<h2>Ein gemeinsames Gespräch ordnet Ihr Ergebnis ein und benennt einen ersten Anwendungsfall</h2>
+<div class="contact">
+  <img src="file:///C:/Users/frank/ObsidianVault/Ressourcen/Brand-Assets/neuralnautic/nn-monogramm.png" alt="NeuralNautic">
+  <div>
+    <p>Der nächste Schritt ist kein Werkzeugkauf, sondern ein Gespräch über Ihren Engpass. Bringen Sie Ihre ausgefüllte Checkliste mit: Gemeinsam ordnen wir Ihre Stufe ein, gehen Ihre Vorhaben aus Teil 2 durch und benennen einen ersten konkreten Anwendungsfall.</p>
+    <p><b>NeuralNautic · Frank Schütt</b> · Berolinastr. 21, 10178 Berlin<br>
+    E-Mail frankschuettai@neuralnautic.org · Telefon +49 176 23846551</p>
+  </div>
+</div>
+<p class="note">Grundlage: for42-Readiness-Check und for42-Reifegrad-Diagnostik (Olaf Pick, for42), EU AI Act (Verordnung (EU) 2024/1689). Fragen sinngemäß auf Unternehmen im Mittelstand übertragen.</p>
+</section>
+
+<section class="small">
+  <h2>Abbildungsverzeichnis</h2>
+  <table class="refs">
+    <tbody><tr><td>Abb. 1</td><td>Indexskala und Stufen · eigene Darstellung nach [1]</td></tr></tbody>
+  </table>
+  <h2>Quellenverzeichnis</h2>
+  <table class="refs">
+    <tbody>
+      <tr><td>[1]</td><td>for42-Readiness-Check, Prototyp v02 (Fragen, Antwortskala, Index, Stufen, Ansatzpunkte), Olaf Pick, for42, 22.09.2026 · interne Arbeitsunterlage · eingesehen 29.10.2026</td></tr>
+      <tr><td>[2]</td><td>for42-Reifegrad-Diagnostik (Obergrenze durch Daten und Regeln), for42, Entwurf · interne Arbeitsunterlage · eingesehen 29.10.2026</td></tr>
+      <tr><td>[3]</td><td>for42-Risikoklassen-Check nach EU AI Act mit Entscheidungsregeln, for42, Entwurf · interne Arbeitsunterlage · eingesehen 29.10.2026</td></tr>
+      <tr><td>[4]</td><td>Verordnung (EU) 2024/1689 (KI-Verordnung, EU AI Act), Amtsblatt der EU vom 12.07.2024 · Fundstelle https://eur-lex.europa.eu/eli/reg/2024/1689/oj</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</body>
+</html>

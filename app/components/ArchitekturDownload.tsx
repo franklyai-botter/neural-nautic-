@@ -17,7 +17,18 @@ const label: React.CSSProperties = {
   letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8,
 };
 
-export default function ArchitekturDownload() {
+type Props = { endpoint?: string; dateiname?: string; kicker?: string; titel?: string; text?: string; was?: string; knopf?: string; idp?: string };
+
+export default function ArchitekturDownload({
+  endpoint = "/api/architektur-download",
+  dateiname = "NeuralNautic_KI-Architektur_7-Schichten.svg",
+  kicker = "Zum Herunterladen",
+  titel = "Das Referenzmodell als Grafik für Ihre Unterlagen",
+  text = "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
+  was = "die Grafik",
+  knopf = "Grafik herunterladen",
+  idp = "dl",
+}: Props) {
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +39,7 @@ export default function ArchitekturDownload() {
     setError("");
     const fd = new FormData(e.currentTarget);
     try {
-      const res = await fetch("/api/architektur-download", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -48,7 +59,7 @@ export default function ArchitekturDownload() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "NeuralNautic_KI-Architektur_7-Schichten.svg";
+      a.download = dateiname;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -65,12 +76,12 @@ export default function ArchitekturDownload() {
     <div style={{ background: "var(--ink-current)", border: "1px solid var(--border-3)", borderRadius: 6, padding: "32px 32px" }}>
       <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 40, alignItems: "start" }}>
         <div>
-          <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--glow-cyan)", letterSpacing: ".16em", textTransform: "uppercase", marginBottom: 12 }}>Zum Herunterladen</div>
+          <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--glow-cyan)", letterSpacing: ".16em", textTransform: "uppercase", marginBottom: 12 }}>{kicker}</div>
           <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: 30, color: "var(--fg-1)", margin: "0 0 12px", lineHeight: 1.15 }}>
-            Das Referenzmodell als Grafik für Ihre Unterlagen
+            {titel}
           </h3>
           <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>
-            Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.
+            {text}
           </p>
         </div>
 
@@ -87,28 +98,28 @@ export default function ArchitekturDownload() {
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div>
-              <label htmlFor="dl-name" style={label}>Name *</label>
-              <input id="dl-name" name="name" required autoComplete="name" style={input} placeholder="Ihr Name" />
+              <label htmlFor={`${idp}-name`} style={label}>Name *</label>
+              <input id={`${idp}-name`} name="name" required autoComplete="name" style={input} placeholder="Ihr Name" />
             </div>
             <div className="nn-form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div>
-                <label htmlFor="dl-email" style={label}>E-Mail *</label>
-                <input id="dl-email" name="email" type="email" required autoComplete="email" style={input} placeholder="ihre@email.de" />
+                <label htmlFor={`${idp}-email`} style={label}>E-Mail *</label>
+                <input id={`${idp}-email`} name="email" type="email" required autoComplete="email" style={input} placeholder="ihre@email.de" />
               </div>
               <div>
-                <label htmlFor="dl-phone" style={label}>Telefon *</label>
-                <input id="dl-phone" name="phone" type="tel" required autoComplete="tel" style={input} placeholder="+49 ..." />
+                <label htmlFor={`${idp}-phone`} style={label}>Telefon *</label>
+                <input id={`${idp}-phone`} name="phone" type="tel" required autoComplete="tel" style={input} placeholder="+49 ..." />
               </div>
             </div>
             {/* Honeypot, für Menschen unsichtbar */}
             <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
-              <label htmlFor="dl-website">Website</label>
-              <input id="dl-website" name="website" tabIndex={-1} autoComplete="off" />
+              <label htmlFor={`${idp}-website`}>Website</label>
+              <input id={`${idp}-website`} name="website" tabIndex={-1} autoComplete="off" />
             </div>
             <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontFamily: "var(--font-inter), sans-serif", fontSize: 12.5, color: "var(--fg-2)", lineHeight: 1.6, cursor: "pointer" }}>
               <input name="consent" type="checkbox" required style={{ marginTop: 3, accentColor: "var(--glow-cyan)", flexShrink: 0 }} />
               <span>
-                Ich willige ein, dass NeuralNautic meine Angaben verarbeitet, um mir die Grafik bereitzustellen und mich dazu per E-Mail oder Telefon zu kontaktieren. Die Einwilligung kann ich jederzeit per E-Mail widerrufen. Details in der{" "}
+                Ich willige ein, dass NeuralNautic meine Angaben verarbeitet, um mir {was} bereitzustellen und mich dazu per E-Mail oder Telefon zu kontaktieren. Die Einwilligung kann ich jederzeit per E-Mail widerrufen. Details in der{" "}
                 <Link href="/datenschutz" style={{ color: "var(--glow-cyan)" }}>Datenschutzerklärung</Link>. *
               </span>
             </label>
@@ -116,7 +127,7 @@ export default function ArchitekturDownload() {
               <p role="alert" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--signal-alert)", margin: 0 }}>{error}</p>
             )}
             <button type="submit" disabled={loading} style={{ alignSelf: "flex-start", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "13px 28px", borderRadius: 4, border: "none", background: "var(--glow-cyan)", color: "var(--ink-abyss)", cursor: loading ? "wait" : "pointer", opacity: loading ? 0.7 : 1 }}>
-              {loading ? "Wird vorbereitet …" : "Grafik herunterladen"}
+              {loading ? "Wird vorbereitet …" : knopf}
             </button>
           </form>
         )}

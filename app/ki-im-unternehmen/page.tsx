@@ -194,6 +194,18 @@ export default function KiImBetrieb() {
         <Section id="reifegrad" kick="Reifegrad-Check" title="Wo Sie heute stehen, zeigen sechs Fragen in fünf Minuten"
           intro="Bevor wir Kurs setzen, schauen wir, wo Ihr Unternehmen steht. Bewerten Sie jede Dimension ehrlich von 0 bis 3. Das Ergebnis ist eine Einstiegsstufe mit einem empfohlenen ersten Schritt. Gespeichert oder übertragen wird dabei nichts.">
           <ReifegradCheck />
+          <div style={{ marginTop: 32 }}>
+            <ArchitekturDownload
+              endpoint="/api/checkliste-download"
+              dateiname="NeuralNautic_KI-Checkliste_Reifegrad-und-Risiko.pdf"
+              kicker="Checkliste zum Herunterladen"
+              titel="Die ausführliche Checkliste für Ihre Leitungsrunde"
+              text="Fünfzehn Fragen in fünf Feldern mit Auswertung, dazu eine Tabelle, mit der Sie jedes KI-Vorhaben einer Risikoklasse nach EU AI Act zuordnen. Vier Seiten als PDF zum Ausdrucken."
+              was="die Checkliste"
+              knopf="Checkliste herunterladen"
+              idp="cl"
+            />
+          </div>
         </Section>
 
         {/* Wertschöpfungsstufen */}
