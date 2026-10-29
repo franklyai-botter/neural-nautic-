@@ -143,6 +143,39 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 3b DAS SCHIFF: Architektur in sieben Schichten (Frank 30.10.2026: Infrastruktur gehört auf die
+            Startseite; fiel beim Kürzen der Leistungskarten heraus). Schichten wie /ki-im-unternehmen. */}
+        <section className="nn-section" style={{ padding: "96px 32px", background: "var(--ink-tide)" }}>
+          <div className="nn-grid-2" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0, 0.8fr) minmax(0, 1fr)", gap: 56, alignItems: "center" }}>
+            <Link href="/ki-im-unternehmen#architektur" aria-label="KI-Architektur in sieben Schichten, mit 3D-Modell">
+              <Image src="/architektur/ki-architektur-vorschau.jpg" alt="KI-Architektur in sieben Schichten von Infrastruktur bis Governance" width={1144} height={1880}
+                style={{ width: "100%", height: "auto", borderRadius: 4, boxShadow: "0 20px 50px rgba(6,20,25,.18)" }} />
+            </Link>
+            <div>
+              <h2 style={h2}>Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle.</h2>
+              <ol style={{ ...text, fontSize: 15, margin: "0 0 24px", paddingLeft: 0, listStyle: "none", display: "grid", gap: 10 }}>
+                {[
+                  ["7", "Governance und Compliance", "KI-Richtlinie, Rollen, Einstufung nach EU AI Act"],
+                  ["6", "Datenschutz und Sicherheit", "DSGVO, Auftragsverarbeitung, Zugriffssteuerung"],
+                  ["5", "Anwendungen", "intern und für Kunden"],
+                  ["4", "Orchestrierung und Agenten", "Arbeitsabläufe, zentraler Modellzugang (LLM-Gateway)"],
+                  ["3", "Modelle", "Cloud mit Auftragsverarbeitung, offene Modelle im eigenen Betrieb"],
+                  ["2", "Daten und Wissen", "Unternehmensdaten, Wissenssuche, Datenklassen"],
+                  ["1", "Infrastruktur und Betrieb", "Cloud, eigene Server oder hybrid, Rechenzentrum in der EU"],
+                ].map(([n, t, d]) => (
+                  <li key={n} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: 10 }}>
+                    <span style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 13, color: "var(--accent)" }}>{n}</span>
+                    <span><b style={{ color: "var(--fg-1)", fontWeight: 600 }}>{t}</b> · {d}</span>
+                  </li>
+                ))}
+              </ol>
+              <Link href="/ki-im-unternehmen#architektur" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, color: "var(--glow-cyan)", textDecoration: "none" }}>
+                Architektur im Detail, mit 3D-Modell und Grafik zum Herunterladen →
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* 4 DREI WEGE statt acht Leistungskarten (die acht stehen auf /leistungen) */}
         <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
