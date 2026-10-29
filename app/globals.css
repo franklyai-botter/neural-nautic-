@@ -104,6 +104,8 @@ a:hover {
   .nn-grid-5               { grid-template-columns: repeat(3, 1fr) !important; }
   .nn-footer-grid          { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
   .nn-grid-2               { grid-template-columns: 1fr !important; gap: 40px !important; }
+  /* Startseite: großes Porträt nur auf breiten Bildschirmen, schmal reicht das kleine neben dem Beleg */
+  .nn-hero-foto            { display: none !important; }
 }
 
 /* Grids — mobile */

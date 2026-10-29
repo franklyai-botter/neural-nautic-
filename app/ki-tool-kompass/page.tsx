@@ -85,7 +85,7 @@ export default function KiToolKompass() {
             Werkzeugauswahl professionell begleiten lassen.
           </h2>
           <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", margin: "0 auto 32px", maxWidth: "48ch", lineHeight: 1.7 }}>
-            Ich helfe Ihnen, die richtigen KI-Werkzeuge zu finden, zu bewerten und sicher einzuführen.
+            Wir helfen Ihnen, die richtigen KI-Werkzeuge zu finden, zu bewerten und sicher einzuführen.
           </p>
           <Link href="/kontakt" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "14px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
             Werkzeugauswahl prüfen lassen

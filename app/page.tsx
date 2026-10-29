@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PartnerBand from "./components/PartnerBand";
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { KI_CHECK_BUCHEN } from "./site";
 
 // Kanonische Adresse je Seite, sonst waehlt Google selbst (Search Console: „Vom Nutzer angegebene kanonische URL: Keine“).
@@ -11,41 +12,29 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const SERVICES = [
-  { title: "KI-Potenzialanalyse", desc: "Identifikation sinnvoller KI-Anwendungsfälle mit Aufwand-Nutzen-Bewertung und priorisiertem Fahrplan." },
-  { title: "KI-Architektur",      desc: "Tragfähige Grundlage für KI: Datenresidenz, Modellwahl, zentraler Modellzugang (LLM-Gateway) und Kosten im Griff." },
-  { title: "Controlled Pilot",    desc: "Kontrollierter Praxistest eines KI-Anwendungsfalls mit klaren Zielen, Metriken und Skalierungsempfehlung." },
-  { title: "KI-Automatisierung",  desc: "Automatisierung wiederkehrender Prozesse mit KI, Arbeitsabläufen, Schnittstellen und passenden Werkzeugen." },
-  { title: "Agentic Engineering", desc: "Individuelle Software und Automatisierungen, entwickelt mit KI-Agenten: maßgeschneidert, getestet, schnell." },
-  { title: "KI-Governance",       desc: "Regeln, Rollen und Prozesse für sicheren, nachvollziehbaren und verantwortungsvollen KI-Einsatz." },
-  { title: "KI-Schulung",         desc: "Workshops und Befähigung für Führungskräfte, Fachabteilungen und KI-Multiplikatoren." },
-  { title: "KI Tool Kompass",     desc: "Bewertung und Auswahl passender KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit." },
+// Aufbau seit 29.10.2026 (Premium-Analyse im Vault, Projekte/Neural-Nautic-Website-Premium-Analyse-2026-10-29.md):
+// 1 Problem mit Zahl + eigene Methode + ein Knopf, 2 Problem, 3 Kurs/Crew/Schiff, 4 drei Wege, 5 wer dahintersteht.
+// Ein Hauptweg (KI-Potenzialcheck), keine Etiketten über den Überschriften.
+
+// Zahlen: McKinsey & Company, „The state of AI in 2026: On the road to ROI“, 25.08.2026 (geprüft, siehe /wissen).
+const BERUHIGUNG = "30 Minuten per Video, kostenlos und unverbindlich. Danach wissen Sie, wo KI bei Ihnen zuerst wirkt.";
+
+// Gleiche Inhalte wie /ki-im-unternehmen (Kurs, Crew, Schiff), hier in Kurzform.
+const METHODE = [
+  { name: "Kurs",   fach: "Strategie",               claim: "Wohin, und was lohnt sich?",   desc: "Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist ein Fahrplan, den Geschäftsführung und Fachbereiche mittragen." },
+  { name: "Crew",   fach: "Menschen und Befähigung", claim: "Nutzung statt bloßem Wissen.", desc: "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag genutzt werden. Der Betriebsrat ist früh an Bord." },
+  { name: "Schiff", fach: "KI-Architektur",          claim: "Seetüchtig statt Demo.",       desc: "Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb." },
 ];
 
-const TRUST = [
-  "Mittelstandstaugliche Sprache",
-  "Fokus auf konkrete Geschäftsprozesse",
-  "Datenschutz und Governance von Anfang an",
-  "Keine Abhängigkeit von einzelnen Werkzeugen",
-  "Messbare Pilotprojekte statt KI-Aktionismus",
-  "Schulung und Befähigung der Mitarbeitenden",
+const WEGE = [
+  { titel: "Im Unternehmen", text: "Fahrplan, Befähigung und Architektur für die KI-Einführung im ganzen Betrieb, mit Reifegrad-Check als Einstieg.", href: "/ki-im-unternehmen" },
+  { titel: "Im Projekt",     text: "Ein Anwendungsfall von der Potenzialanalyse über einen kontrollierten Pilot bis in den laufenden Betrieb.",      href: "/methode" },
+  { titel: "Werkzeuge",      text: "Passende KI-Werkzeuge auswählen oder Lösungen selbst entwickeln lassen, nach Nutzen, Kosten und Datenschutz.",   href: "/ki-tool-kompass" },
 ];
 
-const PAIN = [
-  "Unklare Anwendungsfälle",
-  "Zu viele Werkzeuge, zu wenig Orientierung",
-  "Unsicherheit bei Datenschutz und Compliance",
-  "Fehlende interne KI-Kompetenz",
-  "Angst vor Fehlinvestitionen",
-  "Kein klarer Fahrplan für Umsetzung und Skalierung",
-];
-
-const STEPS = [
-  { n: "01", title: "Verstehen",    desc: "Prozesse, Ziele, Daten, Systeme und Risiken analysieren." },
-  { n: "02", title: "Priorisieren", desc: "Sinnvolle KI-Anwendungsfälle identifizieren und bewerten." },
-  { n: "03", title: "Pilotieren",   desc: "KI kontrolliert in einem abgegrenzten Praxisprojekt testen." },
-  { n: "04", title: "Skalieren",    desc: "Erfolgreiche Lösungen in stabile Prozesse und Governance überführen." },
-];
+const knopf: CSSProperties = { display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" };
+const h2: CSSProperties = { fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "0 0 20px" };
+const text: CSSProperties = { fontFamily: "var(--font-inter), sans-serif", fontSize: 16, lineHeight: 1.7, color: "var(--fg-2)" };
 
 export default function Home() {
   return (
@@ -53,166 +42,134 @@ export default function Home() {
       <Header />
       <main>
 
-        {/* HERO */}
-        <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
-          <div className="nn-hero-inner" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%" }}>
-            <div style={{ maxWidth: 680 }}>
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>✦ KI-Beratung · Mittelstand · DACH</span>
-              <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(48px, 7vw, 96px)", lineHeight: 1.0, letterSpacing: "-0.01em", color: "var(--fg-1)", margin: "24px 0 0" }}>
-                Pragmatische KI<br />
-                <em style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}>für den Mittelstand.</em>
+        {/* 1 ERSTER BILDSCHIRM: Problem mit Zahl, eigene Methode, ein Knopf, Beleg, echtes Foto */}
+        <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "104px 0 72px" }}>
+          <div className="nn-hero-inner nn-grid-2" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%", display: "grid", gridTemplateColumns: "minmax(0, 1.35fr) minmax(0, 1fr)", gap: 64, alignItems: "center" }}>
+            <div>
+              <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(42px, 5.6vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.01em", color: "var(--fg-1)", margin: 0 }}>
+                Damit KI nicht<br />
+                <em style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}>beim Ausprobieren stehen bleibt.</em>
               </h1>
-              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 18, lineHeight: 1.65, color: "var(--fg-2)", maxWidth: "52ch", margin: "28px 0 0" }}>
-                Von der Idee zum messbaren Pilotprojekt. Gemeinsam mit Ihnen machen wir KI verständlich und im Betrieb nutzbar.
+              <p style={{ ...text, fontSize: 18, maxWidth: "54ch", margin: "28px 0 0" }}>
+                Acht von zehn Befragten spüren den Nutzen von KI, nur sechs von hundert sehen ihn deutlich im Ergebnis.
+                Mit unserer Methode <strong style={{ color: "var(--fg-1)", fontWeight: 500 }}>Kurs, Crew, Schiff</strong> bringen
+                wir KI im Mittelstand dorthin, in Deutschland, Österreich und der Schweiz.
               </p>
-              <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 16, color: "var(--fg-3)", margin: "16px 0 36px" }}>
-                Keine KI-Spielereien. Keine Schlagwörter. Konkrete Lösungen für echte Geschäftsprozesse.
+              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", margin: "10px 0 36px" }}>
+                Zahlen: McKinsey, The state of AI in 2026, 25.08.2026 · <Link href="/wissen" style={{ color: "var(--fg-3)" }}>Einordnung im Ausguck</Link>
               </p>
-              <div className="nn-hero-btns" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
-                  KI-Potenzialcheck buchen
-                </a>
-                <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "transparent", color: "var(--fg-1)", textDecoration: "none", border: "1px solid rgba(205,206,210,.35)" }}>
-                  Leistungen ansehen
-                </Link>
+              <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={knopf}>
+                KI-Potenzialcheck buchen
+              </a>
+              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, lineHeight: 1.5, color: "var(--fg-2)", margin: "14px 0 0", maxWidth: "52ch" }}>
+                {BERUHIGUNG}
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 32 }}>
+                <Image src="/frank-portrait.webp" alt="" width={44} height={44} style={{ width: 44, height: 44, flexShrink: 0, borderRadius: "50%", objectFit: "cover", objectPosition: "70% center", border: "1px solid var(--border-2)" }} />
+                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: "var(--fg-2)" }}>
+                  Frank Schütt, AI Strategy &amp; Application Expert,<br />geprüft bei der TÜV SÜD Akademie ·{" "}
+                  <Link href="/ueber-mich#zertifikate" style={{ color: "var(--glow-cyan)", textDecoration: "none" }}>Zertifikat Z-001124711 →</Link>
+                </span>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* TRUST-BAND */}
-        <section style={{ background: "var(--ink-tide)", padding: "40px 32px", borderTop: "1px solid var(--border-1)", borderBottom: "1px solid var(--border-1)" }}>
-          <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-            <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 10, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.28em", color: "var(--glow-cyan)", marginBottom: 18 }}>
-              Externe Validierung
-            </div>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.3, color: "var(--fg-1)", margin: "0 0 20px" }}>
-              Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.
-            </p>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)" }}>
-                TÜV SÜD AKADEMIE
-              </span>
-              <span style={{ color: "var(--border-2)", fontSize: 16 }}>·</span>
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", color: "var(--fg-1)" }}>
-                NEURAWORK
-              </span>
-              <Link href="/ueber-mich#zertifikate" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".08em", color: "var(--glow-cyan)", textDecoration: "none" }}>
-                → Qualifikationen
+              <Link href="/ki-im-unternehmen" style={{ display: "inline-block", marginTop: 28, fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, color: "var(--glow-cyan)", textDecoration: "none" }}>
+                So arbeiten wir: Kurs, Crew, Schiff →
               </Link>
             </div>
+            <div className="nn-hero-foto" style={{ position: "relative", aspectRatio: "4 / 5", borderRadius: 6, overflow: "hidden", border: "1px solid var(--border-2)", boxShadow: "0 24px 60px rgba(0,0,0,.45)" }}>
+              <Image src="/frank-portrait.webp" alt="Frank Schütt, NeuralNautic" fill priority sizes="(max-width: 1024px) 0px, 460px" style={{ objectFit: "cover", objectPosition: "70% center" }} />
+            </div>
           </div>
         </section>
 
-        {/* PROBLEM */}
-        <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", marginBottom: 64 }}>
-            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Die Herausforderung</span>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px 0 24px" }}>
-              Viele Unternehmen wollen KI nutzen, wissen aber nicht, wo sie sinnvoll starten sollen.
-            </h2>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, lineHeight: 1.7, color: "var(--fg-2)" }}>
-              Der KI-Markt ist laut, schnell und oft unübersichtlich. Neue Werkzeuge erscheinen beinahe wöchentlich, Anbieter versprechen Automatisierung auf Knopfdruck. Interne Teams fragen sich, welche Lösungen wirklich sicher, wirtschaftlich und alltagstauglich sind.
+        {/* 2 PROBLEM (vorher Herausforderung und Versprechen getrennt) */}
+        <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)", borderTop: "1px solid var(--border-1)" }}>
+          <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+            <h2 style={h2}>Viele Unternehmen probieren KI aus. Im Betriebsergebnis kommt sie selten an.</h2>
+            <p style={{ ...text, margin: 0 }}>
+              Der KI-Markt ist laut und unübersichtlich, neue Werkzeuge erscheinen beinahe wöchentlich. Einzelne
+              Mitarbeitende arbeiten schneller, aber es fehlt ein Fahrplan, die Befähigung im Team oder eine Technik,
+              die im Alltag trägt. Wir führen KI pragmatisch statt panisch ein und sprechen dabei mit Geschäftsführung,
+              IT, Fachabteilungen, Datenschutz und Betriebsrat.
             </p>
           </div>
-          <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-            {PAIN.map((p) => (
-              <div key={p} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "24px 28px", display: "flex", alignItems: "flex-start", gap: 16 }}>
-                <span style={{ color: "var(--signal-alert)", fontSize: 18, flexShrink: 0 }}>✕</span>
-                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.5 }}>{p}</span>
+        </section>
+
+        {/* 3 METHODE: Kurs, Crew, Schiff */}
+        <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
+          <div style={{ maxWidth: 760, margin: "0 auto 56px", textAlign: "center" }}>
+            <h2 style={h2}>KI kommt im Betrieb an, wenn Kurs, Crew und Schiff gleichzeitig stimmen.</h2>
+            <p style={{ ...text, margin: 0 }}>Fehlt eines davon, bleibt es beim Experiment. Deshalb planen wir alle drei als ein Vorhaben.</p>
+          </div>
+          <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+            {METHODE.map((m) => (
+              <div key={m.name} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "36px 32px" }}>
+                <h3 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: 34, color: "var(--fg-1)", margin: 0 }}>{m.name}</h3>
+                <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--glow-cyan)", margin: "6px 0 18px" }}>{m.fach}</div>
+                <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 20, color: "var(--fg-1)", margin: "0 0 12px" }}>{m.claim}</p>
+                <p style={{ ...text, fontSize: 14, lineHeight: 1.65, margin: 0 }}>{m.desc}</p>
               </div>
             ))}
           </div>
+          <div style={{ textAlign: "center", marginTop: 40 }}>
+            <Link href="/ki-im-unternehmen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, color: "var(--glow-cyan)", textDecoration: "none" }}>
+              Methode im Detail, mit Reifegrad-Check und Architektur →
+            </Link>
+          </div>
         </section>
 
-        {/* SOLUTION */}
+        {/* 4 DREI WEGE statt acht Leistungskarten (die acht stehen auf /leistungen) */}
         <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Unser Ansatz</span>
-              <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px 0 16px" }}>
-                KI-Einführung mit Struktur: analysieren, pilotieren, automatisieren, skalieren.
-              </h2>
-              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", maxWidth: "60ch", margin: "0 auto" }}>
-                Wir begleiten Sie von der ersten Potenzialanalyse bis zur operativen Umsetzung, mit konkreten KI-Anwendungen, die messbare Ergebnisse liefern.
-              </p>
+            <div style={{ maxWidth: 760, margin: "0 auto 56px", textAlign: "center" }}>
+              <h2 style={h2}>Wir setzen dort an, wo Sie stehen: im ganzen Unternehmen, in einem Projekt oder bei den Werkzeugen.</h2>
             </div>
-            <div className="nn-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
-              {STEPS.map((s, i) => (
-                <div key={s.n} style={{ background: "var(--ink-current)", borderRadius: i === 0 ? "6px 0 0 6px" : i === 3 ? "0 6px 6px 0" : 0, padding: "40px 32px", position: "relative" }}>
-                  <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--glow-cyan)", letterSpacing: ".12em", marginBottom: 16 }}>{s.n}</div>
-                  <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 24, fontWeight: 400, color: "var(--fg-1)", margin: "0 0 12px" }}>{s.title}</h3>
-                  <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
-                  {i < 3 && <div className="nn-step-arrow" style={{ position: "absolute", right: -12, top: "50%", transform: "translateY(-50%)", color: "var(--glow-cyan)", fontSize: 18, zIndex: 1 }}>›</div>}
-                </div>
+            <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+              {WEGE.map((w) => (
+                <Link key={w.titel} href={w.href} style={{ display: "block", background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "32px 28px", textDecoration: "none" }}>
+                  <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, fontWeight: 600, color: "var(--fg-1)", margin: "0 0 12px" }}>{w.titel} →</h3>
+                  <p style={{ ...text, fontSize: 14, lineHeight: 1.65, margin: 0 }}>{w.text}</p>
+                </Link>
               ))}
             </div>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <Link href="/ki-im-unternehmen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>
-                Methode im Detail →
+              <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, color: "var(--glow-cyan)", textDecoration: "none" }}>
+                Alle Leistungen im Überblick →
               </Link>
             </div>
           </div>
         </section>
 
-        {/* SERVICES */}
-        <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1240, margin: "0 auto" }}>
-          <div className="nn-services-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56 }}>
-            <div>
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Leistungen</span>
-              <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "16px 0 0", maxWidth: "20ch" }}>
-                Was wir für Ihr Unternehmen tun.
-              </h2>
-            </div>
-            <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Leistungen →</Link>
-          </div>
-          <div className="nn-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
-            {SERVICES.map((s) => (
-              <div key={s.title} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "32px 28px" }}>
-                <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, fontWeight: 600, color: "var(--fg-1)", margin: "0 0 12px", letterSpacing: ".02em" }}>{s.title}</h3>
-                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
+        {/* 5 WER DAHINTERSTEHT */}
+        <section className="nn-section" style={{ padding: "100px 32px", maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
+          <h2 style={h2}>Hinter NeuralNautic stehen geprüfte Kompetenz in Strategie und Umsetzung und ein Netzwerk für größere Vorhaben.</h2>
+          <p style={{ ...text, margin: "0 auto 28px", maxWidth: "62ch" }}>
+            Frank Schütt ist AI Strategy &amp; Application Expert, geprüft bei der TÜV SÜD Akademie, und
+            KI Applikations- und Strategieexperte (Neurawork). Für Vorhaben, die mehr Hände brauchen, arbeiten wir im
+            Netzwerk von for42.ai.
+          </p>
+          <Link href="/ueber-mich" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, color: "var(--glow-cyan)", textDecoration: "none" }}>
+            Über mich und die Zertifikate →
+          </Link>
         </section>
 
-        {/* TRUST */}
-        <section className="nn-section" style={{ position: "relative", padding: "100px 32px", overflow: "hidden" }}>
-          <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Unser Versprechen</span>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "20px auto 16px", maxWidth: "22ch" }}>
-              Für Unternehmen, die KI pragmatisch statt panisch einführen wollen.
-            </h2>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", maxWidth: "60ch", margin: "0 auto 56px", lineHeight: 1.7 }}>
-              Unser Ansatz verbindet technisches Verständnis, Prozessdenken und Erfahrung im Veränderungsmanagement. Wir sprechen mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.
-            </p>
-            <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, textAlign: "left", maxWidth: 900, margin: "0 auto" }}>
-              {TRUST.map((t) => (
-                <div key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <span style={{ color: "var(--glow-cyan)", fontSize: 16, flexShrink: 0, marginTop: 2 }}>✓</span>
-                  <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.5 }}>{t}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PARTNER */}
         <PartnerBand />
 
-        {/* FINAL CTA */}
+        {/* ABSCHLUSS */}
         <section className="nn-section" style={{ padding: "100px 32px", textAlign: "center", background: "var(--ink-abyss)" }}>
           <div style={{ maxWidth: 640, margin: "0 auto" }}>
             <Image src="/logo-monogram.png" alt="" width={80} height={64} style={{ objectFit: "contain", opacity: 0.7, marginBottom: 32, filter: "drop-shadow(0 0 20px rgba(63,212,224,.2))" }} />
             <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.1, color: "var(--fg-1)", margin: "0 0 20px" }}>
               Bereit für den ersten sinnvollen KI-Schritt?
             </h2>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 36px" }}>
-              Lassen Sie uns gemeinsam prüfen, wo KI in Ihrem Unternehmen echten Mehrwert schafft: messbar und verständlich.
+            <p style={{ ...text, margin: "0 0 36px" }}>
+              Wir prüfen gemeinsam, wo KI in Ihrem Unternehmen messbar Wert schafft.
             </p>
-            <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 36px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
+            <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ ...knopf, fontSize: 14, padding: "16px 36px" }}>
               KI-Potenzialcheck buchen
             </a>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-3)", margin: "14px 0 0" }}>
+              {BERUHIGUNG}
+            </p>
           </div>
         </section>
 

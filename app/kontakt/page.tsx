@@ -58,7 +58,7 @@ export default function Kontakt() {
               Lassen Sie uns über sinnvolle KI in Ihrem Unternehmen sprechen.
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "52ch", margin: "0 auto" }}>
-              Ob erste Orientierung, konkreter Anwendungsfall oder geplantes Pilotprojekt: Ich freue mich auf Ihre Anfrage.
+              Ob erste Orientierung, konkreter Anwendungsfall oder geplantes Pilotprojekt: Wir freuen uns auf Ihre Anfrage.
             </p>
           </div>
         </section>
@@ -69,7 +69,7 @@ export default function Kontakt() {
               <div style={{ fontSize: 48, marginBottom: 24 }}>✓</div>
               <h2 style={{ fontFamily: "var(--font-italiana), serif", fontSize: 40, color: "var(--fg-1)", margin: "0 0 16px" }}>Danke für Ihre Anfrage.</h2>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7 }}>
-                Ich melde mich in der Regel innerhalb von 24 Stunden bei Ihnen.
+                Wir melden uns in der Regel innerhalb von 24 Stunden bei Ihnen.
               </p>
             </div>
           ) : (

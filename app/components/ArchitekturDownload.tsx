@@ -89,7 +89,7 @@ export default function ArchitekturDownload({
           <div style={{ padding: "8px 0" }}>
             <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 28, color: "var(--fg-1)", marginBottom: 10 }}>Danke, die Grafik wird heruntergeladen.</div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>
-              Falls er nicht startet, senden Sie das Formular einfach erneut. Wenn Sie Fragen zur Architektur haben, melde ich mich gern.
+              Falls er nicht startet, senden Sie das Formular einfach erneut. Wenn Sie Fragen zur Architektur haben, melden wir uns gern.
             </p>
             <button type="button" onClick={() => setDone(false)} style={{ marginTop: 16, background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--glow-cyan)" }}>
               Erneut herunterladen

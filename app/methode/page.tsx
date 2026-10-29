@@ -78,7 +78,7 @@ export default function Methode() {
         <section style={{ padding: "80px 32px", background: "var(--ink-tide)", borderTop: "1px solid var(--border-1)" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 40, color: "var(--fg-1)", margin: "0 0 48px", textAlign: "center" }}>
-              Sechs Prinzipien, die meine Arbeit leiten.
+              Sechs Prinzipien, die unsere Arbeit leiten.
             </h2>
             <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
               {PRINCIPLES.map((pr) => (

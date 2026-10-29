@@ -17,12 +17,18 @@ export default function ChatWidget() {
   const [showTip, setShowTip] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Tooltip nach 3 Sek beim ersten Seitenbesuch (nicht wenn Chat schon offen oder Hinweis weggeklickt)
+  // Tooltip nach 3 Sek beim ersten Seitenbesuch (nicht wenn Chat schon offen oder Hinweis weggeklickt).
+  // Auf dem Handy erst nach dem ersten Scrollen: sonst verdeckt die Blase die Knöpfe im ersten Bildschirm.
   useEffect(() => {
     if (typeof window === "undefined" || open) return;
     let seen = false;
     try { seen = sessionStorage.getItem("nn-chat-tip-seen") === "1"; } catch {}
     if (seen) return;
+    if (window.innerWidth < 640) {
+      const onScroll = () => { if (window.scrollY > 300) { setShowTip(true); window.removeEventListener("scroll", onScroll); } };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
     const t = setTimeout(() => setShowTip(true), 3000);
     return () => clearTimeout(t);
   }, [open]);
@@ -97,9 +103,10 @@ export default function ChatWidget() {
   const btnBottom = "max(20px, calc(20px + env(safe-area-inset-bottom)))";
   const btnRight = 20;
   const btnSize = 60;
-  const bubbleW = 128; // Sprechblasen-Button-Breite
-  const bubbleH = 152; // Sprechblasen-Button-Höhe (inkl. Schwanz)
-  const logoSize = 96; // Kompassrose im Button
+  // Auf dem Handy etwa halb so groß, sonst verdeckt der Knopf Inhalte im ersten Bildschirm.
+  const bubbleW = isMobile ? 70 : 128; // Sprechblasen-Button-Breite
+  const bubbleH = isMobile ? 84 : 152; // Sprechblasen-Button-Höhe (inkl. Schwanz)
+  const logoSize = isMobile ? 52 : 96; // Kompassrose im Button
 
   // Mobile: Chat-Position über dem Button — clampt damit obere Kante nie aus dem Viewport ragt
   const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom;
@@ -309,7 +316,7 @@ export default function ChatWidget() {
               lineHeight: 1.5,
               flexShrink: 0,
             }}>
-              Deine Fragen werden anonym verarbeitet, nicht gespeichert und nicht für KI-Training genutzt.
+              Wir speichern Ihre Fragen nicht, und sie werden nicht zum Training von KI-Modellen genutzt. Bitte geben Sie keine personenbezogenen Daten ein.
               Anbieter: Mistral AI (Frankreich, EU). Mehr in der{" "}
               <Link href="/datenschutz" style={{ color: "var(--glow-cyan)" }}>Datenschutzerklärung</Link>.{" "}
               <button
@@ -334,7 +341,7 @@ export default function ChatWidget() {
           } as React.CSSProperties}>
             {messages.length === 0 && (
               <p style={{ fontSize: 14, color: "var(--fg-3)", margin: 0, lineHeight: 1.6 }}>
-                Hallo! Stell mir deine Frage zu KI, DSGVO, EU AI Act oder Datensicherheit.
+                Guten Tag! Stellen Sie Ihre Frage zu KI, DSGVO, EU AI Act oder Datensicherheit.
               </p>
             )}
 
@@ -387,7 +394,7 @@ export default function ChatWidget() {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && !e.shiftKey && (e.preventDefault(), send(input))}
-              placeholder="Deine Frage…"
+              placeholder="Ihre Frage…"
               maxLength={2000}
               disabled={loading}
               style={{
