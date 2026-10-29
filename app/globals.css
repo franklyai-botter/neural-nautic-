@@ -132,10 +132,6 @@ h1 em, h2 em { font-style: normal !important; }
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
   background: radial-gradient(120% 80% at 100% 100%, rgba(13,115,119,0.10), rgba(13,115,119,0) 60%);
 }
-/* Werkzeug-Laufband: runde Glaskacheln */
-.nn-werkzeug-kachel { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.nn-werkzeug-kachel img { width: 34px; height: 34px; object-fit: contain; position: relative; z-index: 1; }
-@media (max-width: 640px) { .nn-werkzeug-kachel { width: 56px; height: 56px; } .nn-werkzeug-kachel img { width: 26px; height: 26px; } }
 @media (max-width: 640px) {
   .nn-wirbel-kachel     { width: 56px; height: 56px; border-radius: 16px; }
   .nn-wirbel-kachel img { width: 28px; height: 28px; }
