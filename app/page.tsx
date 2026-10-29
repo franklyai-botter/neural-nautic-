@@ -79,9 +79,15 @@ export default function Home() {
                   {BERUHIGUNG}
                 </span>
               </div>
-              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: HELL.leise, margin: "32px 0 0" }}>
-                Frank Schütt, AI Strategy &amp; Application Expert, geprüft bei der TÜV SÜD Akademie
-              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 32 }}>
+                {/* Nur schmal sichtbar: dort fehlt das große Foto rechts */}
+                <div className="nn-hero-foto-klein" style={{ position: "relative", width: 72, height: 90, flexShrink: 0, borderRadius: 4, overflow: "hidden", boxShadow: "0 8px 20px rgba(6,20,25,.18)" }}>
+                  <Image src="/og/frank-schuett.jpg" alt="Frank Schütt" fill sizes="72px" style={{ objectFit: "cover", objectPosition: "center" }} />
+                </div>
+                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: HELL.leise, margin: 0 }}>
+                  Frank Schütt, AI Strategy &amp; Application Expert, geprüft bei der TÜV SÜD Akademie
+                </p>
+              </div>
               {/* Zwei Link-Knöpfe und dahinter die Zertifikate als gleich große Miniaturen (Ziele wie auf /ueber-mich) */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
                 <Link href="/ki-im-unternehmen" style={linkKnopf}>So arbeiten wir: Kurs, Crew, Schiff →</Link>

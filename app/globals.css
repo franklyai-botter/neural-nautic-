@@ -107,6 +107,10 @@ a:hover {
   /* Startseite: Porträt nur auf breiten Bildschirmen, schmal hält es den Knopf aus dem ersten Bildschirm */
   .nn-hero-foto            { display: none !important; }
 }
+/* Gegenstück: kleines Foto neben dem Beleg nur dort, wo das große fehlt */
+@media (min-width: 1025px) {
+  .nn-hero-foto-klein      { display: none !important; }
+}
 
 /* Grids — mobile */
 @media (max-width: 640px) {
