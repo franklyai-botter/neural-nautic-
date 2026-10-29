@@ -74,7 +74,7 @@ export default function KiToolKompass() {
           </div>
 
           <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: 36, color: "var(--fg-1)", margin: "0 0 40px" }}>
-            9 Bewertungskriterien
+            {CRITERIA.length} Bewertungskriterien
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {CRITERIA.map((c, i) => (
