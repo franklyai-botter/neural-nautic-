@@ -4,11 +4,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Architektur3D from "../components/Architektur3D";
 import ArchitekturDownload from "../components/ArchitekturDownload";
+import EbenenModell from "../components/EbenenModell";
 export const metadata: Metadata = {
-  title: "KI im Betrieb: Wertschöpfung, Vorgehen, Architektur | NeuralNautic",
-  alternates: { canonical: "/ki-im-betrieb" },
+  title: "KI im Unternehmen: Wertschöpfung, Vorgehen, Architektur | NeuralNautic",
+  alternates: { canonical: "/ki-im-unternehmen" },
   description: "Wie KI im Mittelstand messbar wirkt: die richtige Wertschöpfungsstufe, ein festes Vorgehen aus Strategie, Befähigung und Architektur und eine DSGVO-konforme KI-Architektur.",
-  openGraph: { title: "KI im Betrieb: Wertschöpfung, Vorgehen, Architektur", description: "Wie KI im Mittelstand messbar wirkt: die richtige Wertschöpfungsstufe, ein festes Vorgehen und eine DSGVO-konforme KI-Architektur.", url: "/ki-im-betrieb" },
+  openGraph: { title: "KI im Unternehmen: Wertschöpfung, Vorgehen, Architektur", description: "Wie KI im Mittelstand messbar wirkt: die richtige Wertschöpfungsstufe, ein festes Vorgehen und eine DSGVO-konforme KI-Architektur.", url: "/ki-im-unternehmen" },
 };
 
 // Diagrammfarben laut BRAND.md, Abschnitt "Diagramme" (Website): ein Akzent in Cyan, Rest Petrol hell, Beschriftung Sand.
@@ -38,8 +39,8 @@ const DISZIPLINEN = [
 
 const STRAENGE = [
   { title: "KI-Strategie", steps: ["Ausgangslage und Unternehmensziele", "Engpässe und Probleme", "KI-Zielbild", "Anwendungsfälle in drei Horizonten", "Bewertung und Priorisierung", "Roadmap"] },
-  { title: "Wandel und Kommunikation", steps: ["Führungskräfte einbinden", "Multiplikatoren gewinnen", "Kernbotschaft und Auftakt", "Schulung", "Pilotbetrieb", "Übergabe in die Linienverantwortung"] },
-  { title: "KI-Managementsystem", note: "angelehnt an ISO/IEC 42001", steps: ["Rollen und Verantwortlichkeiten", "KI-Richtlinie", "Risikoanalyse", "Unterweisung", "Go-live mit Dokumentation", "Audit, Kennzahlen, Verbesserung"] },
+  { title: "Wandel und Kommunikation", steps: ["Führungskräfte einbinden", "Multiplikatoren gewinnen", "Kernbotschaft und Auftakt", "Schulung", "Erste Erfolge sichtbar machen", "Übergabe in die Linienverantwortung"] },
+  { title: "KI-Managementsystem", note: "angelehnt an ISO/IEC 42001", steps: ["Rollen und Verantwortlichkeiten", "KI-Richtlinie", "Risikoanalyse", "Unterweisung", "Freigabeverfahren für KI-Anwendungen", "Audit, Kennzahlen, Verbesserung"] },
 ];
 
 const SCHICHTEN: { n: string; title: string; items: string; parts?: { n: string; title: string; items: string }[] }[] = [
@@ -84,7 +85,7 @@ export default function KiImBetrieb() {
         {/* Antwort zuerst */}
         <section style={{ position: "relative", padding: "80px 32px 64px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "relative", maxWidth: 860, margin: "0 auto", textAlign: "center" }}>
-            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>KI im Betrieb</span>
+            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Methode · Im Unternehmen</span>
             <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(36px, 4.6vw, 64px)", lineHeight: 1.08, color: "var(--fg-1)", margin: "20px 0 22px" }}>
               KI wirkt, wenn die richtige Stufe auf das richtige Vorgehen trifft
             </h1>
@@ -225,7 +226,10 @@ export default function KiImBetrieb() {
 
         {/* Vorgehensmodell in drei Strängen */}
         <Section kick="Vorgehensmodell" title="Ein festes Vorgehen in drei Strängen macht die KI-Einführung planbar und prüfbar"
-          intro="Jeder Strang hat klare Schritte und ein Ergebnis, das sich vorlegen lässt: eine Roadmap, ein eingeführter Ablauf, ein dokumentiertes Managementsystem. Die Stränge laufen parallel und greifen ineinander.">
+          intro="Jeder Strang hat klare Schritte und ein Ergebnis, das sich vorlegen lässt: eine Roadmap, ein eingeführter Ablauf, ein dokumentiertes Managementsystem. Die Stränge laufen parallel und greifen ineinander. Die einzelnen Anwendungsfälle aus der Roadmap setzen wir danach als Projekte um.">
+          <div style={{ marginBottom: 48 }}>
+            <EbenenModell aktiv="unternehmen" />
+          </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
             {STRAENGE.map(s => (
               <div key={s.title}>

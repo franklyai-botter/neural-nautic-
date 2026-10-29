@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Erzeugt die isometrische Grafik der KI-Architektur in sieben Schichten
-(Seite /ki-im-betrieb, Abschnitt Architektur).
+(Seite /ki-im-unternehmen, Abschnitt Architektur).
 
 Generator und Zeichenlogik stammen unverändert aus dem Repo rag-referenzarchitektur
 (tools/build_grafik.py); hier ausgetauscht sind nur die Daten (LAYERS, EDGES, PANELS,

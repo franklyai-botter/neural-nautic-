@@ -155,7 +155,7 @@ export default function Home() {
               ))}
             </div>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <Link href="/methode" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>
+              <Link href="/ki-im-unternehmen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>
                 Methode im Detail →
               </Link>
             </div>

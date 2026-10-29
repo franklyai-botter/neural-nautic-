@@ -45,7 +45,7 @@ Name: ${name}
 E-Mail: ${email}
 Telefon: ${phone}
 Einwilligung erteilt: ja, ${zeit}
-Seite: /ki-im-betrieb`;
+Seite: /ki-im-unternehmen`;
 
   if (process.env.RESEND_API_KEY) {
     const resend = new Resend(process.env.RESEND_API_KEY);

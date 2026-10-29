@@ -26,7 +26,7 @@ const SERVICES: { title: string; short: string; long: string; items: string[]; r
     items: ["Zielarchitektur und Datenflüsse", "EU-Datenresidenz und Wahl des Modellanbieters (z. B. Claude über AWS Bedrock EU)", "LLM-Gateway mit Routing, Budgets und Kostenkontrolle", "Wissenssysteme mit RAG: Suche, Quellenangaben, Löschkonzept", "Kostenmodell monatlich und jährlich", "Lizenzprüfung der eingesetzten Komponenten", "Optionen von Cloud bis On-Premises"],
     result: "Eine dokumentierte Zielarchitektur mit Entscheidungsvorlagen, die Ihre IT umsetzen kann, oder die wir gemeinsam umsetzen.",
     cta: "Architektur besprechen",
-    more: { label: "Die sieben Schichten einer KI-Architektur", href: "/ki-im-betrieb#architektur" },
+    more: { label: "Die sieben Schichten einer KI-Architektur", href: "/ki-im-unternehmen#architektur" },
   },
   {
     title: "Controlled Pilot",

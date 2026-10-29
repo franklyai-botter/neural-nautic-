@@ -127,7 +127,7 @@ export default function AiEngineering() {
             </div>
             <p style={{ ...body, marginTop: 28 }}>
               Wo die Lösung in Ihrer KI-Architektur sitzt und welche Schichten dazugehören, zeigt die Seite{" "}
-              <Link href="/ki-im-betrieb#architektur">KI im Betrieb</Link>.
+              <Link href="/ki-im-unternehmen#architektur">KI im Unternehmen</Link>.
             </p>
           </div>
         </section>

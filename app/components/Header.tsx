@@ -9,10 +9,11 @@ type NavLink = { label: string; href: string; children?: { label: string; href: 
 const LINKS: NavLink[] = [
   { label: "Leistungen",      href: "/leistungen" },
   { label: "Anwendungsfälle", href: "/use-cases" },
-  { label: "Methode",         href: "/methode", children: [
-    { label: "Vorgehen im Projekt", href: "/methode" },
-    { label: "KI im Betrieb",       href: "/ki-im-betrieb" },
-    { label: "AI Engineering",      href: "/ai-engineering" },
+  // Ganzheitlich: erst das Unternehmen, dann das einzelne Projekt, dann wie gebaut wird.
+  { label: "Methode",         href: "/ki-im-unternehmen", children: [
+    { label: "Im Unternehmen",  href: "/ki-im-unternehmen" },
+    { label: "Im Projekt",      href: "/methode" },
+    { label: "AI Engineering",  href: "/ai-engineering" },
   ] },
   { label: "KI Tool Kompass", href: "/ki-tool-kompass" },
   { label: "Wissen",          href: "/wissen" },
@@ -146,9 +147,26 @@ export default function Header() {
           overflowY: "auto",
         }}>
           {LINKS.flatMap((l) => {
-            const items = l.children
-              ? [{ label: l.label, href: l.href, sub: false }, ...l.children.filter(c => c.href !== l.href).map(c => ({ ...c, sub: true }))]
-              : [{ label: l.label, href: l.href, sub: false }];
+            if (l.children) {
+              return [
+                <div key={l.label} style={{
+                  fontFamily: "var(--font-inter), sans-serif", fontSize: 16, fontWeight: 500,
+                  textTransform: "uppercase", letterSpacing: "0.1em",
+                  color: isActive(l, pathname) ? "var(--glow-cyan)" : "var(--fg-1)",
+                  padding: "18px 24px 8px",
+                }}>{l.label}</div>,
+                ...l.children.map(c => (
+                  <Link key={c.href} href={c.href} style={{
+                    fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500,
+                    textTransform: "uppercase", letterSpacing: "0.1em",
+                    color: pathname === c.href ? "var(--glow-cyan)" : "var(--fg-2)",
+                    textDecoration: "none", padding: "12px 24px 12px 44px",
+                    borderBottom: "1px solid rgba(205,206,210,.07)",
+                  }}>{c.label}</Link>
+                )),
+              ];
+            }
+            const items = [{ label: l.label, href: l.href, sub: false }];
             return items.map(({ href, label, sub }) => (
               <Link key={href} href={href} style={{
                 fontFamily: "var(--font-inter), sans-serif",

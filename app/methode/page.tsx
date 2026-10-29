@@ -2,20 +2,22 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import type { Metadata } from "next";
+import EbenenModell from "../components/EbenenModell";
 export const metadata: Metadata = {
-  title: "Methode: Verstehen, Priorisieren, Pilotieren, Skalieren | NeuralNautic",
+  title: "KI im Projekt: Verstehen, Zuschneiden, Pilotieren, Automatisieren, Übergeben | NeuralNautic",
   alternates: { canonical: "/methode" },
-  description: "Wie wir KI im Mittelstand einführen: erst den Prozess verstehen, dann priorisieren, kontrolliert pilotieren und erst danach skalieren.",
-  openGraph: { title: "Methode: Verstehen, Priorisieren, Pilotieren, Skalieren", description: "Wie wir KI im Mittelstand einführen: erst den Prozess verstehen, dann priorisieren, kontrolliert pilotieren und erst danach skalieren.", url: "/methode" },
+  description: "Wie ein einzelner KI-Anwendungsfall umgesetzt wird: Prozess verstehen, Ziel und Kennzahlen festlegen, kontrolliert pilotieren, automatisieren und in den Betrieb übergeben.",
+  openGraph: { title: "KI im Projekt: von der Prozessanalyse bis zur Übergabe", description: "Wie ein einzelner KI-Anwendungsfall umgesetzt wird: verstehen, zuschneiden, pilotieren, automatisieren, übergeben.", url: "/methode" },
 };
 
-
+// Ebene 2 (Projekt): ein Anwendungsfall aus der Roadmap. Priorisieren über alle Fälle und
+// Skalieren gehören zur Ebene 1 (Unternehmen, /ki-im-unternehmen).
 const PHASES = [
-  { n: "01", title: "Verstehen",    desc: "Am Anfang steht kein Tool, sondern das Problem. Wir analysieren Prozesse, Ziele, Daten, Systeme und Risiken, bevor irgendeine KI-Lösung ins Spiel kommt.", result: "Klares Bild der Ausgangssituation" },
-  { n: "02", title: "Priorisieren", desc: "Mögliche Use Cases werden nach Nutzen, Aufwand, Risiko, Datenlage und Umsetzbarkeit bewertet. So entsteht eine fundierte Entscheidungsgrundlage statt Aktionismus.", result: "Priorisierte KI-Roadmap" },
-  { n: "03", title: "Pilotieren",   desc: "Der beste Use Case wird in einem Controlled Pilot getestet: mit echten Prozessen, echten Nutzern und messbaren Kennzahlen, in einem begrenzten, kontrollierten Rahmen.", result: "Messbarer Praxistest" },
-  { n: "04", title: "Automatisieren", desc: "Erfolgreiche Piloten werden in stabile, operative Workflows überführt. Dokumentation, Schnittstellen und klare Zuständigkeiten sorgen für nachhaltigen Betrieb.", result: "Operativer KI-Workflow" },
-  { n: "05", title: "Skalieren",    desc: "Lösungen werden dokumentiert, geschult und in Governance-Strukturen eingebettet. Mitarbeitende werden befähigt, KI sicher und produktiv zu nutzen.", result: "Nachhaltige Einführung mit Governance und Schulung" },
+  { n: "01", title: "Verstehen",      desc: "Am Anfang steht kein Tool, sondern der Prozess, um den es geht. Wir sehen uns Abläufe, Beteiligte, Daten, Systeme und Risiken dieses Anwendungsfalls an, bevor irgendeine KI-Lösung ins Spiel kommt.", result: "Klares Bild des Prozesses heute" },
+  { n: "02", title: "Zuschneiden",    desc: "Wir legen fest, was der Anwendungsfall leisten soll: Ziel, Kennzahlen, benötigte Daten, Risikoeinstufung und ab wann wir abbrechen. Welcher Fall als Nächstes drankommt, entscheidet die Roadmap auf Unternehmensebene.", result: "Projektauftrag mit messbarem Ziel" },
+  { n: "03", title: "Pilotieren",     desc: "Der Anwendungsfall wird in einem Controlled Pilot getestet: mit echten Prozessen, echten Nutzern und den vereinbarten Kennzahlen, in einem begrenzten, kontrollierten Rahmen.", result: "Messbarer Praxistest mit Entscheidung: weiter, anpassen oder stoppen" },
+  { n: "04", title: "Automatisieren", desc: "Ein erfolgreicher Pilot wird zu einem stabilen Ablauf ausgebaut, auf der gemeinsamen KI-Architektur des Unternehmens und nach den Regeln des AI Engineering: getestet, dokumentiert, mit Schnittstellen zu Ihren Systemen.", result: "Produktiver KI-Workflow" },
+  { n: "05", title: "Übergeben",      desc: "Die Lösung geht über das Freigabeverfahren des Unternehmens in den Betrieb. Die Nutzer werden eingewiesen, Zuständigkeiten sind benannt, und die Kennzahlen fließen in die Roadmap zurück.", result: "Lösung im Regelbetrieb, Erfahrungen für den nächsten Fall" },
 ];
 
 const PRINCIPLES = [
@@ -34,13 +36,19 @@ export default function Methode() {
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Methode</span>
-            <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05, color: "var(--fg-1)", margin: "20px 0 20px" }}>
-              Vom KI-Hype zur kontrollierten Umsetzung
+            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Methode · Im Projekt</span>
+            <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(36px, 4.6vw, 64px)", lineHeight: 1.08, color: "var(--fg-1)", margin: "20px 0 20px" }}>
+              Jedes KI-Projekt setzt einen Anwendungsfall in fünf Schritten um
             </h1>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "56ch", margin: "0 auto" }}>
-              Ich arbeite mit einer klaren, pragmatischen Methode. Ziel ist nicht möglichst viel KI, sondern die richtige KI an der richtigen Stelle.
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "58ch", margin: "0 auto" }}>
+              Welche Anwendungsfälle sich lohnen und in welcher Reihenfolge, steht in der Roadmap Ihres Unternehmens. Hier geht es um den einzelnen Fall: von der Prozessanalyse bis zum Regelbetrieb. Ziel ist nicht möglichst viel KI, sondern die richtige KI an der richtigen Stelle.
             </p>
+          </div>
+        </section>
+
+        <section className="nn-section" style={{ padding: "64px 32px 0" }}>
+          <div style={{ maxWidth: 900, margin: "0 auto" }}>
+            <EbenenModell aktiv="projekt" />
           </div>
         </section>
 

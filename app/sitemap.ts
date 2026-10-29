@@ -8,7 +8,7 @@ const pages: { path: string; lastModified: string; priority: number }[] = [
   { path: "/leistungen", lastModified: "2026-10-20", priority: 0.9 },
   { path: "/use-cases", lastModified: "2026-10-20", priority: 0.8 },
   { path: "/methode", lastModified: "2026-10-20", priority: 0.8 },
-  { path: "/ki-im-betrieb", lastModified: "2026-10-29", priority: 0.8 },
+  { path: "/ki-im-unternehmen", lastModified: "2026-10-29", priority: 0.8 },
   { path: "/ai-engineering", lastModified: "2026-10-29", priority: 0.8 },
   { path: "/ki-tool-kompass", lastModified: "2026-10-20", priority: 0.8 },
   { path: "/wissen", lastModified: "2026-10-20", priority: 0.7 },

@@ -154,7 +154,7 @@ a:hover {
 .nn-linkedin-btn:hover .nn-linkedin-arrow { transform: translate(2px,-2px); }
 @media (prefers-reduced-motion: reduce) { .nn-linkedin-btn, .nn-linkedin-arrow { transition: none; } .nn-linkedin-btn:hover { transform: none; } }
 
-/* Seiten /ki-im-betrieb und /ai-engineering (Vorschau 29.10.2026) */
+/* Seiten /ki-im-unternehmen und /ai-engineering (Vorschau 29.10.2026) */
 @media (max-width: 860px) {
   .nn-formel               { grid-template-columns: 1fr !important; }
   .nn-formel-sign          { font-size: 40px !important; }
