@@ -22,6 +22,9 @@ const LINKS: NavLink[] = [
   { label: "Über mich",       href: "/ueber-mich" },
 ];
 
+// Bewusst Link statt eingebettetem Kalender: Daten fließen erst an Calendly, wenn jemand klickt.
+const KI_CHECK_BUCHEN = "https://calendly.com/frankschuettai-neuralnautic/ki-potenzialcheck";
+
 const isActive = (l: NavLink, pathname: string) =>
   pathname === l.href || !!l.children?.some(c => c.href === pathname);
 
@@ -101,14 +104,14 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA */}
-          <Link href="/kontakt" className="nn-nav-cta-desk" style={{
+          <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" className="nn-nav-cta-desk" style={{
             fontFamily: "var(--font-inter), sans-serif",
             fontSize: 12, fontWeight: 500,
             letterSpacing: "0.08em",
             padding: "9px 20px", borderRadius: 4,
             background: "var(--glow-cyan)", color: "var(--ink-abyss)",
             textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0,
-          }}>KI-Check buchen</Link>
+          }}>KI-Check buchen</a>
 
           {/* Hamburger */}
           <button
@@ -183,14 +186,14 @@ export default function Header() {
             ));
           })}
           <div style={{ padding: "24px", paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}>
-            <Link href="/kontakt" style={{
+            <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{
               display: "block",
               fontFamily: "var(--font-inter), sans-serif",
               fontSize: 14, fontWeight: 500, letterSpacing: "0.08em",
               padding: "15px 24px", borderRadius: 4, textAlign: "center",
               background: "var(--glow-cyan)", color: "var(--ink-abyss)",
               textDecoration: "none",
-            }}>KI-Check buchen</Link>
+            }}>KI-Check buchen</a>
           </div>
         </div>
       )}

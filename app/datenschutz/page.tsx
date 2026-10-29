@@ -276,9 +276,10 @@ export default function Datenschutz() {
           <div style={block}>
             <p style={h2}>11. Terminbuchung und Erstgespräche</p>
             <p style={body}>
-              Auf dieser Website kann eine Funktion zur Buchung eines KI-Potenzialchecks, Erstgesprächs oder
-              Beratungstermins eingebunden sein. Für die Terminbuchung wird Calendly genutzt. Für
-              Videotermine kann Google Meet eingesetzt werden.
+              Über die Schaltfläche „KI-Check buchen“ können Sie einen KI-Potenzialcheck buchen. Für die
+              Terminbuchung wird Calendly genutzt. Der Kalender ist nicht in diese Website eingebettet: Sie
+              werden per Link zur Buchungsseite von Calendly weitergeleitet, und erst dann werden Daten an
+              Calendly übermittelt. Für Videotermine wird Google Meet eingesetzt.
             </p>
             <p style={{ ...body, marginTop: 12 }}>
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Verarbeitung zur Durchführung
