@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import type { Metadata } from "next";
+import KapitalWolke from "../components/KapitalWolke";
+import { KAPITAL_QUARTALE, KAPITAL_VERGLEICHE } from "./kapital";
 export const metadata: Metadata = {
   title: "Ausguck: KI-Studien, Recht und Markt eingeordnet | NeuralNautic",
   alternates: { canonical: "/wissen" },
@@ -11,7 +13,15 @@ export const metadata: Metadata = {
 
 
 // Ausguck: kurze, belegte Einordnungen. Jede Zahl mit Quelle; Sekundärquellen als solche kennzeichnen.
-const EINORDNUNGEN: { rubrik: string; stand: string; titel: string; befund: string; folge: string; quelle: string; link?: { href: string; text: string } }[] = [
+const EINORDNUNGEN: { rubrik: string; stand: string; titel: string; befund: string; folge: string; quelle: string; link?: { href: string; text: string }; grafik?: "kapital" }[] = [
+  {
+    rubrik: "Markt", stand: "29.10.2026", grafik: "kapital",
+    titel: "Vier Konzerne haben seit ChatGPT so viel investiert wie vier Apollo-Programme",
+    befund: "Microsoft, Alphabet, Amazon und Meta haben von Anfang 2023 bis Ende September 2026 rund 1.248 Mrd. US-Dollar in Sachanlagen gesteckt, vor allem in Rechenzentren und Chips. Allein im dritten Quartal 2026 waren es 202 Mrd., gut viermal so viel wie das ganze Manhattan-Projekt. Die Konzernzahlen sind nominal, die Vergleiche auf Preise von 2025 hochgerechnet.",
+    folge: "An Rechenleistung wird KI in Ihrem Unternehmen kaum scheitern, sie wird reichlich vorhanden sein. Der Engpass liegt bei Ihren Daten, Ihren Abläufen und den Menschen, die damit arbeiten.",
+    quelle: "Quartalsberichte (10-Q/10-K) bei der US-Börsenaufsicht SEC, Mittelabfluss für Sachanlagen ohne Leasing; Amazon Q3 2026 aus der Quartalsmitteilung vom 29.10.2026. Vergleiche: Planetary Society nach NASA-Haushaltsdaten (Apollo), Brookings (Manhattan-Projekt); hochgerechnet mit dem US-Verbraucherpreisindex. Abgerufen am 29.10.2026.",
+    link: { href: "/ki-im-unternehmen", text: "Kurs, Crew, Schiff" },
+  },
   {
     rubrik: "Studie", stand: "25.08.2026",
     titel: "Acht von zehn spüren den Nutzen von KI, nur sechs von hundert sehen ihn deutlich im Ergebnis",
@@ -61,6 +71,7 @@ export default function Wissen() {
                 <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", marginBottom: 10 }}>{e.rubrik} · Stand {e.stand}</div>
                 <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: 28, color: "var(--fg-1)", lineHeight: 1.2, margin: "0 0 12px" }}>{e.titel}</h3>
                 <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 14px" }}>{e.befund}</p>
+                {e.grafik === "kapital" && <div style={{ margin: "8px 0 24px" }}><KapitalWolke quartale={KAPITAL_QUARTALE} vergleiche={KAPITAL_VERGLEICHE} /></div>}
                 <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-1)", lineHeight: 1.7, margin: "0 0 14px" }}>
                   <b style={{ color: "var(--glow-cyan)", fontWeight: 600 }}>Was heißt das für Sie? </b>{e.folge}
                   {e.link && <> <Link href={e.link.href}>{e.link.text} →</Link></>}
