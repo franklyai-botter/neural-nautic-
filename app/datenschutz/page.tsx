@@ -208,9 +208,9 @@ export default function Datenschutz() {
               hauptsächlich in den USA. Die Übermittlung in die USA stützt sich auf die Zertifizierung von
               Resend unter dem EU-US Data Privacy Framework; zusätzlich sieht das Data Processing Addendum
               die Standardvertragsklauseln der EU-Kommission vor.
-              {/* [PRÜFEN] DPF-Status: Teilnehmerliste dataprivacyframework.gov/participant/8907 (Plus Five Five)
-                  laut Suchindex „Active, Re-certification under Review“, Seite lädt per JavaScript und war
-                  per Abruf nicht lesbar. Vor Livegang im Browser bestätigen. */}
+              {/* DPF-Status im Browser geprüft 29.10.2026 (dataprivacyframework.gov/list, „Resend“,
+                  San Francisco): EU-US und UK Extension „Active – Re-certification under Review“.
+                  Vor Livegang erneut ansehen; SCC im DPA bleiben die Rückfallebene. */}
             </p>
             <p style={{ ...body, marginTop: 12 }}>
               Weitere Informationen:{" "}
@@ -297,8 +297,13 @@ export default function Datenschutz() {
               Wenn Sie einen Termin über Calendly buchen, werden die von Ihnen eingegebenen Daten sowie
               technische Nutzungsdaten an Calendly übermittelt und dort verarbeitet. Dazu können insbesondere
               Name, E-Mail-Adresse, Terminzeitpunkt, Zeitzone, IP-Adresse sowie weitere freiwillige Angaben
-              gehören. Da Calendly ein Anbieter mit Sitz in den USA ist, kann eine Übermittlung in ein
-              Drittland stattfinden. Hierfür kommen geeignete Garantien nach DSGVO in Betracht.
+              gehören. Calendly verarbeitet diese Daten in meinem Auftrag. Grundlage ist das Data Processing
+              Addendum von Calendly. Calendly hat seinen Sitz in den USA. Die Übermittlung in die USA stützt
+              sich auf die Zertifizierung von Calendly unter dem EU-US Data Privacy Framework; zusätzlich
+              sieht das Data Processing Addendum die Standardvertragsklauseln der EU-Kommission vor.
+              {/* DPF-Status im Browser geprüft 29.10.2026 (dataprivacyframework.gov/list, „Calendly LLC“,
+                  Buford, GA): EU-US, Swiss-US, UK Extension „Active“. DPA Stand 01.06.2026, Teil der
+                  Customer Terms, SCC Modul 2 als Rückfallebene. */}
             </p>
             <p style={{ ...body, marginTop: 12 }}>
               Weitere Informationen:{" "}
