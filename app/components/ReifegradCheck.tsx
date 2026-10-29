@@ -49,10 +49,10 @@ const DIMS: Dim[] = [
 ];
 
 const STUFEN = [
-  { n: 1, name: "Anlaufen",    schritt: "Ein bis drei Leuchtturm-Anwendungsfälle mit hoher Wirkung und guter Machbarkeit wählen, die Datenlage grob erfassen, einen Verantwortlichen und erste Regeln festlegen. Ziel: ein Nachweis in wenigen Wochen." },
-  { n: 2, name: "Begeistern",  schritt: "Aus dem Nachweis eine Bewegung machen: Führung und Belegschaft praktisch einbinden statt mit Folien, KI-Kompetenz aufbauen, den Betriebsrat informieren, Erfolge sichtbar machen." },
-  { n: 3, name: "Ausrichten",  schritt: "Bewusst einen Schritt zurück in die Strategie: wenige Anwendungsfälle priorisieren, Daten aufbereiten, Einstufung nach EU AI Act mit klaren Freigaben, Betriebsmodell festlegen." },
-  { n: 4, name: "Ausbauen",    schritt: "In die Breite bringen: festes Betriebsmodell mit zentralem Team, Prozesse neu gestalten, durchgängige Erfolgsmessung, Verantwortung im eigenen Haus." },
+  { n: 1, name: "Grundlagen",  schritt: "Ein bis drei Leuchtturm-Anwendungsfälle mit hoher Wirkung und guter Machbarkeit wählen, die Datenlage grob erfassen, einen Verantwortlichen und erste Regeln festlegen. Ziel: ein Nachweis in wenigen Wochen." },
+  { n: 2, name: "Aufbau",      schritt: "Aus dem Nachweis eine Bewegung machen: Führung und Belegschaft praktisch einbinden statt mit Folien, KI-Kompetenz aufbauen, den Betriebsrat informieren, Erfolge sichtbar machen." },
+  { n: 3, name: "Etabliert",   schritt: "Bewusst einen Schritt zurück in die Strategie: wenige Anwendungsfälle priorisieren, Daten aufbereiten, Einstufung nach EU AI Act mit klaren Freigaben, Betriebsmodell festlegen." },
+  { n: 4, name: "Fortgeschritten", schritt: "In die Breite bringen: festes Betriebsmodell mit zentralem Team, Prozesse neu gestalten, durchgängige Erfolgsmessung, Verantwortung im eigenen Haus." },
 ];
 
 function stufeAus(avg: number) {
@@ -140,7 +140,7 @@ export default function ReifegradCheck() {
         )}
       </div>
       <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", lineHeight: 1.6, marginTop: 14 }}>
-        Grundlage: for42-Reifegrad-Diagnostik, angelehnt an etablierte Reifegradmodelle und bewusst auf sechs Dimensionen reduziert. Daten sowie Regeln und Datenschutz begrenzen die Stufe nach oben: Ohne diese Grundlage bleibt jede Skalierung im Pilotstadium. Eine Selbsteinschätzung, kein Audit.
+        Grundlage: for42-Reifegrad-Diagnostik, angelehnt an etablierte Reifegradmodelle und bewusst auf sechs Dimensionen reduziert. Daten sowie Regeln und Datenschutz begrenzen die Stufe nach oben: Ohne diese Grundlage bleibt jede Skalierung im Pilotstadium. Eine Selbsteinschätzung, kein Audit. Die Stufen entsprechen der ausführlichen Checkliste mit fünfzehn Fragen weiter unten.
       </p>
     </div>
   );
