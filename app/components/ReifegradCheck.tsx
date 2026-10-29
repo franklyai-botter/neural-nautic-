@@ -79,12 +79,12 @@ export default function ReifegradCheck() {
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {DIMS.map((d, i) => (
           <fieldset key={d.key} style={{ margin: 0, border: "1px solid var(--border-2)", borderRadius: 6, padding: "18px 20px", background: "var(--ink-current)" }}>
-            <legend style={{ padding: "0 8px", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--fg-1)" }}>
+            <legend style={{ float: "left", width: "100%", padding: 0, margin: "0 0 14px", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--fg-1)" }}>
               <span style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--glow-cyan)", marginRight: 8 }}>{i + 1}/6</span>
               {d.title}
               {d.quer && <span style={{ marginLeft: 8, fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--fg-3)", letterSpacing: ".08em" }}>TRAGFÄHIGKEIT</span>}
             </legend>
-            <div className="nn-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
+            <div className="nn-grid-4" style={{ clear: "both", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
               {d.levels.map((txt, v) => {
                 const an = werte[d.key] === v;
                 return (
