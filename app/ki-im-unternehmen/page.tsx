@@ -261,31 +261,19 @@ export default function KiImBetrieb() {
         {/* Architektur */}
         <Section id="architektur" alt kick="Das Schiff · KI-Architektur" title="Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle"
           intro="Wer nur ein Modell anschließt, hat eine Demo. Für den Betrieb braucht es Daten, Orchestrierung, Sicherheit und Governance, die zusammenpassen. Die Regulierung betrifft dabei nicht eine Schicht, sondern das Ganze.">
-          <figure style={{ margin: "0 0 20px" }}>
-            {/* Isometrisches Referenzmodell im Stil des RAG-Referenzmodells.
-                Daten: tools/architektur/build_grafik.py; Vorschau in halber Auflösung,
-                die volle Fassung (SVG) nur über das Download-Formular unten. */}
-            <img
-              src="/architektur/ki-architektur-vorschau.jpg"
-              width={1144} height={1880}
-              alt="Referenzmodell der KI-Architektur in sieben Schichten: Governance, Datenschutz, Anwendungen, Orchestrierung, Modelle, Daten und Wissen, Infrastruktur, mit Bausteinen und Datenfluss"
-              loading="lazy"
-              style={{ width: "100%", maxWidth: 900, height: "auto", display: "block", margin: "0 auto", borderRadius: 4, border: "1px solid var(--border-2)" }}
-            />
-            <figcaption style={{ ...body, fontSize: 12, color: "var(--fg-3)", marginTop: 10, textAlign: "center" }}>
-              Referenzmodell NeuralNautic, Stand 29.10.2026. Volle Auflösung als Download unten.
+          {/* Zuerst das drehbare Referenzmodell (Renderer wie im RAG-Referenzmodell),
+              direkt darunter die volle Grafik als Download gegen Kontaktdaten.
+              Daten: tools/architektur/build_grafik.py */}
+          <figure style={{ margin: "0 0 28px" }}>
+            <Architektur3D />
+            <figcaption style={{ ...body, fontSize: 12, color: "var(--fg-3)", marginTop: 10 }}>
+              Referenzmodell NeuralNautic, Stand 29.10.2026. Mausrad dreht, gehaltene linke Maustaste stellt den Blick ein. Auf dem Handy dreht waagerechtes Wischen.
             </figcaption>
           </figure>
 
-          <details style={{ marginBottom: 16 }}>
-            <summary style={{ cursor: "pointer", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", color: "var(--glow-cyan)", marginBottom: 16 }}>
-              Das Modell im Raum drehen
-            </summary>
-            <Architektur3D />
-            <p style={{ ...body, fontSize: 12, color: "var(--fg-3)", marginTop: 10 }}>
-              Mausrad dreht, gehaltene linke Maustaste stellt den Blick ein. Auf dem Handy dreht waagerechtes Wischen.
-            </p>
-          </details>
+          <div style={{ marginBottom: 40 }}>
+            <ArchitekturDownload />
+          </div>
 
           <details style={{ marginBottom: 40 }}>
             <summary style={{ cursor: "pointer", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", color: "var(--glow-cyan)", marginBottom: 16 }}>
@@ -328,8 +316,6 @@ export default function KiImBetrieb() {
             </p>
           </div>
           </details>
-
-          <ArchitekturDownload />
         </Section>
 
         {/* Übergang zum Engineering */}
