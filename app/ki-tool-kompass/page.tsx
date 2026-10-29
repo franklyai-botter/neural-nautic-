@@ -11,22 +11,28 @@ export const metadata: Metadata = {
 };
 
 
+// Klassen Stand 29.10.2026 (vorher 7, ohne Agenten, Dokumente, Softwareentwicklung, Medien).
+// Bewusst ohne Produktnamen: die Klassen bleiben, die Anbieter wechseln.
 const CATEGORIES = [
-  "Text- und Chat-KI", "Automatisierung", "Wissensmanagement",
-  "Sprachassistenten", "Büro- und Produktivitätswerkzeuge",
-  "Open-Source- und lokale KI", "CRM- und Vertriebsautomatisierung",
+  "Chat-Assistenten", "KI-Agenten", "Automatisierung",
+  "Wissen und Unternehmenssuche", "Dokumentenverarbeitung", "Sprache und Besprechungen",
+  "Büro und Produktivität", "Softwareentwicklung mit KI", "Bild, Video und Design",
+  "Souveräne und lokale KI (Open Source, EU-Anbieter)", "CRM und Vertrieb",
 ];
 
 const CRITERIA = [
   { n: "01", q: "Welches Problem löst das Werkzeug?",             desc: "Startpunkt ist immer das konkrete Problem, nicht das Werkzeug." },
   { n: "02", q: "Passt es zu bestehenden Prozessen?",              desc: "Werkzeuge müssen sich in Ihre Abläufe einfügen, nicht umgekehrt." },
-  { n: "03", q: "Wie hoch sind Lizenz- und Betriebskosten?",       desc: "TCO statt nur Lizenzkosten betrachten." },
+  { n: "03", q: "Wie hoch sind Lizenz- und Betriebskosten?",       desc: "Gesamtkosten über die Laufzeit betrachten, nicht nur die Lizenz." },
   { n: "04", q: "Welche Daten werden verarbeitet?",                desc: "Datenflüsse verstehen: vor der Einführung, nicht danach." },
-  { n: "05", q: "Ist das Werkzeug DSGVO-konform einsetzbar?",          desc: "Besonders bei Cloud-Diensten: Serverstandort, AVV, Auftragsverarbeitung." },
-  { n: "06", q: "Gibt es Schnittstellen zu bestehenden Systemen?", desc: "API-Verfügbarkeit, Standardkonnektoren, Integrationaufwand." },
-  { n: "07", q: "Wie hoch ist der Schulungsaufwand?",              desc: "Die Nutzung scheitert oft an fehlender Einführung, nicht am Werkzeug." },
-  { n: "08", q: "Entsteht ein Vendor Lock-in?",                    desc: "Exportierbarkeit, Portabilität, Alternativanbieter prüfen." },
-  { n: "09", q: "Ist die Lösung skalierbar?",                      desc: "Was für 5 User funktioniert, muss auch für 50 taugen." },
+  // Frank 29.10.2026: im geschäftlichen Einsatz kein Training mit eigenen Daten. Bedingung, keine Abwägung.
+  { n: "05", q: "Ist Training mit Ihren Daten ausgeschlossen?",    desc: "Im geschäftlichen Einsatz gilt: kein Training mit Ihren Eingaben. Vertraglich zugesichert oder im Konto abgeschaltet und vor dem ersten Einsatz geprüft." },
+  { n: "06", q: "Ist das Werkzeug DSGVO-konform einsetzbar?",      desc: "Besonders bei Cloud-Diensten: Serverstandort, Drittlandübermittlung, Vertrag zur Auftragsverarbeitung." },
+  { n: "07", q: "Welche Pflichten folgen aus dem EU AI Act?",      desc: "Risikoklasse des Einsatzes bestimmen, Transparenz- und Dokumentationspflichten einplanen." },
+  { n: "08", q: "Gibt es Schnittstellen zu bestehenden Systemen?", desc: "Programmierschnittstellen, fertige Anbindungen, Integrationsaufwand." },
+  { n: "09", q: "Wie hoch ist der Schulungsaufwand?",              desc: "Die Nutzung scheitert oft an fehlender Einführung, nicht am Werkzeug." },
+  { n: "10", q: "Entsteht eine Abhängigkeit vom Anbieter?",        desc: "Daten exportierbar, Wechsel möglich, Alternativen vorhanden." },
+  { n: "11", q: "Ist die Lösung skalierbar?",                      desc: "Was für 5 Nutzer funktioniert, muss auch für 50 taugen." },
 ];
 
 export default function KiToolKompass() {
