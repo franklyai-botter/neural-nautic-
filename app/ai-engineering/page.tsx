@@ -5,8 +5,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "AI Engineering statt Vibe Coding: KI-Software für den Betrieb | NeuralNautic",
   alternates: { canonical: "/ai-engineering" },
-  description: "Professionelles AI Engineering: Anforderungen, geprüfte Architektur, Entwicklung mit KI-Agenten unter Aufsicht, Tests und Qualitätstor. Software, die im Betrieb hält und Ihnen gehört.",
-  openGraph: { title: "AI Engineering statt Vibe Coding", description: "KI-Software, die im Betrieb hält: Anforderungen, geprüfte Architektur, Entwicklung mit KI-Agenten unter Aufsicht, Tests und Qualitätstor.", url: "/ai-engineering" },
+  description: "Professionelles AI Engineering: Anforderungen, geprüfte Architektur, Entwicklung mit KI-Agenten unter Aufsicht, Tests und Qualitätsprüfung. Software, die im Betrieb hält und Ihnen gehört.",
+  openGraph: { title: "AI Engineering statt Vibe Coding", description: "KI-Software, die im Betrieb hält: Anforderungen, geprüfte Architektur, Entwicklung mit KI-Agenten unter Aufsicht, Tests und Qualitätsprüfung.", url: "/ai-engineering" },
 };
 
 const kicker = { fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--glow-cyan)", letterSpacing: ".16em", textTransform: "uppercase" as const, marginBottom: 14 };
@@ -35,7 +35,7 @@ const STATIONEN = [
   { n: "02", title: "Architektur mit Prüfung",        desc: "Die Zielarchitektur wird gegen feste Kriterien geprüft: Sicherheit, Datenschutz, Kosten, Betrieb, Austauschbarkeit der Modelle. Sie wird überarbeitet, bis sie trägt.", result: "Geprüftes Architekturdokument" },
   { n: "03", title: "Plan mit Compliance-Prüfung",    desc: "Der Plan zerfällt in einzelne, prüfbare Aufgaben, jede rückverfolgbar zu einer Anforderung. Jeder Plan wird vor dem Bau gegen Datenschutz- und Sicherheitsanforderungen geprüft.", result: "Aufgabenliste mit Nachweis" },
   { n: "04", title: "Umsetzung mit KI-Agenten",       desc: "KI-Agenten planen, programmieren und testen. Jede Änderung wird einzeln versioniert und von uns geprüft. Die Agenten machen es schnell, die Verantwortung bleibt bei uns.", result: "Getesteter Code in Ihrem Repository" },
-  { n: "05", title: "Qualitätstor und Übergabe",      desc: "Vor der Auslieferung prüfen wir Sicherheit, Fehlerbehandlung, Typsicherheit, Testqualität und Codestil und fragen: Was bricht im Betrieb zuerst? Erst dann geht die Lösung in Betrieb.", result: "Auslieferung mit Dokumentation" },
+  { n: "05", title: "Qualität und Übergabe",      desc: "Vor der Auslieferung prüfen wir Sicherheit, Fehlerbehandlung, Typsicherheit, Testqualität und Codestil und fragen: Was bricht im Betrieb zuerst? Erst dann geht die Lösung in Betrieb.", result: "Auslieferung mit Dokumentation" },
 ];
 
 const ERGEBNIS = [
