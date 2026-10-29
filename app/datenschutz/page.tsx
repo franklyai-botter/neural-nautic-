@@ -1,3 +1,8 @@
+// Entwurf 29.10.2026, vor Livegang rechtlich prüfen lassen.
+// Anbieterangaben geprüft am 29.10.2026 an Primärquellen:
+// - Resend: resend.com/legal/privacy-policy (Stand 27.08.2026), resend.com/legal/dpa (Stand 31.12.2025, Abschn. 6.2 SCC, 11.1 DPF)
+// - Cloudflare: cloudflare.com/cloudflare-customer-dpa/ (Version 6.4 ab 03.04.2026, Vertragspartei Cloudflare, Inc.)
+// - Mistral AI: legal.mistral.ai/terms/data-processing-addendum/ (Anschrift, Training mit Opt-out)
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,7 +11,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Datenschutz | NeuralNautic",
   alternates: { canonical: "/datenschutz" },
-  description: "Datenschutzerklärung von NeuralNautic zur Verarbeitung personenbezogener Daten, Hosting, Kontaktaufnahme, Terminbuchung und Videokonferenzen.",
+  description: "Datenschutzerklärung von NeuralNautic zur Verarbeitung personenbezogener Daten, Hosting, Kontaktaufnahme, Downloads, E-Mail-Versand, KI-Chat, Terminbuchung und Videokonferenzen.",
   robots: { index: false, follow: true },
 };
 
@@ -50,7 +55,7 @@ export default function Datenschutz() {
               Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:
             </p>
             <p style={{ ...body, marginTop: 12 }}>
-              NeuralNautic<br />
+              NeuralNautic (in Gründung)<br />
               Frank Schütt<br />
               Berolinastr. 21<br />
               10178 Berlin<br />
@@ -152,10 +157,107 @@ export default function Datenschutz() {
               Die Daten werden gelöscht, sobald sie für die Bearbeitung der Anfrage nicht mehr erforderlich
               sind, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
             </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Die Angaben aus dem Kontaktformular werden nicht auf dieser Website gespeichert, sondern per
+              E-Mail an mich übermittelt. Für den Versand nutze ich den Dienst Resend (siehe Abschnitt 7).
+            </p>
           </div>
 
           <div style={block}>
-            <p style={h2}>6. KI-bezogene Beratungsanfragen</p>
+            <p style={h2}>6. Downloads von Unterlagen</p>
+            <p style={body}>
+              Auf dieser Website können Sie Unterlagen herunterladen, derzeit eine Checkliste zu
+              KI-Reifegrad und Risiko (PDF) und eine Grafik zur KI-Architektur. Der Download ist ohne
+              Angabe von Daten möglich.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Freiwillig können Sie Name, E-Mail-Adresse und Telefonnummer angeben. Wenn Sie Angaben
+              machen, verarbeite ich diese, um Ihnen die Unterlage bereitzustellen und Sie zu der Unterlage
+              per E-Mail oder Telefon zu kontaktieren. Dazu werden Ihre Angaben zusammen mit der Bezeichnung
+              der Unterlage, dem Zeitpunkt der Einwilligung und der Seite, auf der Sie die Unterlage
+              angefordert haben, per E-Mail an mich übermittelt. Für den Versand nutze ich den Dienst
+              Resend (siehe Abschnitt 7). Auf der Website selbst werden die Angaben nicht gespeichert.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Sie können die
+              Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, eine E-Mail an{" "}
+              <a href="mailto:frankschuettai@neuralnautic.org" style={extLink}>
+                frankschuettai@neuralnautic.org
+              </a>{" "}
+              genügt. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              {/* Annahme 29.10.2026: Höchstfrist 24 Monate, mit Frank abstimmen */}
+              Ich speichere die Angaben bis zu Ihrem Widerruf oder bis der Zweck entfällt, längstens
+              24 Monate nach dem letzten Kontakt.
+            </p>
+          </div>
+
+          <div style={block}>
+            <p style={h2}>7. E-Mail-Versand über Resend</p>
+            <p style={body}>
+              Anfragen aus dem Kontaktformular und freiwillige Angaben bei Downloads werden über den
+              E-Mail-Dienst Resend an mich versandt.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Anbieter: Plus Five Five, Inc. (Resend), 2261 Market Street #5039, San Francisco, CA 94114, USA
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Resend verarbeitet dabei den Inhalt der Nachricht und die darin enthaltenen Angaben in meinem
+              Auftrag. Grundlage ist das Data Processing Addendum von Resend. Resend verarbeitet Daten
+              hauptsächlich in den USA. Die Übermittlung in die USA stützt sich auf die Zertifizierung von
+              Resend unter dem EU-US Data Privacy Framework; zusätzlich sieht das Data Processing Addendum
+              die Standardvertragsklauseln der EU-Kommission vor.
+              {/* [PRÜFEN] DPF-Status: Teilnehmerliste dataprivacyframework.gov/participant/8907 (Plus Five Five)
+                  laut Suchindex „Active, Re-certification under Review“, Seite lädt per JavaScript und war
+                  per Abruf nicht lesbar. Vor Livegang im Browser bestätigen. */}
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Weitere Informationen:{" "}
+              <a href="https://resend.com/legal/privacy-policy" style={extLink} target="_blank" rel="noopener noreferrer">
+                resend.com/legal/privacy-policy
+              </a>
+            </p>
+          </div>
+
+          <div style={block}>
+            <p style={h2}>8. KI-Chat</p>
+            <p style={body}>
+              Auf dieser Website steht ein Chat zur Verfügung, der Fragen rund um Künstliche Intelligenz
+              beantwortet. Ihre Eingaben und der bisherige Gesprächsverlauf der aktuellen Sitzung werden
+              dazu über meinen Server an den Sprachmodell-Dienst von Mistral AI übermittelt, der die
+              Antwort erzeugt. Ich speichere die Chatverläufe nicht.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Anbieter: Mistral AI, 15 rue des Halles, 75001 Paris, Frankreich
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              {/* [PRÜFEN] Rechtsgrundlage lit. f; Speicherdauer bei Mistral (laut Datenschutzerklärung von Mistral
+                  30 Tage Missbrauchskontrolle, Seite per Abruf nicht lesbar) und Trainingsnutzung im kostenlosen
+                  Plan (DPA Abschn. 2.3: Training, sofern kein Opt-out) im Mistral-Konto prüfen und ggf. Opt-out setzen. */}
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt darin, Ihnen
+              auf Ihre Frage hin eine Antwort bereitzustellen. Mistral AI kann Eingaben nach eigenen
+              Bedingungen für einen begrenzten Zeitraum speichern. Bitte geben Sie im Chat keine
+              personenbezogenen oder vertraulichen Daten ein.
+            </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Weitere Informationen:{" "}
+              <a href="https://legal.mistral.ai/terms/privacy-policy" style={extLink} target="_blank" rel="noopener noreferrer">
+                legal.mistral.ai/terms/privacy-policy
+              </a>
+            </p>
+          </div>
+
+          <div style={block}>
+            <p style={h2}>9. Reifegrad-Check</p>
+            <p style={body}>
+              Der Reifegrad-Check auf dieser Website wird vollständig in Ihrem Browser ausgewertet. Ihre
+              Antworten werden weder an mich noch an Dritte übertragen und nicht gespeichert.
+            </p>
+          </div>
+
+          <div style={block}>
+            <p style={h2}>10. KI-bezogene Beratungsanfragen</p>
             <p style={body}>
               Im Rahmen einer Anfrage zu KI-Beratung, KI-Automatisierung, KI-Governance, Tool-Auswahl,
               Voicebots, Dokumentenanalyse, RAG-Systemen, CRM-Unterstützung oder Prozessautomatisierung
@@ -172,7 +274,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>7. Terminbuchung und Erstgespräche</p>
+            <p style={h2}>11. Terminbuchung und Erstgespräche</p>
             <p style={body}>
               Auf dieser Website kann eine Funktion zur Buchung eines KI-Potenzialchecks, Erstgesprächs oder
               Beratungstermins eingebunden sein. Für die Terminbuchung wird Calendly genutzt. Für
@@ -186,7 +288,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>7.1 Calendly</p>
+            <p style={h2}>11.1 Calendly</p>
             <p style={body}>
               Anbieter: Calendly LLC, 115 E Main Street, Suite A1B, Buford, GA 30518, USA
             </p>
@@ -206,7 +308,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>7.2 Google Meet</p>
+            <p style={h2}>11.2 Google Meet</p>
             <p style={body}>
               Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
             </p>
@@ -226,7 +328,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>8. Cookies und vergleichbare Technologien</p>
+            <p style={h2}>12. Cookies und vergleichbare Technologien</p>
             <p style={body}>
               Diese Website verwendet derzeit nur technisch notwendige Technologien, soweit dies für den
               Betrieb der Website erforderlich ist. Sollten künftig Analyse-, Marketing- oder
@@ -234,10 +336,15 @@ export default function Datenschutz() {
               Nicht notwendige Cookies oder vergleichbare Tracking-Technologien werden nur nach vorheriger
               Einwilligung eingesetzt.
             </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Der KI-Chat legt im Sitzungsspeicher Ihres Browsers (sessionStorage) einen Eintrag ab, der
+              vermerkt, dass der Hinweis zum Chat bereits angezeigt wurde. Der Eintrag enthält keine
+              personenbezogenen Daten und wird beim Schließen des Browserfensters gelöscht.
+            </p>
           </div>
 
           <div style={block}>
-            <p style={h2}>9. Webanalyse und Tracking</p>
+            <p style={h2}>13. Webanalyse und Tracking</p>
             <p style={body}>
               Derzeit findet keine personenbezogene Webanalyse durch Dienste wie Google Analytics,
               Meta Pixel, LinkedIn Insight Tag oder vergleichbare Tracking-Technologien statt. Falls
@@ -247,7 +354,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>10. Newsletter</p>
+            <p style={h2}>14. Newsletter</p>
             <p style={body}>
               Derzeit wird kein Newsletter angeboten. Falls künftig ein Newsletter angeboten wird, erfolgt
               der Versand nur mit Einwilligung der betroffenen Person. Die Einwilligung kann jederzeit
@@ -256,7 +363,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>11. Externe Links</p>
+            <p style={h2}>15. Externe Links</p>
             <p style={body}>
               Diese Website kann Links zu externen Websites enthalten. Beim Anklicken externer Links
               verlassen Sie diese Website. Für die Verarbeitung personenbezogener Daten auf den verlinkten
@@ -265,7 +372,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>12. Empfänger personenbezogener Daten</p>
+            <p style={h2}>16. Empfänger personenbezogener Daten</p>
             <p style={body}>
               Personenbezogene Daten werden nur an Dritte weitergegeben, wenn dies zur Bereitstellung der
               Website, zur Bearbeitung von Anfragen, zur Durchführung von Verträgen, aufgrund gesetzlicher
@@ -276,21 +383,26 @@ export default function Datenschutz() {
               Kommunikationsdienste, Terminbuchungs- oder Kalenderdienste, Videokonferenzdienste,
               Steuerberatung oder Rechtsberatung sowie Behörden, soweit gesetzlich vorgeschrieben.
             </p>
+            <p style={{ ...body, marginTop: 12 }}>
+              Für diese Website sind das derzeit Cloudflare (Hosting, Abschnitt 4), Resend (E-Mail-Versand,
+              Abschnitt 7) und Mistral AI (KI-Chat, Abschnitt 8).
+            </p>
           </div>
 
           <div style={block}>
-            <p style={h2}>13. Speicherdauer</p>
+            <p style={h2}>17. Speicherdauer</p>
             <p style={body}>
               Personenbezogene Daten werden nur so lange gespeichert, wie dies für den jeweiligen Zweck
               erforderlich ist. Anfragedaten werden in der Regel gelöscht, sobald die Anfrage abschließend
               bearbeitet wurde und keine gesetzlichen Aufbewahrungspflichten bestehen. Geschäftliche
               Kommunikation, Angebotsunterlagen und steuerlich relevante Unterlagen können aufgrund
-              gesetzlicher Aufbewahrungspflichten länger gespeichert werden.
+              gesetzlicher Aufbewahrungspflichten länger gespeichert werden. Für freiwillige Angaben bei
+              Downloads gilt die Frist aus Abschnitt 6.
             </p>
           </div>
 
           <div style={block}>
-            <p style={h2}>14. Ihre Rechte</p>
+            <p style={h2}>18. Ihre Rechte</p>
             <p style={body}>Sie haben nach Maßgabe der DSGVO folgende Rechte:</p>
             <ul style={{ ...body, marginTop: 12, paddingLeft: 20 }}>
               <li style={{ marginBottom: 6 }}>Recht auf Auskunft über die verarbeiteten personenbezogenen Daten;</li>
@@ -311,7 +423,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>15. Widerspruchsrecht nach Art. 21 DSGVO</p>
+            <p style={h2}>19. Widerspruchsrecht nach Art. 21 DSGVO</p>
             <p style={body}>
               Wenn personenbezogene Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeitet werden,
               haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit
@@ -325,7 +437,7 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>16. Datensicherheit</p>
+            <p style={h2}>20. Datensicherheit</p>
             <p style={body}>
               Ich setze technische und organisatorische Maßnahmen ein, um personenbezogene Daten gegen
               Verlust, Missbrauch, unbefugten Zugriff, Veränderung oder Offenlegung zu schützen. Die
@@ -335,14 +447,14 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>17. Keine automatisierte Entscheidungsfindung</p>
+            <p style={h2}>21. Keine automatisierte Entscheidungsfindung</p>
             <p style={body}>
               Eine automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO findet nicht statt.
             </p>
           </div>
 
           <div style={block}>
-            <p style={h2}>18. Einsatz von KI-Systemen im Beratungsprozess</p>
+            <p style={h2}>22. Einsatz von KI-Systemen im Beratungsprozess</p>
             <p style={body}>
               Im Rahmen meiner Beratungsleistungen können KI-Tools zur Strukturierung, Analyse,
               Dokumentation oder Prozesskonzeption eingesetzt werden. Personenbezogene Daten oder
@@ -357,9 +469,9 @@ export default function Datenschutz() {
           </div>
 
           <div style={block}>
-            <p style={h2}>19. Aktualität dieser Datenschutzerklärung</p>
+            <p style={h2}>23. Aktualität dieser Datenschutzerklärung</p>
             <p style={body}>
-              Diese Datenschutzerklärung ist aktuell gültig. Stand: Mai 2026.
+              Diese Datenschutzerklärung ist aktuell gültig. Stand: 29.10.2026.
             </p>
             <p style={{ ...body, marginTop: 12 }}>
               Ich behalte mir vor, diese Datenschutzerklärung anzupassen, wenn sich technische, rechtliche

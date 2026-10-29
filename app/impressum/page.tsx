@@ -1,3 +1,4 @@
+// Entwurf 29.10.2026, vor Livegang rechtlich prüfen lassen.
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,7 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Impressum | NeuralNautic",
   alternates: { canonical: "/impressum" },
-  description: "Impressum von NeuralNautic – Frank Schütt, KI-Beratung für den Mittelstand.",
+  description: "Impressum von NeuralNautic, Frank Schütt, KI-Beratung für den Mittelstand.",
   robots: { index: false, follow: true },
 };
 
@@ -68,7 +69,7 @@ export default function Impressum() {
           </div>
 
           <div style={block}>
-            <p style={h2}>Verantwortlich für den Inhalt</p>
+            <p style={h2}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</p>
             <p style={body}>
               Frank Schütt<br />
               Berolinastr. 21<br />
