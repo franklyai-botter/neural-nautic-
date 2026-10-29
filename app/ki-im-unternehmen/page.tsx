@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Architektur3D from "../components/Architektur3D";
 import ArchitekturDownload from "../components/ArchitekturDownload";
 import EbenenModell from "../components/EbenenModell";
+import ReifegradCheck from "../components/ReifegradCheck";
 export const metadata: Metadata = {
   title: "KI im Unternehmen: Wertschöpfung, Vorgehen, Architektur | NeuralNautic",
   alternates: { canonical: "/ki-im-unternehmen" },
@@ -31,16 +32,21 @@ const STUFEN = [
   { n: "05", title: "Eigene KI-Verfahren entwickeln", desc: "Neue Algorithmen als geistiges Eigentum. Forschungsaufwand, für die meisten Mittelständler nicht der nächste Schritt.", width: 100, corridor: false },
 ];
 
-const DISZIPLINEN = [
-  { title: "Strategie",              claim: "Was lohnt sich, und warum?",            desc: "Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist eine Roadmap, die Geschäftsführung und Fachbereiche mittragen." },
-  { title: "Befähigung und Wandel",  claim: "Nutzung statt bloßem Wissen.",          desc: "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag tatsächlich genutzt werden." },
-  { title: "KI-Architektur",         claim: "Produktionsreif statt Demo.",           desc: "Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb." },
+// Unser Modell: Kurs, Crew, Schiff (Franks Benennung, 29.10.2026). Sachbegriff jeweils darunter.
+const KCS = [
+  { name: "Kurs",   fach: "Strategie",                claim: "Wohin, und was lohnt sich?",      desc: "Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist eine Roadmap, die Geschäftsführung und Fachbereiche mittragen.",
+    fehlt: "Systeme ohne Nutzen: Es wird gebaut, was technisch geht, nicht was sich rechnet." },
+  { name: "Crew",   fach: "Menschen und Befähigung",  claim: "Nutzung statt bloßem Wissen.",    desc: "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag tatsächlich genutzt werden. Der Betriebsrat ist früh an Bord.",
+    fehlt: "Systeme ohne Nutzer: Die Lösung steht, aber niemand arbeitet damit, oft aus Sorge um die eigene Rolle." },
+  { name: "Schiff", fach: "KI-Architektur",           claim: "Seetüchtig statt Demo.",          desc: "Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb.",
+    fehlt: "Strategie bleibt Papier: Die Ideen sind gut, aber nichts davon läuft sicher im Betrieb." },
 ];
 
+// for42-Reifegrad-Diagnostik: Stufe als Einstieg, Kurs/Crew/Schiff als Vorgehen
 const STRAENGE = [
-  { title: "KI-Strategie", steps: ["Ausgangslage und Unternehmensziele", "Engpässe und Probleme", "KI-Zielbild", "Anwendungsfälle in drei Horizonten", "Bewertung und Priorisierung", "Roadmap"] },
-  { title: "Wandel und Kommunikation", steps: ["Führungskräfte einbinden", "Multiplikatoren gewinnen", "Kernbotschaft und Auftakt", "Schulung", "Erste Erfolge sichtbar machen", "Übergabe in die Linienverantwortung"] },
-  { title: "KI-Managementsystem", note: "angelehnt an ISO/IEC 42001", steps: ["Rollen und Verantwortlichkeiten", "KI-Richtlinie", "Risikoanalyse", "Unterweisung", "Freigabeverfahren für KI-Anwendungen", "Audit, Kennzahlen, Verbesserung"] },
+  { name: "Kurs",    title: "KI-Strategie", result: "Roadmap mit priorisierten Anwendungsfällen", steps: ["Ausgangslage und Unternehmensziele", "Engpässe und Probleme", "KI-Zielbild", "Anwendungsfälle in drei Horizonten", "Bewertung und Priorisierung", "Roadmap"] },
+  { name: "Crew",    title: "Wandel und Kommunikation", result: "Neue Abläufe, die im Alltag genutzt werden", steps: ["Führungskräfte einbinden", "Multiplikatoren gewinnen", "Kernbotschaft und Auftakt", "Schulung", "Erste Erfolge sichtbar machen", "Übergabe in die Linienverantwortung"] },
+  { name: "Logbuch", title: "KI-Managementsystem", note: "angelehnt an ISO/IEC 42001", result: "Dokumentierte Regeln, Rollen und Nachweise", steps: ["Rollen und Verantwortlichkeiten", "KI-Richtlinie", "Risikoanalyse", "Unterweisung", "Freigabeverfahren für KI-Anwendungen", "Audit, Kennzahlen, Verbesserung"] },
 ];
 
 const SCHICHTEN: { n: string; title: string; items: string; parts?: { n: string; title: string; items: string }[] }[] = [
@@ -73,10 +79,6 @@ function Section({ id, kick, title, intro, alt, children }: { id?: string; kick:
   );
 }
 
-function Plus({ sign }: { sign: string }) {
-  return <div aria-hidden="true" className="nn-formel-sign" style={{ fontFamily: "var(--font-italiana), serif", fontSize: 56, color: "var(--fg-3)", textAlign: "center", lineHeight: 1 }}>{sign}</div>;
-}
-
 export default function KiImBetrieb() {
   return (
     <>
@@ -87,10 +89,10 @@ export default function KiImBetrieb() {
           <div style={{ position: "relative", maxWidth: 860, margin: "0 auto", textAlign: "center" }}>
             <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Methode · Im Unternehmen</span>
             <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(36px, 4.6vw, 64px)", lineHeight: 1.08, color: "var(--fg-1)", margin: "20px 0 22px" }}>
-              KI wirkt, wenn die richtige Stufe auf das richtige Vorgehen trifft
+              Vom KI-Hype zur kontrollierten Umsetzung: mit Kurs, Crew und Schiff
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "60ch", margin: "0 auto" }}>
-              Ob sich KI für Ihr Unternehmen lohnt, entscheidet kein einzelnes Tool. Es entscheiden zwei Fragen: Auf welcher Stufe der Wertschöpfung setzen Sie an? Und mit welchem Vorgehen kommt die Lösung in den laufenden Betrieb?
+              Ob sich KI für Ihr Unternehmen lohnt, entscheidet kein einzelnes Tool. Es braucht einen klaren Kurs, eine Crew, die mitzieht, und ein seetüchtiges Schiff. Fehlt eines davon, bleibt es beim Experiment.
             </p>
           </div>
         </section>
@@ -144,33 +146,59 @@ export default function KiImBetrieb() {
           </figure>
         </Section>
 
-        {/* Antwort als Formel */}
-        <Section alt kick="Die Antwort" title="Erfolg mit KI ergibt sich aus Wertschöpfung plus Vorgehen, nicht aus dem nächsten Tool"
-          intro="Die Wertschöpfungsstufe legt fest, wo der Nutzen entsteht. Das Vorgehen sorgt dafür, dass er im Betrieb ankommt. Fehlt eines von beiden, bleibt es beim Experiment.">
-          <div className="nn-formel" style={{ display: "grid", gridTemplateColumns: "1fr 64px 1fr 64px 1fr", alignItems: "center", gap: 8 }}>
-            <a href="#wertschoepfung" style={{ ...card, display: "block", textDecoration: "none", textAlign: "center" }}>
-              <div style={kicker}>Wertschöpfung</div>
-              <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 26, color: "var(--fg-1)", lineHeight: 1.2 }}>Die richtige Stufe</div>
-              <div style={{ ...body, fontSize: 13, marginTop: 8 }}>meist Stufe 02 bis 04</div>
-            </a>
-            <Plus sign="+" />
-            <a href="#vorgehen" style={{ ...card, display: "block", textDecoration: "none", textAlign: "center" }}>
-              <div style={kicker}>Vorgehen</div>
-              <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 26, color: "var(--fg-1)", lineHeight: 1.2 }}>Strategie, Befähigung, Architektur</div>
-              <div style={{ ...body, fontSize: 13, marginTop: 8 }}>gleichzeitig, nicht nacheinander</div>
-            </a>
-            <Plus sign="=" />
-            <div style={{ ...card, textAlign: "center", border: "1px solid var(--glow-cyan)", boxShadow: "var(--glow-accent)" }}>
-              <div style={kicker}>Erfolg</div>
-              <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 26, color: "var(--fg-1)", lineHeight: 1.2 }}>Messbarer Nutzen im Betrieb</div>
-              <div style={{ ...body, fontSize: 13, marginTop: 8 }}>mit Kennzahlen belegt</div>
-            </div>
+        {/* Antwort: Kurs, Crew, Schiff */}
+        <Section id="vorgehen" alt kick="Kurs · Crew · Schiff" title="KI kommt in die Umsetzung, wenn Kurs, Crew und Schiff gleichzeitig stimmen"
+          intro="Die Gründe, warum KI im Ergebnis nicht ankommt, sind fast immer dieselben: kein klarer Kurs, eine Crew, die nicht mitzieht, oder ein Schiff, das nicht seetüchtig ist. Deshalb planen wir alle drei als ein Vorhaben, nicht nacheinander.">
+          <svg viewBox="0 -30 600 330" role="img" aria-label="Dreieck aus Kurs (Strategie), Crew (Menschen und Befähigung) und Schiff (KI-Architektur)" style={{ width: "100%", maxWidth: 560, display: "block", margin: "0 auto 40px" }}>
+            <polygon points="300,40 90,210 510,210" fill="none" stroke="var(--border-3)" strokeWidth="1.5" />
+            {[{ x: 300, y: 40, t: "Kurs", s: "Strategie" }, { x: 90, y: 210, t: "Crew", s: "Befähigung" }, { x: 510, y: 210, t: "Schiff", s: "Architektur" }].map(p => (
+              <g key={p.t}>
+                <circle cx={p.x} cy={p.y} r="30" fill="var(--ink-abyss)" stroke="var(--glow-cyan)" strokeWidth="1.5" />
+                <circle cx={p.x} cy={p.y} r="5" fill="var(--glow-cyan)" />
+                <text x={p.x} y={p.y + (p.y < 100 ? -48 : 56)} textAnchor="middle" fill="var(--fg-1)" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 24 }}>{p.t}</text>
+                <text x={p.x} y={p.y + (p.y < 100 ? -28 : 76)} textAnchor="middle" fill="var(--fg-3)" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, letterSpacing: ".08em" }}>{p.s}</text>
+              </g>
+            ))}
+            <text x="300" y="160" textAnchor="middle" fill="var(--fg-3)" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 22, fontStyle: "italic" }}>ein Vorhaben</text>
+          </svg>
+          <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }}>
+            {KCS.map(d => (
+              <div key={d.name} style={card}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 10, margin: "0 0 8px" }}>
+                  <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: 30, color: "var(--fg-1)", margin: 0 }}>{d.name}</h3>
+                  <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 600, color: "var(--glow-cyan)", letterSpacing: ".08em", textTransform: "uppercase" }}>{d.fach}</span>
+                </div>
+                <div style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 21, color: "var(--fg-1)", margin: "0 0 12px" }}>{d.claim}</div>
+                <p style={body}>{d.desc}</p>
+              </div>
+            ))}
           </div>
+
+          {/* Selbsttest: woran man erkennt, was fehlt */}
+          <figure style={{ margin: 0 }}>
+            <figcaption style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, fontWeight: 500, color: "var(--fg-1)", marginBottom: 16 }}>
+              Fehlt eines der drei, sieht man es an typischen Symptomen
+            </figcaption>
+            <div role="table" aria-label="Was fehlt und woran man es erkennt" style={{ border: "1px solid var(--border-2)", borderRadius: 6, overflow: "hidden" }}>
+              {KCS.map((d, i) => (
+                <div role="row" key={d.name} className="nn-vgl-row" style={{ display: "grid", gridTemplateColumns: "220px 1fr", borderTop: i ? "1px solid var(--border-1)" : "none", background: "var(--ink-current)" }}>
+                  <div role="rowheader" style={{ padding: "14px 20px", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--fg-1)" }}>Ohne {d.name}</div>
+                  <div role="cell" style={{ padding: "14px 20px", ...body }}>{d.fehlt}</div>
+                </div>
+              ))}
+            </div>
+          </figure>
+        </Section>
+
+        {/* Einstieg: for42-Reifegrad-Diagnostik */}
+        <Section id="reifegrad" kick="Reifegrad-Check" title="Wo Sie heute stehen, zeigen sechs Fragen in fünf Minuten"
+          intro="Bevor wir Kurs setzen, schauen wir, wo Ihr Unternehmen steht. Bewerten Sie jede Dimension ehrlich von 0 bis 3. Das Ergebnis ist eine Einstiegsstufe mit einem empfohlenen ersten Schritt. Gespeichert oder übertragen wird dabei nichts.">
+          <ReifegradCheck />
         </Section>
 
         {/* Wertschöpfungsstufen */}
-        <Section id="wertschoepfung" kick="Wertschöpfung" title="Für den Mittelstand liegt der lohnende Bereich auf den Stufen zwei bis vier"
-          intro="Je tiefer KI in Ihre Prozesse und Daten greift, desto mehr vom Nutzen bleibt bei Ihnen und desto schwerer ist er zu kopieren. Ganz oben ist der Einstieg leicht, ganz unten der Aufwand hoch.">
+        <Section id="wertschoepfung" alt kick="Wertschöpfungsstufen nach Christoph Knöll" title="Für den Mittelstand liegt der lohnende Bereich auf den Stufen zwei bis vier"
+          intro="Wo die KI ansetzt, entscheidet, wie viel vom Nutzen bei Ihnen bleibt. Je tiefer sie in Ihre Prozesse und Daten greift, desto schwerer ist der Vorsprung zu kopieren. Ganz oben ist der Einstieg leicht, ganz unten der Aufwand hoch.">
           <figure style={{ margin: 0 }}>
             <figcaption className="sr-only">Fünf Stufen der KI-Wertschöpfung, der Korridor liegt auf den Stufen 02 bis 04</figcaption>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -199,45 +227,22 @@ export default function KiImBetrieb() {
           </figure>
         </Section>
 
-        {/* Drei Disziplinen */}
-        <Section id="vorgehen" alt kick="Vorgehen" title="Strategie, Befähigung und Architektur müssen gleichzeitig laufen, sonst bleibt KI ein Pilot"
-          intro="Eine Strategie ohne Architektur bleibt Papier. Eine Architektur ohne Befähigung wird nicht genutzt. Und Schulung ohne Strategie erzeugt Wissen ohne Richtung. Deshalb planen wir die drei Disziplinen als ein Vorhaben.">
-          <svg viewBox="0 0 600 250" role="img" aria-label="Dreieck aus Strategie, Befähigung und Wandel sowie KI-Architektur" style={{ width: "100%", maxWidth: 560, display: "block", margin: "0 auto 40px" }}>
-            <polygon points="300,40 90,210 510,210" fill="none" stroke="var(--border-3)" strokeWidth="1.5" />
-            {[{ x: 300, y: 40, t: "Strategie" }, { x: 90, y: 210, t: "Befähigung" }, { x: 510, y: 210, t: "Architektur" }].map(p => (
-              <g key={p.t}>
-                <circle cx={p.x} cy={p.y} r="30" fill="var(--ink-abyss)" stroke="var(--glow-cyan)" strokeWidth="1.5" />
-                <circle cx={p.x} cy={p.y} r="5" fill="var(--glow-cyan)" />
-                <text x={p.x} y={p.y + (p.y < 100 ? -42 : 54)} textAnchor="middle" fill="var(--fg-1)" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, letterSpacing: ".08em" }}>{p.t}</text>
-              </g>
-            ))}
-            <text x="300" y="160" textAnchor="middle" fill="var(--fg-3)" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 22, fontStyle: "italic" }}>ein Vorhaben</text>
-          </svg>
-          <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-            {DISZIPLINEN.map(d => (
-              <div key={d.title} style={card}>
-                <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--glow-cyan)", letterSpacing: ".08em", textTransform: "uppercase", margin: "0 0 8px" }}>{d.title}</h3>
-                <div style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 21, color: "var(--fg-1)", margin: "0 0 12px" }}>{d.claim}</div>
-                <p style={body}>{d.desc}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-
         {/* Vorgehensmodell in drei Strängen */}
-        <Section kick="Vorgehensmodell" title="Ein festes Vorgehen in drei Strängen macht die KI-Einführung planbar und prüfbar"
-          intro="Jeder Strang hat klare Schritte und ein Ergebnis, das sich vorlegen lässt: eine Roadmap, ein eingeführter Ablauf, ein dokumentiertes Managementsystem. Die Stränge laufen parallel und greifen ineinander. Die einzelnen Anwendungsfälle aus der Roadmap setzen wir danach als Projekte um.">
+        <Section kick="Vorgehensmodell" title="Kurs, Crew und Logbuch laufen als drei Stränge mit festen Schritten und vorzeigbaren Ergebnissen"
+          intro="Der Kurs mündet in eine Roadmap, die Crew in Abläufe, die genutzt werden, das Logbuch in ein dokumentiertes KI-Managementsystem. Die Stränge laufen parallel. Die Anwendungsfälle aus der Roadmap setzen wir danach als einzelne Projekte um, das Schiff dafür ist die Architektur weiter unten.">
           <div style={{ marginBottom: 48 }}>
             <EbenenModell aktiv="unternehmen" />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {STRAENGE.map(s => (
-              <div key={s.title}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-                  <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: 26, color: "var(--fg-1)", margin: 0 }}>{s.title}</h3>
+              <details key={s.title} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "18px 22px" }}>
+                <summary style={{ cursor: "pointer", display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap", listStyle: "revert" }}>
+                  <span style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 26, color: "var(--fg-1)" }}>{s.name}</span>
+                  <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 600, color: "var(--glow-cyan)", letterSpacing: ".08em", textTransform: "uppercase" }}>{s.title}</span>
                   {s.note && <span style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--fg-3)", letterSpacing: ".1em" }}>{s.note}</span>}
-                </div>
-                <ol className="nn-strang" style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 0, position: "relative" }}>
+                  <span style={{ ...body, fontSize: 13, flexBasis: "100%", marginTop: 4 }}>Ergebnis: {s.result}</span>
+                </summary>
+                <ol className="nn-strang" style={{ listStyle: "none", padding: 0, margin: "20px 0 0", display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 0, position: "relative" }}>
                   {s.steps.map((st, i) => (
                     <li key={st} style={{ position: "relative", padding: "0 10px 0 0" }}>
                       <div style={{ display: "flex", alignItems: "center" }}>
@@ -248,13 +253,13 @@ export default function KiImBetrieb() {
                     </li>
                   ))}
                 </ol>
-              </div>
+              </details>
             ))}
           </div>
         </Section>
 
         {/* Architektur */}
-        <Section id="architektur" alt kick="KI-Architektur" title="Eine belastbare KI-Architektur hat sieben Schichten, und Datenschutz geht durch alle"
+        <Section id="architektur" alt kick="Das Schiff · KI-Architektur" title="Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle"
           intro="Wer nur ein Modell anschließt, hat eine Demo. Für den Betrieb braucht es Daten, Orchestrierung, Sicherheit und Governance, die zusammenpassen. Die Regulierung betrifft dabei nicht eine Schicht, sondern das Ganze.">
           <figure style={{ margin: "0 0 20px" }}>
             {/* Isometrisches Referenzmodell im Stil des RAG-Referenzmodells.

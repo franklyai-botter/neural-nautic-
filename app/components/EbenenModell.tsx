@@ -4,7 +4,7 @@ import Link from "next/link";
 // einzelne Projekt (je Anwendungsfall). Auf /ki-im-unternehmen und /methode,
 // die jeweils eigene Ebene hervorgehoben. Ein Akzent, Rest neutral (BRAND.md, Diagramme).
 
-const UNTERNEHMEN = ["Strategie und Roadmap", "Wandel und Befähigung", "KI-Managementsystem", "KI-Architektur"];
+const UNTERNEHMEN = ["Kurs: Strategie und Roadmap", "Crew: Wandel und Befähigung", "Logbuch: KI-Managementsystem", "Schiff: KI-Architektur"];
 const PROJEKT = ["Verstehen", "Zuschneiden", "Pilotieren", "Automatisieren", "Übergeben"];
 
 function Ebene({ aktiv, kicker, title, rhythm, href, items, steps }: {

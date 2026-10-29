@@ -22,6 +22,14 @@ const VERGLEICH = [
   { dim: "Betrieb und Verantwortung",  vibe: "Niemand ist zuständig, wenn es bricht",                     eng: "Überwachung, Kostenbudget, Übergabe und eine benannte Verantwortung" },
 ];
 
+// Vier Risikoklassen nach Roman Langfeld (for42), eigene Formulierung. wir = AI Engineering nötig.
+const RISIKO = [
+  { klasse: "Niedrig",  loesung: "Persönliche Arbeitshilfe oder Prototyp",                          wer: "Der Fachbereich selbst",                                  pruefung: "Keine Zugangsschlüssel im Code",                                  wir: false },
+  { klasse: "Mittel",   loesung: "Teamlösung für wenige Nutzer, keine sensiblen Daten",             wer: "Der Fachbereich, auf einer freigegebenen Plattform",      pruefung: "Abhängigkeiten und Lizenzen, Eintrag ins Verzeichnis",            wir: false },
+  { klasse: "Hoch",     loesung: "Abteilungsübergreifend oder unternehmensweit",                    wer: "Nur mit Begleitung durch IT und Engineering",             pruefung: "Zusätzlich Code- und Architekturprüfung, formelle Freigabe",       wir: true },
+  { klasse: "Kritisch", loesung: "Für Kunden, geschäftskritisch oder regulatorisch relevant",       wer: "Professionelle Entwicklung, nach den Stationen unten",    pruefung: "Zusätzlich Sicherheitstest und Datenschutz-Folgenabschätzung",     wir: true },
+];
+
 const STATIONEN = [
   { n: "01", title: "Anforderungen",                  desc: "Was soll das System leisten, für wen und mit welchen Daten? Wir halten es schriftlich fest, mit Kriterien, an denen sich die Abnahme messen lässt.", result: "Anforderungsdokument" },
   { n: "02", title: "Architektur mit Prüfung",        desc: "Die Zielarchitektur wird gegen feste Kriterien geprüft: Sicherheit, Datenschutz, Kosten, Betrieb, Austauschbarkeit der Modelle. Sie wird überarbeitet, bis sie trägt.", result: "Geprüftes Architekturdokument" },
@@ -78,6 +86,39 @@ export default function AiEngineering() {
             </div>
             <p style={{ ...body, marginTop: 24, maxWidth: "70ch" }}>
               Wir nutzen Vibe Coding selbst, für Klickprototypen und schnelle Machbarkeitsproben, wenn eine Idee im Workshop greifbar werden soll. Was davon in den Betrieb geht, bauen wir neu und nach dem Vorgehen unten.
+            </p>
+          </div>
+        </section>
+
+        {/* Risikoklassen: wann Engineering nötig ist */}
+        <section className="nn-section" style={{ padding: "88px 32px", borderTop: "1px solid var(--border-1)" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div style={kicker}>Wann es Engineering braucht</div>
+            <h2 style={h2}>Über den Aufwand entscheidet die Reichweite einer Lösung, nicht das Werkzeug</h2>
+            <p style={lead}>
+              Ein persönlicher Prototyp darf schnell entstehen. Dieselbe Technik in einer Anwendung für Kunden braucht dagegen volle Sorgfalt. Vier Fragen ordnen jede Lösung ein: Wer nutzt sie, welche Daten verarbeitet sie, was darf sie selbst auslösen, und was passiert bei einem Ausfall?
+            </p>
+            <div role="table" aria-label="Vier Risikoklassen für KI-gestützt entwickelte Lösungen" style={{ border: "1px solid var(--border-2)", borderRadius: 6, overflow: "hidden" }}>
+              <div role="row" className="nn-vgl-row nn-vgl-head" style={{ display: "grid", gridTemplateColumns: "0.8fr 1.4fr 1.4fr 1.2fr", background: "var(--ink-current)" }}>
+                {["Klasse", "Typische Lösung", "Wer baut", "Prüfung vor dem Einsatz"].map(h => (
+                  <div role="columnheader" key={h} style={{ padding: "14px 18px", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--fg-3)" }}>{h}</div>
+                ))}
+              </div>
+              {RISIKO.map(r => (
+                <div role="row" key={r.klasse} className="nn-vgl-row" style={{ display: "grid", gridTemplateColumns: "0.8fr 1.4fr 1.4fr 1.2fr", borderTop: "1px solid var(--border-1)", background: r.wir ? "rgba(63,212,224,.05)" : undefined }}>
+                  <div role="rowheader" style={{ padding: "14px 18px", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: r.wir ? "var(--glow-cyan)" : "var(--fg-1)" }}>{r.klasse}</div>
+                  <div role="cell" style={{ padding: "14px 18px", ...body }}><span className="nn-vgl-label">Lösung: </span>{r.loesung}</div>
+                  <div role="cell" style={{ padding: "14px 18px", ...body, color: r.wir ? "var(--fg-1)" : body.color }}><span className="nn-vgl-label">Wer baut: </span>{r.wer}</div>
+                  <div role="cell" style={{ padding: "14px 18px", ...body }}><span className="nn-vgl-label">Prüfung: </span>{r.pruefung}</div>
+                </div>
+              ))}
+            </div>
+            <p style={{ ...body, marginTop: 20, maxWidth: "75ch" }}>
+              Hervorgehoben sind die Klassen, für die es AI Engineering braucht und in denen wir bauen oder begleiten. Für die unteren Klassen sorgen wir dafür, dass Ihre Fachbereiche schnell und trotzdem sicher arbeiten können.
+            </p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", lineHeight: 1.6, marginTop: 14 }}>
+              Risikoklassen nach Roman Langfeld (for42), Whitepaper „Governed Enterprise Vibe Coding“, Juli 2026:{" "}
+              <a href="https://www.romanlangfeld.de/ressourcen/governed-enterprise-vibe-coding" target="_blank" rel="noopener">romanlangfeld.de</a>.
             </p>
           </div>
         </section>
