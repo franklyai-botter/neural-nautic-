@@ -232,12 +232,13 @@ export default function Datenschutz() {
               Anbieter: Mistral AI, 15 rue des Halles, 75001 Paris, Frankreich
             </p>
             <p style={{ ...body, marginTop: 12 }}>
-              {/* [PRÜFEN] Rechtsgrundlage lit. f; Speicherdauer bei Mistral (laut Datenschutzerklärung von Mistral
-                  30 Tage Missbrauchskontrolle, Seite per Abruf nicht lesbar) und Trainingsnutzung im kostenlosen
-                  Plan (DPA Abschn. 2.3: Training, sofern kein Opt-out) im Mistral-Konto prüfen und ggf. Opt-out setzen. */}
+              {/* Training-Opt-out gesetzt 29.10.2026: admin.mistral.ai → API → Datenschutz, „Nutzung Ihrer
+                  API-Aufrufe … zu trainieren“ aus; Labs-Modelle aus (würden das Opt-out aufheben).
+                  [PRÜFEN] Speicherdauer bei Mistral (laut Datenschutzerklärung 30 Tage Missbrauchskontrolle). */}
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt darin, Ihnen
               auf Ihre Frage hin eine Antwort bereitzustellen. Mistral AI kann Eingaben nach eigenen
-              Bedingungen für einen begrenzten Zeitraum speichern. Bitte geben Sie im Chat keine
+              Bedingungen für einen begrenzten Zeitraum speichern. Die Nutzung der Eingaben zum Training
+              der Modelle von Mistral AI ist in meinem Konto abgeschaltet. Bitte geben Sie im Chat keine
               personenbezogenen oder vertraulichen Daten ein.
             </p>
             <p style={{ ...body, marginTop: 12 }}>
