@@ -173,10 +173,10 @@ h1 em, h2 em { font-style: normal !important; }
 
 /* LinkedIn-Button (Personal Brand): dunkler Grund, Cyan-Rand, Glow beim Hover */
 .nn-linkedin-btn { display: inline-flex; align-items: center; gap: 12px; padding: 11px 22px 11px 14px; border-radius: 4px;
-  border: 1px solid rgba(63,212,224,.55); background: rgba(6,20,25,.55); color: var(--silver-white);
+  border: 1px solid var(--border-3); background: #FFFFFF; color: var(--fg-1);
   font-family: var(--font-inter), sans-serif; font-size: 13px; font-weight: 500; letter-spacing: .06em; text-decoration: none;
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background .2s ease; }
-.nn-linkedin-btn:hover { border-color: var(--glow-cyan); background: rgba(10,32,40,.85); color: var(--silver-white);
+.nn-linkedin-btn:hover { border-color: var(--glow-cyan); background: var(--ivory); color: var(--fg-1);
   box-shadow: 0 0 0 1px rgba(63,212,224,.25), 0 8px 28px rgba(63,212,224,.22); transform: translateY(-1px); }
 .nn-linkedin-btn:focus-visible { outline: 2px solid var(--glow-cyan); outline-offset: 3px; }
 .nn-linkedin-arrow { color: var(--glow-cyan); transition: transform .2s ease; }
