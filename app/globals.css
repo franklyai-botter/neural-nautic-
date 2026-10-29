@@ -121,6 +121,9 @@ h1 em, h2 em { font-style: normal !important; }
     inset 0 -10px 22px rgba(13,115,119,0.08),
     inset 0 0 0 1px rgba(13,115,119,0.06);
 }
+/* Mitte des Wirbels: Franks Foto rund im Glasrahmen */
+.nn-wirbel-mitte { width: clamp(132px, 15vw, 200px); aspect-ratio: 1; border-radius: 50%; padding: 8px; box-sizing: border-box; }
+.nn-wirbel-mitte img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 1; display: block; }
 /* Glanz: schräge Lichtfläche oben links */
 .nn-glas::before {
   content: ""; position: absolute; inset: -40% 35% 45% -40%;

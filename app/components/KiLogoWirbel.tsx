@@ -12,6 +12,7 @@ import { useEffect, useRef } from "react";
 
 const LOGOS: { datei: string; name: string }[] = [
   { datei: "/logo-monogram.png", name: "NeuralNautic" },
+  { datei: "/logo-star.png", name: "NeuralNautic" },
   ...([
     ["openai.svg", "OpenAI"], ["claude-color.svg", "Anthropic Claude"], ["gemini-color.svg", "Google Gemini"],
     ["deepseek-color.svg", "DeepSeek"], ["meta-color.svg", "Meta"], ["mistral-color.svg", "Mistral AI"],
@@ -100,11 +101,11 @@ export default function KiLogoWirbel() {
   return (
     <div ref={buehne} role="img" aria-label={`Logos der Modellanbieter, mit denen wir arbeiten: ${LOGOS.slice(1).map(l => l.name).join(", ")}`}
       style={{ position: "relative", width: "100%", height: "clamp(340px, 44vw, 540px)", overflow: "hidden" }}>
-      {/* NN-Stern in der Mitte, so groß wie die übrigen Kacheln, aber ruhend und vorn */}
-      <div className="nn-glas nn-wirbel-kachel" title="NeuralNautic"
+      {/* In der Mitte Frank im Glasrahmen (Studiofoto, Kopf nicht angeschnitten), ruhend und vorn */}
+      <div className="nn-glas nn-wirbel-mitte" title="Frank Schütt, NeuralNautic"
         style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 120 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- Logo unverändert, feste Größe */}
-        <img src="/logo-star.png" alt="NeuralNautic" />
+        {/* eslint-disable-next-line @next/next/no-img-element -- Foto in fester Größe */}
+        <img src="/frank-schuett-quadrat.jpeg" alt="Frank Schütt" />
       </div>
       {LOGOS.map((l, i) => (
         <div key={l.datei} ref={(n) => { kacheln.current[i] = n; }} title={l.name} className="nn-glas nn-wirbel-kachel"

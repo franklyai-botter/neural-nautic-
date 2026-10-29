@@ -66,7 +66,7 @@ export default function Home() {
 
         {/* 1 ERSTER BILDSCHIRM: Problem mit Zahl, eigene Methode, ein Knopf, Beleg, echtes Foto */}
         <section style={{ position: "relative", display: "flex", alignItems: "center", overflow: "hidden", padding: "40px 0 72px", background: HELL.grund }}>
-          <div className="nn-hero-inner nn-grid-2" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%", display: "grid", gridTemplateColumns: "minmax(0, 1.35fr) minmax(0, 1fr)", gap: 64, alignItems: "center" }}>
+          <div className="nn-hero-inner" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%", display: "grid", gridTemplateColumns: "minmax(0, 760px)", justifyContent: "center", gap: 64, alignItems: "center" }}>
             <div>
               <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(42px, 5.6vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.01em", color: HELL.schrift, margin: 0 }}>
                 Damit KI nicht<br />
@@ -88,15 +88,10 @@ export default function Home() {
                   {BERUHIGUNG}
                 </span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 32 }}>
-                {/* Nur schmal sichtbar: dort fehlt das große Foto rechts */}
-                <div className="nn-hero-foto-klein" style={{ position: "relative", width: 72, height: 90, flexShrink: 0, borderRadius: 4, overflow: "hidden", boxShadow: "0 8px 20px rgba(6,20,25,.18)" }}>
-                  <Image src="/og/frank-schuett.jpg" alt="Frank Schütt" fill sizes="72px" style={{ objectFit: "cover", objectPosition: "center" }} />
-                </div>
-                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: HELL.leise, margin: 0 }}>
-                  Frank Schütt, AI Strategy &amp; Application Expert, geprüft bei der TÜV SÜD Akademie
-                </p>
-              </div>
+              {/* Foto steht seit 29.10.2026 in der Mitte des Logo-Wirbels darüber */}
+              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: HELL.leise, margin: "32px 0 0" }}>
+                Frank Schütt, AI Strategy &amp; Application Expert, geprüft bei der TÜV SÜD Akademie
+              </p>
               {/* Zwei Link-Knöpfe und dahinter die Zertifikate als gleich große Miniaturen (Ziele wie auf /ueber-mich) */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
                 <Link href="/ki-im-unternehmen" style={linkKnopf}>So arbeiten wir: Kurs, Crew, Schiff →</Link>
@@ -107,9 +102,6 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-            </div>
-            <div className="nn-hero-foto" style={{ position: "relative", aspectRatio: "4 / 5", borderRadius: 6, overflow: "hidden", boxShadow: "0 20px 50px rgba(6,20,25,.18)" }}>
-              <Image src="/og/frank-schuett.jpg" alt="Frank Schütt, NeuralNautic" fill sizes="460px" style={{ objectFit: "cover", objectPosition: "center" }} />
             </div>
           </div>
         </section>
