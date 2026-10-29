@@ -69,8 +69,8 @@ export default function Home() {
           <div className="nn-hero-inner" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%", display: "grid", gridTemplateColumns: "minmax(0, 760px)", justifyContent: "center", gap: 64, alignItems: "center" }}>
             <div>
               <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(42px, 5.6vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.01em", color: HELL.schrift, margin: 0 }}>
-                {/* Frank 29.10.2026: Wortspiel nach „Wohnst du noch …“, in Sie-Form statt „AI-ert ihr noch“ */}
-                Experimentieren Sie noch –<br />
+                {/* Frank 29.10.2026: „AIern“ wie „herumeiern“, Muster „Wohnst du noch …“ */}
+                AIern Sie noch –<br />
                 <em style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}>oder profitieren Sie schon?</em>
               </h1>
               <p style={{ ...text, color: HELL.text, fontSize: 18, maxWidth: "54ch", margin: "28px 0 0" }}>
