@@ -153,3 +153,22 @@ a:hover {
 .nn-linkedin-arrow { color: var(--glow-cyan); transition: transform .2s ease; }
 .nn-linkedin-btn:hover .nn-linkedin-arrow { transform: translate(2px,-2px); }
 @media (prefers-reduced-motion: reduce) { .nn-linkedin-btn, .nn-linkedin-arrow { transition: none; } .nn-linkedin-btn:hover { transform: none; } }
+
+/* Seiten /ki-im-betrieb und /ai-engineering (Vorschau 29.10.2026) */
+@media (max-width: 860px) {
+  .nn-formel               { grid-template-columns: 1fr !important; }
+  .nn-formel-sign          { font-size: 40px !important; }
+  .nn-stufe                { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .nn-strang               { grid-template-columns: repeat(3, 1fr) !important; row-gap: 22px !important; }
+  .nn-arch-parts           { grid-template-columns: 1fr !important; }
+  .nn-vgl-row              { grid-template-columns: 1fr !important; }
+  .nn-vgl-head             { display: none !important; }
+  .nn-vgl-row [role="cell"] { border-left: none !important; padding-top: 6px !important; }
+}
+@media (max-width: 520px) {
+  .nn-strang               { grid-template-columns: 1fr 1fr !important; }
+  .nn-strang-line          { display: none !important; }
+  .nn-arch                 { grid-template-columns: 1fr 32px !important; }
+}
+.nn-vgl-label { display: none; font-weight: 600; }
+@media (max-width: 860px) { .nn-vgl-label { display: inline; } }

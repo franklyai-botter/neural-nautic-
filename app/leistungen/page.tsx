@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 
-const SERVICES = [
+const SERVICES: { title: string; short: string; long: string; items: string[]; result: string; cta: string; more?: { label: string; href: string } }[] = [
   {
     title: "KI-Potenzialanalyse",
     short: "Wir identifizieren, wo künstliche Intelligenz in Ihrem Unternehmen sinnvoll eingesetzt werden kann, und wo nicht.",
@@ -26,6 +26,7 @@ const SERVICES = [
     items: ["Zielarchitektur und Datenflüsse", "EU-Datenresidenz und Wahl des Modellanbieters (z. B. Claude über AWS Bedrock EU)", "LLM-Gateway mit Routing, Budgets und Kostenkontrolle", "Wissenssysteme mit RAG: Suche, Quellenangaben, Löschkonzept", "Kostenmodell monatlich und jährlich", "Lizenzprüfung der eingesetzten Komponenten", "Optionen von Cloud bis On-Premises"],
     result: "Eine dokumentierte Zielarchitektur mit Entscheidungsvorlagen, die Ihre IT umsetzen kann, oder die wir gemeinsam umsetzen.",
     cta: "Architektur besprechen",
+    more: { label: "Die sieben Schichten einer KI-Architektur", href: "/ki-im-betrieb#architektur" },
   },
   {
     title: "Controlled Pilot",
@@ -50,6 +51,7 @@ const SERVICES = [
     items: ["Individuelle Tools und Web-Anwendungen für Ihre Abläufe", "Automatisierungen und Schnittstellen zwischen Ihren Systemen", "Entwicklung mit KI-Agenten, gesteuert und geprüft durch uns", "Automatisierte Tests und Qualitätsprüfung vor jeder Auslieferung", "Dokumentation und Übergabe: der Code gehört Ihnen", "Betrieb in Ihrer Infrastruktur oder bei einem EU-Hoster", "Befähigung Ihres IT-Teams für agentische Entwicklung"],
     result: "Eine maßgeschneiderte, getestete Lösung für Ihr Problem, schneller und günstiger als klassische Individualentwicklung.",
     cta: "Lösung anfragen",
+    more: { label: "Wie wir arbeiten: AI Engineering statt Vibe Coding", href: "/ai-engineering" },
   },
   {
     title: "KI-Governance und Sicherheit",
@@ -104,6 +106,11 @@ export default function Leistungen() {
                 <Link href="/kontakt" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".08em", padding: "11px 22px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none", display: "inline-block" }}>
                   {s.cta}
                 </Link>
+                {s.more && (
+                  <Link href={s.more.href} style={{ display: "block", marginTop: 16, fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--glow-cyan)" }}>
+                    {s.more.label} →
+                  </Link>
+                )}
               </div>
               <div>
                 <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 28px" }}>{s.long}</p>

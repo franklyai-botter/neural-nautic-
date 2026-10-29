@@ -47,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NeuralBackground />
         {children}
         <ChatWidget />
+        {/* NUR VORSCHAU: vor einer Übernahme in neural-nautic-live entfernen */}
+        <div style={{ position: "fixed", left: 12, bottom: 12, zIndex: 50, fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, letterSpacing: ".12em", padding: "6px 10px", borderRadius: 4, background: "var(--signal-warn)", color: "var(--ink-abyss)", pointerEvents: "none" }}>VORSCHAU · NICHT LIVE</div>
       </body>
     </html>
   );
