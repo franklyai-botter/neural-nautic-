@@ -4,7 +4,7 @@ import Link from "next/link";
 // einzelne Projekt (je Anwendungsfall). Auf /ki-im-unternehmen und /methode,
 // die jeweils eigene Ebene hervorgehoben. Ein Akzent, Rest neutral (BRAND.md, Diagramme).
 
-const UNTERNEHMEN = ["Kurs: Strategie und Roadmap", "Crew: Wandel und Befähigung", "Logbuch: KI-Managementsystem", "Schiff: KI-Architektur"];
+const UNTERNEHMEN = ["Kurs: Strategie und Fahrplan", "Crew: Wandel und Befähigung", "Logbuch: KI-Managementsystem", "Schiff: KI-Architektur"];
 const PROJEKT = ["Verstehen", "Zuschneiden", "Pilotieren", "Automatisieren", "Übergeben"];
 
 function Ebene({ aktiv, kicker, title, rhythm, href, items, steps }: {
@@ -53,7 +53,7 @@ export default function EbenenModell({ aktiv }: { aktiv: "unternehmen" | "projek
       <Ebene aktiv={aktiv === "unternehmen"} kicker="Ebene 1 · Unternehmen" title="KI im Unternehmen"
         rhythm="einmal aufgebaut, laufend gepflegt" href="/ki-im-unternehmen" items={UNTERNEHMEN} />
       <div className="nn-ebenen-pfeile" style={{ display: "flex", justifyContent: "space-between", gap: 16, padding: "12px 24px", flexWrap: "wrap" }}>
-        <span style={pfeil}><span aria-hidden="true" style={{ color: "var(--glow-cyan)", fontSize: 16 }}>↓</span>Roadmap gibt den nächsten Anwendungsfall vor</span>
+        <span style={pfeil}><span aria-hidden="true" style={{ color: "var(--glow-cyan)", fontSize: 16 }}>↓</span>Der Fahrplan gibt den nächsten Anwendungsfall vor</span>
         <span style={pfeil}>Kennzahlen und Erfahrungen fließen zurück<span aria-hidden="true" style={{ color: "var(--glow-cyan)", fontSize: 16 }}>↑</span></span>
       </div>
       <Ebene aktiv={aktiv === "projekt"} kicker="Ebene 2 · Projekt" title="KI im Projekt"

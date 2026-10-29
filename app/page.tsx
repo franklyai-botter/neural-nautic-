@@ -11,21 +11,21 @@ export const metadata: Metadata = {
 };
 
 const SERVICES = [
-  { title: "KI-Potenzialanalyse", desc: "Identifikation sinnvoller KI-Anwendungsfälle mit Aufwand-Nutzen-Bewertung und priorisierter Roadmap." },
-  { title: "KI-Architektur",      desc: "Tragfähige Grundlage für KI: Datenresidenz, Modellwahl, Gateway und Kosten im Griff." },
-  { title: "Controlled Pilot",    desc: "Kontrollierter Praxistest eines KI-Use-Cases mit klaren Zielen, Metriken und Skalierungsempfehlung." },
-  { title: "KI-Automatisierung",  desc: "Automatisierung wiederkehrender Prozesse mit KI, Workflows, APIs und passenden Tools." },
+  { title: "KI-Potenzialanalyse", desc: "Identifikation sinnvoller KI-Anwendungsfälle mit Aufwand-Nutzen-Bewertung und priorisiertem Fahrplan." },
+  { title: "KI-Architektur",      desc: "Tragfähige Grundlage für KI: Datenresidenz, Modellwahl, zentraler Modellzugang (LLM-Gateway) und Kosten im Griff." },
+  { title: "Controlled Pilot",    desc: "Kontrollierter Praxistest eines KI-Anwendungsfalls mit klaren Zielen, Metriken und Skalierungsempfehlung." },
+  { title: "KI-Automatisierung",  desc: "Automatisierung wiederkehrender Prozesse mit KI, Arbeitsabläufen, Schnittstellen und passenden Werkzeugen." },
   { title: "Agentic Engineering", desc: "Individuelle Software und Automatisierungen, entwickelt mit KI-Agenten: maßgeschneidert, getestet, schnell." },
   { title: "KI-Governance",       desc: "Regeln, Rollen und Prozesse für sicheren, nachvollziehbaren und verantwortungsvollen KI-Einsatz." },
-  { title: "KI-Schulung",         desc: "Workshops und Enablement für Führungskräfte, Fachabteilungen und AI Champions." },
+  { title: "KI-Schulung",         desc: "Workshops und Befähigung für Führungskräfte, Fachabteilungen und KI-Multiplikatoren." },
   { title: "KI Tool Kompass",     desc: "Bewertung und Auswahl passender KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit." },
 ];
 
 const USE_CASES = [
-  "Automatische Angebotserstellung", "Voicebot für Anrufannahme",
+  "Automatische Angebotserstellung", "Sprachassistent für Anrufannahme",
   "E-Mail-Automatisierung", "Dokumentenanalyse",
-  "Belegmanagement", "CRM-Unterstützung",
-  "Interner Wissensbot (RAG)", "Lead-Qualifizierung",
+  "Belegverwaltung", "CRM-Unterstützung",
+  "Interner Wissensbot (RAG)", "Bewertung von Anfragen",
   "KI-gestützter Kundenservice", "Schulungs- und Assistenzsysteme",
 ];
 
@@ -33,23 +33,23 @@ const TRUST = [
   "Mittelstandstaugliche Sprache",
   "Fokus auf konkrete Geschäftsprozesse",
   "Datenschutz und Governance von Anfang an",
-  "Keine Tool-Abhängigkeit",
+  "Keine Abhängigkeit von einzelnen Werkzeugen",
   "Messbare Pilotprojekte statt KI-Aktionismus",
   "Schulung und Befähigung der Mitarbeitenden",
 ];
 
 const PAIN = [
-  "Unklare Use Cases",
-  "Zu viele Tools, zu wenig Orientierung",
+  "Unklare Anwendungsfälle",
+  "Zu viele Werkzeuge, zu wenig Orientierung",
   "Unsicherheit bei Datenschutz und Compliance",
   "Fehlende interne KI-Kompetenz",
   "Angst vor Fehlinvestitionen",
-  "Keine klare Roadmap für Umsetzung und Skalierung",
+  "Kein klarer Fahrplan für Umsetzung und Skalierung",
 ];
 
 const STEPS = [
   { n: "01", title: "Verstehen",    desc: "Prozesse, Ziele, Daten, Systeme und Risiken analysieren." },
-  { n: "02", title: "Priorisieren", desc: "Sinnvolle KI-Use-Cases identifizieren und bewerten." },
+  { n: "02", title: "Priorisieren", desc: "Sinnvolle KI-Anwendungsfälle identifizieren und bewerten." },
   { n: "03", title: "Pilotieren",   desc: "KI kontrolliert in einem abgegrenzten Praxisprojekt testen." },
   { n: "04", title: "Skalieren",    desc: "Erfolgreiche Lösungen in stabile Prozesse und Governance überführen." },
 ];
@@ -73,7 +73,7 @@ export default function Home() {
                 Von der Idee zum messbaren Pilotprojekt. Gemeinsam mit Ihnen machen wir KI verständlich und im Betrieb nutzbar.
               </p>
               <p style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontSize: 16, color: "var(--fg-3)", margin: "16px 0 36px" }}>
-                Keine KI-Spielereien. Keine Buzzword-Show. Konkrete Lösungen für echte Geschäftsprozesse.
+                Keine KI-Spielereien. Keine Schlagwörter. Konkrete Lösungen für echte Geschäftsprozesse.
               </p>
               <div className="nn-hero-btns" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <Link href="/kontakt" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
@@ -119,7 +119,7 @@ export default function Home() {
               Viele Unternehmen wollen KI nutzen, wissen aber nicht, wo sie sinnvoll starten sollen.
             </h2>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, lineHeight: 1.7, color: "var(--fg-2)" }}>
-              Der KI-Markt ist laut, schnell und oft unübersichtlich. Neue Tools erscheinen beinahe wöchentlich, Anbieter versprechen Automatisierung auf Knopfdruck. Interne Teams fragen sich, welche Lösungen wirklich sicher, wirtschaftlich und alltagstauglich sind.
+              Der KI-Markt ist laut, schnell und oft unübersichtlich. Neue Werkzeuge erscheinen beinahe wöchentlich, Anbieter versprechen Automatisierung auf Knopfdruck. Interne Teams fragen sich, welche Lösungen wirklich sicher, wirtschaftlich und alltagstauglich sind.
             </p>
           </div>
           <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
@@ -188,12 +188,12 @@ export default function Home() {
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
             <div className="nn-uc-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
               <div>
-                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Use Cases</span>
+                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Anwendungsfälle</span>
                 <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "16px 0 0" }}>
                   KI für echte Geschäftsprozesse.
                 </h2>
               </div>
-              <Link href="/use-cases" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Use Cases →</Link>
+              <Link href="/use-cases" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Anwendungsfälle →</Link>
             </div>
             <div className="nn-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
               {USE_CASES.map((u) => (
@@ -213,7 +213,7 @@ export default function Home() {
               Für Unternehmen, die KI pragmatisch statt panisch einführen wollen.
             </h2>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", maxWidth: "60ch", margin: "0 auto 56px", lineHeight: 1.7 }}>
-              Unser Ansatz verbindet technisches Verständnis, Prozessdenken und Change-Kompetenz. Wir sprechen mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.
+              Unser Ansatz verbindet technisches Verständnis, Prozessdenken und Erfahrung im Veränderungsmanagement. Wir sprechen mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.
             </p>
             <div className="nn-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, textAlign: "left", maxWidth: 900, margin: "0 auto" }}>
               {TRUST.map((t) => (

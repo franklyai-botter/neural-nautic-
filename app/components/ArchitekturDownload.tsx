@@ -65,7 +65,7 @@ export default function ArchitekturDownload() {
     <div style={{ background: "var(--ink-current)", border: "1px solid var(--border-3)", borderRadius: 6, padding: "32px 32px" }}>
       <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 40, alignItems: "start" }}>
         <div>
-          <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--glow-cyan)", letterSpacing: ".16em", textTransform: "uppercase", marginBottom: 12 }}>Download</div>
+          <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 10, color: "var(--glow-cyan)", letterSpacing: ".16em", textTransform: "uppercase", marginBottom: 12 }}>Zum Herunterladen</div>
           <h3 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: 30, color: "var(--fg-1)", margin: "0 0 12px", lineHeight: 1.15 }}>
             Das Referenzmodell als Grafik für Ihre Unterlagen
           </h3>
@@ -76,7 +76,7 @@ export default function ArchitekturDownload() {
 
         {done ? (
           <div style={{ padding: "8px 0" }}>
-            <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 28, color: "var(--fg-1)", marginBottom: 10 }}>Danke, der Download läuft.</div>
+            <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 28, color: "var(--fg-1)", marginBottom: 10 }}>Danke, die Grafik wird heruntergeladen.</div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>
               Falls er nicht startet, senden Sie das Formular einfach erneut. Wenn Sie Fragen zur Architektur haben, melde ich mich gern.
             </p>

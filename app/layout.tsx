@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "KI-Beratung für den Mittelstand | NeuralNautic",
-  description: "Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Tool-Auswahl.",
+  description: "Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Werkzeugauswahl.",
   keywords: "KI-Beratung Mittelstand, KI-Beratung KMU, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
   // Google Search Console, Property https://neuralnautic.de/ — muss bleiben,
   // sonst verliert das Konto die Bestaetigung und damit den Zugriff auf die Daten.

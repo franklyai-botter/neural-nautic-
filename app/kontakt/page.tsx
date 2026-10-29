@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const TOPICS = [
   "KI-Potenzialanalyse", "Controlled Pilot", "KI-Automatisierung",
-  "KI-Governance", "KI-Schulung", "Tool-Auswahl", "Allgemeine Anfrage",
+  "KI-Governance", "KI-Schulung", "Werkzeugauswahl", "Allgemeine Anfrage",
 ];
 
 const input: React.CSSProperties = {
@@ -58,7 +58,7 @@ export default function Kontakt() {
               Lassen Sie uns über sinnvolle KI in Ihrem Unternehmen sprechen.
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "52ch", margin: "0 auto" }}>
-              Ob erste Orientierung, konkreter Use Case oder geplantes Pilotprojekt: Ich freue mich auf Ihre Anfrage.
+              Ob erste Orientierung, konkreter Anwendungsfall oder geplantes Pilotprojekt: Ich freue mich auf Ihre Anfrage.
             </p>
           </div>
         </section>
@@ -106,7 +106,7 @@ export default function Kontakt() {
 
               <div>
                 <label style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Nachricht *</label>
-                <textarea name="message" required rows={6} style={{ ...input, resize: "vertical" }} placeholder="Beschreiben Sie kurz Ihr Anliegen oder Ihren Use Case …" />
+                <textarea name="message" required rows={6} style={{ ...input, resize: "vertical" }} placeholder="Beschreiben Sie kurz Ihr Anliegen oder Ihren Anwendungsfall …" />
               </div>
 
               <button type="submit" disabled={loading} style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", border: "none", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, alignSelf: "flex-start" }}>

@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 // Ebene 2 (Projekt): ein Anwendungsfall aus der Roadmap. Priorisieren über alle Fälle und
 // Skalieren gehören zur Ebene 1 (Unternehmen, /ki-im-unternehmen).
 const PHASES = [
-  { n: "01", title: "Verstehen",      desc: "Am Anfang steht kein Tool, sondern der Prozess, um den es geht. Wir sehen uns Abläufe, Beteiligte, Daten, Systeme und Risiken dieses Anwendungsfalls an, bevor irgendeine KI-Lösung ins Spiel kommt.", result: "Klares Bild des Prozesses heute" },
-  { n: "02", title: "Zuschneiden",    desc: "Wir legen fest, was der Anwendungsfall leisten soll: Ziel, Kennzahlen, benötigte Daten, Risikoeinstufung und ab wann wir abbrechen. Welcher Fall als Nächstes drankommt, entscheidet die Roadmap auf Unternehmensebene.", result: "Projektauftrag mit messbarem Ziel" },
+  { n: "01", title: "Verstehen",      desc: "Am Anfang steht kein Werkzeug, sondern der Prozess, um den es geht. Wir sehen uns Abläufe, Beteiligte, Daten, Systeme und Risiken dieses Anwendungsfalls an, bevor irgendeine KI-Lösung ins Spiel kommt.", result: "Klares Bild des Prozesses heute" },
+  { n: "02", title: "Zuschneiden",    desc: "Wir legen fest, was der Anwendungsfall leisten soll: Ziel, Kennzahlen, benötigte Daten, Risikoeinstufung und ab wann wir abbrechen. Welcher Fall als Nächstes drankommt, entscheidet der Fahrplan auf Unternehmensebene.", result: "Projektauftrag mit messbarem Ziel" },
   { n: "03", title: "Pilotieren",     desc: "Der Anwendungsfall wird in einem Controlled Pilot getestet: mit echten Prozessen, echten Nutzern und den vereinbarten Kennzahlen, in einem begrenzten, kontrollierten Rahmen.", result: "Messbarer Praxistest mit Entscheidung: weiter, anpassen oder stoppen" },
-  { n: "04", title: "Automatisieren", desc: "Ein erfolgreicher Pilot wird zu einem stabilen Ablauf ausgebaut, auf der gemeinsamen KI-Architektur des Unternehmens und nach den Regeln des AI Engineering: getestet, dokumentiert, mit Schnittstellen zu Ihren Systemen.", result: "Produktiver KI-Workflow" },
-  { n: "05", title: "Übergeben",      desc: "Die Lösung geht über das Freigabeverfahren des Unternehmens in den Betrieb. Die Nutzer werden eingewiesen, Zuständigkeiten sind benannt, und die Kennzahlen fließen in die Roadmap zurück.", result: "Lösung im Regelbetrieb, Erfahrungen für den nächsten Fall" },
+  { n: "04", title: "Automatisieren", desc: "Ein erfolgreicher Pilot wird zu einem stabilen Ablauf ausgebaut, auf der gemeinsamen KI-Architektur des Unternehmens und nach den Regeln des AI Engineering: getestet, dokumentiert, mit Schnittstellen zu Ihren Systemen.", result: "Produktiver KI-gestützter Arbeitsablauf" },
+  { n: "05", title: "Übergeben",      desc: "Die Lösung geht über das Freigabeverfahren des Unternehmens in den Betrieb. Die Nutzer werden eingewiesen, Zuständigkeiten sind benannt, und die Kennzahlen fließen in den Fahrplan zurück.", result: "Lösung im Regelbetrieb, Erfahrungen für den nächsten Fall" },
 ];
 
 const PRINCIPLES = [
@@ -26,7 +26,7 @@ const PRINCIPLES = [
   { title: "Sicher",           desc: "Datenschutz und Governance sind kein Nachgedanke, sondern Grundlage." },
   { title: "Verständlich",     desc: "Komplexe KI-Themen werden so erklärt, dass alle Beteiligten mitreden können." },
   { title: "Menschzentriert",  desc: "KI unterstützt Menschen, sie ersetzt sie nicht." },
-  { title: "Tool-neutral",     desc: "Wir sind an keinen Anbieter gebunden und empfehlen, was zu Ihnen passt." },
+  { title: "Herstellerneutral",     desc: "Wir sind an keinen Anbieter gebunden und empfehlen, was zu Ihnen passt." },
 ];
 
 export default function Methode() {
@@ -41,7 +41,7 @@ export default function Methode() {
               Jedes KI-Projekt setzt einen Anwendungsfall in fünf Schritten um
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "58ch", margin: "0 auto" }}>
-              Welche Anwendungsfälle sich lohnen und in welcher Reihenfolge, steht in der Roadmap Ihres Unternehmens. Hier geht es um den einzelnen Fall: von der Prozessanalyse bis zum Regelbetrieb. Ziel ist nicht möglichst viel KI, sondern die richtige KI an der richtigen Stelle.
+              Welche Anwendungsfälle sich lohnen und in welcher Reihenfolge, steht im Fahrplan Ihres Unternehmens. Hier geht es um den einzelnen Fall: von der Prozessanalyse bis zum Regelbetrieb. Ziel ist nicht möglichst viel KI, sondern die richtige KI an der richtigen Stelle.
             </p>
           </div>
         </section>

@@ -10,32 +10,32 @@ export const metadata: Metadata = {
 
 
 const GLOSSARY = [
-  { term: "Use Case",             def: "Ein konkreter Anwendungsfall, bei dem KI einen messbaren Nutzen erzeugt." },
+  { term: "Anwendungsfall (Use Case)", def: "Ein konkreter Einsatz, bei dem KI einen messbaren Nutzen erzeugt." },
   { term: "RAG",                  def: "Retrieval-Augmented Generation. Ein KI-System, das Antworten auf Basis ausgewählter Dokumente oder Datenquellen erstellt." },
   { term: "Prompting",            def: "Die strukturierte Eingabe von Anweisungen an ein KI-System, um gezielt nützliche Ergebnisse zu erhalten." },
   { term: "KI-Governance",        def: "Regeln, Rollen und Prozesse für sicheren und verantwortungsvollen KI-Einsatz im Unternehmen." },
   { term: "Controlled Pilot",     def: "Ein begrenzter, messbarer Praxistest für einen KI-Anwendungsfall, mit klarem Ziel, Zeitrahmen und Erfolgskriterien." },
   { term: "Vendor Lock-in",       def: "Abhängigkeit von einem Anbieter, die spätere Wechsel technisch oder wirtschaftlich erschwert." },
   { term: "LLM",                  def: "Large Language Model. Ein KI-Modell, das auf großen Textmengen trainiert wurde und natürliche Sprache versteht und erzeugt, z. B. GPT-4, Claude oder Gemini." },
-  { term: "LLM-Gateway",          def: "Eine zentrale Zwischenschicht zwischen Anwendungen und Sprachmodellen. Sie leitet Anfragen an das passende Modell weiter, setzt Budgets durch und protokolliert Nutzung und Kosten." },
+  { term: "Modellzugang (LLM-Gateway)",          def: "Eine zentrale Zwischenschicht zwischen Anwendungen und Sprachmodellen. Sie leitet Anfragen an das passende Modell weiter, setzt Budgets durch und protokolliert Nutzung und Kosten." },
   { term: "GPT",                  def: "Generative Pre-trained Transformer. Die Architektur hinter vielen modernen Sprachmodellen wie ChatGPT." },
   { term: "Token",                def: "Die kleinste Verarbeitungseinheit eines Sprachmodells, grob ein Wort oder Wortteil. Bestimmt Kosten und Kontextgröße." },
   { term: "Kontextfenster",       def: "Die Menge an Text, die ein KI-Modell in einem Durchgang lesen und verarbeiten kann. Je größer, desto mehr Dokumente passen hinein." },
-  { term: "Embedding",            def: "Eine numerische Darstellung von Text, mit der KI-Systeme Bedeutung und Ähnlichkeit von Inhalten erkennen können." },
-  { term: "Vektordatenbank",      def: "Eine Datenbank, die Embeddings speichert und schnelle Ähnlichkeitssuchen ermöglicht. Grundlage vieler RAG-Systeme." },
+  { term: "Embedding (Vektordarstellung)", def: "Eine numerische Darstellung von Text, mit der KI-Systeme Bedeutung und Ähnlichkeit von Inhalten erkennen können." },
+  { term: "Vektordatenbank",      def: "Eine Datenbank, die Vektordarstellungen (Embeddings) speichert und schnelle Ähnlichkeitssuchen ermöglicht. Grundlage vieler RAG-Systeme." },
   { term: "Fine-Tuning",          def: "Das Nachtrainieren eines Basismodells auf eigenen Daten, um es für einen spezifischen Zweck zu spezialisieren." },
   { term: "Halluzination",        def: "Wenn ein KI-Modell falsche oder erfundene Informationen mit hoher Überzeugung ausgibt. Wichtiger Risikofaktor im Unternehmenseinsatz." },
   { term: "AI Agent",             def: "Ein KI-System, das selbstständig Aufgaben plant, Werkzeuge nutzt und mehrere Schritte ausführt, ohne ständige menschliche Eingabe." },
   { term: "Agentic Engineering",  def: "Softwareentwicklung, bei der KI-Agenten Aufgaben planen, programmieren und testen, gesteuert und geprüft von Menschen. Ergebnis sind individuelle Anwendungen und Automatisierungen in deutlich kürzerer Zeit." },
   { term: "Automation",           def: "Automatisierung wiederkehrender Aufgaben durch Software oder KI, um manuelle Arbeit zu reduzieren und Prozesse zu beschleunigen." },
   { term: "Prompt Engineering",   def: "Die systematische Entwicklung und Optimierung von Eingaben an KI-Modelle, um konsistent hochwertige Ergebnisse zu erzielen." },
-  { term: "Zero-Shot",            def: "Eine KI löst eine Aufgabe ohne vorherige Beispiele, nur durch die Beschreibung im Prompt." },
-  { term: "Few-Shot",             def: "Eine KI erhält wenige Beispiele im Prompt und überträgt das Muster auf neue Aufgaben." },
-  { term: "Chain of Thought",     def: "Eine Prompting-Technik, bei der das Modell Zwischenschritte explizit durchdenkt. Das verbessert die Genauigkeit bei komplexen Aufgaben." },
+  { term: "Zero-Shot",            def: "Eine KI löst eine Aufgabe ohne vorherige Beispiele, nur durch die Beschreibung in der Anweisung (Prompt)." },
+  { term: "Few-Shot",             def: "Eine KI erhält wenige Beispiele in der Anweisung und überträgt das Muster auf neue Aufgaben." },
+  { term: "Chain of Thought",     def: "Eine Technik beim Anweisen der KI, bei der das Modell Zwischenschritte explizit durchdenkt. Das verbessert die Genauigkeit bei komplexen Aufgaben." },
   { term: "API",                  def: "Application Programming Interface. Eine Schnittstelle, über die Software-Systeme miteinander kommunizieren, z. B. um ein KI-Modell in eine eigene Anwendung einzubinden." },
   { term: "Multimodal",           def: "KI-Systeme, die mehrere Eingabetypen verarbeiten können, z. B. Text, Bilder, Audio oder Dokumente in einem Modell." },
   { term: "Inferenz",             def: "Der Vorgang, bei dem ein trainiertes KI-Modell eine Anfrage verarbeitet und eine Antwort generiert." },
-  { term: "Latenz",               def: "Die Zeit, die ein KI-System benötigt, um auf eine Anfrage zu antworten. Relevant für Echtzeit-Anwendungen wie Chatbots oder Voicebots." },
+  { term: "Latenz",               def: "Die Zeit, die ein KI-System benötigt, um auf eine Anfrage zu antworten. Relevant für Echtzeit-Anwendungen wie Chatbots oder Sprachassistenten." },
 ];
 
 export default function Wissen() {
@@ -50,7 +50,7 @@ export default function Wissen() {
               KI verständlich erklärt
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "56ch", margin: "0 auto" }}>
-              Praxisnahes Wissen zu KI, Automatisierung, Governance und Tool-Auswahl für Unternehmen.
+              Praxisnahes Wissen zu KI, Automatisierung, Governance und Werkzeugauswahl für Unternehmen.
             </p>
           </div>
         </section>

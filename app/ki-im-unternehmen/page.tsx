@@ -25,16 +25,16 @@ const card = { background: "var(--ink-current)", border: "1px solid var(--border
 const source = { fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", lineHeight: 1.6, marginTop: 18 };
 
 const STUFEN = [
-  { n: "01", title: "KI-Werkzeuge nutzen",          desc: "Fertige Tools wie Chat-Assistenten, Übersetzer oder Meeting-Protokolle. Schnell eingeführt, aber Ihre Wettbewerber nutzen dieselben.", width: 44, corridor: false },
+  { n: "01", title: "KI-Werkzeuge nutzen",          desc: "Fertige Werkzeuge wie Chat-Assistenten, Übersetzer oder Besprechungsprotokolle. Schnell eingeführt, aber Ihre Wettbewerber nutzen dieselben.", width: 44, corridor: false },
   { n: "02", title: "KI an eigene Prozesse anbinden", desc: "KI arbeitet in Ihren Abläufen: Posteingang, Angebote, CRM, Dokumente. Hier entsteht der erste spürbare Vorsprung.", width: 58, corridor: true },
-  { n: "03", title: "Eigene KI-Services aufbauen",  desc: "Assistenten und Agenten, zugeschnitten auf Ihr Wissen und Ihre Regeln, für Mitarbeitende oder für Ihre Kunden.", width: 72, corridor: true },
+  { n: "03", title: "Eigene KI-Dienste aufbauen",  desc: "Assistenten und Agenten, zugeschnitten auf Ihr Wissen und Ihre Regeln, für Mitarbeitende oder für Ihre Kunden.", width: 72, corridor: true },
   { n: "04", title: "Eigene Daten nutzbar machen",  desc: "Vorhersagen und Auswertungen aus Ihren Unternehmensdaten, etwa zu Bedarf, Ausfällen oder Preisen.", width: 86, corridor: true },
   { n: "05", title: "Eigene KI-Verfahren entwickeln", desc: "Neue Algorithmen als geistiges Eigentum. Forschungsaufwand, für die meisten Mittelständler nicht der nächste Schritt.", width: 100, corridor: false },
 ];
 
 // Unser Modell: Kurs, Crew, Schiff (Franks Benennung, 29.10.2026). Sachbegriff jeweils darunter.
 const KCS = [
-  { name: "Kurs",   fach: "Strategie",                claim: "Wohin, und was lohnt sich?",      desc: "Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist eine Roadmap, die Geschäftsführung und Fachbereiche mittragen.",
+  { name: "Kurs",   fach: "Strategie",                claim: "Wohin, und was lohnt sich?",      desc: "Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist ein Fahrplan, den Geschäftsführung und Fachbereiche mittragen.",
     fehlt: "Systeme ohne Nutzen: Es wird gebaut, was technisch geht, nicht was sich rechnet." },
   { name: "Crew",   fach: "Menschen und Befähigung",  claim: "Nutzung statt bloßem Wissen.",    desc: "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag tatsächlich genutzt werden. Der Betriebsrat ist früh an Bord.",
     fehlt: "Systeme ohne Nutzer: Die Lösung steht, aber niemand arbeitet damit, oft aus Sorge um die eigene Rolle." },
@@ -44,26 +44,26 @@ const KCS = [
 
 // for42-Reifegrad-Diagnostik: Stufe als Einstieg, Kurs/Crew/Schiff als Vorgehen
 const STRAENGE = [
-  { name: "Kurs",    title: "KI-Strategie", result: "Roadmap mit priorisierten Anwendungsfällen", steps: ["Ausgangslage und Unternehmensziele", "Engpässe und Probleme", "KI-Zielbild", "Anwendungsfälle in drei Horizonten", "Bewertung und Priorisierung", "Roadmap"] },
+  { name: "Kurs",    title: "KI-Strategie", result: "Fahrplan mit priorisierten Anwendungsfällen", steps: ["Ausgangslage und Unternehmensziele", "Engpässe und Probleme", "KI-Zielbild", "Anwendungsfälle in drei Horizonten", "Bewertung und Priorisierung", "Fahrplan"] },
   { name: "Crew",    title: "Wandel und Kommunikation", result: "Neue Abläufe, die im Alltag genutzt werden", steps: ["Führungskräfte einbinden", "Multiplikatoren gewinnen", "Kernbotschaft und Auftakt", "Schulung", "Erste Erfolge sichtbar machen", "Übergabe in die Linienverantwortung"] },
   { name: "Logbuch", title: "KI-Managementsystem", note: "angelehnt an ISO/IEC 42001", result: "Dokumentierte Regeln, Rollen und Nachweise", steps: ["Rollen und Verantwortlichkeiten", "KI-Richtlinie", "Risikoanalyse", "Unterweisung", "Freigabeverfahren für KI-Anwendungen", "Audit, Kennzahlen, Verbesserung"] },
 ];
 
 const SCHICHTEN: { n: string; title: string; items: string; parts?: { n: string; title: string; items: string }[] }[] = [
-  { n: "7", title: "Governance und Compliance", items: "KI-Richtlinie · Rollen · Risikomanagement · Einstufung nach EU AI Act · Audit-Trail" },
+  { n: "7", title: "Governance und Compliance", items: "KI-Richtlinie · Rollen · Risikomanagement · Einstufung nach EU AI Act · Prüfpfad" },
   { n: "6", title: "Datenschutz und Sicherheit", items: "DSGVO · Auftragsverarbeitung · Löschkonzept · Verschlüsselung · Zugriffssteuerung" },
   { n: "5", title: "Anwendungen", items: "", parts: [
     { n: "5a", title: "Intern", items: "Assistenten · Automatisierung · Analyse · Wissen" },
     { n: "5b", title: "Für Kunden", items: "Kundenservice · Produktfunktionen · neue Angebote" },
   ] },
-  { n: "4", title: "Orchestrierung und Agenten", items: "Workflows · Routing zwischen Modellen · Prompt-Verwaltung · Leitplanken · Protokollierung · Rechte" },
+  { n: "4", title: "Orchestrierung und Agenten", items: "Arbeitsabläufe · Verteilung auf die Modelle · zentraler Modellzugang (LLM-Gateway) · Verwaltung der Anweisungen · Leitplanken · Protokollierung · Rechte" },
   { n: "3", title: "Modelle", items: "", parts: [
-    { n: "3a", title: "Cloud-Modelle per API", items: "mit Auftragsverarbeitung, EU-Region" },
+    { n: "3a", title: "Cloud-Modelle über Schnittstelle (API)", items: "mit Auftragsverarbeitung, EU-Region" },
     { n: "3b", title: "Offene Modelle", items: "im eigenen Betrieb, volle Datenkontrolle" },
-    { n: "3c", title: "Spezialmodelle", items: "Embeddings · Bild · Sprache" },
+    { n: "3c", title: "Spezialmodelle", items: "Vektordarstellungen (Embeddings) · Bild · Sprache" },
   ] },
-  { n: "2", title: "Daten und Wissen", items: "Unternehmensdaten · Wissenssuche mit RAG · Dokumenten-Pipeline · Datenklassen · Berechtigungen" },
-  { n: "1", title: "Infrastruktur und Betrieb", items: "Cloud, eigene Server oder hybrid · Deployment · Monitoring · Backup · Rechenzentrum in der EU" },
+  { n: "2", title: "Daten und Wissen", items: "Unternehmensdaten · Wissenssuche mit RAG · Dokumentenverarbeitung · Datenklassen · Berechtigungen" },
+  { n: "1", title: "Infrastruktur und Betrieb", items: "Cloud, eigene Server oder hybrid · Bereitstellung · Überwachung · Datensicherung · Rechenzentrum in der EU" },
 ];
 
 function Section({ id, kick, title, intro, alt, children }: { id?: string; kick: string; title: string; intro?: string; alt?: boolean; children: React.ReactNode }) {
@@ -92,19 +92,19 @@ export default function KiImBetrieb() {
               Vom KI-Hype zur kontrollierten Umsetzung: mit Kurs, Crew und Schiff
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "60ch", margin: "0 auto" }}>
-              Ob sich KI für Ihr Unternehmen lohnt, entscheidet kein einzelnes Tool. Es braucht einen klaren Kurs, eine Crew, die mitzieht, und ein seetüchtiges Schiff. Fehlt eines davon, bleibt es beim Experiment.
+              Ob sich KI für Ihr Unternehmen lohnt, entscheidet kein einzelnes Werkzeug. Es braucht einen klaren Kurs, eine Crew, die mitzieht, und ein seetüchtiges Schiff. Fehlt eines davon, bleibt es beim Experiment.
             </p>
           </div>
         </section>
 
         {/* Situation und Komplikation */}
         <Section kick="Woran es hängt" title="Am Wissen über KI fehlt es kaum noch, am Ergebnis fast überall"
-          intro="Kurse, Videos und Prompt-Sammlungen gibt es rund um die Uhr und meist kostenlos. Viele Mitarbeitende arbeiten mit KI schon schneller. Im Betriebsergebnis kommt das bei den wenigsten an.">
+          intro="Kurse, Videos und Sammlungen von Anweisungen (Prompts) gibt es rund um die Uhr und meist kostenlos. Viele Mitarbeitende arbeiten mit KI schon schneller. Im Betriebsergebnis kommt das bei den wenigsten an.">
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
             <div style={{ ...card, borderLeft: "3px solid var(--silver-deep)" }}>
               <h3 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 600, color: "var(--fg-3)", letterSpacing: ".1em", textTransform: "uppercase", margin: "0 0 14px" }}>Wissen</h3>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                {["Kurse, Bücher, Videos und Prompts", "jederzeit verfügbar, meist kostenlos", "Ergebnis: einzelne Mitarbeitende arbeiten schneller"].map(t => (
+                {["Kurse, Bücher, Videos und Anweisungen", "jederzeit verfügbar, meist kostenlos", "Ergebnis: einzelne Mitarbeitende arbeiten schneller"].map(t => (
                   <li key={t} style={body}>– {t}</li>
                 ))}
               </ul>
@@ -229,7 +229,7 @@ export default function KiImBetrieb() {
 
         {/* Vorgehensmodell in drei Strängen */}
         <Section kick="Vorgehensmodell" title="Kurs, Crew und Logbuch laufen als drei Stränge mit festen Schritten und vorzeigbaren Ergebnissen"
-          intro="Der Kurs mündet in eine Roadmap, die Crew in Abläufe, die genutzt werden, das Logbuch in ein dokumentiertes KI-Managementsystem. Die Stränge laufen parallel. Die Anwendungsfälle aus der Roadmap setzen wir danach als einzelne Projekte um, das Schiff dafür ist die Architektur weiter unten.">
+          intro="Der Kurs mündet in einen Fahrplan, die Crew in Abläufe, die genutzt werden, das Logbuch in ein dokumentiertes KI-Managementsystem. Die Stränge laufen parallel. Die Anwendungsfälle aus dem Fahrplan setzen wir danach als einzelne Projekte um, das Schiff dafür ist die Architektur weiter unten.">
           <div style={{ marginBottom: 48 }}>
             <EbenenModell aktiv="unternehmen" />
           </div>

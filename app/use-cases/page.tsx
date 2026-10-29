@@ -13,19 +13,19 @@ export const metadata: Metadata = {
 const CATEGORIES = [
   {
     title: "Vertrieb und Marketing",
-    cases: ["Lead-Qualifizierung", "Automatische Angebotserstellung", "Follow-up-E-Mails", "Content-Unterstützung", "CRM-Zusammenfassungen"],
+    cases: ["Bewertung von Anfragen", "Automatische Angebotserstellung", "Nachfass-E-Mails", "Unterstützung bei Texten und Inhalten", "CRM-Zusammenfassungen"],
   },
   {
-    title: "Verwaltung und Backoffice",
-    cases: ["Belegmanagement", "Dokumentenanalyse", "E-Mail-Klassifizierung", "Interne Wissenssuche", "Protokolle und Zusammenfassungen"],
+    title: "Verwaltung und Innendienst",
+    cases: ["Belegverwaltung", "Dokumentenanalyse", "E-Mail-Klassifizierung", "Interne Wissenssuche", "Protokolle und Zusammenfassungen"],
   },
   {
     title: "Kundenservice",
-    cases: ["Voicebot als intelligenter Anrufbeantworter", "FAQ-Bot", "Ticket-Vorqualifizierung", "Termin- und Rückrufmanagement", "Service-Zusammenfassungen"],
+    cases: ["Sprachassistent als intelligenter Anrufbeantworter", "Assistent für häufige Fragen", "Vorsortierung von Kundenanfragen", "Termin- und Rückrufverwaltung", "Zusammenfassungen von Kundenanfragen"],
   },
   {
-    title: "Management und Strategie",
-    cases: ["KI-Roadmaps", "Tool-Bewertung", "Reporting-Unterstützung", "Wissensmanagement", "Risikoanalyse"],
+    title: "Führung und Strategie",
+    cases: ["KI-Fahrpläne", "Bewertung von KI-Werkzeugen", "Unterstützung im Berichtswesen", "Wissensmanagement", "Risikoanalyse"],
   },
 ];
 
@@ -36,9 +36,9 @@ export default function UseCases() {
       <main>
         <section style={{ position: "relative", padding: "80px 32px 60px", overflow: "hidden", borderBottom: "1px solid var(--border-1)" }}>
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Use Cases</span>
+            <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Anwendungsfälle</span>
             <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 1.05, color: "var(--fg-1)", margin: "20px 0 20px" }}>
-              KI-Use-Cases für echte Geschäftsprozesse
+              KI-Anwendungsfälle für echte Geschäftsprozesse
             </h1>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 17, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "56ch", margin: "0 auto" }}>
               Künstliche Intelligenz wird dann wertvoll, wenn sie konkrete Aufgaben erleichtert, Prozesse beschleunigt und Entscheidungen unterstützt.
@@ -65,7 +65,7 @@ export default function UseCases() {
 
         <section style={{ padding: "80px 32px", textAlign: "center", background: "var(--ink-abyss)", borderTop: "1px solid var(--border-1)" }}>
           <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 48px)", color: "var(--fg-1)", margin: "0 0 20px" }}>
-            Ihr Use Case ist nicht dabei?
+            Ihr Anwendungsfall ist nicht dabei?
           </h2>
           <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", margin: "0 auto 32px", maxWidth: "48ch", lineHeight: 1.7 }}>
             Sprechen Sie mich an. Gemeinsam prüfen wir, ob und wie KI in Ihrem Fall sinnvoll ist.

@@ -13,7 +13,7 @@ const DIMS: Dim[] = [
   { key: "a", title: "Strategie und Rückendeckung", levels: [
     "Keine KI-Ausrichtung, KI passiert nebenbei in der IT.",
     "Interesse und ein informeller Fürsprecher, aber keine Ziele und kein Budget.",
-    "Benannter Verantwortlicher in der Geschäftsführung, Ziele, Budget und Roadmap.",
+    "Benannter Verantwortlicher in der Geschäftsführung, Ziele, Budget und Fahrplan.",
     "KI ist Chefsache und im Kerngeschäft verankert, Investitionen werden gesteuert.",
   ] },
   { key: "b", title: "Anwendungsfälle und Nutzen", levels: [
@@ -35,8 +35,8 @@ const DIMS: Dim[] = [
     "KI wird selbstverständlich genutzt, eigenes Team, Rahmenvereinbarung mit dem Betriebsrat.",
   ] },
   { key: "e", title: "Regeln, Datenschutz und EU AI Act", quer: true, levels: [
-    "Keine Leitplanken, unklar, welche Tools und Daten erlaubt sind.",
-    "Erste Regeln zu erlaubten Tools und Daten, EU AI Act ist bekannt.",
+    "Keine Leitplanken, unklar, welche Werkzeuge und Daten erlaubt sind.",
+    "Erste Regeln zu erlaubten Werkzeugen und Daten, EU AI Act ist bekannt.",
     "Je Anwendungsfall Einstufung nach EU AI Act und Datenschutzprüfung, klare Freigaben.",
     "Formale, einheitliche Governance für das ganze Unternehmen, dokumentiert.",
   ] },
@@ -49,10 +49,10 @@ const DIMS: Dim[] = [
 ];
 
 const STUFEN = [
-  { n: 1, name: "Kick-start",  schritt: "Ein bis drei Leuchtturm-Anwendungsfälle mit hoher Wirkung und guter Machbarkeit wählen, die Datenlage grob erfassen, einen Verantwortlichen und erste Regeln festlegen. Ziel: ein Nachweis in wenigen Wochen." },
-  { n: 2, name: "Excite",      schritt: "Aus dem Nachweis eine Bewegung machen: Führung und Belegschaft praktisch einbinden statt mit Folien, KI-Kompetenz aufbauen, den Betriebsrat informieren, Erfolge sichtbar machen." },
-  { n: 3, name: "Strategize",  schritt: "Bewusst einen Schritt zurück in die Strategie: wenige Anwendungsfälle priorisieren, Daten aufbereiten, Einstufung nach EU AI Act mit klaren Freigaben, Betriebsmodell festlegen." },
-  { n: 4, name: "Scale",       schritt: "In die Breite bringen: festes Betriebsmodell mit zentralem Team, Prozesse neu gestalten, durchgängige Erfolgsmessung, Verantwortung im eigenen Haus." },
+  { n: 1, name: "Anlaufen",    schritt: "Ein bis drei Leuchtturm-Anwendungsfälle mit hoher Wirkung und guter Machbarkeit wählen, die Datenlage grob erfassen, einen Verantwortlichen und erste Regeln festlegen. Ziel: ein Nachweis in wenigen Wochen." },
+  { n: 2, name: "Begeistern",  schritt: "Aus dem Nachweis eine Bewegung machen: Führung und Belegschaft praktisch einbinden statt mit Folien, KI-Kompetenz aufbauen, den Betriebsrat informieren, Erfolge sichtbar machen." },
+  { n: 3, name: "Ausrichten",  schritt: "Bewusst einen Schritt zurück in die Strategie: wenige Anwendungsfälle priorisieren, Daten aufbereiten, Einstufung nach EU AI Act mit klaren Freigaben, Betriebsmodell festlegen." },
+  { n: 4, name: "Ausbauen",    schritt: "In die Breite bringen: festes Betriebsmodell mit zentralem Team, Prozesse neu gestalten, durchgängige Erfolgsmessung, Verantwortung im eigenen Haus." },
 ];
 
 function stufeAus(avg: number) {

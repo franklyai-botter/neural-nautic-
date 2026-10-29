@@ -15,7 +15,7 @@ const lead = { fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color:
 const body = { fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 };
 
 const VERGLEICH = [
-  { dim: "Ausgangspunkt",              vibe: "Eine Idee und ein Prompt",                                  eng: "Schriftliche Anforderungen mit Abnahmekriterien und eine geprüfte Architektur" },
+  { dim: "Ausgangspunkt",              vibe: "Eine Idee und eine Anweisung an die KI",                                  eng: "Schriftliche Anforderungen mit Abnahmekriterien und eine geprüfte Architektur" },
   { dim: "Qualität",                   vibe: "„Läuft bei mir“",                                           eng: "Automatische Tests und eine feste Prüfung vor jeder Auslieferung" },
   { dim: "Sicherheit und Datenschutz", vibe: "Schlüssel im Code, Daten gehen an beliebige Dienste",       eng: "Geheimnisse sicher verwahrt, Rechtekonzept, EU-Datenresidenz, Auftragsverarbeitung" },
   { dim: "Nachvollziehbarkeit",        vibe: "Ein langer Chatverlauf",                                    eng: "Versionsverwaltung, eine Aufgabe je Änderung, Dokumentation" },
@@ -35,7 +35,7 @@ const STATIONEN = [
   { n: "02", title: "Architektur mit Prüfung",        desc: "Die Zielarchitektur wird gegen feste Kriterien geprüft: Sicherheit, Datenschutz, Kosten, Betrieb, Austauschbarkeit der Modelle. Sie wird überarbeitet, bis sie trägt.", result: "Geprüftes Architekturdokument" },
   { n: "03", title: "Plan mit Compliance-Prüfung",    desc: "Der Plan zerfällt in einzelne, prüfbare Aufgaben, jede rückverfolgbar zu einer Anforderung. Jeder Plan wird vor dem Bau gegen Datenschutz- und Sicherheitsanforderungen geprüft.", result: "Aufgabenliste mit Nachweis" },
   { n: "04", title: "Umsetzung mit KI-Agenten",       desc: "KI-Agenten planen, programmieren und testen. Jede Änderung wird einzeln versioniert und von uns geprüft. Die Agenten machen es schnell, die Verantwortung bleibt bei uns.", result: "Getesteter Code in Ihrem Repository" },
-  { n: "05", title: "Qualitätstor und Übergabe",      desc: "Vor der Auslieferung prüfen wir Sicherheit, Fehlerbehandlung, Typsicherheit, Testqualität und Codestil und fragen: Was bricht im Betrieb zuerst? Erst dann geht die Lösung live.", result: "Auslieferung mit Dokumentation" },
+  { n: "05", title: "Qualitätstor und Übergabe",      desc: "Vor der Auslieferung prüfen wir Sicherheit, Fehlerbehandlung, Typsicherheit, Testqualität und Codestil und fragen: Was bricht im Betrieb zuerst? Erst dann geht die Lösung in Betrieb.", result: "Auslieferung mit Dokumentation" },
 ];
 
 const ERGEBNIS = [
@@ -117,8 +117,10 @@ export default function AiEngineering() {
               Hervorgehoben sind die Klassen, für die es AI Engineering braucht und in denen wir bauen oder begleiten. Für die unteren Klassen sorgen wir dafür, dass Ihre Fachbereiche schnell und trotzdem sicher arbeiten können.
             </p>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", lineHeight: 1.6, marginTop: 14 }}>
-              Risikoklassen nach Roman Langfeld (for42), Whitepaper „Governed Enterprise Vibe Coding“, Juli 2026:{" "}
-              <a href="https://www.romanlangfeld.de/ressourcen/governed-enterprise-vibe-coding" target="_blank" rel="noopener">romanlangfeld.de</a>.
+              Risikoklassen nach Roman Langfeld (for42).
+            </p>
+            <p style={{ ...body, marginTop: 20, maxWidth: "75ch" }}>
+              Welche Klasse Ihre Lösung hat, klären wir gemeinsam. <Link href="/kontakt">Sprechen Sie uns an</Link>.
             </p>
           </div>
         </section>

@@ -89,7 +89,7 @@ LAYERS = [
             dict(id="raci", label="Rollen & RACI", x=430, z=110, anchor="r"),
             dict(id="risk", label="Risikomanagement", x=200, z=360, anchor="l"),
             dict(id="aiact", label="Einstufung EU AI Act", x=520, z=300, anchor="r"),
-            dict(id="audit", label="Audit-Trail", x=740, z=420, anchor="r", big=True),
+            dict(id="audit", label="Prüfpfad", x=740, z=420, anchor="r", big=True),
         ],
     ),
     dict(
@@ -117,14 +117,14 @@ LAYERS = [
     ),
     dict(
         key="orch", y=1360, color=CYAN,
-        title="4 · ORCHESTRIERUNG", role="Workflows · Agenten",
+        title="4 · ORCHESTRIERUNG", role="Abläufe · Agenten",
         intake="jede Anfrage, jeder Ablauf",
         nodes=[
-            dict(id="flow", label="Workflow-Engine", x=140, z=90, anchor="r"),
-            dict(id="agent", label="Agent-Routing", x=200, z=360, anchor="l"),
-            dict(id="gw", label="LLM-Gateway", x=470, z=250, anchor="r", big=True),
+            dict(id="flow", label="Ablaufsteuerung", x=140, z=90, anchor="r"),
+            dict(id="agent", label="Agenten-Zuweisung", x=200, z=360, anchor="l"),
+            dict(id="gw", label="Modellzugang (LLM-Gateway)", x=470, z=250, anchor="r", big=True),
             dict(id="guard", label="Leitplanken", x=700, z=110, anchor="r"),
-            dict(id="prompt", label="Prompt-Verwaltung", x=760, z=300, anchor="r"),
+            dict(id="prompt", label="Anweisungen (Prompts)", x=760, z=300, anchor="r"),
             dict(id="log", label="Protokollierung", x=40, z=200, anchor="l"),
         ],
     ),
@@ -141,11 +141,11 @@ LAYERS = [
     ),
     dict(
         key="data", y=520, color=SAND,
-        title="2 · DATEN & WISSEN", role="Pipeline → Index → Abruf",
+        title="2 · DATEN & WISSEN", role="Einlesen → Index → Abruf",
         intake="ERP · CRM · Dokumente · Ablagen",
         nodes=[
             dict(id="src", label="Unternehmensdaten", x=110, z=70, anchor="r"),
-            dict(id="pipe", label="Dokumenten-Pipeline", x=330, z=140, anchor="r"),
+            dict(id="pipe", label="Dokumentenverarbeitung", x=330, z=140, anchor="r"),
             dict(id="index", label="Wissensindex (RAG)", x=540, z=260, anchor="r", big=True),
             dict(id="klass", label="Datenklassen", x=170, z=380, anchor="l"),
             dict(id="rights", label="Berechtigungen", x=760, z=420, anchor="r"),
@@ -157,9 +157,9 @@ LAYERS = [
         intake="Rechenzentrum in der EU",
         nodes=[
             dict(id="rz", label="EU-Rechenzentrum", x=150, z=100, anchor="r"),
-            dict(id="deploy", label="Container & Deployment", x=430, z=230, anchor="r", big=True),
-            dict(id="monitor", label="Monitoring", x=720, z=150, anchor="r"),
-            dict(id="backup", label="Backup", x=640, z=420, anchor="r"),
+            dict(id="deploy", label="Container und Bereitstellung", x=430, z=230, anchor="r", big=True),
+            dict(id="monitor", label="Überwachung", x=720, z=150, anchor="r"),
+            dict(id="backup", label="Datensicherung", x=640, z=420, anchor="r"),
         ],
     ),
 ]
@@ -204,8 +204,8 @@ PANELS = [
     dict(
         title="EIN AUSGANG ZU DEN MODELLEN", accent=CYAN,
         lines=[
-            "→  Jede Anfrage läuft über das LLM-Gateway",
-            "→  Routing nach Aufgabe und Datenklasse",
+            "→  Jede Anfrage läuft über den Modellzugang",
+            "→  Verteilung nach Aufgabe und Datenklasse",
             "→  Budgets und Kosten je Anfrage sichtbar",
             "→  Modellwechsel = Einstellung, kein Umbau",
         ],
@@ -223,7 +223,7 @@ PANELS = [
     dict(
         title="WISSEN MIT QUELLE", accent=SAND,
         lines=[
-            "→  Pipeline vergibt Datenklassen beim Einlesen",
+            "→  Datenklassen schon beim Einlesen vergeben",
             "→  Wissenssuche (RAG) mit Quellenangabe",
             "→  Berechtigungen gelten auch für die KI",
             "→  Löschen wirkt bis in den Index",
@@ -234,7 +234,7 @@ PANELS = [
         title="BETRIEB IN DER EU", accent=GREY,
         lines=[
             "Cloud, eigene Server oder hybrid",
-            "Container-Deployment · Monitoring · Backup",
+            "Bereitstellung · Überwachung · Datensicherung",
             "Rechenzentrum in der EU als Standard",
         ],
         foot="Welche Schichten Sie selbst betreiben und welche Sie einkaufen, ist eine Entscheidung je Schicht.",

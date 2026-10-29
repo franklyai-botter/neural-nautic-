@@ -59,7 +59,7 @@ const PERSON_JSON_LD = {
 const STRENGTHS = [
   "Verständliche Übersetzung komplexer KI-Themen",
   "Fokus auf reale Prozesse statt abstrakte Hype-Themen",
-  "Erfahrung mit Tool-Auswahl, Automatisierung und KI-Workflows",
+  "Erfahrung mit Werkzeugauswahl, Automatisierung und KI-gestützten Arbeitsabläufen",
   "Blick für Datenschutz, Governance und organisatorische Einführung",
   "Kombination aus Strategie, Umsetzung und Schulung",
   "Mittelstandstauglicher Beratungsstil",
@@ -106,7 +106,7 @@ export default function UeberMich() {
                 Ich unterstütze Unternehmen dabei, künstliche Intelligenz nicht nur zu verstehen, sondern sinnvoll in den Arbeitsalltag zu integrieren.
               </p>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-2)", lineHeight: 1.75, margin: "0 0 24px" }}>
-                Dabei verbinde ich KI-Verständnis, Prozessdenken, Tool-Kompetenz und Change-Perspektive. Mein Ansatz ist pragmatisch: Erst verstehen wir das Problem, dann wählen wir die passende Lösung.
+                Dabei verbinde ich KI-Verständnis, Prozessdenken, Werkzeugkenntnis und den Blick auf Veränderungsprozesse. Mein Ansatz ist pragmatisch: Erst verstehen wir das Problem, dann wählen wir die passende Lösung.
               </p>
               <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, color: "var(--fg-2)", lineHeight: 1.75, margin: "0 0 40px" }}>
                 Ich arbeite besonders gern an Schnittstellen zwischen Geschäftsführung, IT, Fachabteilungen, Datenschutz und operativen Teams. Denn erfolgreiche KI-Einführung ist nicht nur eine technische Aufgabe. Sie ist auch eine Frage von Akzeptanz, Verantwortung und klarer Kommunikation.
@@ -165,7 +165,7 @@ export default function UeberMich() {
                   Strategische KI-Kompetenz, online geprüft bei der TÜV SÜD Akademie.
                 </p>
                 <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-3)", lineHeight: 1.7, margin: "0 0 28px", flexGrow: 1 }}>
-                  Strategie · Roadmaps · Implementierung · Risikomanagement
+                  Strategie · Fahrpläne · Implementierung · Risikomanagement
                 </div>
                 <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.06em", marginBottom: 14 }}>
                   04.12.2025  ·  Z-001124711
