@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import WerkzeugLaufband from "../components/WerkzeugLaufband";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "KI Tool Kompass: KI-Werkzeuge richtig auswählen | NeuralNautic",
@@ -43,6 +44,17 @@ export default function KiToolKompass() {
               Der KI-Markt ist unübersichtlich. Gemeinsam mit Ihnen bewerten wir passende Werkzeuge, führen sie sinnvoll ein und legen fest, wie sie genutzt werden.
             </p>
           </div>
+        </section>
+
+        {/* Werkzeug-Logos in Glas (vorher auf der Startseite, Frank 29.10.2026: gehört zu den Werkzeugen) */}
+        <section style={{ padding: "64px 0 24px" }}>
+          <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, color: "var(--fg-1)", textAlign: "center", margin: "0 auto 28px", padding: "0 20px", maxWidth: 760 }}>
+            KI wirkt dort, wo Ihre Daten liegen: wir binden die Werkzeuge an, die Sie schon nutzen.
+          </h2>
+          <WerkzeugLaufband />
+          <p style={{ textAlign: "center", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", margin: "16px auto 0", padding: "0 20px" }}>
+            Beispiele. Die Logos gehören den jeweiligen Inhabern, eine Partnerschaft besteht nicht.
+          </p>
         </section>
 
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
