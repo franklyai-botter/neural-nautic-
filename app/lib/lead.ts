@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-// Gemeinsame Logik für Downloads gegen Kontaktdaten (Name, E-Mail, Telefon, Einwilligung).
+// Gemeinsame Logik für Downloads mit freiwilligen Kontaktdaten (Name, E-Mail, Telefon, Einwilligung).
 // Die Angaben gehen per Mail an Frank (wie beim Kontaktformular), gespeichert wird hier nichts.
 // LEAD_MAIL_OPTIONAL=1 nur für die lokale Vorschau ohne Resend-Schlüssel: dann wird der Lead
 // ins Server-Log geschrieben statt gemailt. Auf der Live-Seite nicht setzen.
@@ -26,23 +26,25 @@ export async function leadMelden(req: Request, unterlage: string, seite: string)
   if (String(body.website ?? "") !== "") {
     return NextResponse.json({ error: "Ungültige Anfrage." }, { status: 400 });
   }
-  if (name.length < 2 || name.length > 120) {
-    return NextResponse.json({ error: "Bitte geben Sie Ihren Namen an." }, { status: 400 });
+  // Alle Angaben sind freiwillig (wie bei Roman, Frank 29.10.2026). Ohne Angaben: Download ohne Meldung.
+  if (!name && !email && !phone) return null;
+  if (name.length > 120) {
+    return NextResponse.json({ error: "Der Name ist zu lang." }, { status: 400 });
   }
-  if (!EMAIL.test(email) || email.length > 200) {
-    return NextResponse.json({ error: "Bitte geben Sie eine gültige E-Mail-Adresse an." }, { status: 400 });
+  if (email && (!EMAIL.test(email) || email.length > 200)) {
+    return NextResponse.json({ error: "Bitte prüfen Sie die E-Mail-Adresse oder lassen Sie das Feld leer." }, { status: 400 });
   }
-  if (!PHONE.test(phone) || phone.replace(/\D/g, "").length < 6) {
-    return NextResponse.json({ error: "Bitte geben Sie eine gültige Telefonnummer an." }, { status: 400 });
+  if (phone && (!PHONE.test(phone) || phone.replace(/\D/g, "").length < 6)) {
+    return NextResponse.json({ error: "Bitte prüfen Sie die Telefonnummer oder lassen Sie das Feld leer." }, { status: 400 });
   }
   if (!consent) {
-    return NextResponse.json({ error: "Bitte bestätigen Sie die Einwilligung." }, { status: 400 });
+    return NextResponse.json({ error: "Wenn Sie Kontaktdaten angeben, bestätigen Sie bitte die Einwilligung. Ohne Angaben geht der Download auch so." }, { status: 400 });
   }
 
   const text = `Download: ${unterlage}
-Name: ${name}
-E-Mail: ${email}
-Telefon: ${phone}
+Name: ${name || "keine Angabe"}
+E-Mail: ${email || "keine Angabe"}
+Telefon: ${phone || "keine Angabe"}
 Einwilligung erteilt: ja, ${new Date().toISOString()}
 Seite: ${seite}`;
 
@@ -51,8 +53,8 @@ Seite: ${seite}`;
     const { error } = await resend.emails.send({
       from: "NeuralNautic Website <onboarding@resend.dev>",
       to: "frankschuettai@neuralnautic.org",
-      replyTo: email,
-      subject: `Download ${unterlage}: ${name}`,
+      replyTo: email || undefined,
+      subject: `Download ${unterlage}: ${name || email || phone}`,
       text,
     });
     if (error) {

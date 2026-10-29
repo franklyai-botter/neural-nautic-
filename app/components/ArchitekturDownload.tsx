@@ -97,18 +97,21 @@ export default function ArchitekturDownload({
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", lineHeight: 1.6, margin: 0 }}>
+              Alle Angaben sind freiwillig: Der Download startet auch, wenn Sie die Felder leer lassen. Wenn Sie uns Ihre Kontaktdaten hinterlassen, melden wir uns gern bei Fragen.
+            </p>
             <div>
-              <label htmlFor={`${idp}-name`} style={label}>Name *</label>
-              <input id={`${idp}-name`} name="name" required autoComplete="name" style={input} placeholder="Ihr Name" />
+              <label htmlFor={`${idp}-name`} style={label}>Name (freiwillig)</label>
+              <input id={`${idp}-name`} name="name" autoComplete="name" style={input} placeholder="Ihr Name" />
             </div>
             <div className="nn-form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div>
-                <label htmlFor={`${idp}-email`} style={label}>E-Mail *</label>
-                <input id={`${idp}-email`} name="email" type="email" required autoComplete="email" style={input} placeholder="ihre@email.de" />
+                <label htmlFor={`${idp}-email`} style={label}>E-Mail (freiwillig)</label>
+                <input id={`${idp}-email`} name="email" type="email" autoComplete="email" style={input} placeholder="ihre@email.de" />
               </div>
               <div>
-                <label htmlFor={`${idp}-phone`} style={label}>Telefon *</label>
-                <input id={`${idp}-phone`} name="phone" type="tel" required autoComplete="tel" style={input} placeholder="+49 ..." />
+                <label htmlFor={`${idp}-phone`} style={label}>Telefon (freiwillig)</label>
+                <input id={`${idp}-phone`} name="phone" type="tel" autoComplete="tel" style={input} placeholder="+49 ..." />
               </div>
             </div>
             {/* Honeypot, für Menschen unsichtbar */}
@@ -117,10 +120,10 @@ export default function ArchitekturDownload({
               <input id={`${idp}-website`} name="website" tabIndex={-1} autoComplete="off" />
             </div>
             <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontFamily: "var(--font-inter), sans-serif", fontSize: 12.5, color: "var(--fg-2)", lineHeight: 1.6, cursor: "pointer" }}>
-              <input name="consent" type="checkbox" required style={{ marginTop: 3, accentColor: "var(--glow-cyan)", flexShrink: 0 }} />
+              <input name="consent" type="checkbox" style={{ marginTop: 3, accentColor: "var(--glow-cyan)", flexShrink: 0 }} />
               <span>
                 Ich willige ein, dass NeuralNautic meine Angaben verarbeitet, um mir {was} bereitzustellen und mich dazu per E-Mail oder Telefon zu kontaktieren. Die Einwilligung kann ich jederzeit per E-Mail widerrufen. Details in der{" "}
-                <Link href="/datenschutz" style={{ color: "var(--glow-cyan)" }}>Datenschutzerklärung</Link>. *
+                <Link href="/datenschutz" style={{ color: "var(--glow-cyan)" }}>Datenschutzerklärung</Link>.
               </span>
             </label>
             {error && (
