@@ -122,6 +122,15 @@ h1 em, h2 em { font-style: normal !important; }
     inset 0 -10px 22px rgba(13,115,119,0.08),
     inset 0 0 0 1px rgba(13,115,119,0.06);
 }
+/* Kopfleiste und Handy-Menü im alten dunklen Petrol (Frank 29.10.2026): die früheren Werte lokal
+   zurücksetzen, alles darin erbt sie. Cyan als Akzent ist auf dunklem Grund laut BRAND.md richtig. */
+.nn-kopf-dunkel {
+  --fg-1: #F5F5F2; --fg-2: #CDCED2; --fg-3: #9C9CA4; --fg-4: #707078;
+  --glow-cyan: #3FD4E0; --glow-aqua: #6FEFF5; --accent: #3FD4E0; --accent-hover: #6FEFF5;
+  --ink-abyss: #061419;
+  --border-1: rgba(205,206,210,0.10); --border-2: rgba(205,206,210,0.18); --border-3: rgba(63,212,224,0.30);
+}
+
 /* Stern in der Chat-Blase: pendelt ein wie eine Kompassnadel, dann läuft ein Lichtglanz drüber */
 @keyframes nn-kompass {
   0%, 62%, 100% { transform: rotate(0deg); filter: drop-shadow(0 2px 4px rgba(6,20,25,.25)) brightness(1); }

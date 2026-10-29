@@ -41,12 +41,12 @@ export default function Header() {
 
   return (
     <>
-      <header style={{
+      <header className="nn-kopf-dunkel" style={{
         position: "sticky", top: 0, zIndex: 20,
-        background: scrolled ? "rgba(255,255,255,0.94)" : "rgba(255,255,255,0.86)",
+        background: scrolled ? "rgba(10,32,40,0.94)" : "rgba(10,32,40,0.88)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(14,43,54,.1)",
+        borderBottom: "1px solid rgba(205,206,210,.1)",
         transition: "background 320ms cubic-bezier(.22,.61,.36,1)",
       }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", height: 64 }}>
@@ -82,7 +82,7 @@ export default function Header() {
                     position: "absolute", top: "100%", left: -16, paddingTop: 14, minWidth: 220,
                   }}>
                     <div style={{
-                      background: "rgba(255,255,255,0.98)", border: "1px solid var(--border-2)", borderRadius: 6,
+                      background: "rgba(10,32,40,0.97)", border: "1px solid var(--border-2)", borderRadius: 6,
                       boxShadow: "var(--shadow-lg)", padding: "8px 0",
                       backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
                     }}>
@@ -107,7 +107,7 @@ export default function Header() {
             fontSize: 12, fontWeight: 500,
             letterSpacing: "0.08em",
             padding: "9px 20px", borderRadius: 4,
-            background: "var(--glow-cyan)", color: "#FFFFFF",
+            background: "var(--glow-cyan)", color: "var(--ink-abyss)",
             textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0,
           }}>KI-Check buchen</a>
 
@@ -140,9 +140,9 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {menuOpen && (
-        <div style={{
+        <div className="nn-kopf-dunkel" style={{
           position: "fixed", top: 64, left: 0, right: 0, bottom: 0,
-          background: "rgba(255,255,255,0.98)",
+          background: "rgba(10,32,40,0.97)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
           zIndex: 19,
@@ -164,7 +164,7 @@ export default function Header() {
                     textTransform: "uppercase", letterSpacing: "0.1em",
                     color: pathname === c.href ? "var(--glow-cyan)" : "var(--fg-2)",
                     textDecoration: "none", padding: "12px 24px 12px 44px",
-                    borderBottom: "1px solid rgba(14,43,54,.07)",
+                    borderBottom: "1px solid rgba(205,206,210,.07)",
                   }}>{c.label}</Link>
                 )),
               ];
@@ -178,7 +178,7 @@ export default function Header() {
                 color: pathname === href ? "var(--glow-cyan)" : sub ? "var(--fg-2)" : "var(--fg-1)",
                 textDecoration: "none",
                 padding: sub ? "14px 24px 14px 44px" : "18px 24px",
-                borderBottom: "1px solid rgba(14,43,54,.07)",
+                borderBottom: "1px solid rgba(205,206,210,.07)",
                 transition: "color 150ms",
               }}>{label}</Link>
             ));
@@ -189,7 +189,7 @@ export default function Header() {
               fontFamily: "var(--font-inter), sans-serif",
               fontSize: 14, fontWeight: 500, letterSpacing: "0.08em",
               padding: "15px 24px", borderRadius: 4, textAlign: "center",
-              background: "var(--glow-cyan)", color: "#FFFFFF",
+              background: "var(--glow-cyan)", color: "var(--ink-abyss)",
               textDecoration: "none",
             }}>KI-Check buchen</a>
           </div>
