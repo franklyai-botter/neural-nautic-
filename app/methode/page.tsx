@@ -83,20 +83,6 @@ export default function Methode() {
           </div>
         </section>
 
-        <section style={{ padding: "64px 32px", borderTop: "1px solid var(--border-1)" }}>
-          <div className="nn-grid-2" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-            {([
-              ["KI im Betrieb", "Wertschöpfungsstufen, Vorgehensmodell und die sieben Schichten einer KI-Architektur.", "/ki-im-betrieb"],
-              ["AI Engineering", "Warum Software für den Betrieb ingenieurmäßig entsteht und nicht per Vibe Coding.", "/ai-engineering"],
-            ] as [string, string, string][]).map(([t, d, href]) => (
-              <Link key={href} href={href} style={{ display: "block", background: "var(--ink-current)", border: "1px solid var(--border-3)", borderRadius: 6, padding: "26px 28px", textDecoration: "none" }}>
-                <div style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 28, color: "var(--fg-1)", marginBottom: 8 }}>{t} →</div>
-                <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>{d}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
         <section style={{ padding: "80px 32px", textAlign: "center", background: "var(--ink-abyss)", borderTop: "1px solid var(--border-1)" }}>
           <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 48px)", color: "var(--fg-1)", margin: "0 0 20px" }}>
             Bereit, gemeinsam zu starten?

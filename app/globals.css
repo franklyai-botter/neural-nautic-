@@ -172,3 +172,9 @@ a:hover {
 }
 .nn-vgl-label { display: none; font-weight: 600; }
 @media (max-width: 860px) { .nn-vgl-label { display: inline; } }
+
+/* Untermenü „Methode“ im Kopf: öffnet bei Hover und bei Tastaturfokus */
+.nn-nav-sub { visibility: hidden; opacity: 0; transform: translateY(-4px); transition: opacity 160ms, transform 160ms, visibility 0s 160ms; }
+.nn-nav-group:hover .nn-nav-sub,
+.nn-nav-group:focus-within .nn-nav-sub { visibility: visible; opacity: 1; transform: none; transition: opacity 160ms, transform 160ms; }
+.nn-nav-sub a:hover { color: var(--glow-cyan) !important; background: rgba(63,212,224,.06); }

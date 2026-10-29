@@ -4,14 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const LINKS = [
+type NavLink = { label: string; href: string; children?: { label: string; href: string }[] };
+
+const LINKS: NavLink[] = [
   { label: "Leistungen",      href: "/leistungen" },
   { label: "Anwendungsfälle", href: "/use-cases" },
-  { label: "Methode",         href: "/methode" },
+  { label: "Methode",         href: "/methode", children: [
+    { label: "Vorgehen im Projekt", href: "/methode" },
+    { label: "KI im Betrieb",       href: "/ki-im-betrieb" },
+    { label: "AI Engineering",      href: "/ai-engineering" },
+  ] },
   { label: "KI Tool Kompass", href: "/ki-tool-kompass" },
   { label: "Wissen",          href: "/wissen" },
   { label: "Über mich",       href: "/ueber-mich" },
 ];
+
+const isActive = (l: NavLink, pathname: string) =>
+  pathname === l.href || !!l.children?.some(c => c.href === pathname);
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,19 +56,45 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="nn-nav-desktop" style={{ display: "flex", gap: 24, marginLeft: "auto", marginRight: 24 }}>
-            {LINKS.map(({ href, label }) => (
-              <Link key={href} href={href} style={{
+            {LINKS.map((l) => {
+              const linkStyle: React.CSSProperties = {
                 fontFamily: "var(--font-inter), sans-serif",
                 fontSize: 12, fontWeight: 500,
                 textTransform: "uppercase", letterSpacing: "0.12em",
-                color: pathname === href ? "var(--glow-cyan)" : "var(--fg-2)",
+                color: isActive(l, pathname) ? "var(--glow-cyan)" : "var(--fg-2)",
                 textDecoration: "none",
-                borderBottom: pathname === href ? "1px solid var(--glow-cyan)" : "1px solid transparent",
+                borderBottom: isActive(l, pathname) ? "1px solid var(--glow-cyan)" : "1px solid transparent",
                 padding: "4px 0",
                 transition: "all 180ms",
                 whiteSpace: "nowrap",
-              }}>{label}</Link>
-            ))}
+              };
+              if (!l.children) return <Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>;
+              return (
+                <div key={l.href} className="nn-nav-group" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                  <Link href={l.href} style={linkStyle} aria-haspopup="true">
+                    {l.label}<span aria-hidden="true" style={{ marginLeft: 6, fontSize: 9 }}>▾</span>
+                  </Link>
+                  <div className="nn-nav-sub" role="menu" style={{
+                    position: "absolute", top: "100%", left: -16, paddingTop: 14, minWidth: 220,
+                  }}>
+                    <div style={{
+                      background: "rgba(10,32,40,0.97)", border: "1px solid var(--border-2)", borderRadius: 6,
+                      boxShadow: "var(--shadow-lg)", padding: "8px 0",
+                      backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+                    }}>
+                      {l.children.map(c => (
+                        <Link key={c.href} href={c.href} role="menuitem" style={{
+                          display: "block", padding: "10px 18px",
+                          fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500,
+                          textTransform: "uppercase", letterSpacing: "0.1em", whiteSpace: "nowrap",
+                          color: pathname === c.href ? "var(--glow-cyan)" : "var(--fg-2)", textDecoration: "none",
+                        }}>{c.label}</Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
@@ -110,18 +145,23 @@ export default function Header() {
           display: "flex", flexDirection: "column",
           overflowY: "auto",
         }}>
-          {LINKS.map(({ href, label }) => (
-            <Link key={href} href={href} style={{
-              fontFamily: "var(--font-inter), sans-serif",
-              fontSize: 16, fontWeight: 500,
-              textTransform: "uppercase", letterSpacing: "0.1em",
-              color: pathname === href ? "var(--glow-cyan)" : "var(--fg-1)",
-              textDecoration: "none",
-              padding: "18px 24px",
-              borderBottom: "1px solid rgba(205,206,210,.07)",
-              transition: "color 150ms",
-            }}>{label}</Link>
-          ))}
+          {LINKS.flatMap((l) => {
+            const items = l.children
+              ? [{ label: l.label, href: l.href, sub: false }, ...l.children.filter(c => c.href !== l.href).map(c => ({ ...c, sub: true }))]
+              : [{ label: l.label, href: l.href, sub: false }];
+            return items.map(({ href, label, sub }) => (
+              <Link key={href} href={href} style={{
+                fontFamily: "var(--font-inter), sans-serif",
+                fontSize: sub ? 14 : 16, fontWeight: 500,
+                textTransform: "uppercase", letterSpacing: "0.1em",
+                color: pathname === href ? "var(--glow-cyan)" : sub ? "var(--fg-2)" : "var(--fg-1)",
+                textDecoration: "none",
+                padding: sub ? "14px 24px 14px 44px" : "18px 24px",
+                borderBottom: "1px solid rgba(205,206,210,.07)",
+                transition: "color 150ms",
+              }}>{label}</Link>
+            ));
+          })}
           <div style={{ padding: "24px", paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}>
             <Link href="/kontakt" style={{
               display: "block",
