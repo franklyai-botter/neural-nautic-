@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import type { Metadata } from "next";
+import Architektur3D from "../components/Architektur3D";
+import ArchitekturDownload from "../components/ArchitekturDownload";
 export const metadata: Metadata = {
   title: "KI im Betrieb: Wertschöpfung, Vorgehen, Architektur | NeuralNautic",
   alternates: { canonical: "/ki-im-betrieb" },
@@ -250,7 +252,37 @@ export default function KiImBetrieb() {
         {/* Architektur */}
         <Section id="architektur" alt kick="KI-Architektur" title="Eine belastbare KI-Architektur hat sieben Schichten, und Datenschutz geht durch alle"
           intro="Wer nur ein Modell anschließt, hat eine Demo. Für den Betrieb braucht es Daten, Orchestrierung, Sicherheit und Governance, die zusammenpassen. Die Regulierung betrifft dabei nicht eine Schicht, sondern das Ganze.">
-          <figure style={{ margin: 0 }}>
+          <figure style={{ margin: "0 0 20px" }}>
+            {/* Isometrisches Referenzmodell im Stil des RAG-Referenzmodells.
+                Daten: tools/architektur/build_grafik.py; Vorschau in halber Auflösung,
+                die volle Fassung (SVG) nur über das Download-Formular unten. */}
+            <img
+              src="/architektur/ki-architektur-vorschau.jpg"
+              width={1144} height={1880}
+              alt="Referenzmodell der KI-Architektur in sieben Schichten: Governance, Datenschutz, Anwendungen, Orchestrierung, Modelle, Daten und Wissen, Infrastruktur, mit Bausteinen und Datenfluss"
+              loading="lazy"
+              style={{ width: "100%", maxWidth: 900, height: "auto", display: "block", margin: "0 auto", borderRadius: 4, border: "1px solid var(--border-2)" }}
+            />
+            <figcaption style={{ ...body, fontSize: 12, color: "var(--fg-3)", marginTop: 10, textAlign: "center" }}>
+              Referenzmodell NeuralNautic, Stand 29.10.2026. Volle Auflösung als Download unten.
+            </figcaption>
+          </figure>
+
+          <details style={{ marginBottom: 16 }}>
+            <summary style={{ cursor: "pointer", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", color: "var(--glow-cyan)", marginBottom: 16 }}>
+              Das Modell im Raum drehen
+            </summary>
+            <Architektur3D />
+            <p style={{ ...body, fontSize: 12, color: "var(--fg-3)", marginTop: 10 }}>
+              Mausrad dreht, gehaltene linke Maustaste stellt den Blick ein. Auf dem Handy dreht waagerechtes Wischen.
+            </p>
+          </details>
+
+          <details style={{ marginBottom: 40 }}>
+            <summary style={{ cursor: "pointer", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", color: "var(--glow-cyan)", marginBottom: 16 }}>
+              Die sieben Schichten als Übersicht
+            </summary>
+          <div>
             <div className="nn-arch" style={{ display: "grid", gridTemplateColumns: "1fr 44px", gap: 12 }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {SCHICHTEN.map(l => (
@@ -285,7 +317,10 @@ export default function KiImBetrieb() {
               Welche Schichten Sie selbst betreiben und welche Sie einkaufen, klären wir in der{" "}
               <Link href="/leistungen">KI-Architektur-Beratung</Link>. Ergebnis ist eine dokumentierte Zielarchitektur mit Kostenmodell.
             </p>
-          </figure>
+          </div>
+          </details>
+
+          <ArchitekturDownload />
         </Section>
 
         {/* Übergang zum Engineering */}
