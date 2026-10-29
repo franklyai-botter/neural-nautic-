@@ -22,7 +22,7 @@ const VERGLEICH = [
   { dim: "Betrieb und Verantwortung",  vibe: "Niemand ist zuständig, wenn es bricht",                     eng: "Überwachung, Kostenbudget, Übergabe und eine benannte Verantwortung" },
 ];
 
-// Vier Risikoklassen nach Roman Langfeld (for42), eigene Formulierung. wir = AI Engineering nötig.
+// Vier Risikoklassen, eigene Formulierung. Angelehnt an Microsofts Umgebungsstrategie für die Power Platform (persönlich, Team, geschäftskritisch) und den risikobasierten Ansatz des EU AI Act. wir = AI Engineering nötig.
 const RISIKO = [
   { klasse: "Niedrig",  loesung: "Persönliche Arbeitshilfe oder Prototyp",                          wer: "Der Fachbereich selbst",                                  pruefung: "Keine Zugangsschlüssel im Code",                                  wir: false },
   { klasse: "Mittel",   loesung: "Teamlösung für wenige Nutzer, keine sensiblen Daten",             wer: "Der Fachbereich, auf einer freigegebenen Plattform",      pruefung: "Abhängigkeiten und Lizenzen, Eintrag ins Verzeichnis",            wir: false },
@@ -117,7 +117,7 @@ export default function AiEngineering() {
               Hervorgehoben sind die Klassen, für die es AI Engineering braucht und in denen wir bauen oder begleiten. Für die unteren Klassen sorgen wir dafür, dass Ihre Fachbereiche schnell und trotzdem sicher arbeiten können.
             </p>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, color: "var(--fg-3)", lineHeight: 1.6, marginTop: 14 }}>
-              Risikoklassen nach Roman Langfeld (for42).
+              Angelehnt an die Empfehlungen von Microsoft für selbst gebaute Anwendungen in Fachbereichen (Power Platform: persönlich, Team, geschäftskritisch) und an den risikobasierten Ansatz des EU AI Act.
             </p>
             <p style={{ ...body, marginTop: 20, maxWidth: "75ch" }}>
               Welche Klasse Ihre Lösung hat, klären wir gemeinsam. <Link href="/kontakt">Sprechen Sie uns an</Link>.
