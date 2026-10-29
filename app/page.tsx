@@ -37,8 +37,13 @@ const ZERTIFIKATE = [
   { src: "/zertifikate/neurawork-vorschau.webp", href: "https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01", titel: "Zertifikat Neurawork – KI Applikations- und Strategieexperte (Virtualbadge)" },
 ];
 
-const linkKnopf: CSSProperties = { display: "inline-flex", alignItems: "center", height: 48, boxSizing: "border-box", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".04em", padding: "0 16px", borderRadius: 4, border: "1px solid rgba(205,206,210,.35)", color: "var(--fg-1)", textDecoration: "none", whiteSpace: "nowrap" };
-const miniatur: CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, boxSizing: "border-box", borderRadius: 4, border: "1px solid var(--border-2)", background: "var(--ink-current)", flexShrink: 0 };
+// Erster Bildschirm hell wie bei for42.ai (Frank 29.10.2026), Rest der Seite bleibt Petrol.
+// Farben laut BRAND.md: auf hellem Grund Deep Teal hell als Akzent, Cyan nur auf dunklem Grund.
+const HELL = { grund: "#ffffff", schrift: "#061419", text: "#0e2b36", leise: "rgba(14,43,54,.62)", akzent: "#0D7377", linie: "rgba(14,43,54,.18)", papier: "#f5f2eb" };
+
+const linkKnopf: CSSProperties = { display: "inline-flex", alignItems: "center", height: 48, boxSizing: "border-box", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".04em", padding: "0 16px", borderRadius: 4, border: `1px solid ${HELL.linie}`, color: HELL.text, textDecoration: "none", whiteSpace: "nowrap" };
+const miniatur: CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, boxSizing: "border-box", borderRadius: 4, border: `1px solid ${HELL.linie}`, background: HELL.papier, flexShrink: 0 };
+const knopfHell: CSSProperties = { display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: HELL.akzent, color: "#ffffff", textDecoration: "none" };
 
 const knopf: CSSProperties = { display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" };
 const h2: CSSProperties = { fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "0 0 20px" };
@@ -51,33 +56,32 @@ export default function Home() {
       <main>
 
         {/* 1 ERSTER BILDSCHIRM: Problem mit Zahl, eigene Methode, ein Knopf, Beleg, echtes Foto */}
-        <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "104px 0 72px" }}>
+        <section style={{ position: "relative", minHeight: "90vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "104px 0 72px", background: HELL.grund }}>
           <div className="nn-hero-inner nn-grid-2" style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "0 32px", width: "100%", display: "grid", gridTemplateColumns: "minmax(0, 1.35fr) minmax(0, 1fr)", gap: 64, alignItems: "center" }}>
             <div>
-              <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(42px, 5.6vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.01em", color: "var(--fg-1)", margin: 0 }}>
+              <h1 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(42px, 5.6vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.01em", color: HELL.schrift, margin: 0 }}>
                 Damit KI nicht<br />
                 <em style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}>beim Ausprobieren stehen bleibt.</em>
               </h1>
-              <p style={{ ...text, fontSize: 18, maxWidth: "54ch", margin: "28px 0 0" }}>
+              <p style={{ ...text, color: HELL.text, fontSize: 18, maxWidth: "54ch", margin: "28px 0 0" }}>
                 Acht von zehn Befragten spüren den Nutzen von KI, nur sechs von hundert sehen ihn deutlich im Ergebnis.
-                Mit unserer Methode <strong style={{ color: "var(--fg-1)", fontWeight: 500 }}>Kurs, Crew, Schiff</strong> bringen
+                Mit unserer Methode <strong style={{ color: HELL.schrift, fontWeight: 600 }}>Kurs, Crew, Schiff</strong> bringen
                 wir KI im Mittelstand dorthin, in Deutschland, Österreich und der Schweiz.
               </p>
-              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: "var(--fg-3)", margin: "10px 0 36px" }}>
-                Zahlen: McKinsey, The state of AI in 2026, 25.08.2026 · <Link href="/wissen" style={{ color: "var(--fg-3)" }}>Einordnung im Ausguck</Link>
+              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: HELL.leise, margin: "10px 0 36px" }}>
+                Zahlen: McKinsey, The state of AI in 2026, 25.08.2026 · <Link href="/wissen" style={{ color: HELL.leise }}>Einordnung im Ausguck</Link>
               </p>
-              <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={knopf}>
-                KI-Potenzialcheck buchen
-              </a>
-              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, lineHeight: 1.5, color: "var(--fg-2)", margin: "14px 0 0", maxWidth: "52ch" }}>
-                {BERUHIGUNG}
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 32 }}>
-                <Image src="/frank-portrait.webp" alt="" width={44} height={44} style={{ width: 44, height: 44, flexShrink: 0, borderRadius: "50%", objectFit: "cover", objectPosition: "70% center", border: "1px solid var(--border-2)" }} />
-                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: "var(--fg-2)" }}>
-                  Frank Schütt, AI Strategy &amp; Application Expert,<br />geprüft bei der TÜV SÜD Akademie
+              <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+                <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={knopfHell}>
+                  KI-Potenzialcheck buchen
+                </a>
+                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, lineHeight: 1.5, color: HELL.text, maxWidth: "36ch" }}>
+                  {BERUHIGUNG}
                 </span>
               </div>
+              <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: HELL.leise, margin: "32px 0 0" }}>
+                Frank Schütt, AI Strategy &amp; Application Expert, geprüft bei der TÜV SÜD Akademie
+              </p>
               {/* Zwei Link-Knöpfe und dahinter die Zertifikate als gleich große Miniaturen (Ziele wie auf /ueber-mich) */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
                 <Link href="/ki-im-unternehmen" style={linkKnopf}>So arbeiten wir: Kurs, Crew, Schiff →</Link>
@@ -89,8 +93,8 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="nn-hero-foto" style={{ position: "relative", aspectRatio: "4 / 5", borderRadius: 6, overflow: "hidden", border: "1px solid var(--border-2)", boxShadow: "0 24px 60px rgba(0,0,0,.45)" }}>
-              <Image src="/frank-portrait.webp" alt="Frank Schütt, NeuralNautic" fill sizes="460px" style={{ objectFit: "cover", objectPosition: "70% center" }} />
+            <div className="nn-hero-foto" style={{ position: "relative", aspectRatio: "4 / 5", borderRadius: 6, overflow: "hidden", boxShadow: "0 20px 50px rgba(6,20,25,.18)" }}>
+              <Image src="/og/frank-schuett.jpg" alt="Frank Schütt, NeuralNautic" fill sizes="460px" style={{ objectFit: "cover", objectPosition: "center" }} />
             </div>
           </div>
         </section>
