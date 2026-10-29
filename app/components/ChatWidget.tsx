@@ -104,9 +104,9 @@ export default function ChatWidget() {
   const btnRight = 20;
   const btnSize = 60;
   // Auf dem Handy etwa halb so groß, sonst verdeckt der Knopf Inhalte im ersten Bildschirm.
-  const bubbleW = isMobile ? 70 : 128; // Sprechblasen-Button-Breite
-  const bubbleH = isMobile ? 84 : 152; // Sprechblasen-Button-Höhe (inkl. Schwanz)
-  const logoSize = isMobile ? 52 : 96; // Kompassrose im Button
+  const bubbleW = isMobile ? 62 : 88; // Sprechblasen-Button-Breite
+  const bubbleH = isMobile ? 74 : 104; // Sprechblasen-Button-Höhe (inkl. Schwanz)
+  const logoSize = isMobile ? 40 : 58; // Kompassrose im Button
 
   // Mobile: Chat-Position über dem Button — clampt damit obere Kante nie aus dem Viewport ragt
   const btnTopFromVVBottom = bubbleH + 20 + safeAreaBottom;
@@ -232,29 +232,39 @@ export default function ChatWidget() {
           <div style={{ position: "relative", width: bubbleW, height: bubbleH, display: "flex", alignItems: "center", justifyContent: "center" }}>
             {/* Sprechblasen-Form als SVG */}
             <svg
-              style={{ position: "absolute", inset: 0, filter: "drop-shadow(0 0 18px rgba(13,115,119,0.4)) drop-shadow(0 4px 24px rgba(0,0,0,0.55))" }}
+              style={{ position: "absolute", inset: 0, filter: "drop-shadow(0 14px 22px rgba(6,20,25,0.18)) drop-shadow(0 0 14px rgba(13,115,119,0.18))" }}
               width={bubbleW} height={bubbleH} viewBox="0 0 64 76" fill="none"
               preserveAspectRatio="none"
             >
+              {/* Glas: helles Milchglas mit Lichtkante oben, wie die Kacheln im Logo-Wirbel */}
+              <defs>
+                <linearGradient id="nn-blase-glas" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.96" />
+                  <stop offset="0.55" stopColor="#FFFFFF" stopOpacity="0.78" />
+                  <stop offset="1" stopColor="#E6F2F2" stopOpacity="0.9" />
+                </linearGradient>
+              </defs>
               <path
                 d="M14 0H50Q64 0 64 14V50Q64 64 50 64H40L32 76L24 64H14Q0 64 0 50V14Q0 0 14 0Z"
-                fill="rgba(6,20,26,0.94)"
-                stroke="rgba(13,115,119,0.28)"
-                strokeWidth="1.5"
+                fill="url(#nn-blase-glas)"
+                stroke="rgba(13,115,119,0.35)"
+                strokeWidth="1.2"
               />
+              <path d="M16 3H48Q60 3 61 13" stroke="rgba(255,255,255,1)" strokeWidth="2" strokeLinecap="round" />
             </svg>
             {/* Kompassrose — leicht nach oben versetzt damit sie im Blasen-Body zentriert wirkt */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo-star.png"
               alt=""
+              className="nn-kompass"
               width={logoSize}
               height={logoSize}
               style={{
                 position: "relative",
                 objectFit: "contain",
-                filter: "drop-shadow(0 0 8px rgba(13,115,119,0.45))",
-                marginTop: -12,
+                filter: "drop-shadow(0 2px 4px rgba(6,20,25,0.25))",
+                marginTop: isMobile ? -8 : -10,
               }}
             />
           </div>

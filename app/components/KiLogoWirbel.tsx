@@ -13,6 +13,8 @@ import { useEffect, useRef } from "react";
 const LOGOS: { datei: string; name: string }[] = [
   { datei: "/logo-monogram.png", name: "NeuralNautic" },
   { datei: "/logo-star.png", name: "NeuralNautic" },
+  // for42 im Original (Brand-Assets/for42/for42-wordmark.svg, Ink + Steel für hellen Grund)
+  { datei: "/partner/for42-wordmark.svg", name: "for42.ai" },
   ...([
     ["openai.svg", "OpenAI"], ["claude-color.svg", "Anthropic Claude"], ["gemini-color.svg", "Google Gemini"],
     ["deepseek-color.svg", "DeepSeek"], ["meta-color.svg", "Meta"], ["mistral-color.svg", "Mistral AI"],
