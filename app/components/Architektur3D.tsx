@@ -40,7 +40,18 @@ export default function Architektur3D() {
   return (
     <>
       <link rel="stylesheet" href="/architektur/model3d.css" precedence="default" />
-      <div ref={ref} dangerouslySetInnerHTML={{ __html: MARKUP }} />
+      <div style={{ position: "relative" }}>
+        <div ref={ref} dangerouslySetInnerHTML={{ __html: MARKUP }} />
+        {/* NN-Signatur wie in der statischen Grafik: Monogramm (public/logo-monogram.png, wie im Footer) und Wortmarke */}
+        <div aria-hidden="true" style={{ position: "absolute", top: 18, left: 22, display: "flex", alignItems: "center", gap: 10, pointerEvents: "none" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-monogram.png" alt="" width={40} height={40} style={{ objectFit: "contain", opacity: 0.92 }} />
+          <div>
+            <div style={{ fontFamily: "var(--font-italiana), serif", fontSize: 18, color: "var(--fg-2)", letterSpacing: ".04em", lineHeight: 1.1 }}>NeuralNautic</div>
+            <div style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: 9.5, color: "var(--fg-3)", letterSpacing: ".16em", textTransform: "uppercase" }}>Referenzmodell</div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
