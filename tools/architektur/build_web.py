@@ -52,7 +52,7 @@ def main():
         encoding="utf-8")
 
     shutil.copyfile(TOOLS / "model3d.js", OUT / "model3d.js")
-    css = B.font_faces() + B.styles("min(86vh, 880px)", framed=True)
+    css = B.font_faces() + B.styles("min(92vh, 1040px)", framed=True) + ".m3d:fullscreen{height:100vh;border:0;border-radius:0}"
     (OUT / "model3d.css").write_text(css, encoding="utf-8")
     (OUT / "szene.json").write_text(json.dumps(B.scene(), ensure_ascii=False), encoding="utf-8")
 

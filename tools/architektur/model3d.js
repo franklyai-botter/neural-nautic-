@@ -97,7 +97,8 @@
   function viewScale() {
     // 1390 = Höhe des RAG-Modells (fünf Ebenen). Höhere Stapel werden passend
     // verkleinert; für das RAG-Modell bleibt der Maßstab unverändert.
-    return Math.min(W / 1500, H / (2150 * Math.max(1, span / 1390))) * 1.55;
+    // Wurzel statt linear: hohe Stapel schrumpfen weniger, die Beschriftung bleibt lesbar.
+    return Math.min(W / 1500, H / (2150 * Math.max(1, Math.sqrt(span / 1390)))) * 1.55;
   }
 
   // ---------------------------------------------------------------- Bausteine

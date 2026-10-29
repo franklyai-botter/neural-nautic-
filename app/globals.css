@@ -178,3 +178,7 @@ a:hover {
 .nn-nav-group:hover .nn-nav-sub,
 .nn-nav-group:focus-within .nn-nav-sub { visibility: visible; opacity: 1; transform: none; transition: opacity 160ms, transform 160ms; }
 .nn-nav-sub a:hover { color: var(--glow-cyan) !important; background: rgba(63,212,224,.06); }
+
+/* 3D-Modell im Vollbild: Rahmen inkl. Logo füllt den Bildschirm */
+.m3d-wrap:fullscreen { background: var(--ink-abyss); }
+.m3d-wrap:fullscreen .m3d { height: 100vh !important; border: 0 !important; border-radius: 0 !important; }
