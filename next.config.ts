@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // /use-cases ist entfallen (29.10.2026), war auf der Live-Seite indexiert: dauerhaft auf /leistungen.
+  async redirects() {
+    return [{ source: "/use-cases", destination: "/leistungen", permanent: true }];
+  },
 };
 
 export default nextConfig;

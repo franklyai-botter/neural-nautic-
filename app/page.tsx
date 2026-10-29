@@ -21,14 +21,6 @@ const SERVICES = [
   { title: "KI Tool Kompass",     desc: "Bewertung und Auswahl passender KI-Tools nach Nutzen, Kosten, Datenschutz und Integrationsfähigkeit." },
 ];
 
-const USE_CASES = [
-  "Automatische Angebotserstellung", "Sprachassistent für Anrufannahme",
-  "E-Mail-Automatisierung", "Dokumentenanalyse",
-  "Belegverwaltung", "CRM-Unterstützung",
-  "Interner Wissensbot (RAG)", "Bewertung von Anfragen",
-  "KI-gestützter Kundenservice", "Schulungs- und Assistenzsysteme",
-];
-
 const TRUST = [
   "Mittelstandstaugliche Sprache",
   "Fokus auf konkrete Geschäftsprozesse",
@@ -180,28 +172,6 @@ export default function Home() {
                 <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65, margin: 0 }}>{s.desc}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* USE CASES */}
-        <section className="nn-section" style={{ padding: "100px 32px", background: "var(--ink-tide)" }}>
-          <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-            <div className="nn-uc-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
-              <div>
-                <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.24em", color: "var(--glow-cyan)" }}>Anwendungsfälle</span>
-                <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "16px 0 0" }}>
-                  KI für echte Geschäftsprozesse.
-                </h2>
-              </div>
-              <Link href="/use-cases" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--glow-cyan)", textDecoration: "none" }}>Alle Anwendungsfälle →</Link>
-            </div>
-            <div className="nn-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
-              {USE_CASES.map((u) => (
-                <div key={u} style={{ background: "var(--ink-current)", border: "1px solid var(--border-2)", borderRadius: 6, padding: "18px 20px" }}>
-                  <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, color: "var(--fg-2)", lineHeight: 1.4 }}>{u}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

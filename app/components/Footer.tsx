@@ -14,7 +14,6 @@ const COLS = [
     ["KI-Schulung",         "/leistungen"],
   ]],
   ["Angebote", [
-    ["Anwendungsfälle","/use-cases"],
     ["KI im Unternehmen", "/ki-im-unternehmen"],
     ["KI im Projekt",  "/methode"],
     ["AI Engineering", "/ai-engineering"],

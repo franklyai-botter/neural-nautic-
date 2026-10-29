@@ -6,7 +6,6 @@ import { SITE_URL } from "./site";
 const pages: { path: string; lastModified: string; priority: number }[] = [
   { path: "/", lastModified: "2026-10-21", priority: 1 },
   { path: "/leistungen", lastModified: "2026-10-20", priority: 0.9 },
-  { path: "/use-cases", lastModified: "2026-10-20", priority: 0.8 },
   { path: "/methode", lastModified: "2026-10-20", priority: 0.8 },
   { path: "/ki-im-unternehmen", lastModified: "2026-10-29", priority: 0.8 },
   { path: "/ai-engineering", lastModified: "2026-10-29", priority: 0.8 },

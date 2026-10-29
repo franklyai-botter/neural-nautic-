@@ -8,7 +8,6 @@ type NavLink = { label: string; href: string; children?: { label: string; href: 
 
 const LINKS: NavLink[] = [
   { label: "Leistungen",      href: "/leistungen" },
-  { label: "Anwendungsfälle", href: "/use-cases" },
   // Ganzheitlich: erst das Unternehmen, dann das einzelne Projekt, dann wie gebaut wird.
   { label: "Methode",         href: "/ki-im-unternehmen", children: [
     { label: "Im Unternehmen",  href: "/ki-im-unternehmen" },
