@@ -13,7 +13,7 @@ const PARTNERS: Partner[] = [
   { name: "spring.gate", href: "https://funnel.springgate-ai.de", logo: "/partner/springgate-logo.png", width: 140, height: 40, hellerGrund: true },
   // Karlson unverändert aus Brand-Assets/karlson/karlson-logo.png (400×400, = karlson-website public/karlson/logo.png).
   // Kein echter Alpha-Kanal, sehr blasses Schachbrett im Grund — deshalb wie spring.gate auf weißer Fläche.
-  { name: "Karlson – One-Man-Band", href: "https://karlson-solo-orchester.de", logo: "/partner/karlson-logo.png", width: 44, height: 44, hellerGrund: true },
+  { name: "Karlson – One-Man-Band", href: "https://karlson-solo-orchester.de", logo: "/partner/karlson-logo.png", width: 52, height: 52, hellerGrund: true },
 ];
 
 const PRO_HAELFTE = 8;
