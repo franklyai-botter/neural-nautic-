@@ -13,3 +13,12 @@ Modellanbieter, mit denen wir arbeiten und die wir vergleichen; eine Partnerscha
 Empfehlung durch die Anbieter besteht nicht.
 
 Auswahl nach den Modellanbietern auf artificialanalysis.ai (abgerufen 29.10.2026).
+
+Ergänzt am 29.10.2026 (Anbieter ohne LobeHub-Icon), unverändert von artificialanalysis.ai/img/logos/:
+spacexai, xiaomi, ifm (Institute of Foundation Models), reflection, thinking-machines, prime-intellect,
+sarvam, servicenow, sktelecom, trillionlabs, motif, multiversecomputing, nex, openbmb, ai9stars,
+apodex, celeris, kwaikat, sapiens, china-mobile, deepcogito, inclusionai, korea-telecom, naver,
+nanbeige, swiss-ai-initiative. Auch hier gehören die Marken den jeweiligen Inhabern; vor dem
+Livegang Nutzungsrecht der Dateien und Markenrichtlinien prüfen. SVGs vor Übernahme auf Skripte
+geprüft (keine).
+Aus LobeHub zusätzlich: alibaba-color, longcat-color, arcee-color.

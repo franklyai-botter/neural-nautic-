@@ -1,0 +1,16 @@
+Werkzeug-Logos in diesem Ordner (Glas-Laufband „Wir verbinden KI mit Ihren Systemen“)
+
+Simple Icons 16.36.0 (https://simpleicons.org, Lizenz CC0-1.0): airtable, asana, confluence, datev,
+discord, gmail, googledrive, googlesheets, hubspot, jira, mailchimp, odoo, personio, sap, shopify,
+stripe, trello, zoom. Pfade unverändert; eingefärbt in der offiziellen Markenfarbe aus
+simple-icons.json (Attribut fill am svg-Element).
+
+LobeHub Icons 1.101.0 (MIT): dify-color, github, langchain-color, make-color, n8n-color, notion,
+zapier-color. Unverändert.
+
+Microsoft (Teams, Outlook, 365), Slack und Salesforce fehlen bewusst: Diese Marken sind auf Wunsch
+der Inhaber aus Simple Icons entfernt worden. Nicht von anderswo nachziehen.
+
+Die Marken gehören den jeweiligen Inhabern. Die Lizenzen der Sammlungen räumen keine Markenrechte
+ein; gezeigt werden die Logos nur zur Kennzeichnung von Systemen, die wir anbinden. Vor dem Livegang
+Markenrichtlinien prüfen. Stand 29.10.2026.

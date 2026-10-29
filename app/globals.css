@@ -101,10 +101,44 @@ h1[style*="--font-italiana"], h1[style*="--font-cormorant"] { font-size: clamp(3
 h2[style*="--font-italiana"], h2[style*="--font-cormorant"] { font-size: clamp(26px, 3.6vw, 40px) !important; line-height: 1.15 !important; font-weight: 600 !important; }
 h1 em, h2 em { font-style: normal !important; }
 
-/* KI-Logo-Wirbel über dem Einstieg: auf dem Handy kleinere Kacheln */
+/* KI-Logo-Wirbel über dem Einstieg: Glaskacheln (Milchglas, Lichtkante oben, Glanzfläche, weicher
+   Schatten mit grünem Schimmer). Größe Desktop 88 px, Handy 56 px. */
+.nn-wirbel-kachel {
+  width: 88px; height: 88px; border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nn-wirbel-kachel img { width: 44px; height: 44px; object-fit: contain; position: relative; z-index: 1; }
+.nn-glas {
+  position: relative; overflow: hidden;
+  background: linear-gradient(145deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.38) 55%, rgba(236,246,246,0.55) 100%);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  border: 1px solid rgba(255,255,255,0.95);
+  box-shadow:
+    0 22px 44px -12px rgba(6,20,25,0.20),
+    0 6px 14px rgba(13,115,119,0.08),
+    inset 0 1.5px 0 rgba(255,255,255,1),
+    inset 0 -10px 22px rgba(13,115,119,0.08),
+    inset 0 0 0 1px rgba(13,115,119,0.06);
+}
+/* Glanz: schräge Lichtfläche oben links */
+.nn-glas::before {
+  content: ""; position: absolute; inset: -40% 35% 45% -40%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  transform: rotate(-12deg); border-radius: 50%; pointer-events: none;
+}
+/* Lichtkante unten rechts, wie Licht, das durch dickes Glas bricht */
+.nn-glas::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(120% 80% at 100% 100%, rgba(13,115,119,0.10), rgba(13,115,119,0) 60%);
+}
+/* Werkzeug-Laufband: runde Glaskacheln */
+.nn-werkzeug-kachel { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nn-werkzeug-kachel img { width: 34px; height: 34px; object-fit: contain; position: relative; z-index: 1; }
+@media (max-width: 640px) { .nn-werkzeug-kachel { width: 56px; height: 56px; } .nn-werkzeug-kachel img { width: 26px; height: 26px; } }
 @media (max-width: 640px) {
-  .nn-wirbel-kachel     { width: 42px !important; height: 42px !important; border-radius: 12px !important; }
-  .nn-wirbel-kachel img { width: 22px !important; height: 22px !important; }
+  .nn-wirbel-kachel     { width: 56px; height: 56px; border-radius: 16px; }
+  .nn-wirbel-kachel img { width: 28px; height: 28px; }
 }
 
 /* ===== Responsive ===== */

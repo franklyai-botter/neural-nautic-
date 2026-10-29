@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PartnerBand from "./components/PartnerBand";
 import KiLogoWirbel from "./components/KiLogoWirbel";
+import WerkzeugLaufband from "./components/WerkzeugLaufband";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { KI_CHECK_BUCHEN } from "./site";
@@ -170,6 +171,18 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </section>
+
+        {/* 4b SYSTEME: Werkzeug-Logos in Glas, zwei gegenläufige Laufbänder */}
+        <section className="nn-section" style={{ padding: "96px 0" }}>
+          <div style={{ maxWidth: 760, margin: "0 auto 40px", textAlign: "center", padding: "0 20px" }}>
+            <h2 style={h2}>Wir verbinden KI mit den Systemen, die Sie schon nutzen.</h2>
+            <p style={{ ...text, margin: 0 }}>Automatisierungen laufen dort, wo Ihre Daten liegen: in Ihrer Buchhaltung, Ihrem CRM, Ihren Dokumenten.</p>
+          </div>
+          <WerkzeugLaufband />
+          <p style={{ textAlign: "center", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: HELL.leise, margin: "20px auto 0", padding: "0 20px" }}>
+            Beispiele. Die Logos gehören den jeweiligen Inhabern, eine Partnerschaft besteht nicht.
+          </p>
         </section>
 
         {/* 5 WER DAHINTERSTEHT */}
