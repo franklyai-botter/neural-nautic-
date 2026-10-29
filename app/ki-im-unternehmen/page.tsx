@@ -149,14 +149,14 @@ export default function KiImBetrieb() {
         {/* Antwort: Kurs, Crew, Schiff */}
         <Section id="vorgehen" alt kick="Kurs · Crew · Schiff" title="KI kommt in die Umsetzung, wenn Kurs, Crew und Schiff gleichzeitig stimmen"
           intro="Die Gründe, warum KI im Ergebnis nicht ankommt, sind fast immer dieselben: kein klarer Kurs, eine Crew, die nicht mitzieht, oder ein Schiff, das nicht seetüchtig ist. Deshalb planen wir alle drei als ein Vorhaben, nicht nacheinander.">
-          <svg viewBox="0 -30 600 330" role="img" aria-label="Dreieck aus Kurs (Strategie), Crew (Menschen und Befähigung) und Schiff (KI-Architektur)" style={{ width: "100%", maxWidth: 560, display: "block", margin: "0 auto 40px" }}>
+          <svg viewBox="0 -50 600 350" role="img" aria-label="Dreieck aus Kurs (Strategie), Crew (Menschen und Befähigung) und Schiff (KI-Architektur)" style={{ width: "100%", maxWidth: 560, display: "block", margin: "0 auto 40px" }}>
             <polygon points="300,40 90,210 510,210" fill="none" stroke="var(--border-3)" strokeWidth="1.5" />
             {[{ x: 300, y: 40, t: "Kurs", s: "Strategie" }, { x: 90, y: 210, t: "Crew", s: "Befähigung" }, { x: 510, y: 210, t: "Schiff", s: "Architektur" }].map(p => (
               <g key={p.t}>
                 <circle cx={p.x} cy={p.y} r="30" fill="var(--ink-abyss)" stroke="var(--glow-cyan)" strokeWidth="1.5" />
                 <circle cx={p.x} cy={p.y} r="5" fill="var(--glow-cyan)" />
-                <text x={p.x} y={p.y + (p.y < 100 ? -48 : 56)} textAnchor="middle" fill="var(--fg-1)" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 24 }}>{p.t}</text>
-                <text x={p.x} y={p.y + (p.y < 100 ? -28 : 76)} textAnchor="middle" fill="var(--fg-3)" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, letterSpacing: ".08em" }}>{p.s}</text>
+                <text x={p.x} y={p.y + (p.y < 100 ? -62 : 56)} textAnchor="middle" fill="var(--fg-1)" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 24 }}>{p.t}</text>
+                <text x={p.x} y={p.y + (p.y < 100 ? -42 : 76)} textAnchor="middle" fill="var(--fg-3)" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, letterSpacing: ".08em" }}>{p.s}</text>
               </g>
             ))}
             <text x="300" y="160" textAnchor="middle" fill="var(--fg-3)" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 22, fontStyle: "italic" }}>ein Vorhaben</text>
