@@ -6,6 +6,7 @@ import Architektur3D from "../components/Architektur3D";
 import ArchitekturDownload from "../components/ArchitekturDownload";
 import EbenenModell from "../components/EbenenModell";
 import ReifegradCheck from "../components/ReifegradCheck";
+import { KI_CHECK_BUCHEN } from "../site";
 export const metadata: Metadata = {
   title: "KI im Unternehmen: Wertschöpfung, Vorgehen, Architektur | NeuralNautic",
   alternates: { canonical: "/ki-im-unternehmen" },
@@ -344,9 +345,9 @@ export default function KiImBetrieb() {
               <Link href="/ai-engineering" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
                 AI Engineering statt Vibe Coding
               </Link>
-              <Link href="/kontakt" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "13px 27px", borderRadius: 4, border: "1px solid var(--border-3)", color: "var(--fg-1)", textDecoration: "none" }}>
+              <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "13px 27px", borderRadius: 4, border: "1px solid var(--border-3)", color: "var(--fg-1)", textDecoration: "none" }}>
                 KI-Potenzialcheck buchen
-              </Link>
+              </a>
             </div>
           </div>
         </section>

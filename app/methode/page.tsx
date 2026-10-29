@@ -1,8 +1,8 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Link from "next/link";
 import type { Metadata } from "next";
 import EbenenModell from "../components/EbenenModell";
+import { KI_CHECK_BUCHEN } from "../site";
 export const metadata: Metadata = {
   title: "KI im Projekt: Verstehen, Zuschneiden, Pilotieren, Automatisieren, Übergeben | NeuralNautic",
   alternates: { canonical: "/methode" },
@@ -95,9 +95,9 @@ export default function Methode() {
           <h2 style={{ fontFamily: "var(--font-italiana), serif", fontWeight: 400, fontSize: "clamp(28px, 4vw, 48px)", color: "var(--fg-1)", margin: "0 0 20px" }}>
             Bereit, gemeinsam zu starten?
           </h2>
-          <Link href="/kontakt" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "14px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
+          <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".08em", padding: "14px 32px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
             KI-Potenzialcheck buchen
-          </Link>
+          </a>
         </section>
       </main>
       <Footer />

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { KI_CHECK_BUCHEN } from "../site";
 
 type NavLink = { label: string; href: string; children?: { label: string; href: string }[] };
 
@@ -21,9 +22,6 @@ const LINKS: NavLink[] = [
   { label: "Ausguck",         href: "/wissen" },
   { label: "Über mich",       href: "/ueber-mich" },
 ];
-
-// Bewusst Link statt eingebettetem Kalender: Daten fließen erst an Calendly, wenn jemand klickt.
-const KI_CHECK_BUCHEN = "https://calendly.com/frankschuettai-neuralnautic/ki-potenzialcheck";
 
 const isActive = (l: NavLink, pathname: string) =>
   pathname === l.href || !!l.children?.some(c => c.href === pathname);

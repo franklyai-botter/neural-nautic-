@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PartnerBand from "./components/PartnerBand";
 import type { Metadata } from "next";
+import { KI_CHECK_BUCHEN } from "./site";
 
 // Kanonische Adresse je Seite, sonst waehlt Google selbst (Search Console: „Vom Nutzer angegebene kanonische URL: Keine“).
 export const metadata: Metadata = {
@@ -68,9 +69,9 @@ export default function Home() {
                 Keine KI-Spielereien. Keine Schlagwörter. Konkrete Lösungen für echte Geschäftsprozesse.
               </p>
               <div className="nn-hero-btns" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <Link href="/kontakt" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
+                <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
                   KI-Potenzialcheck buchen
-                </Link>
+                </a>
                 <Link href="/leistungen" style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "transparent", color: "var(--fg-1)", textDecoration: "none", border: "1px solid rgba(205,206,210,.35)" }}>
                   Leistungen ansehen
                 </Link>
@@ -209,9 +210,9 @@ export default function Home() {
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 16, color: "var(--fg-2)", lineHeight: 1.7, margin: "0 0 36px" }}>
               Lassen Sie uns gemeinsam prüfen, wo KI in Ihrem Unternehmen echten Mehrwert schafft: messbar und verständlich.
             </p>
-            <Link href="/kontakt" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 36px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
+            <a href={KI_CHECK_BUCHEN} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 14, fontWeight: 500, letterSpacing: ".08em", padding: "16px 36px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" }}>
               KI-Potenzialcheck buchen
-            </Link>
+            </a>
           </div>
         </section>
 

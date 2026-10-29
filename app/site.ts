@@ -10,3 +10,7 @@ export const LINKEDIN_COMPANY_URL = "https://www.linkedin.com/company/neuralnaut
 
 // X-Profil von Frank (seit April 2026). Im Footer verlinkt und in den strukturierten Daten (sameAs).
 export const X_URL = "https://x.com/FSchuettNN";
+
+// Buchungsseite KI-Potenzialcheck (Calendly, 30 Min, Google Meet). Bewusst Link statt eingebettetem
+// Kalender: Daten fließen erst an Calendly, wenn jemand klickt. Jeder „… buchen“-Knopf zeigt hierher.
+export const KI_CHECK_BUCHEN = "https://calendly.com/frankschuettai-neuralnautic/ki-potenzialcheck";
