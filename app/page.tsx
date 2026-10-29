@@ -32,6 +32,14 @@ const WEGE = [
   { titel: "Werkzeuge",      text: "Passende KI-Werkzeuge auswählen oder Lösungen selbst entwickeln lassen, nach Nutzen, Kosten und Datenschutz.",   href: "/ki-tool-kompass" },
 ];
 
+const ZERTIFIKATE = [
+  { src: "/zertifikate/tuev-sued-vorschau.webp", href: "/cert-tuev-sued.pdf", titel: "Zertifikat TÜV SÜD Akademie – AI Strategy & Application Expert (PDF)" },
+  { src: "/zertifikate/neurawork-vorschau.webp", href: "https://www.virtualbadge.io/certificate-validator?credential=f2d4fd9a-dccc-4363-ada5-287b0a2b5f01", titel: "Zertifikat Neurawork – KI Applikations- und Strategieexperte (Virtualbadge)" },
+];
+
+const linkKnopf: CSSProperties = { display: "inline-flex", alignItems: "center", height: 48, boxSizing: "border-box", fontFamily: "var(--font-inter), sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: ".04em", padding: "0 16px", borderRadius: 4, border: "1px solid rgba(205,206,210,.35)", color: "var(--fg-1)", textDecoration: "none", whiteSpace: "nowrap" };
+const miniatur: CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, boxSizing: "border-box", borderRadius: 4, border: "1px solid var(--border-2)", background: "var(--ink-current)", flexShrink: 0 };
+
 const knopf: CSSProperties = { display: "inline-block", fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: ".06em", padding: "14px 28px", borderRadius: 4, background: "var(--glow-cyan)", color: "var(--ink-abyss)", textDecoration: "none" };
 const h2: CSSProperties = { fontFamily: "var(--font-cormorant), serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.2, color: "var(--fg-1)", margin: "0 0 20px" };
 const text: CSSProperties = { fontFamily: "var(--font-inter), sans-serif", fontSize: 16, lineHeight: 1.7, color: "var(--fg-2)" };
@@ -67,16 +75,22 @@ export default function Home() {
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 32 }}>
                 <Image src="/frank-portrait.webp" alt="" width={44} height={44} style={{ width: 44, height: 44, flexShrink: 0, borderRadius: "50%", objectFit: "cover", objectPosition: "70% center", border: "1px solid var(--border-2)" }} />
                 <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 13, lineHeight: 1.5, color: "var(--fg-2)" }}>
-                  Frank Schütt, AI Strategy &amp; Application Expert,<br />geprüft bei der TÜV SÜD Akademie ·{" "}
-                  <Link href="/ueber-mich#zertifikate" style={{ color: "var(--glow-cyan)", textDecoration: "none" }}>Zertifikat Z-001124711 →</Link>
+                  Frank Schütt, AI Strategy &amp; Application Expert,<br />geprüft bei der TÜV SÜD Akademie
                 </span>
               </div>
-              <Link href="/ki-im-unternehmen" style={{ display: "inline-block", marginTop: 28, fontFamily: "var(--font-inter), sans-serif", fontSize: 13, fontWeight: 500, color: "var(--glow-cyan)", textDecoration: "none" }}>
-                So arbeiten wir: Kurs, Crew, Schiff →
-              </Link>
+              {/* Zwei Link-Knöpfe und dahinter die Zertifikate als gleich große Miniaturen (Ziele wie auf /ueber-mich) */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
+                <Link href="/ki-im-unternehmen" style={linkKnopf}>So arbeiten wir: Kurs, Crew, Schiff →</Link>
+                <Link href="/ueber-mich#zertifikate" style={linkKnopf}>Zertifikat Z-001124711 →</Link>
+                {ZERTIFIKATE.map((z) => (
+                  <a key={z.src} href={z.href} target="_blank" rel="noopener noreferrer" title={z.titel} aria-label={z.titel} style={miniatur}>
+                    <Image src={z.src} alt="" width={40} height={40} style={{ width: 40, height: 40, objectFit: "contain" }} />
+                  </a>
+                ))}
+              </div>
             </div>
             <div className="nn-hero-foto" style={{ position: "relative", aspectRatio: "4 / 5", borderRadius: 6, overflow: "hidden", border: "1px solid var(--border-2)", boxShadow: "0 24px 60px rgba(0,0,0,.45)" }}>
-              <Image src="/frank-portrait.webp" alt="Frank Schütt, NeuralNautic" fill priority sizes="(max-width: 1024px) 0px, 460px" style={{ objectFit: "cover", objectPosition: "70% center" }} />
+              <Image src="/frank-portrait.webp" alt="Frank Schütt, NeuralNautic" fill sizes="460px" style={{ objectFit: "cover", objectPosition: "70% center" }} />
             </div>
           </div>
         </section>
