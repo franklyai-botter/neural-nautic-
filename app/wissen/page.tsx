@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 const EINORDNUNGEN: { rubrik: string; stand: string; titel: string; befund: string; folge: string; quelle: string; link?: { href: string; text: string } }[] = [
   {
     rubrik: "Studie", stand: "25.08.2026",
-    titel: "Acht von zehn spüren den Nutzen von KI, sechs von hundert sehen ihn im Ergebnis",
-    befund: "80 % der Befragten berichten, dass KI ihre persönliche Produktivität verbessert hat. Nur 6 % schreiben mindestens 5 % ihres Betriebsergebnisses der KI zu und sehen deutlichen Nutzen, unverändert gegenüber dem Vorjahr.",
+    titel: "Acht von zehn spüren den Nutzen von KI, nur sechs von hundert sehen ihn deutlich im Ergebnis",
+    befund: "80 % der Befragten berichten, dass KI ihre persönliche Produktivität verbessert hat. Nur 6 % schreiben mindestens 5 % ihres Betriebsergebnisses der KI zu und sehen deutlichen Nutzen, unverändert gegenüber dem Vorjahr. Einen Beitrag zum EBIT überhaupt sehen 37 %.",
     folge: "Am Wissen über KI liegt es selten. Es fehlt meist ein klarer Kurs, eine Crew, die mitzieht, oder ein Schiff, das im Betrieb trägt.",
     quelle: "McKinsey & Company, „The state of AI in 2026: On the road to ROI“, 25.08.2026; Online-Umfrage, 1.719 Teilnehmende in 97 Ländern.",
     link: { href: "/ki-im-unternehmen", text: "Kurs, Crew, Schiff" },

@@ -122,7 +122,7 @@ export default function KiImBetrieb() {
           {/* Diagramm: Vergleich zweier Werte, Akzent auf dem Wert, um den es geht */}
           <figure style={{ margin: 0 }}>
             <figcaption style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 15, fontWeight: 500, color: "var(--fg-1)", marginBottom: 22 }}>
-              Acht von zehn spüren den Nutzen von KI, aber nur sechs von hundert sehen ihn im Ergebnis
+              Acht von zehn spüren den Nutzen von KI, aber nur sechs von hundert sehen ihn deutlich im Ergebnis
             </figcaption>
             {[
               { v: 80, label: "berichten, dass KI ihre persönliche Produktivität verbessert hat", color: MUTED, text: "var(--fg-1)" },
