@@ -3,6 +3,8 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import LinkedInButton from "../components/LinkedInButton";
+import NnHud from "../components/NnHud";
+import NnFilm from "../components/NnFilm";
 import { LINKEDIN_COMPANY_URL, LINKEDIN_URL, SITE_URL, X_URL } from "../site";
 import type { Metadata } from "next";
 
@@ -86,13 +88,17 @@ export default function UeberMich() {
           </div>
         </section>
 
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px 32px 0" }}>
+          <NnFilm />
+        </div>
+
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
           <div className="nn-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "start" }}>
             <div style={{ position: "relative" }}>
-              <div style={{ position: "relative", aspectRatio: "1/1", borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
-                {/* Porträt ist Querformat (1600×1066), Gesicht rechts der Bildmitte: Ausschnitt nach rechts schieben.
-                    Im quadratischen Rahmen wird das Bild 1,5× so breit wie der Rahmen gezeichnet, daher sizes × 1,5. */}
-                <Image src="/frank-portrait.webp" alt="Frank Schütt, Porträt" fill priority sizes="(max-width: 1024px) 150vw, 690px" style={{ objectFit: "cover", objectPosition: "70% center" }} />
+              {/* Seit 11.11.2026 (Frank): Überwachungs-Karte mit KI-Video statt Porträt; das echte Porträt
+                  steht im Abgleich-Panel der Karte. Strukturierte Daten (image) zeigen weiter auf das Porträt. */}
+              <div style={{ borderRadius: 8, border: "1px solid var(--border-2)", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
+                <NnHud />
               </div>
               <div style={{ marginTop: 24 }}>
                 <p style={{ fontFamily: "var(--font-italiana), serif", fontSize: 24, color: "var(--fg-1)", margin: "0 0 4px" }}>Frank Schütt</p>
