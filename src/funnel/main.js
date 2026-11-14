@@ -128,9 +128,8 @@ const qg = teil(quergalerie({
     // oben buendig mit dem Textblock „Kurs“ (Frank, 14.11.2026)
     feldBuehne({ name: 'kurs', form: 'hoch', lage: 'oben' }),
     feldText({ gross: M.teile[1].name, klein: M.teile[1].fach, claim: M.teile[1].claim, text: M.teile[1].desc, lage: 'mitte' }),
-    // Crew-Paar (Frank, 14.11.2026): Organigramm und Gleichung MI + KI nebeneinander in einem Feld, die Formel
-    // MI + KI = Magie mittig darunter. Eigenes HTML/SVG in der Buehne, Aufbau unten (organigramm(), gleichung()).
-    // Ersetzt das Bild „Mensch + Agent“.
+    // Crew (Frank, 14.11.2026): ein Organigramm mit Ablauf aus den Teams, darunter mittig die Formel MI + KI = Magie.
+    // Eigenes HTML/SVG in der Buehne, Aufbau unten (organigramm()). Ersetzt das Bild Mensch + Agent und die Gleichung.
     feldBuehne({ name: 'crew', form: 'gross', lage: 'oben' }),
     feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
     // Bild bei Schiff: das moderne NN-Forschungsschiff in Fahrt, Monogramm und Kompassstern als Aufdruck auf dem Rumpf
@@ -161,7 +160,9 @@ const ORG = {
   label: 'Organigramm der Crew',
   knoten: [['g', 'Geschäftsführung', 1], ['f', 'Führungskräfte', 3], ['m', 'Multiplikatoren', 2], ['t1', 'Team 1', 4], ['t2', 'Team 2', 4]],
   ki: 'KI-Agenten', kiAnzahl: 4, kante: 'unterstützen',
-  linien: [['g', 'f'], ['f', 'm'], ['m', 't1'], ['m', 't2']],
+  linien: [['g', 'f'], ['f', 'm'], ['m', 't1'], ['m', 't2'], ['t1', 'w0'], ['t2', 'w0'], ['w0', 'w1'], ['w1', 'w2']],
+  // Ablauf unter den Teams (Frank, 14.11.2026)
+  ablauf: ['Wissen aus den Teams sichern', 'In Prozessen automatisieren', 'Bewährte Abläufe skalieren'],
   // Formel unter dem Organigramm (Frank, 14.11.2026)
   formel: [['MI', 'Menschliche Intelligenz'], '+', ['KI', 'Künstliche Intelligenz'], '=', ['Magie', 'Mensch und KI im Zusammenspiel']],
 };
@@ -181,19 +182,20 @@ function organigramm(buehne) {
   const figurenHtml = (n, exo) => `<span class="nn-org__figuren${exo ? ' nn-org__figuren--exo' : ''}">${'<i></i>'.repeat(n)}</span>`;
   const knoten = (id) => `<div class="nn-org__knoten" data-k="${id}">${figurenHtml(kn[id].n)}<b>${esc(kn[id].name)}</b></div>`;
   const formelText = ORG.formel.map((f) => (Array.isArray(f) ? `${f[0]} (${f[1]})` : f)).join(' ');
-  const kiLinien = ['ki-t1', 'ki-t2'];
+  const kiLinien = ['ki-g', 'ki-f', 'ki-m', 'ki-t1', 'ki-t2'];   // KI-Agenten unterstuetzen alle Ebenen (Frank, 14.11.2026)
   const wurzel = el(`
     <div class="nn-org nn-org--crew">
       <ul class="sr-only" aria-label="${esc(ORG.label)}">
         <li>${esc(kn.g.name)}<ul><li>${esc(kn.f.name)}<ul><li>${esc(kn.m.name)}<ul><li>${esc(kn.t1.name)}</li><li>${esc(kn.t2.name)}</li></ul></li></ul></li></ul></li>
-        <li>${esc(ORG.ki)} ${esc(ORG.kante)} ${esc(kn.t1.name)} und ${esc(kn.t2.name)}</li>
+        <li>${esc(ORG.ki)} ${esc(ORG.kante)} alle Ebenen: ${esc(['g', 'f', 'm', 't1'].map((id) => kn[id].name).join(', '))} und ${esc(kn.t2.name)}</li>
       </ul>
+      <ol class="sr-only" aria-label="Ablauf aus den Teams">${ORG.ablauf.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>
       <p class="sr-only">${esc(formelText)}</p>
       <div class="nn-org__bild" aria-hidden="true">
         <svg class="nn-org__linien" xmlns="http://www.w3.org/2000/svg">${ORG.linien.map(([a, b]) => `<path data-l="${a}-${b}" pathLength="1" />`).join('')}${ORG.linien.map(([a, b]) => `<path class="nn-org__pfeil" data-p="${a}-${b}" />`).join('')}</svg>
         <svg class="nn-org__ki-linien" xmlns="http://www.w3.org/2000/svg">${kiLinien.map((id) => `<path data-l="${id}" /><path class="nn-org__pfeil" data-p="${id}" />`).join('')}</svg>
-        ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b></div>${knoten('m')}${knoten('t1')}${knoten('t2')}
-        ${kiLinien.map((id) => `<span class="nn-org__kante" data-kante="${id}">${esc(ORG.kante)}</span>`).join('')}
+        ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b><span class="nn-org__kante">${esc(ORG.kante)}</span></div>${knoten('m')}${knoten('t1')}${knoten('t2')}
+        ${ORG.ablauf.map((t, i) => `<div class="nn-org__knoten nn-org__schritt" data-k="w${i}"><b>${esc(t)}</b></div>`).join('')}
         <div class="nn-org__formel">${ORG.formel.map((f) => (Array.isArray(f)
           ? `<div class="nn-org__term"><b>${esc(f[0])}</b><small>${esc(f[1])}</small></div>` : `<span class="nn-org__zeichen">${esc(f)}</span>`)).join('')}</div>
       </div>
@@ -213,32 +215,38 @@ function organigramm(buehne) {
     const w = bild.offsetWidth; const h = bild.offsetHeight;
     if (!w) return;
     for (const s of bild.querySelectorAll('svg')) s.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    const P = Object.fromEntries(['g', 'f', 'm', 't1', 't2', 'ki'].map((id) => [id, lageIn(bild, id)]));
+    const P = Object.fromEntries(['g', 'f', 'm', 't1', 't2', 'ki', 'w0', 'w1', 'w2'].map((id) => [id, lageIn(bild, id)]));
     const spitze = (x, y) => `M${x - 4.5},${y - 6.5} L${x},${y - 0.5} L${x + 4.5},${y - 6.5}`;
     const setze = (sel, d) => qs(sel, bild).setAttribute('d', d);
     const yA = P.m.b + (P.t1.t - P.m.b) * 0.36;     // Knick der Linie Multiplikatoren -> Team 2
     const yB = P.m.b + (P.t1.t - P.m.b) * 0.68;     // Knick der gestrichelten Linie KI-Agenten -> Team 1
+    const tb = Math.max(P.t1.b, P.t2.b); const yC = tb + (P.w0.t - tb) * 0.5;   // Teams laufen zusammen
     const linien = {
       'g-f': [`M${P.g.x},${P.g.b} V${P.f.t}`, P.g.x, P.f.t],
       'f-m': [`M${P.f.x},${P.f.b} V${P.m.t}`, P.f.x, P.m.t],
       'm-t1': [`M${P.m.x},${P.m.b} V${P.t1.t}`, P.m.x, P.t1.t],
       'm-t2': [`M${P.m.x},${P.m.b} V${yA} H${P.t2.x} V${P.t2.t}`, P.t2.x, P.t2.t],
+      't1-w0': [`M${P.t1.x},${P.t1.b} V${yC} H${P.w0.x} V${P.w0.t}`, P.w0.x, P.w0.t],
+      't2-w0': [`M${P.t2.x},${P.t2.b} V${yC} H${P.w0.x} V${P.w0.t}`, P.w0.x, P.w0.t],
+      'w0-w1': [`M${P.w0.x},${P.w0.b} V${P.w1.t}`, P.w1.x, P.w1.t],
+      'w1-w2': [`M${P.w1.x},${P.w1.b} V${P.w2.t}`, P.w2.x, P.w2.t],
     };
     for (const [id, [d, x, y]] of Object.entries(linien)) { setze(`[data-l="${id}"]`, d); setze(`[data-p="${id}"]`, spitze(x, y)); }
-    // KI-Agenten: zwei gestrichelte Linien nach unten, links mit Knick zu Team 1, rechts gerade zu Team 2
-    const off = Math.max(26, Math.min(P.ki.r - P.ki.l, P.t2.r - P.t2.l) * 0.3);
+    // KI-Agenten als Spalte rechts: kurze gestrichelte Pfeile nach links zu Geschaeftsfuehrung, Fuehrungskraeften und
+    // Multiplikatoren, nach unten zu den Teams (links mit Knick zu Team 1, rechts gerade zu Team 2)
+    const links = (x, y) => `M${x + 6.5},${y - 4.5} L${x + 0.5},${y} L${x + 6.5},${y + 4.5}`;
+    for (const id of ['g', 'f', 'm']) {
+      const y = (P[id].t + P[id].b) / 2;
+      setze(`[data-l="ki-${id}"]`, `M${P.ki.l},${y} H${P[id].r}`);
+      setze(`[data-p="ki-${id}"]`, links(P[id].r, y));
+    }
+    const off = Math.max(18, (P.ki.r - P.ki.l) * 0.28);
     const x1 = P.ki.x - off; const x2 = P.ki.x + off;
     const e1 = P.t1.x + (P.t1.r - P.t1.x) * 0.55;   // Eintritt in Team 1 (rechte Haelfte, neben der Linie von oben)
     setze('[data-l="ki-t1"]', `M${x1},${P.ki.b} V${yB} H${e1} V${P.t1.t}`);
     setze('[data-l="ki-t2"]', `M${x2},${P.ki.b} V${P.t2.t}`);
     setze('[data-p="ki-t1"]', spitze(e1, P.t1.t));
     setze('[data-p="ki-t2"]', spitze(x2, P.t2.t));
-    // Pill „unterstützen“ auf jeder gestrichelten Linie, auf Hoehe der Multiplikatoren
-    // (reicht der Abstand nicht, z. B. mobil, stehen die beiden Pills leicht versetzt uebereinander)
-    const ym = (P.m.t + P.m.b) / 2;
-    const [k1, k2] = ['ki-t1', 'ki-t2'].map((id) => qs(`[data-kante="${id}"]`, bild));
-    const dy = x2 - x1 < (k1.offsetWidth + k2.offsetWidth) / 2 + 8 ? k1.offsetHeight / 2 + 3 : 0;
-    [[k1, x1, ym - dy], [k2, x2, ym + dy]].forEach(([s, x, y]) => { s.style.left = `${x}px`; s.style.top = `${y}px`; });
   }
   new ResizeObserver(zeichnen).observe(bild);
   document.fonts.ready.then(zeichnen);
@@ -255,7 +263,7 @@ function organigramm(buehne) {
   gsap.set(bild.querySelectorAll('.nn-org__linien path[data-l]'), { strokeDasharray: 1, strokeDashoffset: 1 });
   gsap.set(bild.querySelectorAll('.nn-org__linien .nn-org__pfeil'), { autoAlpha: 0 });
   gsap.set(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 100% 0%)' });
-  gsap.set([k('g'), k('f'), k('m'), k('t1'), k('t2'), k('ki')], clip());
+  gsap.set([k('g'), k('f'), k('m'), k('t1'), k('t2'), k('ki'), k('w0'), k('w1'), k('w2')], clip());
   gsap.set(bild.querySelectorAll('.nn-org__figuren i'), { autoAlpha: 0, y: 6 });
   gsap.set(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 0 });
   gsap.set(bild.querySelectorAll('.nn-org__term'), clip());
@@ -272,6 +280,10 @@ function organigramm(buehne) {
     .to(k('ki'), auf, '-=0.2').to(...figuren(['ki']))
     .to(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.inOut' }, '-=0.2')
     .to(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 1, duration: 0.35, stagger: 0.1 }, '-=0.45')
+    // Ablauf: die Teams laufen zusammen, dann Schritt fuer Schritt nach unten
+    .to([l('t1-w0'), l('t2-w0')], wachsen, '-=0.1').to([p('t1-w0'), p('t2-w0')], spitzeAn, '-=0.05').to(k('w0'), auf)
+    .to(l('w0-w1'), wachsen, '-=0.15').to(p('w0-w1'), spitzeAn, '-=0.05').to(k('w1'), auf)
+    .to(l('w1-w2'), wachsen, '-=0.15').to(p('w1-w2'), spitzeAn, '-=0.05').to(k('w2'), auf)
     // zuletzt die Formel: Kaesten per Clip, Zeichen dazwischen
     .to(bild.querySelectorAll('.nn-org__term'), { ...auf, stagger: 0.16 }, '-=0.1')
     .to(bild.querySelectorAll('.nn-org__zeichen'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.16, ease: 'expo.out' }, '<0.2');
@@ -279,14 +291,7 @@ function organigramm(buehne) {
   window.__org = tl;   // fuer qa: window.__org.progress(1)
 }
 
-/* ---------------- L5: Gleichung MI + KI (Feld nach dem Organigramm), selber Typ wie das Organigramm ----------------
-   Oben MI (Frank-Figur) + KI (Exo-Figur), die Linien laufen zum Gleichheitszeichen zusammen, darunter der Ablauf. */
-const GL = {
-  label: 'Gleichung: Menschliche Intelligenz plus Künstliche Intelligenz',
-  terme: [['mi', 'MI', 'Menschliche Intelligenz', 'ganzFoto'], ['ki', 'KI', 'Künstliche Intelligenz', 'ganzExo']],
-  plus: '+', gleich: '=',
-  ablauf: ['Wissen speichern', 'In Prozessen automatisieren', 'Skalieren'],
-};
+// Lage eines Knotens im Organigramm (Layout-Pixel)
 function lageIn(bild, id) {
   // Lage eines Knotens in Layout-Pixeln von bild (eine Skalierung per transform faellt heraus)
   const r = qs(`[data-k="${id}"]`, bild).getBoundingClientRect();
@@ -295,76 +300,11 @@ function lageIn(bild, id) {
   const L = (r.left - o.left) / f; const T = (r.top - o.top) / f; const W = r.width / f; const H = r.height / f;
   return { l: L, r: L + W, t: T, b: T + H, x: L + W / 2 };
 }
-function gleichung(buehne) {
-  const term = ([id, kurz, lang, rolle]) => `<div class="nn-org__knoten nn-gl__term" data-k="${id}"><span class="nn-org__figuren${rolle === 'ganzExo' ? ' nn-org__figuren--exo' : ''}"><i></i></span><span class="nn-gl__wort"><b>${esc(kurz)}</b><small>${esc(lang)}</small></span></div>`;
-  const schritte = GL.ablauf.map((t, i) => `<div class="nn-org__reihe"><div class="nn-org__knoten nn-gl__schritt" data-k="s${i}"><b>${esc(t)}</b></div></div>`).join('');
-  const kanten = ['mi', 'ki', ...GL.ablauf.map((_, i) => `s${i}`)];
-  const wurzel = el(`
-    <div class="nn-org nn-gl">
-      <ol class="sr-only" aria-label="${esc(GL.label)}">
-        <li>${esc(GL.terme.map((t) => `${t[1]} (${t[2]})`).join(` ${GL.plus} `))} ${esc(GL.gleich)}</li>
-        ${GL.ablauf.map((t) => `<li>${esc(t)}</li>`).join('')}
-      </ol>
-      <div class="nn-org__bild" aria-hidden="true">
-        <svg class="nn-org__linien" xmlns="http://www.w3.org/2000/svg">${kanten.map((k) => `<path data-l="${k}" pathLength="1" />`).join('')}${GL.ablauf.map((_, i) => `<path class="nn-gl__pfeil" data-p="s${i}" />`).join('')}</svg>
-        <div class="nn-org__reihe nn-gl__oben">${term(GL.terme[0])}<span class="nn-org__zeichen">${esc(GL.plus)}</span>${term(GL.terme[1])}</div>
-        <div class="nn-org__reihe"><span class="nn-gl__gleich" data-k="gl">${esc(GL.gleich)}</span></div>
-        ${schritte}
-      </div>
-    </div>`);
-  buehne.append(wurzel);
-  const bild = qs('.nn-org__bild', wurzel);
-  new IntersectionObserver(([e], io) => {
-    if (!e.isIntersecting) return;
-    io.disconnect();
-    wurzel.style.cssText = figurStil('ganzFoto');
-    qs('.nn-org__figuren--exo', wurzel).style.cssText = figurStil('ganzExo');
-  }, { rootMargin: '100% 100%' }).observe(wurzel);
-  function zeichnen() {
-    const w = bild.offsetWidth; const h = bild.offsetHeight;
-    if (!w) return;
-    qs('svg', bild).setAttribute('viewBox', `0 0 ${w} ${h}`);
-    const GLp = lageIn(bild, 'gl');
-    for (const id of ['mi', 'ki']) {            // Terme laufen zum Gleichheitszeichen zusammen
-      const A = lageIn(bild, id); const y = (A.b + GLp.t) / 2;
-      qs(`[data-l="${id}"]`, bild).setAttribute('d', `M${A.x},${A.b} V${y} H${GLp.x} V${GLp.t}`);
-    }
-    GL.ablauf.forEach((_, i) => {               // Ablauf nach unten, mit Pfeilspitze am Ziel
-      const A = i ? lageIn(bild, `s${i - 1}`) : GLp; const B = lageIn(bild, `s${i}`);
-      qs(`[data-l="s${i}"]`, bild).setAttribute('d', `M${B.x},${A.b} V${B.t}`);
-      qs(`[data-p="s${i}"]`, bild).setAttribute('d', `M${B.x - 4.5},${B.t - 6} L${B.x},${B.t - 0.5} L${B.x + 4.5},${B.t - 6}`);
-    });
-  }
-  new ResizeObserver(zeichnen).observe(bild);
-  document.fonts.ready.then(zeichnen);
-  if (reduced) return;
-  const k = (id) => qs(`[data-k="${id}"]`, bild);
-  const l = (n) => qs(`[data-l="${n}"]`, bild);
-  const zu = { clipPath: 'inset(0% 0% 100% 0% round 10px)' };
-  const auf = { clipPath: 'inset(0% 0% 0% 0% round 10px)', duration: 0.55, ease: 'expo.out' };
-  const wachsen = { strokeDashoffset: 0, duration: 0.4, ease: 'power2.inOut' };
-  gsap.set(bild.querySelectorAll('.nn-org__linien path[data-l]'), { strokeDasharray: 1, strokeDashoffset: 1 });
-  gsap.set([k('mi'), k('ki'), ...GL.ablauf.map((_, i) => k(`s${i}`))], zu);
-  gsap.set([k('gl'), qs('.nn-org__zeichen', bild), ...bild.querySelectorAll('.nn-gl__pfeil')], { autoAlpha: 0 });
-  gsap.set(bild.querySelectorAll('.nn-org__figuren i'), { autoAlpha: 0, y: 6 });
-  const tl = gsap.timeline({ paused: true })
-    .to([k('mi'), k('ki')], { ...auf, stagger: 0.12 })
-    .to(qs('.nn-org__zeichen', bild), { autoAlpha: 1, duration: 0.4 }, '<0.2')
-    .to(bild.querySelectorAll('.nn-org__figuren i'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.1, ease: 'expo.out' }, '<0.05')
-    .to([l('mi'), l('ki')], wachsen, '-=0.1')
-    .to(k('gl'), { autoAlpha: 1, duration: 0.4, ease: 'expo.out' }, '-=0.05');
-  GL.ablauf.forEach((_, i) => {
-    tl.to(l(`s${i}`), wachsen, '-=0.15').to(qs(`[data-p="s${i}"]`, bild), { autoAlpha: 1, duration: 0.2 }, '-=0.08').to(k(`s${i}`), auf, '-=0.1');
-  });
-  new IntersectionObserver(([e], io) => { if (e.intersectionRatio > 0.35) { io.disconnect(); tl.play(); } }, { threshold: [0, 0.35, 0.6] }).observe(bild);
-  window.__gleichung = tl;
-}
-// Paar aufbauen: links das Organigramm, rechts die Gleichung, darunter mittig die Formel und ein KI-Label fuer beide
+// Crew-Feld aufbauen: das Organigramm mit Ablauf, darunter mittig die Formel und ein KI-Label
 const crewPaar = el('<div class="nn-crew-paar"><div class="nn-crew-paar__teile"></div></div>');
 qg.buehnen.crew.append(crewPaar);
 const crewTeile = qs('.nn-crew-paar__teile', crewPaar);
 organigramm(crewTeile);
-gleichung(crewTeile);
 const orgWurzel = crewTeile.firstElementChild;
 crewPaar.append(qs('p.sr-only', orgWurzel), qs('.nn-org__formel', orgWurzel), qs('.bs-ki', orgWurzel));
 
