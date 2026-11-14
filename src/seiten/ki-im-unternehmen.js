@@ -361,7 +361,8 @@ function downloadKarte(D, { vorschau } = {}) {
 }
 
 /* =====================================================================================================
-   3D-Modell: Renderer, Szene und Stil aus public/inhalt/architektur/ (von der Live-Seite, unveraendert).
+   3D-Modell: Renderer, Szene und Stil aus public/inhalt/architektur/ (von der Live-Seite; model3d.js mit zwei markierten
+   Ergaenzungen: Pause ausser Sicht, Pfeiltasten auf Reglern).
    Ablauf wie Architektur3D.tsx: szene.json laden, als window.SCENE ablegen, model3d.js einbinden. Erst kurz vor
    Sichtbarkeit (Stylesheet zuerst, der Renderer misst die Buehne beim Start). Ergaenzt: Vollbild, NN-Signatur,
    Wischen auf dem Handy (waagerecht dreht, senkrecht scrollt), Einflug beim Hereinscrollen.
