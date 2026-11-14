@@ -163,13 +163,13 @@ export const WIRBEL = {
 export const EINSTIEG = {
   h1: ['AI-ern Sie noch –', 'oder profitieren Sie schon?'],
   // McKinsey & Company, „The state of AI in 2026: On the road to ROI“, 25.08.2026
-  satz: 'Acht von zehn Befragten spüren den Nutzen von KI, nur sechs von hundert sehen ihn deutlich im Ergebnis. Mit unserer Methode <strong>Kurs, Crew, Enterprise</strong> bringen wir KI im Mittelstand dorthin, in Deutschland, Österreich und der Schweiz.',
+  satz: 'Acht von zehn Befragten spüren den Nutzen von KI, nur sechs von hundert sehen ihn deutlich im Ergebnis. Mit unserer Methode <strong>Kurs, Crew, Schiff</strong> bringen wir KI im Mittelstand dorthin, in Deutschland, Österreich und der Schweiz.',
   quelle: { text: 'Zahlen: McKinsey, The state of AI in 2026, 25.08.2026', link: { text: 'Einordnung im Ausguck', href: '/wissen' } },
   cta: { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true },
   beruhigung: BERUHIGUNG,
   beleg: 'Frank Schütt, AI Strategy & Application Expert, geprüft bei der TÜV SÜD Akademie',
   links: [
-    { text: 'So arbeiten wir: Kurs, Crew, Enterprise →', href: '/ki-im-unternehmen' },
+    { text: 'So arbeiten wir: Kurs, Crew, Schiff →', href: '/ki-im-unternehmen' },
     { text: 'Zertifikat Z-001124711 →', href: '/ueber-mich#zertifikate' },
   ],
 };
@@ -190,23 +190,24 @@ export const MANIFEST = {
   text: 'Der KI-Markt ist laut und unübersichtlich, neue Werkzeuge erscheinen beinahe wöchentlich. Einzelne Mitarbeitende arbeiten schneller, aber es fehlt ein Fahrplan, die Befähigung im Team oder eine Technik, die im Alltag trägt. Wir führen KI pragmatisch statt panisch ein und sprechen dabei mit Geschäftsführung, IT, Fachabteilungen, Datenschutz und Betriebsrat.',
 };
 
-/* ---------- L5: Kurs, Crew, Enterprise und die 7 Schichten ---------- */
+/* ---------- L5: Kurs, Crew, Schiff und die 7 Schichten ---------- */
 export const METHODE = {
-  titel: 'KI kommt im Betrieb an, wenn Kurs, Crew und Enterprise gleichzeitig stimmen.',
+  titel: 'KI kommt im Betrieb an, wenn Kurs, Crew und Schiff gleichzeitig stimmen.',
   text: 'Fehlt eines davon, bleibt es beim Experiment. Deshalb planen wir alle drei als ein Vorhaben.',
   teile: [
     { name: 'Kurs', fach: 'Strategie', claim: 'Wohin, und was lohnt sich?', desc: 'Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist ein Fahrplan, den Geschäftsführung und Fachbereiche mittragen.' },
     { name: 'Crew', fach: 'Menschen und Befähigung', claim: 'Nutzung statt bloßem Wissen.', desc: 'Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag genutzt werden. Der Betriebsrat ist früh an Bord.' },
-    { name: 'Enterprise', fach: 'KI-Architektur', claim: 'Seetüchtig statt Demo.', desc: 'Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb.' },
+    { name: 'Schiff', fach: 'KI-Architektur', claim: 'Seetüchtig statt Demo.', desc: 'Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb.' },
   ],
   link: { text: 'Methode im Detail, mit Reifegrad-Check und Architektur →', href: '/ki-im-unternehmen' },
 };
 
-// Bild bei „Schiff“: KI-generierte Animation des NeuralNautic-Schiffs (Codex, 14.11.2026), umgewandelt mit
-// qa/start/schiff_umwandeln.py (nahtlose Schleife, 5,4 s). Kein Inhalt der Live-Seite.
+// Bild bei „Schiff“: KI-generierte Animation des modernen NeuralNautic-Forschungsschiffs (Codex, 14.11.2026), mit
+// NN-Monogramm und Kompassstern als Aufdruck auf dem Rumpf (funnel-vorlage/tools/aufdruck_video.py, nahtlose
+// Schleife, 5,4 s). Kein Inhalt der Live-Seite.
 export const SCHIFF_FILM = {
-  quellen: [{ src: '/medien/schiff/schiff.webm', type: 'video/webm' }, { src: '/medien/schiff/schiff.mp4', type: 'video/mp4' }],
-  poster: '/medien/schiff/schiff.webp', w: 1280, h: 720, alt: '', hinweis: KI,
+  quellen: [{ src: '/medien/schiff/schiff-nn.webm', type: 'video/webm' }, { src: '/medien/schiff/schiff-nn.mp4', type: 'video/mp4' }],
+  poster: '/medien/schiff/schiff-nn.webp', w: 1280, h: 720, alt: 'Modernes Forschungsschiff in Fahrt, mit NN-Monogramm und Kompassstern am Rumpf', hinweis: KI,
 };
 
 export const SCHICHTEN = {
@@ -288,6 +289,8 @@ export const LEISTUNGEN = {
 /* ---------- L10: Store-Platz mit dem Reifegrad-Check (Frank, 14.11.2026) ---------- */
 // Fragen, Regeln und Texte wörtlich aus ki-im-unternehmen.js (dort aus ReifegradCheck.tsx). Hier wird nur zugeordnet.
 const RC = REIFEGRAD.check;
+// Bedienhinweis am gesperrten Weiter-Pfeil (Frank, 14.11.2026). Kein Inhalt der Live-Seite.
+export const CHECK_HINWEIS = 'Erst eine Antwort wählen';
 export const CHECK = {
   ariaLabel: REIFEGRAD.kicker,
   fragen: RC.dimensionen.map((d) => ({ key: d.key, titel: d.title, etikett: d.quer ? RC.texte.querEtikett : '', antworten: d.levels })),

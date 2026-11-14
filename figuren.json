@@ -73,12 +73,12 @@
           "ansichten": {
             "links": {
               "foto": "frank-auswahl-links-1",
-              "exo": "referenzhelm-portraet-links",
+              "exo": "referenzhelm-portraet-links-taille",
               "ausrichtung": {
                 "dx": -0.0074,
-                "dy": 0.0393,
-                "skala": 1.02,
-                "drehung": -0.0
+                "dy": 0.2881,
+                "skala": 1.5175,
+                "drehung": 0.0
               },
               "anker": {
                 "oben": 0.0638,
@@ -89,17 +89,18 @@
                 "b": 0.4551,
                 "bs": 0.4776,
                 "kh": 0.6599,
-                "auge": 0.4017
+                "auge": 0.4017,
+                "schulter": 0.8417
               }
             },
             "frontal": {
               "foto": "frank-auswahl-frontal-1",
-              "exo": "referenzhelm-portraet-frontal",
+              "exo": "referenzhelm-portraet-frontal-taille",
               "ausrichtung": {
                 "dx": -0.0434,
-                "dy": 0.0283,
-                "skala": 0.98,
-                "drehung": -0.0
+                "dy": 0.2673,
+                "skala": 1.458,
+                "drehung": 0.0
               },
               "anker": {
                 "oben": 0.0638,
@@ -110,17 +111,18 @@
                 "b": 0.4698,
                 "bs": 0.4658,
                 "kh": 0.6812,
-                "auge": 0.3974
+                "auge": 0.3974,
+                "schulter": 0.8222
               }
             },
             "rechts": {
               "foto": "frank-portraet-rechts",
-              "exo": "referenzhelm-portraet-rechts",
+              "exo": "referenzhelm-portraet-rechts-taille",
               "ausrichtung": {
                 "dx": -0.0917,
-                "dy": 0.0165,
-                "skala": 0.94,
-                "drehung": -0.0
+                "dy": 0.2458,
+                "skala": 1.3985,
+                "drehung": 0.0
               },
               "anker": {
                 "oben": 0.0818,
@@ -131,7 +133,8 @@
                 "b": 0.4625,
                 "bs": 0.4624,
                 "kh": 0.6706,
-                "auge": 0.4251
+                "auge": 0.4251,
+                "schulter": 0.85
               }
             }
           },
@@ -207,7 +210,8 @@
                 "b": 0.4625,
                 "bs": 0.4624,
                 "kh": 0.6706,
-                "auge": 0.4251
+                "auge": 0.4251,
+                "schulter": 0.85
               }
             }
           },
@@ -283,7 +287,8 @@
                 "b": 0.3049,
                 "bs": 0.3221,
                 "kh": 0.4421,
-                "auge": 0.27
+                "auge": 0.27,
+                "schulter": 0.5861
               }
             },
             "frontal": {
@@ -304,7 +309,8 @@
                 "b": 0.3153,
                 "bs": 0.3114,
                 "kh": 0.4571,
-                "auge": 0.2671
+                "auge": 0.2671,
+                "schulter": 0.5889
               }
             },
             "rechts": {
@@ -325,7 +331,8 @@
                 "b": 0.3099,
                 "bs": 0.3121,
                 "kh": 0.4493,
-                "auge": 0.2857
+                "auge": 0.2857,
+                "schulter": 0.6028
               }
             }
           },
@@ -511,9 +518,9 @@
       ],
       "grund": "#00141d"
     },
-    "referenzhelm-portraet-links": {
+    "referenzhelm-portraet-links-taille": {
       "b": 1672,
-      "h": 941,
+      "h": 1400,
       "breiten": [
         1600,
         1000,
@@ -522,13 +529,13 @@
       "grund": "#00121b",
       "visier": {
         "x": 0.2156,
-        "y": 0.3475,
+        "y": 0.2339,
         "rx": 0.1097,
-        "ry": 0.2465,
-        "mx": 0.1979,
-        "my": 0.3093
+        "ry": 0.1646,
+        "mx": 0.198,
+        "my": 0.2073
       },
-      "licht": "121,200,242"
+      "licht": "104,192,234"
     },
     "frank-auswahl-frontal-1": {
       "b": 1672,
@@ -540,24 +547,24 @@
       ],
       "grund": "#00151d"
     },
-    "referenzhelm-portraet-frontal": {
+    "referenzhelm-portraet-frontal-taille": {
       "b": 1672,
-      "h": 941,
+      "h": 1400,
       "breiten": [
         1600,
         1000,
         640
       ],
-      "grund": "#001019",
+      "grund": "#00101a",
       "visier": {
-        "x": 0.2727,
-        "y": 0.3544,
-        "rx": 0.1071,
-        "ry": 0.2535,
-        "mx": 0.2724,
-        "my": 0.3151
+        "x": 0.2724,
+        "y": 0.2325,
+        "rx": 0.1068,
+        "ry": 0.1646,
+        "mx": 0.2733,
+        "my": 0.2059
       },
-      "licht": "132,203,241"
+      "licht": "120,193,233"
     },
     "frank-portraet-rechts": {
       "b": 1672,
@@ -569,24 +576,24 @@
       ],
       "grund": "#01151d"
     },
-    "referenzhelm-portraet-rechts": {
+    "referenzhelm-portraet-rechts-taille": {
       "b": 1672,
-      "h": 941,
+      "h": 1400,
       "breiten": [
         1600,
         1000,
         640
       ],
-      "grund": "#00161e",
+      "grund": "#00171f",
       "visier": {
-        "x": 0.346,
-        "y": 0.3826,
-        "rx": 0.1223,
-        "ry": 0.2667,
-        "mx": 0.3619,
-        "my": 0.3295
+        "x": 0.3445,
+        "y": 0.2557,
+        "rx": 0.1202,
+        "ry": 0.1771,
+        "mx": 0.3614,
+        "my": 0.2209
       },
-      "licht": "141,198,240"
+      "licht": "131,194,234"
     },
     "frank-mantel-dunkelblau-hochglanz": {
       "b": 1024,
@@ -662,25 +669,6 @@
       ],
       "grund": "#00141d"
     },
-    "referenzhelm-portraet-links-taille": {
-      "b": 1672,
-      "h": 1400,
-      "breiten": [
-        1600,
-        1000,
-        640
-      ],
-      "grund": "#00121b",
-      "visier": {
-        "x": 0.2156,
-        "y": 0.2339,
-        "rx": 0.1097,
-        "ry": 0.1646,
-        "mx": 0.198,
-        "my": 0.2073
-      },
-      "licht": "104,192,234"
-    },
     "frank-auswahl-frontal-1-taille": {
       "b": 1672,
       "h": 1400,
@@ -691,25 +679,6 @@
       ],
       "grund": "#00141d"
     },
-    "referenzhelm-portraet-frontal-taille": {
-      "b": 1672,
-      "h": 1400,
-      "breiten": [
-        1600,
-        1000,
-        640
-      ],
-      "grund": "#00101a",
-      "visier": {
-        "x": 0.2724,
-        "y": 0.2325,
-        "rx": 0.1068,
-        "ry": 0.1646,
-        "mx": 0.2733,
-        "my": 0.2059
-      },
-      "licht": "120,193,233"
-    },
     "frank-portraet-rechts-taille": {
       "b": 1672,
       "h": 1400,
@@ -719,25 +688,6 @@
         640
       ],
       "grund": "#00151d"
-    },
-    "referenzhelm-portraet-rechts-taille": {
-      "b": 1672,
-      "h": 1400,
-      "breiten": [
-        1600,
-        1000,
-        640
-      ],
-      "grund": "#00171f",
-      "visier": {
-        "x": 0.3445,
-        "y": 0.2557,
-        "rx": 0.1202,
-        "ry": 0.1771,
-        "mx": 0.3614,
-        "my": 0.2209
-      },
-      "licht": "131,194,234"
     },
     "frank-ganzkoerper-links-2-hochglanz": {
       "b": 1024,

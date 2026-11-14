@@ -13,15 +13,33 @@
           "ansichten": {
             "links": {
               "foto": "O/frank-auswahl-links-1.png",
-              "exo": "M/referenzhelm-portraet-links.png"
+              "exo": "O/referenzhelm-portraet-links-taille.png",
+              "ausrichtung": {
+                "dx": -0.0074,
+                "dy": 0.2881,
+                "skala": 1.5175,
+                "drehung": 0.0
+              }
             },
             "frontal": {
               "foto": "O/frank-auswahl-frontal-1.png",
-              "exo": "M/referenzhelm-portraet-frontal.png"
+              "exo": "O/referenzhelm-portraet-frontal-taille.png",
+              "ausrichtung": {
+                "dx": -0.0434,
+                "dy": 0.2673,
+                "skala": 1.458,
+                "drehung": 0.0
+              }
             },
             "rechts": {
               "foto": "M/frank-portraet-rechts.png",
-              "exo": "M/referenzhelm-portraet-rechts.png"
+              "exo": "O/referenzhelm-portraet-rechts-taille.png",
+              "ausrichtung": {
+                "dx": -0.0917,
+                "dy": 0.2458,
+                "skala": 1.3985,
+                "drehung": 0.0
+              }
             }
           },
           "ganzkoerper": {
