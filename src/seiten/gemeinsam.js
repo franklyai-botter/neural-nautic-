@@ -42,7 +42,12 @@ export function kapitelseite(o = {}) {
   document.body.prepend(k.el, k.fortschritt);
   const sprung = document.querySelector('.bs-sprung');
   if (sprung) document.body.prepend(sprung);       // Sprunglink bleibt das erste Tab-Ziel
-  const m = menue({ ...MENUE, knopf: k.menueKnopf, lenis, still: reduced });
+  // Aktuelle Seite im Menue markieren: der Baustein vergleicht href mit location.pathname („/leistungen“ gegen
+  // „/leistungen/“). Fuer den Eintrag dieser Seite den Pfad genau so setzen, wie er in der Adresse steht.
+  const hier = location.pathname.replace(/\/index\.html$/, '/');
+  const ohneSchraeg = (h) => (h.length > 1 ? h.replace(/\/+$/, '') : h);
+  const eintraege = MENUE.eintraege.map((e) => (ohneSchraeg(e.href) === ohneSchraeg(hier) ? { ...e, href: hier } : e));
+  const m = menue({ ...MENUE, eintraege, knopf: k.menueKnopf, lenis, still: reduced });
   k.el.after(m.el);
   pageTransitions();
   prefetchOnHover();
@@ -84,7 +89,8 @@ export function kapitelseite(o = {}) {
       k.messen();
       // Sprungziel aus der Adresse (z. B. /ki-im-unternehmen#reifegrad von der Startseite): erst jetzt existiert es
       const h = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
-      if (h) requestAnimationFrame(() => { ScrollTrigger.refresh(); hinScrollen(h, true); });
+      // Lenis kennt sonst noch die Hoehe des leeren <main> und landet bei 0: vorher neu messen
+      if (h) requestAnimationFrame(() => { lenis?.resize?.(); ScrollTrigger.refresh(); lenis?.resize?.(); hinScrollen(h, true); });
       window.__bereit = true;   // fuer die Pruefskripte
     });
     return offen;
