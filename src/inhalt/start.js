@@ -5,6 +5,7 @@
 // Bildzuordnungen (welches Bild an welchem Platz) sind Gestaltung, kein Inhalt der Live-Seite.
 
 import figuren from '../../figuren.json';
+import { REIFEGRAD, reifegradAuswerten } from './ki-im-unternehmen.js';
 
 export const SITE = {
   name: 'NeuralNautic',
@@ -117,7 +118,7 @@ export const WIDGET = {
   lasche: 'Reifegrad-Check',
   zahl: '6', einheit: 'Fragen',
   text: 'Wo Sie heute stehen, zeigen sechs Fragen in fünf Minuten',
-  href: '/ki-im-unternehmen#reifegrad',
+  href: '#reifegrad',   // springt auf den Store-Platz dieser Seite (L10)
 };
 
 /* ---------- L3: der alte Header (Logo-Wirbel, H1, Zahl, ein Knopf, Beleg) ---------- */
@@ -275,17 +276,41 @@ export const LEISTUNGEN = {
   cta: { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true },
 };
 
-/* ---------- L10: Store-Platz ---------- */
-export const STORE = {
-  label: 'KI-Potenzialcheck',
-  // BERUHIGUNG in ihren zwei Sätzen: der zweite als Überschrift, der erste als Zeile darüber
-  titel: 'Danach wissen Sie, wo KI bei Ihnen zuerst wirkt.',
-  zeile: '30 Minuten per Video, kostenlos und unverbindlich.',
-  cta: { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true },
-  bilder: [
-    { ...bild('fotoRechts', 1000, { verh: 3 / 4 }), hinweis: KI },
-    { ...bild('ganzExo', 1000, { verh: 3 / 3.9, kopf: [0.5, 0.3] }), hinweis: KI },
+/* ---------- L10: Store-Platz mit dem Reifegrad-Check (Frank, 14.11.2026) ---------- */
+// Fragen, Regeln und Texte wörtlich aus ki-im-unternehmen.js (dort aus ReifegradCheck.tsx). Hier wird nur zugeordnet.
+const RC = REIFEGRAD.check;
+export const CHECK = {
+  ariaLabel: REIFEGRAD.kicker,
+  fragen: RC.dimensionen.map((d) => ({ key: d.key, titel: d.title, etikett: d.quer ? RC.texte.querEtikett : '', antworten: d.levels })),
+  // Auswertung ist reifegradAuswerten() der Inhalts-Datei; hier nur die Zuordnung zu den Feldern des Bausteins
+  auswerten(werte) {
+    const e = reifegradAuswerten(werte);
+    return {
+      kopf: RC.texte.ergebnisKopf(e.avg), stufe: e.stufe.n, name: e.stufe.name,
+      hinweis: e.gekappt ? RC.texte.gekappt(e.vorlaeufig, e.finale) : '',
+      label: RC.texte.schrittLabel, text: e.stufe.schritt, roh: e,
+    };
+  },
+  stufeWort: 'Stufe',                                   // aus „Stufe 2: Aufbau“
+  texte: {
+    zaehler: (i) => RC.texte.zaehler(i),
+    offen: (n) => RC.texte.offen(n),
+    ergebnis: 'Ihre Einstiegsstufe',                    // aus „Ihre Einstiegsstufe · Durchschnitt …“
+    neu: RC.texte.neu,
+  },
+  ctas: [
+    { ...RC.texte.cta, art: 'accent' },
+    // erster Satz des Beruhigungssatzes gehört an den Calendly-Knopf
+    { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true, art: 'linie', klein: '30 Minuten per Video, kostenlos und unverbindlich.' },
   ],
+  fussnote: RC.texte.fussnote,
+};
+
+export const STORE = {
+  id: REIFEGRAD.id,
+  label: REIFEGRAD.kicker,
+  titel: REIFEGRAD.titel,
+  text: REIFEGRAD.intro,
   // Die zwei Downloads von /ki-im-unternehmen als Teaser. Die Formulare mit Einwilligung folgen in Welle 2.
   teaser: [
     { kicker: 'Checkliste zum Herunterladen', titel: 'Die ausführliche Checkliste für Ihre Leitungsrunde',

@@ -11,7 +11,7 @@ import {
 } from '@kern/motion.js';
 import {
   kopf, menue, preloader, laufband, logowirbel, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldZitat,
-  weiche, videoVorhang, karten, callout, store, nachweise, faecher, fusskarte, hilfen,
+  weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
 import * as I from '../inhalt/start.js';
@@ -31,13 +31,24 @@ const m = menue({ ...I.MENUE, knopf: k.menueKnopf, lenis, still: reduced });
 k.el.after(m.el);
 pageTransitions();
 prefetchOnHover();
+// Sprungziele auf dieser Seite (z. B. das Hero-Widget zum Reifegrad-Check): weich scrollen, Fokus mitnehmen
+document.addEventListener('click', (e) => {
+  const a = e.target.closest?.('a[href^="#"]');
+  const ziel = a && a.getAttribute('href').length > 1 && document.getElementById(a.getAttribute('href').slice(1));
+  if (!ziel) return;
+  e.preventDefault();
+  if (lenis) lenis.scrollTo(ziel, { duration: 1.6, force: true, offset: -window.innerHeight * 0.12 }); else ziel.scrollIntoView();
+  ziel.setAttribute('tabindex', '-1');
+  ziel.focus({ preventScroll: true });
+});
 
 /* ---------------- L2 + L3: Hero, schrumpft zur Bildkarte im Logo-Wirbel ---------------- */
 const E = I.EINSTIEG;
 // Eine Strecke fuer Hero und Bildkarte: erst wird die Figur ganz zum Exo (bis 55 %), dann steht sie kurz,
-// dann schrumpft die Buehne zur Karte (61-80 %) und der Wirbel fuellt sich.
-const BK = { von: 0.61, bis: 0.8 };
-const HERO_PHASEN = { zoomBis: 0.36, druckVon: 0.15, druckBis: 0.36, umVon: 0.38, umBis: 0.55 };
+// dann schrumpft die Buehne zur Karte (63-81 %) und der Wirbel fuellt sich.
+const BK = { von: 0.63, bis: 0.81 };
+// Die Ganzkoerperfigur dreht sich links -> frontal -> rechts, waehrend sie zum Exo wird, und steht dann ruhig.
+const HERO_PHASEN = { zoomBis: 0.36, druckVon: 0.15, druckBis: 0.36, umVon: 0.38, umBis: 0.55, drehVon: 0.36, drehBis: 0.57 };
 const wirbel = logowirbel(I.WIRBEL);
 let wirbelGeladen = false;
 const bk = teil(bildkarte({
@@ -125,6 +136,7 @@ const kt = teil(karten({
   titel: esc(L.titel), text: L.text,
   karten: L.karten.map((c) => ({ ...c, href: `/leistungen#${c.anker}` })),
   figur: L.figur, ergebnisLabel: L.ergebnisLabel, mehr: L.mehr, cta: L.cta, alle: W.alle,
+  auftakt: 0.7,   // Positionswechsel: die Figur kommt von rechts in die Mitte, erst dann erscheinen die rechten Karten
   lenis,
   onFortschritt: (p) => { kartenP = p; szene?.setFortschritt(p); },
 }));
@@ -134,7 +146,11 @@ main.append(kt.el);
 main.append(callout({ id: 'werkzeuge', satz: true, label: W.werkzeuge.titel, titel: esc(W.werkzeuge.text), knopf: { text: W.werkzeuge.knopf, href: W.werkzeuge.href } }).el);
 
 /* ---------------- L10: Store-Platz ---------------- */
-main.append(store({ ...I.STORE, titel: esc(I.STORE.titel), id: 'ki-check' }).el);
+const st = store({ ...I.STORE, titel: esc(I.STORE.titel) });
+const rc = check(I.CHECK);
+st.platz.appendChild(rc.el);
+main.append(st.el);
+window.__check = rc;   // fuer qa/start/check_test.py
 
 /* ---------------- L11: wer dahintersteht, Zertifikate, Partner-Laufband ---------------- */
 const V = I.VERTRAUEN;
@@ -182,27 +198,57 @@ async function heroStarten() {
     console.warn('[funnel] Hero nicht geladen, das Standbild bleibt stehen:', e?.message || e);
   }
 }
+// Positionswechsel (HERO.md, ablauf.bahn): Im Auftakt der Leistungen steht die Figur als Mensch rechts, wo die zweite
+// Kartenspalte noch fehlt, schaut nach links zu Titel und ersten Karten, wandert in die Mitte und wird dabei zum Exo.
+// Danach steht sie frontal, je Karte leuchtet ein Bauteil. Am Desktop liegt die Szene in der breiten Buehne hinter den
+// Karten, mobil im Figurenplatz, der oben stehen bleibt.
+let szeneModul = null;
+function szeneBauen() {
+  if (!szeneModul) return;
+  const { createSzene, figuren } = szeneModul;
+  szene?.dispose?.();
+  document.querySelectorAll('.nn-szene').forEach((n) => n.remove());
+  const mobil = hilfen.mobilMQ.matches;
+  const n = L.karten.length;
+  const a = mobil ? 0.14 : kt.auftakt;
+  const von = (i) => a + (1 - a) * (0.02 + (i / n) * 0.965);
+  const punkte = L.karten.map((c, i) => ({ von: von(i), bis: von(i + 1), x: c.teil.x / 100, y: c.teil.y / 100, r: 0.075 }));
+  let platz = { x: 0.5, y: 0.5, hoehe: 0.88 };
+  let xStart = 0.72;
+  if (!mobil) {
+    const P = kt.pin.getBoundingClientRect();
+    const F = kt.feld.getBoundingClientRect();
+    const Rr = kt.el.querySelector('.bs-karten__spalte--r').getBoundingClientRect();
+    const Lg = Math.min(P.height, P.width / 1.5);
+    platz = { x: 0.5, y: (F.top + F.height / 2 - P.top) / P.height, hoehe: (F.height * 0.93) / Lg };
+    xStart = (Rr.left + Rr.width / 2 - P.left) / P.width;
+  }
+  const el2 = document.createElement('div');
+  el2.className = 'nn-szene';
+  (mobil ? kt.figur : kt.buehne).prepend(el2);
+  kt.el.classList.toggle('is-breit', !mobil);
+  kt.figur.classList.toggle('is-szene', mobil);
+  szene = createSzene(el2, {
+    figuren, szene: I.LEISTUNGEN.szene, steuerung: 'extern', spur: true,
+    ablauf: {
+      bahn: [{ bei: 0, x: xStart }, { bei: a * 0.18, x: xStart }, { bei: a * 0.92, x: 0.5 }, { bei: 1, x: 0.5 }],
+      ansichten: [{ bei: 0, ansicht: 'links' }, { bei: a * 0.95, ansicht: 'frontal' }],
+      exo: [{ von: a * 0.4, bis: a * 0.95, zu: 1 }],
+      punkte,
+    },
+    platz: { desktop: platz, mobil: platz },
+    grund: getComputedStyle(document.documentElement).getPropertyValue(mobil ? '--bs-dunkel' : '--bs-flaeche').trim(),
+  });
+  szene.setFortschritt(kartenP);
+  window.__szene = szene;
+}
 async function szeneStarten() {
-  if (param.get('hero') === 'aus') return;
+  if (param.get('hero') === 'aus' || reduced) return;   // Reduced Motion: Standbild mit Marker
   try {
     const [{ createSzene }, { default: figuren }] = await Promise.all([import('@kern/hero/szene.js'), import('../../figuren.json')]);
-    const n = L.karten.length;
-    // je Leistung leuchtet ein Bauteil: gleiche Schritte wie die Karten (karten.js: 2 % Vorlauf, 1,5 % Nachlauf)
-    const punkte = L.karten.map((c, i) => ({ von: 0.02 + (i / n) * 0.965, bis: 0.02 + ((i + 1) / n) * 0.965, x: c.teil.x / 100, y: c.teil.y / 100, r: 0.075 }));
-    // Die Seite fuehrt den Fortschritt (steuerung: 'extern'): karten() meldet ihn am Desktop aus der gepinnten
-    // Strecke und mobil aus dem Durchlauf der Kartenliste (onFortschritt oben).
-    const platz = document.createElement('div');
-    platz.className = 'nn-szene';
-    kt.figur.prepend(platz);
-    szene = createSzene(platz, {
-      figuren, szene: I.LEISTUNGEN.szene, steuerung: 'extern', spur: true,
-      ablauf: { punkte },
-      platz: { desktop: { x: 0.5, y: 0.5, hoehe: 1.98 }, mobil: { x: 0.5, y: 0.5, hoehe: 0.88 } },
-      grund: getComputedStyle(document.documentElement).getPropertyValue('--bs-dunkel').trim(),
-    });
-    szene.setFortschritt(kartenP);
-    kt.figur.classList.add('is-szene');
-    window.__szene = szene;
+    szeneModul = { createSzene, figuren };
+    szeneBauen();
+    hilfen.mobilMQ.addEventListener('change', szeneBauen);
   } catch (e) {
     console.warn('[funnel] Ganzkörper-Szene nicht geladen, das Standbild bleibt stehen:', e?.message || e);
   }

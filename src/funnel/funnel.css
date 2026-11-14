@@ -60,10 +60,10 @@ main { display: block; }
 @media (max-width: 991px) and (max-height: 700px) { .nn-widget { display: none; } }
 
 /* ---------- L8: Ganzkoerper-Szene im Figurenplatz der Karten ---------- */
-.bs-karten__figur .nn-szene.szene { position: absolute; inset: 0; height: auto; background: none; color: inherit; }
-.bs-karten__figur .szene__pin { position: absolute; inset: 0; height: auto; }
-.bs-karten__figur .szene__buehne { position: absolute; inset: 0; }
-.bs-karten__figur .szene__ki { display: none; }
+.bs-karten .nn-szene.szene { position: absolute; inset: 0; height: auto; background: none; color: inherit; }
+.bs-karten .nn-szene .szene__pin { position: absolute; inset: 0; height: auto; }
+.bs-karten .nn-szene .szene__buehne { position: absolute; inset: 0; }
+.bs-karten .nn-szene .szene__ki { display: none; }
 
 /* ---------- Reduced Motion ---------- */
 .is-reduced .nn-widget__zahl::after, .is-reduced .nn-scrollen span { animation: none; }
