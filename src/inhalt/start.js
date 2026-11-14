@@ -4,6 +4,8 @@
 // ArchitekturDownload.tsx (die zwei Downloads). Hier wird nichts formuliert, nur zugeordnet.
 // Bildzuordnungen (welches Bild an welchem Platz) sind Gestaltung, kein Inhalt der Live-Seite.
 
+import figuren from '../../figuren.json';
+
 export const SITE = {
   name: 'NeuralNautic',
   kiCheck: 'https://calendly.com/frankschuettai-neuralnautic/ki-potenzialcheck',
@@ -16,7 +18,38 @@ export const SITE = {
 export const BERUHIGUNG = '30 Minuten per Video, kostenlos und unverbindlich. Danach wissen Sie, wo KI bei Ihnen zuerst wirkt.';
 export const KI = 'KI-generiert';
 
-const B = (name, w) => `/bilder/${name}-${w}.webp`;
+/* ---------- Bilder: Namen, Maße und Kopf-Anker kommen aus figuren.json (schreibt tools/bilder.py) ----------
+   Hier steht nur die Rolle (Foto oder Exo, Ansicht). Tauscht der Hero-Agent Bilder, zieht die Seite mit. */
+const FIG = figuren.saetze[figuren.satz].figuren[0];
+const ansicht = (k) => FIG.ansichten[k] || FIG.ansichten.frontal || Object.values(FIG.ansichten)[0];
+const ROLLEN = {
+  fotoFrontal: [ansicht('frontal'), 'foto'], fotoLinks: [ansicht('links'), 'foto'], fotoRechts: [ansicht('rechts'), 'foto'],
+  exoFrontal: [ansicht('frontal'), 'exo'], exoLinks: [ansicht('links'), 'exo'], exoRechts: [ansicht('rechts'), 'exo'],
+  ganzFoto: [FIG.ganzkoerper, 'foto'], ganzExo: [FIG.ganzkoerper, 'exo'],
+};
+const klemme = (v) => Math.min(100, Math.max(0, Math.round(v)));
+/**
+ * Bild einer Rolle. breite = gewünschte Breite in px, verh = Breite/Höhe der Bildfläche,
+ * kopf = [x, y] Stelle in der Fläche (0…1), an der die Kopfmitte sitzen soll.
+ */
+export function bild(rolle, breite = 640, { verh, kopf = [0.5, 0.4] } = {}) {
+  const [paar, art] = ROLLEN[rolle];
+  const name = paar[art];
+  const m = figuren.bilder[name];
+  const b = [...m.breiten].sort((x, y) => x - y);
+  const w = b.find((x) => x >= breite) ?? b[b.length - 1];
+  const A = m.b / m.h;
+  const a = paar.anker;
+  let position;
+  if (verh) {
+    position = A > verh
+      ? `${klemme(100 * (a.x * A - kopf[0] * verh) / (A - verh))}% 50%`
+      : `50% ${klemme(100 * (a.y / A - kopf[1] / verh) / (1 / A - 1 / verh || 1))}%`;
+  }
+  return { src: `/bilder/${name}-${w}.webp`, w, h: Math.round(w / A), position };
+}
+const menueBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 4 / 3, kopf }); return { bild: x.src, position: x.position }; };
+const faecherBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 3 / 4.1, kopf }); return { bild: x.src, position: x.position }; };
 
 /* ---------- Seitenrahmen ---------- */
 export const KOPF = {
@@ -25,18 +58,18 @@ export const KOPF = {
   menue: { auf: 'Menü öffnen', zu: 'Menü schließen' },
 };
 
-// Einträge und Adressen wie im Brief (Live-Adressen). Bilder: nur Franks Bilder aus public/bilder.
+// Einträge und Adressen wie im Brief (Live-Adressen). Bilder: nur Franks Bilder, Rollen aus figuren.json.
 export const MENUE = {
   titel: 'Menü',
   eintraege: [
-    { text: 'Start', href: '/', bild: B('frank-hero-frontal', 640) },
-    { text: 'Leistungen', href: '/leistungen', bild: B('exoskelett-ganzkoerper-frontal', 640), position: '50% 14%' },
-    { text: 'Im Unternehmen', href: '/ki-im-unternehmen', bild: B('frank-hero-links', 640) },
-    { text: 'Im Projekt', href: '/methode', bild: B('exoskelett-portraet-rechts', 640) },
-    { text: 'AI Engineering', href: '/ai-engineering', bild: B('exoskelett-ganzkoerper-frontal', 640), position: '50% 40%' },
-    { text: 'KI Tool Kompass', href: '/ki-tool-kompass', bild: B('frank-portraet-rechts', 640) },
-    { text: 'Ausguck', href: '/wissen', bild: B('frank-hero-rechts', 640) },
-    { text: 'Über mich', href: '/ueber-mich', bild: B('frank-ganzkoerper-dunkelblau', 640), position: '50% 16%' },
+    { text: 'Start', href: '/', ...menueBild('fotoFrontal') },
+    { text: 'Leistungen', href: '/leistungen', ...menueBild('ganzExo', [0.5, 0.3]) },
+    { text: 'Im Unternehmen', href: '/ki-im-unternehmen', ...menueBild('fotoLinks') },
+    { text: 'Im Projekt', href: '/methode', ...menueBild('exoRechts') },
+    { text: 'AI Engineering', href: '/ai-engineering', ...menueBild('ganzExo', [0.5, -0.9]) },
+    { text: 'KI Tool Kompass', href: '/ki-tool-kompass', ...menueBild('exoLinks') },
+    { text: 'Ausguck', href: '/wissen', ...menueBild('fotoRechts') },
+    { text: 'Über mich', href: '/ueber-mich', ...menueBild('ganzFoto', [0.5, 0.3]) },
     { text: 'Kontakt', href: '/kontakt', bild: '/inhalt/frank-ki/film.webp', position: '50% 40%' },
   ],
   bildHinweis: KI,
@@ -185,9 +218,9 @@ export const SCHICHTEN = {
 export const WEGE = {
   titel: 'Wir setzen dort an, wo Sie stehen: im ganzen Unternehmen, in einem Projekt oder bei den Werkzeugen.',
   links: { titel: 'Im Unternehmen', text: 'Fahrplan, Befähigung und Architektur für die KI-Einführung im ganzen Betrieb, mit Reifegrad-Check als Einstieg.', href: '/ki-im-unternehmen',
-    bild: { src: B('frank-hero-rechts', 1000), w: 1000, h: 563, position: '0% 30%' } },
+    bild: bild('fotoRechts', 1000, { verh: 3 / 4.2, kopf: [0.6, 0.4] }) },
   rechts: { titel: 'Im Projekt', text: 'Ein Anwendungsfall von der Potenzialanalyse über einen kontrollierten Pilot bis in den laufenden Betrieb.', href: '/methode',
-    bild: { src: B('exoskelett-portraet-rechts', 1000), w: 1000, h: 563, position: '36% 30%' } },
+    bild: bild('exoRechts', 1000, { verh: 3 / 4.2, kopf: [0.36, 0.4] }) },
   werkzeuge: { titel: 'Werkzeuge', text: 'Passende KI-Werkzeuge auswählen oder Lösungen selbst entwickeln lassen, nach Nutzen, Kosten und Datenschutz.', href: '/ki-tool-kompass', knopf: 'KI Tool Kompass' },
   alle: { text: 'Alle Leistungen im Überblick →', href: '/leistungen' },
 };
@@ -210,7 +243,7 @@ export const LEISTUNGEN = {
   titel: 'KI-Leistungen für Analyse, Umsetzung und Skalierung',
   text: 'Von der ersten Idee bis zum produktiven KI-gestützten Arbeitsablauf: Wir unterstützen Unternehmen dabei, KI sinnvoll, sicher und wirtschaftlich einzusetzen.',
   szene: 'frank',   // Schlüssel unter figuren.json → szenen (Ganzkörper-Szene aus @kern/hero)
-  figur: { src: B('exoskelett-ganzkoerper-frontal', 1000), klein: B('exoskelett-ganzkoerper-frontal', 640), w: 1000, h: 1500, hinweis: KI },
+  figur: { ...bild('ganzExo', 1000), klein: bild('ganzExo', 640).src, hinweis: KI },
   ergebnisLabel: 'Ergebnis',
   mehr: 'Zur Leistung im Detail',
   karten: [
@@ -250,8 +283,8 @@ export const STORE = {
   zeile: '30 Minuten per Video, kostenlos und unverbindlich.',
   cta: { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true },
   bilder: [
-    { src: B('frank-hero-rechts', 1000), w: 1000, h: 563, hinweis: KI },
-    { src: B('exoskelett-ganzkoerper-frontal', 1000), w: 1000, h: 1500, hinweis: KI, position: '50% 12%' },
+    { ...bild('fotoRechts', 1000, { verh: 3 / 4 }), hinweis: KI },
+    { ...bild('ganzExo', 1000, { verh: 3 / 3.9, kopf: [0.5, 0.3] }), hinweis: KI },
   ],
   // Die zwei Downloads von /ki-im-unternehmen als Teaser. Die Formulare mit Einwilligung folgen in Welle 2.
   teaser: [
@@ -281,11 +314,11 @@ export const VERTRAUEN = {
 /* ---------- L12: Kanäle und Abschluss ---------- */
 export const KANAELE = {
   karten: [
-    { bild: B('exoskelett-ganzkoerper-frontal', 640), deko: true, position: '50% 12%' },
-    { bild: B('exoskelett-portraet-rechts', 640), text: 'LinkedIn NeuralNautic', href: SITE.linkedinNN },
-    { bild: B('frank-hero-frontal', 640), text: 'LinkedIn Frank', href: SITE.linkedinFrank },
-    { bild: B('frank-portraet-rechts', 640), text: 'X @FSchuettNN', href: SITE.x },
-    { bild: B('frank-ganzkoerper-dunkelblau', 640), deko: true, position: '50% 14%' },
+    { ...faecherBild('ganzExo', [0.5, 0.3]), deko: true },
+    { ...faecherBild('exoRechts'), text: 'LinkedIn NeuralNautic', href: SITE.linkedinNN },
+    { ...faecherBild('fotoFrontal'), text: 'LinkedIn Frank', href: SITE.linkedinFrank },
+    { ...faecherBild('fotoLinks'), text: 'X @FSchuettNN', href: SITE.x },
+    { ...faecherBild('ganzFoto', [0.5, 0.3]), deko: true },
   ],
   hinweis: KI,
   links: [

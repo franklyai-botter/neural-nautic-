@@ -34,11 +34,15 @@ prefetchOnHover();
 
 /* ---------------- L2 + L3: Hero, schrumpft zur Bildkarte im Logo-Wirbel ---------------- */
 const E = I.EINSTIEG;
+// Eine Strecke fuer Hero und Bildkarte: erst wird die Figur ganz zum Exo (bis 55 %), dann steht sie kurz,
+// dann schrumpft die Buehne zur Karte (61-80 %) und der Wirbel fuellt sich.
+const BK = { von: 0.61, bis: 0.8 };
+const HERO_PHASEN = { zoomBis: 0.36, druckVon: 0.15, druckBis: 0.36, umVon: 0.38, umBis: 0.55 };
 const wirbel = logowirbel(I.WIRBEL);
 let wirbelGeladen = false;
 const bk = teil(bildkarte({
   el: document.getElementById('start'),
-  weg: 3.9, von: 0.5, bis: 0.76,
+  weg: 4.2, von: BK.von, bis: BK.bis,
   klassen: { pin: 'hero__pin', buehne: 'hero__buehne' },
   plaetze: {
     ol: `<h1 class="bs-h1">${esc(E.h1[0])}<br /><em>${esc(E.h1[1])}</em></h1>`,
@@ -56,7 +60,7 @@ const bk = teil(bildkarte({
     bk.el.classList.toggle('is-unterwegs', p > 0.03);
     if (!wirbelGeladen && p > 0.12) nachladen();
   },
-  onSchrumpf: (p) => wirbel.setEin((p - 0.3) / 0.7),
+  onSchrumpf: (p) => wirbel.setEin((p - 0.25) / 0.75),
 }));
 bk.hinter.appendChild(wirbel.el);
 starten.push(() => wirbel.start());
@@ -92,11 +96,11 @@ main.append(teil(quergalerie({
   felder: [
     feldTitel({ titel: esc(M.titel), text: esc(M.text), weiter: 'weiter scrollen' }),
     feldText({ gross: M.teile[0].name, klein: M.teile[0].fach, claim: M.teile[0].claim, text: M.teile[0].desc, lage: 'oben' }),
-    feldBild({ src: '/bilder/frank-hero-links-1000.webp', w: 1000, h: 563, form: 'hoch', lage: 'unten', hinweis: I.KI, position: '24% 30%' }),
+    feldBild({ ...I.bild('fotoLinks', 1000, { verh: 3 / 4.3 }), form: 'hoch', lage: 'unten', hinweis: I.KI }),
     feldText({ gross: M.teile[1].name, klein: M.teile[1].fach, claim: M.teile[1].claim, text: M.teile[1].desc, lage: 'mitte' }),
-    feldBild({ src: '/bilder/frank-ganzkoerper-dunkelblau-640.webp', w: 640, h: 960, form: 'klein', lage: 'oben', ton: true, hinweis: I.KI, position: '50% 12%' }),
+    feldBild({ ...I.bild('ganzFoto', 640, { verh: 1, kopf: [0.5, 0.3] }), form: 'klein', lage: 'oben', ton: true, hinweis: I.KI }),
     feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
-    feldBild({ src: '/bilder/exoskelett-portraet-rechts-1000.webp', w: 1000, h: 563, form: 'gross', lage: 'mitte', hinweis: I.KI }),
+    feldBild({ ...I.bild('exoRechts', 1000), form: 'gross', lage: 'mitte', hinweis: I.KI }),
     feldZitat({ link: M.link, lage: 'unten' }),
     feldTitel({ titel: esc(S.titel) }),
     feldBild({ ...S.bild, form: 'hoch', lage: 'mitte', position: '50% 0%' }),
@@ -115,13 +119,14 @@ main.append(wch.el);
 /* ---------------- L8: die 8 Leistungen als Karten, in der Mitte die Ganzkoerper-Szene ---------------- */
 const L = I.LEISTUNGEN;
 let szene = null;
+let kartenP = 0;
 const kt = teil(karten({
   id: 'leistungen',
   titel: esc(L.titel), text: L.text,
   karten: L.karten.map((c) => ({ ...c, href: `/leistungen#${c.anker}` })),
   figur: L.figur, ergebnisLabel: L.ergebnisLabel, mehr: L.mehr, cta: L.cta, alle: W.alle,
   lenis,
-  onFortschritt: (p) => { if (szene && hilfen.mobilMQ.matches) szene.test({ scroll: p }); },
+  onFortschritt: (p) => { kartenP = p; szene?.setFortschritt(p); },
 }));
 main.append(kt.el);
 
@@ -166,13 +171,13 @@ document.fonts.ready.then(() => {
 });
 
 /* ---------------- Hero und Ganzkoerper-Szene nachladen ---------------- */
-// Schnittstelle: funnel-vorlage/docs/HERO.md. Beide teilen sich die Strecke ihres Bausteins:
-// der Hero die der Bildkarte (bk.bahn), die Szene die der Karten (kt.bahn).
+// Schnittstelle: funnel-vorlage/docs/HERO.md. Der Hero teilt sich die Strecke der Bildkarte (bk.bahn) und
+// bekommt eigene Phasengrenzen; die Szene sitzt im Figurenplatz der Karten und wird von aussen gefuehrt.
 async function heroStarten() {
   if (param.get('hero') === 'aus') return;
   try {
     const [{ createHero }, { default: figuren }] = await Promise.all([import('@kern/hero/hero.js'), import('../../figuren.json')]);
-    window.__hero = createHero(bk.bahn, { figuren, lenis });
+    window.__hero = createHero(bk.bahn, { figuren, lenis, phasen: HERO_PHASEN });
   } catch (e) {
     console.warn('[funnel] Hero nicht geladen, das Standbild bleibt stehen:', e?.message || e);
   }
@@ -184,16 +189,18 @@ async function szeneStarten() {
     const n = L.karten.length;
     // je Leistung leuchtet ein Bauteil: gleiche Schritte wie die Karten (karten.js: 2 % Vorlauf, 1,5 % Nachlauf)
     const punkte = L.karten.map((c, i) => ({ von: 0.02 + (i / n) * 0.965, bis: 0.02 + ((i + 1) / n) * 0.965, x: c.teil.x / 100, y: c.teil.y / 100, r: 0.075 }));
-    const buehne = document.createElement('div');
-    buehne.className = 'szene__buehne';
-    kt.figur.prepend(buehne);
-    kt.pin.classList.add('szene__pin');
-    szene = createSzene(kt.bahn, {
-      figuren, szene: I.LEISTUNGEN.szene, spur: true,
+    // Die Seite fuehrt den Fortschritt (steuerung: 'extern'): karten() meldet ihn am Desktop aus der gepinnten
+    // Strecke und mobil aus dem Durchlauf der Kartenliste (onFortschritt oben).
+    const platz = document.createElement('div');
+    platz.className = 'nn-szene';
+    kt.figur.prepend(platz);
+    szene = createSzene(platz, {
+      figuren, szene: I.LEISTUNGEN.szene, steuerung: 'extern', spur: true,
       ablauf: { punkte },
       platz: { desktop: { x: 0.5, y: 0.5, hoehe: 1.98 }, mobil: { x: 0.5, y: 0.5, hoehe: 0.88 } },
       grund: getComputedStyle(document.documentElement).getPropertyValue('--bs-dunkel').trim(),
     });
+    szene.setFortschritt(kartenP);
     kt.figur.classList.add('is-szene');
     window.__szene = szene;
   } catch (e) {
