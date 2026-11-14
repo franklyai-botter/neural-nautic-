@@ -1,0 +1,25 @@
+{
+  "name": "funnel-neuralnautic",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Marketing-Funnel NeuralNautic nach Lando-Vorbild, nur Franks Bilder",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 6191",
+    "cf:dev": "vite build && wrangler dev"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/inter-tight": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.20",
+    "three": "^0.174.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.0",
+    "wrangler": "^4.40.0"
+  }
+}

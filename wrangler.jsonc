@@ -1,0 +1,20 @@
+{
+  // Reine statische Seite: Cloudflare Workers mit Static Assets, kein Worker-Code.
+  // Gleicher Weg wie nn-ki-agententeam und Karlson. Nicht Vercel: Hobby-Plan erlaubt keine
+  // gewerbliche Nutzung und hat keine AVV.
+  // Workers Builds: Build-Befehl `npm run build`, Deploy `npx wrangler deploy`. Push = Deploy.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "funnel-neuralnautic",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  // Keine Zugriffsprotokolle: Prototyp, kein Datenschutzhinweis dazu.
+  "observability": {
+    "enabled": false
+  },
+  // Prototyp: erreichbar unter nn-ki-funnel.<konto>.workers.dev, keine Vorschau-URLs je Branch.
+  "workers_dev": true,
+  "preview_urls": false
+}
