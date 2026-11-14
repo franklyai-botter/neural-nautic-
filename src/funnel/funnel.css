@@ -6,7 +6,7 @@
   --bg: var(--bs-dunkel); --fg: #fff; --accent: var(--bs-akzent); --accent-ink: var(--bs-akzent-tinte); --bar: var(--bs-akzent);
   --muted: rgba(255, 255, 255, .64);
 }
-html { scroll-behavior: auto; background: #061419; }
+html { scroll-behavior: auto; background: #061419; overflow-x: clip; }   /* nie waagerecht scrollen */
 body.nn { font-family: var(--bs-text); font-size: 17px; line-height: 1.55; }
 main { display: block; }
 @media (max-width: 991px) { body.nn { font-size: 16px; } }
@@ -64,6 +64,16 @@ main { display: block; }
 .bs-karten .nn-szene .szene__pin { position: absolute; inset: 0; height: auto; }
 .bs-karten .nn-szene .szene__buehne { position: absolute; inset: 0; }
 .bs-karten .nn-szene .szene__ki { display: none; }
+
+/* ---------- L5: kleine Hero-Buehnen in der Quer-Galerie ---------- */
+.bs-quer__buehne.hero, .bs-quer__buehne.hero.hero--extern { height: auto; background: var(--bs-dunkel); }
+.bs-quer__buehne.hero.hero--extern .hero__pin, .bs-quer__buehne.hero .hero__pin { position: absolute; inset: 0; height: auto; overflow: hidden; }
+.bs-quer__buehne .hero__schalter { display: none !important; }
+.bs-quer__buehne .hero__ki { display: none; }           /* die Kennzeichnung traegt das Feld selbst (.bs-ki) */
+.bs-quer__buehne.hero--gl > .bs-quer__stand, .bs-quer__buehne.hero > .bs-quer__stand { visibility: hidden; }
+.bs-quer__buehne.hero--still > .bs-quer__stand { visibility: visible; }
+.bs-quer__buehne.hero--still .hero__pin { display: none; }
+.bs-quer__buehne .bs-ki { z-index: 5; }
 
 /* ---------- Reduced Motion ---------- */
 .is-reduced .nn-widget__zahl::after, .is-reduced .nn-scrollen span { animation: none; }

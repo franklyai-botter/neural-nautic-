@@ -7,10 +7,10 @@ import '@fontsource/jetbrains-mono/400.css';
 import '@fontsource/jetbrains-mono/500.css';
 // @kern/base.css und @kern/hero/hero.css laedt index.html per <link> (src/funnel/kritisch.css)
 import {
-  ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, prefetchOnHover,
+  gsap, ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, prefetchOnHover,
 } from '@kern/motion.js';
 import {
-  kopf, menue, preloader, laufband, logowirbel, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldZitat,
+  kopf, menue, preloader, laufband, logowirbel, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldBuehne, feldZitat,
   weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
@@ -44,16 +44,19 @@ document.addEventListener('click', (e) => {
 
 /* ---------------- L2 + L3: Hero, schrumpft zur Bildkarte im Logo-Wirbel ---------------- */
 const E = I.EINSTIEG;
-// Eine Strecke fuer Hero und Bildkarte: erst wird die Figur ganz zum Exo (bis 55 %), dann steht sie kurz,
-// dann schrumpft die Buehne zur Karte (63-81 %) und der Wirbel fuellt sich.
-const BK = { von: 0.63, bis: 0.81 };
-// Die Ganzkoerperfigur dreht sich links -> frontal -> rechts, waehrend sie zum Exo wird, und steht dann ruhig.
-const HERO_PHASEN = { zoomBis: 0.36, druckVon: 0.15, druckBis: 0.36, umVon: 0.38, umBis: 0.55, drehVon: 0.36, drehBis: 0.57 };
-const wirbel = logowirbel(I.WIRBEL);
+// Eine Strecke fuer Hero und Bildkarte (Anteile am Scrollweg):
+//   0,00-0,33 Zurueckzoomen, Ganzkoerper baut sich auf        0,33-0,57 Drehung links -> frontal -> rechts -> frontal
+//   0,36-0,50 Umwandlung zum Exo                             0,57-0,62 das Exo steht frontal
+//   0,62-0,80 die Buehne schrumpft zur Karte, dabei laeuft die Exo-Kante zurueck (0,64-0,78): in der Karte steht
+//             wieder der echte Frank im Ganzkoerper, die Mausspur legt das Exo frei, im Leerlauf laeuft der Scan
+const BK = { von: 0.62, bis: 0.8 };
+const HERO_PHASEN = { zoomBis: 0.33, druckVon: 0.14, druckBis: 0.33, umVon: 0.36, umBis: 0.5, drehVon: 0.33, drehBis: 0.57, rueckVon: 0.64, rueckBis: 0.78, ruheAb: 0.82 };
+const HERO_DREHUNG = ['links', 'frontal', 'rechts', 'frontal'];
+const wirbel = logowirbel({ ...I.WIRBEL, hoehe: 0.36 });   // Bahnen bleiben zwischen Kopfzeile und Text unten
 let wirbelGeladen = false;
 const bk = teil(bildkarte({
   el: document.getElementById('start'),
-  weg: 4.2, von: BK.von, bis: BK.bis,
+  weg: 4.6, von: BK.von, bis: BK.bis,
   klassen: { pin: 'hero__pin', buehne: 'hero__buehne' },
   plaetze: {
     ol: `<h1 class="bs-h1">${esc(E.h1[0])}<br /><em>${esc(E.h1[1])}</em></h1>`,
@@ -101,24 +104,25 @@ main.append(manifest({ ...I.MANIFEST, id: 'manifest' }).el);
 const M = I.METHODE;
 const S = I.SCHICHTEN;
 const lagen = ['oben', 'unten', 'mitte'];
-main.append(teil(quergalerie({
+const qg = teil(quergalerie({
   id: 'methode',
   ariaLabel: M.titel,
   felder: [
     feldTitel({ titel: esc(M.titel), text: esc(M.text), weiter: 'weiter scrollen' }),
     feldText({ gross: M.teile[0].name, klein: M.teile[0].fach, claim: M.teile[0].claim, text: M.teile[0].desc, lage: 'oben' }),
-    feldBild({ ...I.bild('fotoLinks', 1000, { verh: 3 / 4.3 }), form: 'hoch', lage: 'unten', hinweis: I.KI }),
+    // Personenbilder sind kleine Hero-Buehnen (galerieBuehnen unten): bei Kurs Mensch, bei Crew halb, bei Schiff ganz Exo
+    feldBuehne({ name: 'crew', form: 'hoch', lage: 'unten', standbild: I.bild('fotoLinks', 1000, { verh: 3 / 4.3 }), hinweis: I.KI }),
     feldText({ gross: M.teile[1].name, klein: M.teile[1].fach, claim: M.teile[1].claim, text: M.teile[1].desc, lage: 'mitte' }),
-    feldBild({ ...I.bild('ganzFoto', 640, { verh: 1, kopf: [0.5, 0.3] }), form: 'klein', lage: 'oben', ton: true, hinweis: I.KI }),
     feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
-    feldBild({ ...I.bild('exoRechts', 1000), form: 'gross', lage: 'mitte', hinweis: I.KI }),
+    feldBuehne({ name: 'schiff', form: 'gross', lage: 'mitte', standbild: I.bild('exoRechts', 1000), hinweis: I.KI }),
     feldZitat({ link: M.link, lage: 'unten' }),
     feldTitel({ titel: esc(S.titel) }),
     feldBild({ ...S.bild, form: 'hoch', lage: 'mitte', position: '50% 0%' }),
     ...S.schichten.map(([nr, titel, text], i) => feldZahl({ nr, titel, text, lage: lagen[i % 3] })),
     feldZitat({ link: S.link, lage: 'mitte' }),
   ],
-})).el);
+}));
+main.append(qg.el);
 
 /* ---------------- L6: Weiche, L7: der Film als Vorhang darueber ---------------- */
 const W = I.WEGE;
@@ -193,7 +197,7 @@ async function heroStarten() {
   if (param.get('hero') === 'aus') return;
   try {
     const [{ createHero }, { default: figuren }] = await Promise.all([import('@kern/hero/hero.js'), import('../../figuren.json')]);
-    window.__hero = createHero(bk.bahn, { figuren, lenis, phasen: HERO_PHASEN });
+    window.__hero = createHero(bk.bahn, { figuren, lenis, phasen: HERO_PHASEN, ganzAnsichten: HERO_DREHUNG });
   } catch (e) {
     console.warn('[funnel] Hero nicht geladen, das Standbild bleibt stehen:', e?.message || e);
   }
@@ -253,8 +257,63 @@ async function szeneStarten() {
     console.warn('[funnel] Ganzkörper-Szene nicht geladen, das Standbild bleibt stehen:', e?.message || e);
   }
 }
+// ---------------- L5: die Personenbilder der Quer-Galerie als kleine Hero-Buehnen ----------------
+// Eine Geschichte ueber zwei Bilder: Die erste Buehne (zwischen Kurs und Crew) geht vom Menschen bis zur halben
+// Umwandlung, die zweite (nach Schiff) von der Haelfte bis ganz Exo. Der Kopf dreht mit der Fahrt links -> frontal ->
+// rechts. Gefuehrt wird jede Buehne von ihrem eigenen Weg durchs Fenster (quer am Desktop, senkrecht mobil).
+// WebGL entsteht erst, wenn die Galerie naeher kommt, und wird wieder freigegeben, wenn sie weit weg ist.
+const GALERIE = {
+  crew: { p: (t) => 0.5 * stufe((t - 0.22) / 0.5), ansicht: (t) => (t < 0.42 ? 'links' : 'frontal'),
+    platz: { desktop: { x: 0.5, y: 0.47, kopf: 1.02 }, mobil: { x: 0.5, y: 0.47, kopf: 0.5 } } },
+  schiff: { p: (t) => 0.5 + 0.5 * stufe((t - 0.18) / 0.5), ansicht: (t) => (t < 0.5 ? 'frontal' : 'rechts'),
+    platz: { desktop: { x: 0.5, y: 0.52, kopf: 0.6 }, mobil: { x: 0.5, y: 0.52, kopf: 0.3 } } },
+};
+function stufe(x) { const k = Math.min(1, Math.max(0, x)); return k * k * (3 - 2 * k); }
+let galerie = [];
+function galerieTakt() {
+  const quer = !hilfen.mobilMQ.matches;
+  for (const g of galerie) {
+    const r = g.kasten.getBoundingClientRect();
+    const t = quer ? (window.innerWidth - r.left) / (window.innerWidth + r.width) : (window.innerHeight - r.top) / (window.innerHeight + r.height);
+    if (t < -0.2 || t > 1.2) continue;
+    const k = Math.min(1, Math.max(0, t));
+    g.hero.setFortschritt(g.def.p(k));
+    g.hero.setAnsicht(g.def.ansicht(k));
+  }
+}
+async function galerieAn() {
+  if (galerie.length || reduced || param.get('hero') === 'aus') return;
+  try {
+    const [{ createHero }, { default: figuren }] = await Promise.all([import('@kern/hero/hero.js'), import('../../figuren.json')]);
+    if (galerie.length) return;
+    for (const [name, def] of Object.entries(GALERIE)) {
+      const kasten = qg.buehnen[name];
+      if (!kasten) continue;
+      const kopie = structuredClone(figuren);
+      const f = kopie.saetze[kopie.satz].figuren[0];
+      kopie.saetze[kopie.satz].figuren = [f];
+      delete f.ganzkoerper;                 // ohne Ganzkoerper laeuft die Umwandlung am Portraet
+      f.platz = def.platz;
+      const hero = createHero(kasten, { figuren: kopie, steuerung: 'extern',
+        phasen: { umVon: 0, umBis: 1, zoomBis: 9, druckVon: 9, druckBis: 10, drehVon: 9, drehBis: 10 } });
+      galerie.push({ kasten, def, hero });
+    }
+    gsap.ticker.add(galerieTakt);
+  } catch (e) {
+    console.warn('[funnel] Galerie-Bühnen nicht geladen, die Standbilder bleiben stehen:', e?.message || e);
+  }
+}
+function galerieAus() {
+  gsap.ticker.remove(galerieTakt);
+  galerie.forEach((g) => g.hero.dispose());
+  galerie = [];
+}
+new IntersectionObserver(([e]) => { if (e.isIntersecting) galerieAn(); }, { rootMargin: '120% 0px' }).observe(qg.el);
+new IntersectionObserver(([e]) => { if (!e.isIntersecting) galerieAus(); }, { rootMargin: '320% 0px' }).observe(qg.el);
+window.__galerie = () => galerie;
+
 offen.then(heroStarten);
 // Seitenwechsel: WebGL freigeben (HERO.md)
-window.addEventListener('pagehide', (e) => { if (!e.persisted) { window.__hero?.dispose?.(); szene?.dispose?.(); } });
+window.addEventListener('pagehide', (e) => { if (!e.persisted) { window.__hero?.dispose?.(); szene?.dispose?.(); galerieAus(); } });
 // die Szene erst, wenn der Abschnitt naeher kommt
 new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); szeneStarten(); } }, { rootMargin: '200% 0px' }).observe(kt.el);
