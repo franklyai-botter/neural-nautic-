@@ -47,6 +47,31 @@
           }
         }
       ]
+    },
+    "c": {
+      "figuren": [
+        {
+          "id": "frank",
+          "ansichten": {
+            "links": {
+              "foto": "O/frank-auswahl-links-1-taille.png",
+              "exo": "O/referenzhelm-portraet-links-taille.png"
+            },
+            "frontal": {
+              "foto": "O/frank-auswahl-frontal-1-taille.png",
+              "exo": "O/referenzhelm-portraet-frontal-taille.png"
+            },
+            "rechts": {
+              "foto": "O/frank-portraet-rechts-taille.png",
+              "exo": "O/referenzhelm-portraet-rechts-taille.png"
+            }
+          },
+          "ganzkoerper": {
+            "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
+            "exo": "M/referenzhelm-ganzkoerper-frontal.png"
+          }
+        }
+      ]
     }
   },
   "szenen": {

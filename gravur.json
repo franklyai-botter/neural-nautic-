@@ -205,6 +205,130 @@
           374
         ]
       ]
+    },
+    "referenzhelm-portraet-links-taille": {
+      "entfernen": [
+        [
+          506,
+          468,
+          572,
+          494
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              504.7,
+              476.3
+            ],
+            [
+              572.6,
+              472.8
+            ],
+            [
+              573.3,
+              485.7
+            ],
+            [
+              505.4,
+              489.2
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-portraet-frontal-taille": {
+      "entfernen": [
+        [
+          298,
+          482,
+          364,
+          514
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              250,
+              489
+            ],
+            [
+              278,
+              494
+            ],
+            [
+              278,
+              506
+            ],
+            [
+              250,
+              500
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        },
+        {
+          "viereck": [
+            [
+              630,
+              495
+            ],
+            [
+              656,
+              490
+            ],
+            [
+              656,
+              501
+            ],
+            [
+              630,
+              507
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-portraet-rechts-taille": {
+      "entfernen": [
+        [
+          332,
+          490,
+          398,
+          524
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              333.6,
+              492.5
+            ],
+            [
+              399.6,
+              509.0
+            ],
+            [
+              396.4,
+              521.5
+            ],
+            [
+              330.4,
+              505.0
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
     }
   }
 }
