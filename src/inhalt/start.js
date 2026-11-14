@@ -47,7 +47,8 @@ export function bild(rolle, breite = 640, { verh, kopf = [0.5, 0.4] } = {}) {
       ? `${klemme(100 * (a.x * A - kopf[0] * verh) / (A - verh))}% 50%`
       : `50% ${klemme(100 * (a.y / A - kopf[1] / verh) / (1 / A - 1 / verh || 1))}%`;
   }
-  return { src: `/bilder/${name}-${w}.webp`, w, h: Math.round(w / A), position };
+  // maske = Alpha-Maske der Figur (schreibt tools/bilder.py), mitte = Koerper- bzw. Kopfmitte als Anteil der Bildbreite
+  return { src: `/bilder/${name}-${w}.webp`, w, h: Math.round(w / A), position, maske: `/bilder/${name}-hof.webp`, mitte: a.mx ?? a.x };
 }
 const menueBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 4 / 3, kopf }); return { bild: x.src, position: x.position }; };
 const faecherBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 3 / 4.1, kopf }); return { bild: x.src, position: x.position }; };
@@ -150,9 +151,10 @@ const ANBIETER = [
 export const WIRBEL = {
   ariaLabel: 'Logos der Modellanbieter, mit denen wir arbeiten',
   logos: [
-    { src: '/brand/nn-monogramm.png', name: 'NeuralNautic' },
-    { src: '/brand/nn-stern-kompass-128.png', name: 'NeuralNautic' },
-    { src: '/brand/partner/for42-wordmark.svg', name: 'for42.ai', breit: true },
+    // eigene Signete: nie ein Schein dahinter (Markenregel). for42 in der Fassung fuer dunklen Grund aus public/brand.
+    { src: '/brand/nn-monogramm.png', name: 'NeuralNautic', schein: false },
+    { src: '/brand/nn-stern-kompass-128.png', name: 'NeuralNautic', schein: false },
+    { src: '/brand/partner/for42-wordmark-weiss.svg', name: 'for42.ai', breit: true, schein: false },
     ...ANBIETER.map(([d, name]) => ({ src: `/medien/ki-logos/${d}`, name })),
   ],
   hinweis: 'Wir arbeiten anbieterneutral mit den Modellen aller großen Hersteller. Die Logos gehören den jeweiligen Inhabern, eine Partnerschaft besteht nicht.',
@@ -198,6 +200,13 @@ export const METHODE = {
     { name: 'Schiff', fach: 'KI-Architektur', claim: 'Seetüchtig statt Demo.', desc: 'Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb.' },
   ],
   link: { text: 'Methode im Detail, mit Reifegrad-Check und Architektur →', href: '/ki-im-unternehmen' },
+};
+
+// Bild bei „Schiff“: KI-generierte Animation des NeuralNautic-Schiffs (Codex, 14.11.2026), umgewandelt mit
+// qa/start/schiff_umwandeln.py (nahtlose Schleife, 5,4 s). Kein Inhalt der Live-Seite.
+export const SCHIFF_FILM = {
+  quellen: [{ src: '/medien/schiff/schiff.webm', type: 'video/webm' }, { src: '/medien/schiff/schiff.mp4', type: 'video/mp4' }],
+  poster: '/medien/schiff/schiff.webp', w: 1280, h: 720, alt: '', hinweis: KI,
 };
 
 export const SCHICHTEN = {

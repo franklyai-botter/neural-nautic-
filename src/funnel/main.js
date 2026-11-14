@@ -10,7 +10,7 @@ import {
   gsap, ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, prefetchOnHover,
 } from '@kern/motion.js';
 import {
-  kopf, menue, preloader, laufband, logowirbel, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldBuehne, feldZitat,
+  kopf, menue, preloader, laufband, logowirbel, sternfahrt, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldFilm, feldPaar, feldBuehne, feldZitat,
   weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
@@ -52,7 +52,9 @@ const E = I.EINSTIEG;
 const BK = { von: 0.62, bis: 0.8 };
 const HERO_PHASEN = { zoomBis: 0.33, druckVon: 0.14, druckBis: 0.33, umVon: 0.36, umBis: 0.5, drehVon: 0.33, drehBis: 0.57, rueckVon: 0.64, rueckBis: 0.78, ruheAb: 0.82 };
 const HERO_DREHUNG = ['links', 'frontal', 'rechts', 'frontal'];
-const wirbel = logowirbel({ ...I.WIRBEL, hoehe: 0.36 });   // Bahnen bleiben zwischen Kopfzeile und Text unten
+// Logos frei auf dem Grund, gross; hinter der Karte ruecken wartende Logos nach
+const wirbel = logowirbel({ ...I.WIRBEL, hoehe: 0.4, versteck: () => (parseFloat(getComputedStyle(bk.el).getPropertyValue('--kw')) || 0) * 0.32 });
+window.__wirbel = wirbel;
 let wirbelGeladen = false;
 const bk = teil(bildkarte({
   el: document.getElementById('start'),
@@ -110,14 +112,19 @@ const qg = teil(quergalerie({
   felder: [
     feldTitel({ titel: esc(M.titel), text: esc(M.text), weiter: 'weiter scrollen' }),
     feldText({ gross: M.teile[0].name, klein: M.teile[0].fach, claim: M.teile[0].claim, text: M.teile[0].desc, lage: 'oben' }),
-    // Personenbilder sind kleine Hero-Buehnen (galerieBuehnen unten): bei Kurs Mensch, bei Crew halb, bei Schiff ganz Exo
-    feldBuehne({ name: 'crew', form: 'hoch', lage: 'unten', standbild: I.bild('fotoLinks', 1000, { verh: 3 / 4.3 }), hinweis: I.KI }),
+    // Bild bei Kurs: der NN-Kompassstern sucht seinen Kurs durch das neuronale Netz (Baustein sternfahrt, unten)
+    feldBuehne({ name: 'kurs', form: 'hoch', lage: 'unten' }),
     feldText({ gross: M.teile[1].name, klein: M.teile[1].fach, claim: M.teile[1].claim, text: M.teile[1].desc, lage: 'mitte' }),
+    // Bild bei Crew: Mensch + Agent. Frank und das Exo im Ganzkoerper, gleich gross, unten buendig, dazwischen ein Plus.
+    // Zwei ruhige Bilder ohne Scroll-Effekt (Frank, 14.11.2026); Mensch links, Agent rechts.
+    feldPaar({ links: I.bild('ganzFoto', 1000), rechts: I.bild('ganzExo', 1000), zeichen: 'plus', hinweis: I.KI, lage: 'mitte' }),
     feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
-    feldBuehne({ name: 'schiff', form: 'gross', lage: 'mitte', standbild: I.bild('exoRechts', 1000), hinweis: I.KI }),
+    // Bild bei Schiff: das NeuralNautic-Schiff in Fahrt (kurzer Film in Schleife)
+    feldFilm({ ...I.SCHIFF_FILM, form: 'gross', lage: 'oben' }),
     feldZitat({ link: M.link, lage: 'unten' }),
     feldTitel({ titel: esc(S.titel) }),
-    feldBild({ ...S.bild, form: 'hoch', lage: 'mitte', position: '50% 0%' }),
+    // Architektur-Grafik der sieben Schichten: baut sich Schicht fuer Schicht von unten nach oben auf
+    feldBild({ ...S.bild, form: 'hoch', lage: 'mitte', position: '50% 0%', aufbau: 7 }),
     ...S.schichten.map(([nr, titel, text], i) => feldZahl({ nr, titel, text, lage: lagen[i % 3] })),
     feldZitat({ link: S.link, lage: 'mitte' }),
   ],
@@ -257,56 +264,24 @@ async function szeneStarten() {
     console.warn('[funnel] Ganzkörper-Szene nicht geladen, das Standbild bleibt stehen:', e?.message || e);
   }
 }
-// ---------------- L5: die Personenbilder der Quer-Galerie als kleine Hero-Buehnen ----------------
-// Eine Geschichte ueber zwei Bilder: Die erste Buehne (zwischen Kurs und Crew) geht vom Menschen bis zur halben
-// Umwandlung, die zweite (nach Schiff) von der Haelfte bis ganz Exo. Der Kopf dreht mit der Fahrt links -> frontal ->
-// rechts. Gefuehrt wird jede Buehne von ihrem eigenen Weg durchs Fenster (quer am Desktop, senkrecht mobil).
-// WebGL entsteht erst, wenn die Galerie naeher kommt, und wird wieder freigegeben, wenn sie weit weg ist.
-const GALERIE = {
-  crew: { p: (t) => 0.5 * stufe((t - 0.22) / 0.5), ansicht: (t) => (t < 0.42 ? 'links' : 'frontal'),
-    platz: { desktop: { x: 0.5, y: 0.47, kopf: 1.02 }, mobil: { x: 0.5, y: 0.47, kopf: 0.5 } } },
-  schiff: { p: (t) => 0.5 + 0.5 * stufe((t - 0.18) / 0.5), ansicht: (t) => (t < 0.5 ? 'frontal' : 'rechts'),
-    platz: { desktop: { x: 0.5, y: 0.52, kopf: 0.6 }, mobil: { x: 0.5, y: 0.52, kopf: 0.3 } } },
-};
-function stufe(x) { const k = Math.min(1, Math.max(0, x)); return k * k * (3 - 2 * k); }
-let galerie = [];
-function galerieTakt() {
-  const quer = !hilfen.mobilMQ.matches;
-  for (const g of galerie) {
-    const r = g.kasten.getBoundingClientRect();
-    const t = quer ? (window.innerWidth - r.left) / (window.innerWidth + r.width) : (window.innerHeight - r.top) / (window.innerHeight + r.height);
-    if (t < -0.2 || t > 1.2) continue;
-    const k = Math.min(1, Math.max(0, t));
-    g.hero.setFortschritt(g.def.p(k));
-    g.hero.setAnsicht(g.def.ansicht(k));
-  }
-}
-async function galerieAn() {
-  if (galerie.length || reduced || param.get('hero') === 'aus') return;
-  try {
-    const [{ createHero }, { default: figuren }] = await Promise.all([import('@kern/hero/hero.js'), import('../../figuren.json')]);
-    if (galerie.length) return;
-    for (const [name, def] of Object.entries(GALERIE)) {
-      const kasten = qg.buehnen[name];
-      if (!kasten) continue;
-      const kopie = structuredClone(figuren);
-      const f = kopie.saetze[kopie.satz].figuren[0];
-      kopie.saetze[kopie.satz].figuren = [f];
-      delete f.ganzkoerper;                 // ohne Ganzkoerper laeuft die Umwandlung am Portraet
-      f.platz = def.platz;
-      const hero = createHero(kasten, { figuren: kopie, steuerung: 'extern',
-        phasen: { umVon: 0, umBis: 1, zoomBis: 9, druckVon: 9, druckBis: 10, drehVon: 9, drehBis: 10 } });
-      galerie.push({ kasten, def, hero });
-    }
-    gsap.ticker.add(galerieTakt);
-  } catch (e) {
-    console.warn('[funnel] Galerie-Bühnen nicht geladen, die Standbilder bleiben stehen:', e?.message || e);
-  }
+// ---------------- L5: die Bilder der Quer-Galerie ----------------
+// Kurs:   Baustein sternfahrt. Der NN-Kompassstern wandert durch das neuronale Netz; das Scrolltempo fuehrt ihn leicht mit.
+// Crew:   feldPaar, zwei ruhige Bilder mit Plus (oben), kein Skript.
+// Schiff: feldFilm, das Schiff in Fahrt (oben). Die Architektur-Grafik baut sich im Kapitel der sieben Schichten auf.
+// Die Sternfahrt entsteht erst, wenn die Galerie naeher kommt, und wird wieder freigegeben, wenn sie weit weg ist.
+let galerie = null;
+function galerieAn() {
+  if (galerie || !qg.buehnen.kurs) return;
+  const stern = sternfahrt({ signet: { src: '/brand/nn-stern-2026-10-kompass.png' }, farbe: '63,212,224', schub: () => (lenis ? lenis.velocity : 0) });
+  qg.buehnen.kurs.appendChild(stern.el);
+  stern.start();   // bei Reduced Motion: Netz-Standbild, Stern an fester Stelle
+  galerie = { stern };
 }
 function galerieAus() {
-  gsap.ticker.remove(galerieTakt);
-  galerie.forEach((g) => g.hero.dispose());
-  galerie = [];
+  if (!galerie) return;
+  galerie.stern.dispose();
+  galerie.stern.el.remove();
+  galerie = null;
 }
 new IntersectionObserver(([e]) => { if (e.isIntersecting) galerieAn(); }, { rootMargin: '120% 0px' }).observe(qg.el);
 new IntersectionObserver(([e]) => { if (!e.isIntersecting) galerieAus(); }, { rootMargin: '320% 0px' }).observe(qg.el);
