@@ -72,3 +72,27 @@ main { display: block; }
 .is-reduced .nn-widget__zahl::after, .is-reduced .nn-scrollen span { animation: none; }
 .is-reduced .nn-scrollen { display: none; }
 .is-reduced .nn-hero-ui { bottom: auto; height: 100vh; height: 100svh; }
+
+.nn-crew { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.6rem; padding:1rem; text-align:center; background:#08181f; color:white; }
+.nn-crew-reihe { display:flex; justify-content:center; }
+.nn-crew-reihe img { width: min(24%, 2.8rem); height:auto; }
+.nn-crew-formel { grid-column:1/-1; color:#78d6df; font-size:1.4rem; }
+.nn-kompass { padding:clamp(2rem,6vw,6rem) 1rem; text-align:center; color:#f3fafb; background:#08181f; }
+.nn-kompass > p, .nn-kompass-text { max-width:42rem; margin:1rem auto; }
+.nn-kompass > img { margin:1rem auto; transform:rotate(var(--winkel)); transition:transform .65s ease; filter:drop-shadow(0 0 18px #61ddeb99); }
+.nn-kompass-text { min-height:12rem; padding:1rem; }
+.nn-kompass-text article { animation:nn-einflug .55s ease both; }
+@keyframes nn-einflug { from { opacity:0; transform:translateY(1.4rem); } }
+.nn-kompass-wahl { display:flex; flex-wrap:wrap; justify-content:center; gap:.5rem; margin:1rem auto; }
+.nn-kompass button { padding:.6rem; border:1px solid #78d6df; color:inherit; background:transparent; border-radius:.6rem; }
+.nn-kompass button[aria-pressed="true"] { background:#78d6df; color:#08181f; }
+.nn-kompass a { display:inline-block; margin:.65rem; color:#78d6df; }
+@media (prefers-reduced-motion:reduce) { .nn-kompass > img { transition:none; } .nn-kompass-text article { animation:none; } }
+.nn-crew { width: min(100%, 32rem); margin-inline: auto; column-gap: 0; row-gap: 0; }
+.nn-crew > div { position: relative; padding: .4rem; }
+.nn-crew > div:nth-child(-n+3) { grid-column: 1 / -1; padding-bottom: 1rem; }
+.nn-crew > div:nth-child(-n+3)::after { content: ""; position: absolute; left: 50%; bottom: 0; height: .9rem; border-left: 1px solid #78d6df; }
+.nn-crew > div:nth-child(4) { background: linear-gradient(#78d6df,#78d6df) right top / 50% 1px no-repeat; }
+.nn-crew > div:nth-child(5) { background: linear-gradient(#78d6df,#78d6df) left top / 50% 1px no-repeat; }
+.nn-crew > div:nth-child(n+4) { padding-top: .85rem; }
+.nn-crew > div:nth-child(n+4)::before { content: ""; position: absolute; top: 0; left: 50%; height: .65rem; border-left: 1px solid #78d6df; }

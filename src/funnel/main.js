@@ -10,8 +10,8 @@ import {
   gsap, ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, prefetchOnHover,
 } from '@kern/motion.js';
 import {
-  kopf, menue, preloader, laufband, logowirbel, sternfahrt, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldFilm, feldPaar, feldBuehne, feldZitat,
-  weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
+  kopf, menue, preloader, laufband, logowirbel, sternfahrt, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldBuehne, feldZitat,
+  weiche, videoVorhang, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
 import * as I from '../inhalt/start.js';
@@ -113,14 +113,11 @@ const qg = teil(quergalerie({
     feldTitel({ titel: esc(M.titel), text: esc(M.text), weiter: 'weiter scrollen' }),
     feldText({ gross: M.teile[0].name, klein: M.teile[0].fach, claim: M.teile[0].claim, text: M.teile[0].desc, lage: 'oben' }),
     // Bild bei Kurs: der NN-Kompassstern sucht seinen Kurs durch das neuronale Netz (Baustein sternfahrt, unten)
-    feldBuehne({ name: 'kurs', form: 'hoch', lage: 'unten' }),
+    feldBuehne({ name: 'kurs', form: 'hoch', lage: 'mitte' }),
     feldText({ gross: M.teile[1].name, klein: M.teile[1].fach, claim: M.teile[1].claim, text: M.teile[1].desc, lage: 'mitte' }),
-    // Bild bei Crew: Mensch + Agent. Frank und das Exo im Ganzkoerper, gleich gross, unten buendig, dazwischen ein Plus.
-    // Zwei ruhige Bilder ohne Scroll-Effekt (Frank, 14.11.2026); Mensch links, Agent rechts.
-    feldPaar({ links: I.bild('ganzFoto', 1000), rechts: I.bild('ganzExo', 1000), zeichen: 'plus', hinweis: I.KI, lage: 'mitte' }),
-    feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
-    // Bild bei Schiff: das NeuralNautic-Schiff in Fahrt (kurzer Film in Schleife)
-    feldFilm({ ...I.SCHIFF_FILM, form: 'gross', lage: 'oben' }),
+    feldBuehne({ name: 'crew', form: 'gross', lage: 'mitte' }),
+    feldText({ gross: 'Enterprise', klein: M.teile[2].fach, claim: 'Bereit für den Betrieb.', text: M.teile[2].desc, lage: 'unten' }),
+    feldBild({ src: '/medien/schiff/enterprise.png', alt: 'Forschungsschiff über einem Ozeanplaneten', w: 1672, h: 941, form: 'gross', lage: 'oben', hinweis: I.KI }),
     feldZitat({ link: M.link, lage: 'unten' }),
     feldTitel({ titel: esc(S.titel) }),
     // Architektur-Grafik der sieben Schichten: baut sich Schicht fuer Schicht von unten nach oben auf
@@ -138,20 +135,64 @@ const film = teil(videoVorhang({ ...I.FILM, id: 'film' }));
 wch.danach.appendChild(film.el);
 main.append(wch.el);
 
-/* ---------------- L8: die 8 Leistungen als Karten, in der Mitte die Ganzkoerper-Szene ---------------- */
+const crew = el('<div class="nn-crew"></div>');
+const rollen = [['Geschäftsführung',1], ['Führungskräfte',3], ['Multiplikatoren',2], ['Team 1',4], ['Team 2',4]];
+for (const [titel, anzahl] of rollen) {
+  const gruppe = el('<div><strong></strong><div class="nn-crew-reihe"></div></div>');
+  gruppe.firstChild.textContent = titel;
+  const bild = I.bild('ganzFoto', 640);
+  for (let i = 0; i < anzahl; i++) {
+    const img = new Image();
+    img.alt = '';
+    img.loading = 'lazy';
+    img.src = bild.src;
+    gruppe.lastChild.append(img);
+  }
+  crew.append(gruppe);
+}
+qg.buehnen.crew.append(crew);
+
 const L = I.LEISTUNGEN;
-let szene = null;
-let kartenP = 0;
-const kt = teil(karten({
-  id: 'leistungen',
-  titel: esc(L.titel), text: L.text,
-  karten: L.karten.map((c) => ({ ...c, href: `/leistungen#${c.anker}` })),
-  figur: L.figur, ergebnisLabel: L.ergebnisLabel, mehr: L.mehr, cta: L.cta, alle: W.alle,
-  auftakt: 0.7,   // Positionswechsel: die Figur kommt von rechts in die Mitte, erst dann erscheinen die rechten Karten
-  lenis,
-  onFortschritt: (p) => { kartenP = p; szene?.setFortschritt(p); },
-}));
-main.append(kt.el);
+const kompass = el('<section id="leistungen" class="nn-kompass"><h2></h2><p></p><img alt="" width="100" height="100" src="/brand/nn-stern-2026-10-kompass.png"><div class="nn-kompass-text"></div><div class="nn-kompass-wahl"></div><button type="button"></button><a href="/leistungen">Alle Leistungen im Überblick →</a></section>');
+kompass.querySelector('h2').textContent = L.titel;
+kompass.querySelector('p').textContent = L.text;
+const anzeige = kompass.querySelector('.nn-kompass-text');
+const pause = kompass.querySelector('button');
+let index = 0;
+let winkel = 0;
+let timer;
+let automatisch = !reduced;
+let sichtbar = false;
+const knoepfe = L.karten.map((karte, i) => {
+  const knopf = el('<button type="button"></button>');
+  knopf.textContent = karte.titel;
+  knopf.addEventListener('click', () => { automatisch = false; takt(); anzeigen(i); });
+  kompass.querySelector('.nn-kompass-wahl').append(knopf);
+  return knopf;
+});
+function anzeigen(i) {
+  index = i;
+  const karte = L.karten[i];
+  const text = el('<article><h3></h3><p></p><p></p><a>Zur Leistung im Detail →</a></article>');
+  text.children[0].textContent = karte.titel;
+  text.children[1].textContent = karte.kurz;
+  text.children[2].textContent = karte.ergebnis;
+  text.children[3].href = '/leistungen#' + karte.anker;
+  anzeige.replaceChildren(text);
+  knoepfe.forEach((knopf, n) => knopf.setAttribute('aria-pressed', String(i === n)));
+  kompass.style.setProperty('--winkel', winkel + 'deg');
+  winkel += 45;
+}
+function takt() {
+  clearInterval(timer);
+  pause.textContent = automatisch ? 'Automatik pausieren' : 'Automatik starten';
+  if (sichtbar && automatisch) timer = setInterval(() => anzeigen((index + 1) % L.karten.length), 7000);
+}
+pause.addEventListener('click', () => { automatisch = !automatisch; takt(); });
+main.append(kompass);
+anzeigen(0);
+takt();
+new IntersectionObserver(([eintrag]) => { sichtbar = eintrag.isIntersecting; takt(); }).observe(kompass);
 
 /* ---------------- L9: Callout Werkzeuge ---------------- */
 main.append(callout({ id: 'werkzeuge', satz: true, label: W.werkzeuge.titel, titel: esc(W.werkzeuge.text), knopf: { text: W.werkzeuge.knopf, href: W.werkzeuge.href } }).el);
@@ -213,62 +254,6 @@ async function heroStarten() {
 // Kartenspalte noch fehlt, schaut nach links zu Titel und ersten Karten, wandert in die Mitte und wird dabei zum Exo.
 // Danach steht sie frontal, je Karte leuchtet ein Bauteil. Am Desktop liegt die Szene in der breiten Buehne hinter den
 // Karten, mobil im Figurenplatz, der oben stehen bleibt.
-let szeneModul = null;
-function szeneBauen() {
-  if (!szeneModul) return;
-  const { createSzene, figuren } = szeneModul;
-  szene?.dispose?.();
-  document.querySelectorAll('.nn-szene').forEach((n) => n.remove());
-  const mobil = hilfen.mobilMQ.matches;
-  const n = L.karten.length;
-  const a = mobil ? 0.14 : kt.auftakt;
-  const von = (i) => a + (1 - a) * (0.02 + (i / n) * 0.965);
-  const punkte = L.karten.map((c, i) => ({ von: von(i), bis: von(i + 1), x: c.teil.x / 100, y: c.teil.y / 100, r: 0.075 }));
-  let platz = { x: 0.5, y: 0.5, hoehe: 0.88 };
-  let xStart = 0.72;
-  if (!mobil) {
-    const P = kt.pin.getBoundingClientRect();
-    const F = kt.feld.getBoundingClientRect();
-    const Rr = kt.el.querySelector('.bs-karten__spalte--r').getBoundingClientRect();
-    const Lg = Math.min(P.height, P.width / 1.5);
-    platz = { x: 0.5, y: (F.top + F.height / 2 - P.top) / P.height, hoehe: (F.height * 0.93) / Lg };
-    xStart = (Rr.left + Rr.width / 2 - P.left) / P.width;
-  }
-  const el2 = document.createElement('div');
-  el2.className = 'nn-szene';
-  (mobil ? kt.figur : kt.buehne).prepend(el2);
-  kt.el.classList.toggle('is-breit', !mobil);
-  kt.figur.classList.toggle('is-szene', mobil);
-  szene = createSzene(el2, {
-    figuren, szene: I.LEISTUNGEN.szene, steuerung: 'extern', spur: true,
-    ablauf: {
-      bahn: [{ bei: 0, x: xStart }, { bei: a * 0.18, x: xStart }, { bei: a * 0.92, x: 0.5 }, { bei: 1, x: 0.5 }],
-      ansichten: [{ bei: 0, ansicht: 'links' }, { bei: a * 0.95, ansicht: 'frontal' }],
-      exo: [{ von: a * 0.4, bis: a * 0.95, zu: 1 }],
-      punkte,
-    },
-    platz: { desktop: platz, mobil: platz },
-    grund: getComputedStyle(document.documentElement).getPropertyValue(mobil ? '--bs-dunkel' : '--bs-flaeche').trim(),
-  });
-  szene.setFortschritt(kartenP);
-  window.__szene = szene;
-}
-async function szeneStarten() {
-  if (param.get('hero') === 'aus' || reduced) return;   // Reduced Motion: Standbild mit Marker
-  try {
-    const [{ createSzene }, { default: figuren }] = await Promise.all([import('@kern/hero/szene.js'), import('../../figuren.json')]);
-    szeneModul = { createSzene, figuren };
-    szeneBauen();
-    hilfen.mobilMQ.addEventListener('change', szeneBauen);
-  } catch (e) {
-    console.warn('[funnel] Ganzkörper-Szene nicht geladen, das Standbild bleibt stehen:', e?.message || e);
-  }
-}
-// ---------------- L5: die Bilder der Quer-Galerie ----------------
-// Kurs:   Baustein sternfahrt. Der NN-Kompassstern wandert durch das neuronale Netz; das Scrolltempo fuehrt ihn leicht mit.
-// Crew:   feldPaar, zwei ruhige Bilder mit Plus (oben), kein Skript.
-// Schiff: feldFilm, das Schiff in Fahrt (oben). Die Architektur-Grafik baut sich im Kapitel der sieben Schichten auf.
-// Die Sternfahrt entsteht erst, wenn die Galerie naeher kommt, und wird wieder freigegeben, wenn sie weit weg ist.
 let galerie = null;
 function galerieAn() {
   if (galerie || !qg.buehnen.kurs) return;
@@ -289,6 +274,5 @@ window.__galerie = () => galerie;
 
 offen.then(heroStarten);
 // Seitenwechsel: WebGL freigeben (HERO.md)
-window.addEventListener('pagehide', (e) => { if (!e.persisted) { window.__hero?.dispose?.(); szene?.dispose?.(); galerieAus(); } });
+window.addEventListener('pagehide', (e) => { if (!e.persisted) { window.__hero?.dispose?.(); clearInterval(timer); galerieAus(); } });
 // die Szene erst, wenn der Abschnitt naeher kommt
-new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); szeneStarten(); } }, { rootMargin: '200% 0px' }).observe(kt.el);
