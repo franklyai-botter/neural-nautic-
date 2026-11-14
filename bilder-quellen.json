@@ -25,7 +25,7 @@
             }
           },
           "ganzkoerper": {
-            "foto": "M/frank-ganzkoerper-dunkelblau.png",
+            "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
             "exo": "M/referenzhelm-ganzkoerper-frontal.png"
           }
         }
@@ -42,7 +42,7 @@
             }
           },
           "ganzkoerper": {
-            "foto": "M/frank-ganzkoerper-dunkelblau.png",
+            "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
             "exo": "M/exoskelett-ganzkoerper-frontal.png"
           }
         }
@@ -53,15 +53,21 @@
     "frank": {
       "ansichten": {
         "links": {
-          "foto": "O/frank-ganzkoerper-links-2.png",
+          "foto": [
+            "O/frank-ganzkoerper-links-1-hochglanz.png",
+            "O/frank-ganzkoerper-links-2-hochglanz.png"
+          ],
           "exo": "M/referenzhelm-ganzkoerper-links.png"
         },
         "frontal": {
-          "foto": "M/frank-ganzkoerper-dunkelblau.png",
+          "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
           "exo": "M/referenzhelm-ganzkoerper-frontal.png"
         },
         "rechts": {
-          "foto": "O/frank-ganzkoerper-rechts-1.png",
+          "foto": [
+            "O/frank-ganzkoerper-rechts-1-hochglanz.png",
+            "O/frank-ganzkoerper-rechts-2-hochglanz.png"
+          ],
           "exo": "M/referenzhelm-ganzkoerper-rechts.png"
         }
       }
