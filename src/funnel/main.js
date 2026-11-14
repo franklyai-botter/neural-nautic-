@@ -163,6 +163,9 @@ const ORG = {
   linien: [['g', 'f'], ['f', 'm'], ['m', 't1'], ['m', 't2'], ['t1', 'w0'], ['t2', 'w0'], ['w0', 'w1'], ['w1', 'w2']],
   // Ablauf unter den Teams (Frank, 14.11.2026)
   ablauf: ['Wissen aus den Teams sichern', 'In Prozessen automatisieren', 'Bewährte Abläufe skalieren'],
+  // „Die Agenten speichern auch das Wissen und optimieren die Prozesse.“ (Frank, 14.11.2026)
+  kiAblauf: [['w0', 'speichern'], ['w1', 'optimieren']],
+  kiAblaufText: 'KI-Agenten speichern das Wissen und optimieren die Prozesse',
   // Formel unter dem Organigramm (Frank, 14.11.2026)
   formel: [['MI', 'Menschliche Intelligenz'], '+', ['KI', 'Künstliche Intelligenz'], '=', ['Magie', 'Mensch und KI im Zusammenspiel']],
 };
@@ -188,12 +191,15 @@ function organigramm(buehne) {
       <ul class="sr-only" aria-label="${esc(ORG.label)}">
         <li>${esc(kn.g.name)}<ul><li>${esc(kn.f.name)}<ul><li>${esc(kn.m.name)}<ul><li>${esc(kn.t1.name)}</li><li>${esc(kn.t2.name)}</li></ul></li></ul></li></ul></li>
         <li>${esc(ORG.ki)} ${esc(ORG.kante)} alle Ebenen: ${esc(['g', 'f', 'm', 't1'].map((id) => kn[id].name).join(', '))} und ${esc(kn.t2.name)}</li>
+        <li>${esc(ORG.kiAblaufText)}</li>
       </ul>
       <ol class="sr-only" aria-label="Ablauf aus den Teams">${ORG.ablauf.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>
       <p class="sr-only">${esc(formelText)}</p>
       <div class="nn-org__bild" aria-hidden="true">
         <svg class="nn-org__linien" xmlns="http://www.w3.org/2000/svg">${ORG.linien.map(([a, b]) => `<path data-l="${a}-${b}" pathLength="1" />`).join('')}${ORG.linien.map(([a, b]) => `<path class="nn-org__pfeil" data-p="${a}-${b}" />`).join('')}</svg>
         <svg class="nn-org__ki-linien" xmlns="http://www.w3.org/2000/svg">${kiLinien.map((id) => `<path data-l="${id}" /><path class="nn-org__pfeil" data-p="${id}" />`).join('')}</svg>
+        <svg class="nn-org__ki-linien nn-org__ki-unten" xmlns="http://www.w3.org/2000/svg">${ORG.kiAblauf.map(([id]) => `<path data-l="ki-${id}" /><path class="nn-org__pfeil" data-p="ki-${id}" />`).join('')}</svg>
+        ${ORG.kiAblauf.map(([id, t]) => `<span class="nn-org__kante" data-kante="ki-${id}">${esc(t)}</span>`).join('')}
         ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b><span class="nn-org__kante">${esc(ORG.kante)}</span></div>${knoten('m')}${knoten('t1')}${knoten('t2')}
         ${ORG.ablauf.map((t, i) => `<div class="nn-org__knoten nn-org__schritt" data-k="w${i}"><b>${esc(t)}</b></div>`).join('')}
         <div class="nn-org__formel">${ORG.formel.map((f) => (Array.isArray(f)
@@ -247,6 +253,19 @@ function organigramm(buehne) {
     setze('[data-l="ki-t2"]', `M${x2},${P.ki.b} V${P.t2.t}`);
     setze('[data-p="ki-t1"]', spitze(e1, P.t1.t));
     setze('[data-p="ki-t2"]', spitze(x2, P.t2.t));
+    // KI-Agenten speichern das Wissen und optimieren die Prozesse: die Spalte laeuft rechts an den Teams vorbei nach
+    // unten und fuehrt von rechts in die ersten beiden Ablaufschritte (keine neue Kreuzung)
+    const xr = Math.min(w - 4, Math.max(P.ki.r - 10, P.t2.r + 14));
+    const start = xr <= P.ki.r - 6 ? `M${xr},${P.ki.b}` : `M${P.ki.r},${P.ki.b - 14} H${xr}`;
+    const yw = (id) => (P[id].t + P[id].b) / 2;
+    setze('[data-l="ki-w0"]', `${start} V${yw('w0')} H${P.w0.r}`);
+    setze('[data-l="ki-w1"]', `M${xr},${yw('w0')} V${yw('w1')} H${P.w1.r}`);
+    for (const id of ['w0', 'w1']) {
+      setze(`[data-p="ki-${id}"]`, links(P[id].r, yw(id)));
+      const s = qs(`[data-kante="ki-${id}"]`, bild);
+      s.style.left = `${(P[id].r + xr) / 2 + 3}px`;
+      s.style.top = `${yw(id)}px`;
+    }
   }
   new ResizeObserver(zeichnen).observe(bild);
   document.fonts.ready.then(zeichnen);
@@ -263,6 +282,7 @@ function organigramm(buehne) {
   gsap.set(bild.querySelectorAll('.nn-org__linien path[data-l]'), { strokeDasharray: 1, strokeDashoffset: 1 });
   gsap.set(bild.querySelectorAll('.nn-org__linien .nn-org__pfeil'), { autoAlpha: 0 });
   gsap.set(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 100% 0%)' });
+  gsap.set(qs('.nn-org__ki-unten', bild), { clipPath: 'inset(0% 0% 100% 0%)' });
   gsap.set([k('g'), k('f'), k('m'), k('t1'), k('t2'), k('ki'), k('w0'), k('w1'), k('w2')], clip());
   gsap.set(bild.querySelectorAll('.nn-org__figuren i'), { autoAlpha: 0, y: 6 });
   gsap.set(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 0 });
@@ -279,11 +299,14 @@ function organigramm(buehne) {
     .to([k('t1'), k('t2')], { ...auf, stagger: 0.08 }).to(...figuren(['t1', 't2']))
     .to(k('ki'), auf, '-=0.2').to(...figuren(['ki']))
     .to(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.inOut' }, '-=0.2')
-    .to(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 1, duration: 0.35, stagger: 0.1 }, '-=0.45')
+    .to(k('ki').querySelectorAll('.nn-org__kante'), { autoAlpha: 1, duration: 0.35 }, '-=0.45')
     // Ablauf: die Teams laufen zusammen, dann Schritt fuer Schritt nach unten
     .to([l('t1-w0'), l('t2-w0')], wachsen, '-=0.1').to([p('t1-w0'), p('t2-w0')], spitzeAn, '-=0.05').to(k('w0'), auf)
     .to(l('w0-w1'), wachsen, '-=0.15').to(p('w0-w1'), spitzeAn, '-=0.05').to(k('w1'), auf)
     .to(l('w1-w2'), wachsen, '-=0.15').to(p('w1-w2'), spitzeAn, '-=0.05').to(k('w2'), auf)
+    // KI-Agenten speichern das Wissen und optimieren die Prozesse (nach dem Ablauf, vor der Formel)
+    .to(qs('.nn-org__ki-unten', bild), { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, ease: 'expo.inOut' }, '-=0.1')
+    .to(bild.querySelectorAll('[data-kante^="ki-w"]'), { autoAlpha: 1, duration: 0.3, stagger: 0.12 }, '-=0.35')
     // zuletzt die Formel: Kaesten per Clip, Zeichen dazwischen
     .to(bild.querySelectorAll('.nn-org__term'), { ...auf, stagger: 0.16 }, '-=0.1')
     .to(bild.querySelectorAll('.nn-org__zeichen'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.16, ease: 'expo.out' }, '<0.2');

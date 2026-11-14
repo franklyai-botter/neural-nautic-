@@ -102,7 +102,8 @@ main { display: block; }
 /* KI-Agenten als senkrechte Spalte ueber Geschaeftsfuehrung bis Multiplikatoren, Exos oben, ein Pill darunter */
 .nn-org--crew [data-k="ki"] { align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; width: clamp(118px, 10.5vw, 160px); padding: 12px 8px; }
 .nn-org--crew [data-k="ki"] .nn-org__kante { position: static; transform: none; margin-top: 2px; }
-.nn-org--crew [data-k="w0"] { grid-area: w0; margin-top: 8px; } .nn-org--crew [data-k="w1"] { grid-area: w1; } .nn-org--crew [data-k="w2"] { grid-area: w2; }
+.nn-org--crew [data-k="w0"] { grid-area: w0; margin-top: 8px; }
+.nn-org--crew .nn-org__bild { padding-right: 26px; }   /* Platz fuer die KI-Linie rechts an den Teams vorbei */ .nn-org--crew [data-k="w1"] { grid-area: w1; } .nn-org--crew [data-k="w2"] { grid-area: w2; }
 .nn-org__schritt { padding: 10px 20px; }
 .nn-org__schritt b { font-size: clamp(14.5px, 1.08vw, 17px); }
 /* Formel MI + KI = Magie */
@@ -120,6 +121,8 @@ main { display: block; }
   .nn-org__knoten b { font-size: 13.5px; }
   .nn-org__kante { font-size: 10px; padding: 2px 7px 3px; }
   .nn-org--crew .nn-org__bild { column-gap: 10px; }
+  .nn-org--crew .nn-org__schritt { max-width: 62%; }
+  .nn-org--crew .nn-org__schritt b { white-space: normal; text-align: center; }
   .nn-org__term { min-width: 0; flex: 1; padding: 8px 6px 9px; }
   .nn-org__term b { font-size: 17px; }
   .nn-org__term small { font-size: 10px; }
