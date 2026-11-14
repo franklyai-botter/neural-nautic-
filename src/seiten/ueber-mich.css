@@ -1,0 +1,162 @@
+/* /ueber-mich (Paket C, Vorlage „Mensch“): Film, HUD-Karte, Staerken in der Ganzkoerper-Szene, Zertifikate mit Lorbeer. */
+
+/* ---------- KI-Film ---------- */
+.nn-film { background: var(--bg); padding: 0 0 clamp(60px, 7vw, 110px); }
+.nn-film__rahmen { position: relative; margin: 0; overflow: hidden; border-radius: 12px; background: #061419; box-shadow: 0 50px 100px -60px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(255, 255, 255, .1); }
+.nn-film__medium { display: block; width: 100%; height: 100%; object-fit: cover; }
+.nn-film__ki { position: absolute; left: 14px; bottom: 14px; z-index: 2; padding: 4px 9px; border-radius: 4px; background: rgba(6, 20, 25, .75); color: #f5f2eb;
+  font: 500 10px/1.2 var(--bs-text); letter-spacing: .12em; text-transform: uppercase; }
+
+/* ---------- Profil: HUD-Karte und Text ---------- */
+.nn-profil { background: var(--bg); color: var(--fg); padding: clamp(40px, 6vw, 100px) 0 clamp(80px, 9vw, 140px); }
+.nn-profil__raster { display: grid; grid-template-columns: minmax(280px, 420px) minmax(0, 1fr); gap: clamp(36px, 6vw, 110px); align-items: center; }
+.nn-profil__karte { display: grid; gap: 18px; }
+.nn-profil__wer p { margin: 0; }
+.nn-profil__name { font: 700 clamp(26px, 2.4vw, 36px)/1.05 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; }
+.nn-profil__rolle { margin-top: 6px !important; font: 500 12px/1.3 var(--bs-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.nn-profil__ort { margin-top: 4px !important; font: 400 14px/1.4 var(--bs-text); color: var(--muted); }
+.nn-profil__text { display: grid; gap: 22px; max-width: 64ch; }
+.nn-profil__text p { margin: 0; }
+.nn-profil__einstieg { font: 600 clamp(22px, 2.3vw, 36px)/1.22 var(--bs-display); letter-spacing: -.015em; text-wrap: balance; }
+.nn-profil__absatz { font: 400 clamp(16px, 1.2vw, 18.5px)/1.7 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); text-wrap: pretty; }
+
+/* HUD (Port von .nhud-* der Live-Seite, NN-Farben Petrol/Aqua) */
+.nn-hud { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: #061419; color: #fff; container-type: inline-size;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; letter-spacing: .03em; }
+/* Kamerabild: Mantel-Portraet (Taillenbild), 150 % der Kartenbreite, links buendig; Grau mit Teal-Toenung, Rauschen, Zeilen */
+.nn-hud { background: #00141d; }
+.nn-hud__bild { position: absolute; left: 0; top: 0; width: 150%; height: auto; max-width: none; filter: grayscale(1) contrast(1.08) brightness(.96);
+  transform: translateX(calc(var(--stoer, 0) * -6px)); }
+.nn-hud__bild--neu { z-index: 1; }
+.nn-hud__toenung { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(13, 115, 119, .34); mix-blend-mode: color; }
+.nn-hud__toenung::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .2) 0 1px, transparent 1px 3px); }
+.nn-hud__rauschen { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; opacity: calc(.07 + var(--stoer, 0) * .18); mix-blend-mode: screen; }
+.nn-hud__ebene { z-index: 3; }
+.nn-hud__band { left: 0; right: 0; top: 0; height: 2px; opacity: 0; background: #6feff5; box-shadow: 0 0 14px 3px rgba(111, 239, 245, .65); }
+.nn-hud__ebene { position: absolute; inset: 0; pointer-events: none; font-size: 3.2cqw; line-height: 1.3; }
+.nn-hud__ebene > * { position: absolute; }
+.nn-hud__verlauf { left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(to top, rgba(14, 17, 20, .85), transparent); }
+.nn-hud__scan { left: 0; right: 0; height: 40%; top: -40%; background: linear-gradient(to bottom, transparent, rgba(234, 240, 247, .08), transparent); }
+.nn-hud__ecke { width: 20px; height: 20px; border: 0 solid rgba(255, 255, 255, .85); }
+.nn-hud__ecke--ol { top: 8px; left: 8px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.nn-hud__ecke--or { top: 8px; right: 8px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.nn-hud__ecke--ul { bottom: 8px; left: 8px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.nn-hud__ecke--ur { bottom: 8px; right: 8px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+.nn-hud__rahmen { left: 6%; right: 8%; top: 9%; bottom: 5%; border: 1px dashed rgba(255, 255, 255, .7); }
+.nn-hud__gesicht { aspect-ratio: 1; border: 1.5px solid #6feff5; box-shadow: 0 0 0 1px rgba(111, 239, 245, .9); transition: left .6s var(--bs-ease), top .6s var(--bs-ease), width .6s var(--bs-ease); }
+.nn-hud__gesicht b { position: absolute; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: #6feff5; box-shadow: 0 0 6px #6feff5; }
+.nn-hud__gesicht span { position: absolute; left: 0; bottom: calc(100% + 3px); white-space: nowrap; font-size: 2.6cqw; background: #0e2b36; padding: 1px 4px; }
+.nn-hud__abgleich { right: 4%; top: 4%; width: 29%; background: rgba(6, 20, 25, .82); border: 1px solid rgba(255, 255, 255, .55); padding: 5px; }
+.nn-hud__abgleich b { display: block; font-weight: 500; font-size: 2.4cqw; margin-bottom: 4px; }
+.nn-hud__abgleich img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; filter: grayscale(1) contrast(1.1); border: 1px solid rgba(255, 255, 255, .6); }
+.nn-hud__daten { margin-top: 4px; line-height: 1.5; font-size: 2.3cqw; white-space: nowrap; overflow: hidden; }
+.nn-hud__balken { height: 3px; margin-top: 4px; background: rgba(255, 255, 255, .25); }
+.nn-hud__balken i { display: block; height: 100%; width: var(--w, 98.6%); background: #6feff5; }
+.nn-hud__skill { right: 4%; width: 40%; background: rgba(6, 20, 25, .82); border: 1px solid rgba(111, 239, 245, .6); padding: 4px 7px; line-height: 1.35; }
+.nn-hud__skill small { display: block; font-size: 2.3cqw; opacity: .75; }
+.nn-hud__skill em { display: block; font-style: normal; font-weight: 500; font-size: 2.9cqw; line-height: 1.2; }
+.nn-hud__verb { left: 50%; width: 10%; height: 1px; background: rgba(255, 255, 255, .75); }
+.nn-hud__rec { left: 14px; top: 14px; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+.nn-hud__rec i { position: static; width: 8px; height: 8px; border-radius: 50%; background: #6feff5; }
+.nn-hud__ki { left: 5%; bottom: 13%; font-size: 2.6cqw; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.nn-hud__zeit { left: 5%; bottom: 4%; font-size: 2.8cqw; background: rgba(6, 20, 25, .82); padding: 3px 6px; border: 1px solid rgba(255, 255, 255, .5); font-variant-numeric: tabular-nums; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__scan { animation: nn-hud-scan 4s linear infinite; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__rahmen { animation: nn-hud-zieh 1.2s ease-out both .3s; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__gesicht { animation: nn-hud-such 3.2s ease-in-out infinite; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__abgleich { animation: nn-hud-auf .6s ease-out both .8s; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__balken i { animation: nn-hud-fuell 2.2s ease-out both 1.4s; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__skill, .nn-hud--an:not(.nn-hud--ruhig) .nn-hud__verb { animation: nn-hud-auf .5s ease-out both; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__rec i { animation: nn-hud-blink 1.1s steps(1) infinite; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__gesicht b { animation: nn-hud-punkt 1.6s ease-in-out infinite; }
+.nn-hud--an:not(.nn-hud--ruhig) .nn-hud__gesicht b:nth-child(odd) { animation-delay: .5s; }
+.nn-hud:not(.nn-hud--an):not(.nn-hud--ruhig) .nn-hud__skill, .nn-hud:not(.nn-hud--an):not(.nn-hud--ruhig) .nn-hud__verb, .nn-hud:not(.nn-hud--an):not(.nn-hud--ruhig) .nn-hud__abgleich { opacity: 0; }
+@keyframes nn-hud-scan { from { top: -40%; } to { top: 100%; } }
+@keyframes nn-hud-zieh { from { clip-path: inset(0 100% 100% 0); opacity: 0; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+@keyframes nn-hud-such { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(2px, -1px); } 50% { transform: translate(-1px, 2px); } 75% { transform: translate(1px, 1px); } }
+@keyframes nn-hud-auf { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes nn-hud-fuell { from { width: 0; } to { width: var(--w, 98.6%); } }
+@keyframes nn-hud-blink { 50% { opacity: 0; } }
+@keyframes nn-hud-punkt { 50% { opacity: .35; transform: scale(.7); } }
+
+/* ---------- Staerken in der Ganzkoerper-Szene ---------- */
+.nn-staerken { --hero-grund: #061419; }
+.nn-staerken .szene__buehne { z-index: 0; }
+.nn-staerken__ui { position: absolute; z-index: 2; left: max(var(--bs-rand, 30px), calc((100% - 1320px) / 2)); top: 0; bottom: 0; width: min(52vw, 760px); display: grid; align-content: center; gap: 22px; padding: clamp(84px, 12vh, 130px) 0 clamp(60px, 9vh, 100px); pointer-events: none; }
+.nn-staerken__ui > * { pointer-events: auto; }
+.nn-staerken__titel { margin: 0; font: 700 clamp(34px, 4.6vw, 80px)/.95 var(--bs-display); letter-spacing: -.025em; text-transform: uppercase; color: #fff; text-wrap: balance; }
+.nn-staerken__zaehler { margin: 0; font: 500 13px/1 var(--bs-mono); letter-spacing: .14em; color: rgba(255, 255, 255, .6); }
+.nn-staerken__zaehler b { color: var(--bs-akzent); font-weight: 500; }
+.nn-staerken__fenster { overflow: hidden; margin-right: -8vw; padding: 6px 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 98%); mask-image: linear-gradient(90deg, #000 70%, transparent 98%); }
+.nn-staerken__spur { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(18px, 2vw, 32px); will-change: transform; transition: transform .9s var(--bs-ease); }
+.nn-staerke { flex: none; width: min(40vw, 560px); margin: 0; padding: clamp(22px, 2.4vw, 34px); box-sizing: border-box; border: 1px solid rgba(255, 255, 255, .16); border-radius: 14px;
+  background: rgba(6, 20, 25, .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: .38; transition: opacity .5s var(--bs-ease), border-color .5s; }
+.nn-staerke.is-aktiv { opacity: 1; border-color: color-mix(in srgb, var(--bs-akzent) 70%, transparent); }
+.nn-staerke__kopf { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.nn-staerke__kopf b { font: 500 12px/1 var(--bs-mono); letter-spacing: .14em; color: rgba(255, 255, 255, .6); }
+.nn-staerke__kopf i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--bs-akzent); color: var(--bs-akzent); font: 600 16px/1 var(--bs-display); font-style: normal; }
+.nn-staerke p { margin: 0; font: 700 clamp(22px, 2.2vw, 36px)/1.1 var(--bs-display); letter-spacing: -.015em; color: #fff; text-wrap: balance; }
+.nn-staerken__punkte { display: flex; gap: 8px; }
+.nn-staerken__punkte i { width: 26px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .2); transition: background-color .4s; }
+.nn-staerken__punkte i.is-an { background: var(--bs-akzent); }
+.nn-staerken .szene__ki { left: auto; right: clamp(96px, 9vw, 130px); }
+
+/* Liste statt Szene: Reduced Motion oder kein WebGL2 */
+.nn-staerken.nn-staerken--liste { height: auto; }
+.nn-staerken--liste .szene__pin { position: relative; height: auto; min-height: 100vh; min-height: 100svh; }
+.nn-staerken--liste .nn-staerken__ui { position: relative; inset: auto; left: auto; width: min(54vw, 760px); margin-left: max(var(--bs-rand, 30px), calc((100% - 1320px) / 2)); padding: clamp(80px, 10vw, 140px) 0; }
+.nn-staerken--liste .nn-staerken__fenster { overflow: visible; margin-right: 0; -webkit-mask-image: none; mask-image: none; }
+.nn-staerken--liste .nn-staerken__spur { flex-direction: column; transform: none !important; gap: 12px; }
+.nn-staerken--liste .nn-staerke { width: auto; opacity: 1; padding: 18px 22px; }
+.nn-staerken--liste .nn-staerke__kopf { margin-bottom: 8px; }
+.nn-staerken--liste .nn-staerke p { font-size: clamp(18px, 1.6vw, 24px); }
+.nn-staerken--liste .nn-staerken__zaehler, .nn-staerken--liste .nn-staerken__punkte { display: none; }
+
+/* ---------- Gespraech anfragen, LinkedIn ---------- */
+.nn-wege { background: var(--bg); padding: clamp(56px, 7vw, 110px) 0; }
+.nn-wege__innen { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: center; }
+.nn-linkedin { display: inline-flex; align-items: center; gap: 10px; height: 68px; padding: 0 26px; border-radius: 12px; border: 1.5px solid rgba(255, 255, 255, .5);
+  color: #fff; font: 600 16px/1 var(--bs-display); letter-spacing: .02em; text-decoration: none; transition: border-color .3s, background-color .3s; }
+.nn-linkedin:hover, .nn-linkedin:focus-visible { border-color: #fff; background: rgba(255, 255, 255, .08); }
+.nn-linkedin__pfeil { color: var(--bs-akzent); transition: transform .5s var(--bs-ease); }
+.nn-linkedin:hover .nn-linkedin__pfeil { transform: translate(3px, -3px); }
+
+/* ---------- Zertifikate: Titel mit Lorbeer ---------- */
+.nn-zert { background: var(--bg); color: var(--fg); padding: var(--ks-abstand, 120px) 0; scroll-margin-top: 72px; }
+.nn-zert__kopf { margin-inline: auto; justify-items: center; text-align: center; }
+.nn-zert__kopf .ks-ab__intro { margin-inline: auto; }
+.nn-zert__karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
+.nn-zert__karte { display: grid; justify-items: center; align-content: start; gap: 12px; padding: clamp(26px, 3vw, 44px); text-align: center; border: 1px solid var(--linie); border-radius: 18px;
+  background: color-mix(in srgb, #fff 55%, var(--bg)); }
+.nn-zert__karte p { margin: 0; }
+.nn-zert__bild { display: block; height: clamp(220px, 30vh, 340px); margin-bottom: 14px; border-radius: 6px; overflow: hidden; box-shadow: 0 26px 50px -28px rgba(6, 20, 25, .5); transition: transform .6s var(--bs-ease); }
+.nn-zert__bild img { display: block; height: 100%; width: auto; }
+.nn-zert__bild:hover, .nn-zert__bild:focus-visible { transform: translateY(-4px) rotate(-.6deg); }
+.nn-zert__aussteller { font: 500 12px/1.2 var(--bs-mono); letter-spacing: .18em; color: var(--muted); }
+.nn-zert__titelzeile { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(8px, 1.2vw, 16px); width: 100%; max-width: 560px; }
+.nn-lorbeer { width: clamp(30px, 3vw, 44px); height: auto; color: var(--accent); fill: currentColor; }
+.nn-lorbeer--r { transform: scaleX(-1); }
+.nn-zert__titel { margin: 0; font: 700 clamp(22px, 2.2vw, 34px)/1.05 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; text-wrap: balance; }
+.nn-zert__ebene { font: 600 13px/1.3 var(--bs-text); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.nn-zert__text { max-width: 46ch; font: 400 16px/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 82%, transparent); }
+.nn-zert__inhalte { max-width: 52ch; font: 400 14px/1.6 var(--bs-text); color: var(--muted); }
+.nn-zert__nachweis { font: 500 12.5px/1.3 var(--bs-mono); letter-spacing: .06em; white-space: pre-wrap; color: var(--fg); }
+.nn-zert__link { margin-top: 8px; }
+
+@media (max-width: 991px) {
+  .nn-profil__raster { grid-template-columns: minmax(0, 1fr); }
+  .nn-profil__karte { max-width: 440px; }
+  /* Szene mobil: Figur oben, Staerken unten im Bild */
+  .nn-staerken__ui { left: 0; right: 0; width: auto; top: auto; bottom: 0; padding: 0 var(--bs-rand, 16px) clamp(84px, 13svh, 120px); gap: 12px; align-content: end; }
+  .nn-staerken__titel { font-size: clamp(26px, 7.4vw, 40px); }
+  .nn-staerken__fenster { margin-right: calc(var(--bs-rand, 16px) * -1); }
+  .nn-staerke { width: 78vw; padding: 18px; }
+  .nn-staerke__kopf { margin-bottom: 10px; }
+  .nn-staerke p { font-size: clamp(19px, 5.4vw, 24px); }
+  .nn-staerken .szene__ki { right: auto; left: var(--bs-rand, 16px); top: 76px; bottom: auto; }
+  .nn-staerken--liste .nn-staerken__ui { width: auto; margin: 0; padding: 0 var(--bs-rand, 16px) 60px; }
+  .nn-staerken--liste .szene__buehne { position: relative; height: 70vh; height: 70svh; }
+  .nn-zert__karten { grid-template-columns: minmax(0, 1fr); }
+  .nn-linkedin, .nn-wege .bs-knopf { width: 100%; justify-content: center; box-sizing: border-box; }
+}
+@media (prefers-reduced-motion: reduce) { .nn-staerke, .nn-staerken__punkte i, .nn-zert__bild, .nn-linkedin__pfeil { transition: none; } }

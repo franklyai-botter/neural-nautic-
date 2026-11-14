@@ -1,0 +1,68 @@
+/* /wissen – Ausguck (Paket C, Vorlage „Beweis“): heller Grund wie Landos „On Track“. Diagrammregel: ein Akzent (Deep Teal),
+   Rest grau (BRAND.md, Abschnitt Diagramme; Farben wie KapitalWolke.tsx). */
+.nn-ausguck { position: relative; background: var(--bg); color: var(--fg); padding: var(--ks-abstand, 120px) 0 clamp(60px, 8vw, 120px); }
+.nn-ausguck__titel { margin: 0 0 clamp(28px, 3vw, 48px); }
+
+/* Kopfzeile, Titel, Text einer Einordnung */
+.nn-einordnung__kopfzeile { margin: 0 0 14px; font: 500 11.5px/1.2 var(--bs-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.nn-einordnung__titel { margin: 0 0 18px; font: 700 clamp(24px, 2.5vw, 40px)/1.06 var(--bs-display); letter-spacing: -.02em; text-wrap: balance; }
+.nn-einordnung__befund { margin: 0 0 16px; font: 400 16px/1.7 var(--bs-text); color: color-mix(in srgb, var(--fg) 82%, transparent); text-wrap: pretty; }
+.nn-einordnung__folge { margin: 0; font: 400 16px/1.7 var(--bs-text); color: var(--fg); text-wrap: pretty; }
+.nn-einordnung__folge b { font-weight: 600; color: var(--accent); }
+.ks .nn-einordnung__link { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); white-space: nowrap; }
+.ks .nn-einordnung__link:hover { text-decoration-color: currentColor; }
+.nn-einordnung__quelle { margin-top: 14px; font-size: 12px; }
+
+/* ---------- Einordnung 1: Kapital-Wolke ---------- */
+.nn-kapital { border-top: 1px solid var(--linie); }
+.nn-kapital__pin { padding: clamp(36px, 4vw, 56px) 0; }
+.nn-kapital__raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 96px); align-items: center; }
+.nn-kapital__fortschritt { display: none; height: 2px; margin-top: 26px; background: var(--linie); overflow: hidden; }
+.nn-kapital__fortschritt i { display: block; height: 100%; background: var(--accent); transform-origin: left center; transform: scaleX(1); }
+.nn-kapital__grafik { margin: 0; display: grid; justify-items: stretch; min-width: 0; }
+.nn-kapital__kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 0 0 10px; }
+/* Riesenzahl (Markt-Zahl 1.248 Mrd. USD) */
+.nn-kapital__summe { font: 700 clamp(48px, 6.4vw, 124px)/.92 var(--bs-display); letter-spacing: -.035em; color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nn-kapital__stand { font: 400 13px/1.4 var(--bs-text); color: var(--muted); }
+.nn-kapital__wolke { display: block; width: 100%; max-width: 560px; aspect-ratio: 1; margin: 0 auto; }
+.nn-kapital__balken { display: flex; align-items: flex-end; gap: 3px; height: clamp(54px, 8vh, 90px); margin-top: 14px; }
+.nn-kapital__balken i { flex: 1; height: var(--h); border-radius: 2px; background: rgba(139, 160, 164, .15); transition: background-color .2s; }
+.nn-kapital__balken i.is-an { background: rgba(139, 160, 164, .55); }
+.nn-kapital__balken i.is-jetzt { background: var(--accent); }
+.nn-kapital__achse { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font: 400 11.5px/1.2 var(--bs-text); color: var(--muted); }
+.nn-kapital__nochmal { min-height: 44px; padding: 0 12px; border: 0; background: none; color: var(--accent); font: 600 13px/1 var(--bs-text); cursor: pointer; border-radius: 8px; }
+.nn-kapital__nochmal:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* gepinnt (Desktop): Strecke von 3,2 Bildschirmhoehen, die Grafik passt in die Fensterhoehe */
+.nn-kapital.is-gepinnt .nn-kapital__bahn { height: 320vh; height: 320svh; }
+.nn-kapital.is-gepinnt .nn-kapital__pin { position: sticky; top: 0; height: 100vh; height: 100svh; box-sizing: border-box; display: grid; align-items: center; padding: clamp(84px, 11vh, 120px) 0 clamp(72px, 10vh, 100px); }
+.nn-kapital.is-gepinnt .nn-kapital__wolke { width: min(100%, 560px, calc(100svh - 430px)); min-width: 240px; }
+.nn-kapital.is-gepinnt .nn-kapital__fortschritt { display: block; }
+@media (min-width: 1800px) and (min-height: 1100px) { .nn-kapital.is-gepinnt .nn-kapital__wolke { max-width: 720px; width: min(100%, 720px, calc(100svh - 470px)); } }
+
+/* nach dem Pin: Folge, Saisontabelle, Quellen */
+.nn-kapital__nach { padding: clamp(24px, 3vw, 44px) 0 clamp(56px, 7vw, 96px); display: grid; gap: 0; max-width: 1320px; }
+.nn-kapital__nach .nn-einordnung__folge { max-width: 72ch; font-size: clamp(17px, 1.3vw, 20px); }
+.nn-saison { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; margin: clamp(28px, 3vw, 44px) 0 0; padding: 0; background: var(--linie); border: 1px solid var(--linie); border-radius: 10px; overflow: hidden; }
+.nn-saison > div { display: grid; gap: 6px; padding: 14px 16px; background: var(--bg); transition: background-color .3s; }
+.nn-saison dt { font: 500 11px/1.2 var(--bs-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.nn-saison dd { margin: 0; font: 700 clamp(17px, 1.3vw, 21px)/1.1 var(--bs-display); letter-spacing: -.01em; font-variant-numeric: tabular-nums; color: color-mix(in srgb, var(--fg) 45%, transparent); transition: color .3s; }
+.nn-saison > div.is-an dd { color: var(--fg); }
+.nn-saison > div.is-jetzt { background: color-mix(in srgb, var(--accent) 10%, var(--bg)); }
+.nn-saison > div.is-jetzt dd, .nn-saison > div.is-jetzt dt { color: var(--accent); }
+.nn-kapital__vermerk { margin-top: 10px; font-size: 11.5px; }
+
+/* ---------- Einordnungen 2–4 ---------- */
+.nn-einordnungen { display: grid; }
+.nn-einordnung { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px clamp(32px, 5vw, 96px); padding: clamp(44px, 5vw, 80px) 0; border-top: 1px solid var(--linie); }
+.nn-einordnung__kopf { align-self: start; }
+.nn-einordnung__inhalt { min-width: 0; }
+
+@media (max-width: 991px) {
+  .nn-kapital__raster, .nn-einordnung { grid-template-columns: minmax(0, 1fr); }
+  .nn-kapital__summe { font-size: clamp(44px, 13vw, 76px); }
+  .nn-saison { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .nn-saison > div { padding: 12px; }
+}
+@media (max-width: 420px) { .nn-saison dd { font-size: 15px; } }
+@media (prefers-reduced-motion: reduce) { .nn-kapital__balken i, .nn-saison > div, .nn-saison dd { transition: none; } }

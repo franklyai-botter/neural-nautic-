@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Funnel auf Subdomain: wiederholt Inhalte der Hauptseite, soll ihr bei Google keine Konkurrenz machen -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#061419" />
+  <!-- Titel und Beschreibung wie neural-nautic-live/app/impressum/page.tsx (src/inhalt/impressum.js → META) -->
+  <title>Impressum | NeuralNautic</title>
+  <meta name="description" content="Impressum von NeuralNautic, Frank Schütt, KI-Beratung für den Mittelstand." />
+  
+  <link rel="icon" href="/brand/nn-stern-kompass-favicon.ico" />
+  <link rel="apple-touch-icon" href="/brand/nn-stern-kompass-apple-180.png" />
+  <link rel="preload" as="image" href="/brand/nn-stern-kompass-128.png" />
+  <link rel="stylesheet" href="/src/funnel/kritisch.css" />
+  <style>
+    html, body { margin: 0; background: #061419; color: #fff; }
+    .bs-lader { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: #061419; }
+    .bs-lader img { width: clamp(84px, 9vw, 128px); height: auto; }
+    @media (prefers-reduced-motion: reduce) { .bs-lader { display: none; } }
+  </style>
+  <noscript><style>.bs-lader { display: none; } .nn-ohne-js { padding: 24px; font: 16px/1.5 system-ui, sans-serif; } .nn-ohne-js a { color: #3fd4e0; }</style></noscript>
+</head>
+<body class="nn ks">
+  <div class="bs-lader" data-lader style="--bs-maske:url(/brand/nn-stern-kompass-128.png)"><img src="/brand/nn-stern-kompass-128.png" width="128" height="128" alt="" /></div>
+  <a class="bs-sprung" href="#inhalt">Zum Inhalt springen</a>
+  <main id="inhalt" tabindex="-1"></main>
+  <noscript><p class="nn-ohne-js">Diese Seite braucht JavaScript. Die vollständige Website: <a href="https://neuralnautic.de/impressum">neuralnautic.de/impressum</a></p></noscript>
+  <script type="module" src="/src/seiten/impressum.js"></script>
+</body>
+</html>

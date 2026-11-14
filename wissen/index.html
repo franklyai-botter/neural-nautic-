@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Funnel auf Subdomain: wiederholt Inhalte der Hauptseite, soll ihr bei Google keine Konkurrenz machen -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#061419" />
+  <!-- Titel und Beschreibung wie neural-nautic-live/app/wissen/page.tsx (src/inhalt/wissen.js → META) -->
+  <title>Ausguck: KI-Studien, Recht und Markt eingeordnet | NeuralNautic</title>
+  <meta name="description" content="Studien, Recht und Markt rund um KI, je mit Kernaussage, Quelle und Bedeutung für den Mittelstand." />
+  <meta property="og:title" content="Ausguck: KI eingeordnet für den Mittelstand" />
+  <meta property="og:description" content="Studien, Recht und Markt rund um KI, je mit Kernaussage, Quelle und Bedeutung für Unternehmen." />
+  <link rel="icon" href="/brand/nn-stern-kompass-favicon.ico" />
+  <link rel="apple-touch-icon" href="/brand/nn-stern-kompass-apple-180.png" />
+  <link rel="preload" as="image" href="/brand/nn-stern-kompass-128.png" />
+  <link rel="stylesheet" href="/src/funnel/kritisch.css" />
+  <style>
+    html, body { margin: 0; background: #061419; color: #fff; }
+    .bs-lader { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: #061419; }
+    .bs-lader img { width: clamp(84px, 9vw, 128px); height: auto; }
+    @media (prefers-reduced-motion: reduce) { .bs-lader { display: none; } }
+  </style>
+  <noscript><style>.bs-lader { display: none; } .nn-ohne-js { padding: 24px; font: 16px/1.5 system-ui, sans-serif; } .nn-ohne-js a { color: #3fd4e0; }</style></noscript>
+</head>
+<body class="nn ks">
+  <div class="bs-lader" data-lader style="--bs-maske:url(/brand/nn-stern-kompass-128.png)"><img src="/brand/nn-stern-kompass-128.png" width="128" height="128" alt="" /></div>
+  <a class="bs-sprung" href="#inhalt">Zum Inhalt springen</a>
+  <main id="inhalt" tabindex="-1"></main>
+  <noscript><p class="nn-ohne-js">Diese Seite braucht JavaScript. Die vollständige Website: <a href="https://neuralnautic.de/wissen">neuralnautic.de/wissen</a></p></noscript>
+  <script type="module" src="/src/seiten/wissen.js"></script>
+</body>
+</html>
