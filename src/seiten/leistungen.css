@@ -1,0 +1,65 @@
+/* /leistungen (Paket B). Rahmen, Seitenkopf, Weiter: src/seiten/gemeinsam.css (Paket A). Hier nur die grosse Szene:
+   gepinnte Leiste (Nummer, aktive Leistung, Verzeichnis) und die 8 Leistungskarten. */
+
+/* ---------- Szene ---------- */
+.nn-ls { position: relative; padding: clamp(36px, 5vw, 80px) 0 var(--ks-abstand); }
+.nn-ls__raster { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 2fr); gap: clamp(32px, 4.4vw, 80px); align-items: start; }
+
+/* ---------- Leiste (Desktop, gepinnt per position: sticky) ---------- */
+.nn-ls__leiste { position: sticky; top: clamp(92px, 13vh, 132px); display: grid; gap: clamp(14px, 2vh, 22px); }
+.nn-ls__zahl { display: flex; margin: 0 0 0 -.04em; font: 700 min(12.5vw, 23vh, 230px)/1 var(--bs-display); letter-spacing: -.05em; color: var(--bs-akzent); font-variant-numeric: tabular-nums; }
+.nn-ls__zahl > span { display: block; height: 1em; }
+.nn-ls__fenster { overflow: hidden; }
+.nn-ls__rolle { display: block; transition: transform .9s var(--bs-ease); will-change: transform; }
+.nn-ls__rolle > span { display: block; height: 1em; }
+.nn-ls__aktiv { position: relative; overflow: hidden; height: 2.24em; margin: 0; font: 700 clamp(19px, 1.6vw, 27px)/1.1 var(--bs-display); letter-spacing: -.01em; text-transform: uppercase; }
+.nn-ls__aktiv > span { position: absolute; inset: 0 0 auto 0; display: block; text-wrap: balance; }
+.nn-ls__index { position: relative; padding-left: 18px; }
+.nn-ls__spur { position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 2px; background: var(--linie); overflow: hidden; }
+.nn-ls__spur i { display: block; height: 100%; background: var(--bs-akzent); transform: scaleY(0); transform-origin: top; }
+.nn-ls__index ol { display: grid; gap: 0; }
+.nn-ls__index .nn-ls__link { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 6px; align-items: baseline; padding: min(7px, .8vh) 0; color: var(--muted); font: 500 14.5px/1.3 var(--bs-text); transition: color .3s; }
+.nn-ls__index .nn-ls__link small { font: 500 11px/1 var(--bs-mono); letter-spacing: .08em; color: color-mix(in srgb, var(--fg) 40%, transparent); transition: color .3s; }
+.nn-ls__index .nn-ls__link span { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .6s var(--bs-ease); }
+.nn-ls__index .nn-ls__link:hover, .nn-ls__index .nn-ls__link:focus-visible { color: #fff; }
+.nn-ls__index .nn-ls__link:hover span, .nn-ls__index .nn-ls__link:focus-visible span { background-size: 100% 1px; }
+.nn-ls__index .nn-ls__link.is-aktiv { color: #fff; }
+.nn-ls__index .nn-ls__link.is-aktiv small { color: var(--bs-akzent); }
+
+/* ---------- Karten ---------- */
+.nn-ls__karten { display: grid; gap: clamp(20px, 2.4vw, 32px); min-width: 0; }
+.nn-l { position: relative; min-width: 0; scroll-margin-top: 104px; padding: clamp(24px, 3.2vw, 54px); border: 1px solid var(--linie); border-radius: 16px; background: var(--bs-flaeche); transition: border-color .6s; }
+.nn-l::before { content: ''; position: absolute; left: -1px; top: clamp(28px, 3.4vw, 58px); width: 3px; height: 34px; border-radius: 0 3px 3px 0; background: var(--bs-akzent); transform: scaleY(0); transform-origin: top; transition: transform .6s var(--bs-ease); }
+.nn-l.is-aktiv { border-color: color-mix(in srgb, var(--bs-akzent) 50%, transparent); }
+.nn-l.is-aktiv::before { transform: scaleY(1); }
+.nn-l__kopf { display: grid; gap: clamp(14px, 1.4vw, 20px); }
+.nn-l__nr { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--bs-mono); letter-spacing: .14em; color: var(--bs-akzent); }
+.nn-l__nr img { width: 20px; height: 20px; flex: none; }
+.nn-l__titel { font: 700 clamp(28px, 3.2vw, 52px)/.98 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; text-wrap: balance; overflow-wrap: break-word; hyphens: manual; }
+.nn-l__kurz { max-width: 46ch; font: 500 clamp(17px, 1.36vw, 21px)/1.45 var(--bs-display); color: rgba(255, 255, 255, .9); text-wrap: pretty; }
+.nn-l__detail { display: grid; gap: clamp(22px, 2.2vw, 32px); margin-top: clamp(22px, 2.4vw, 36px); padding-top: clamp(22px, 2.4vw, 36px); border-top: 1px solid var(--linie); }
+.nn-l__lang { max-width: 72ch; font: 400 clamp(15.5px, 1.1vw, 17px)/1.68 var(--bs-text); color: rgba(255, 255, 255, .8); text-wrap: pretty; }
+.nn-l__unten { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: clamp(22px, 2.6vw, 40px); align-items: start; }
+.nn-l__liste { display: grid; gap: 11px; }
+.nn-l__liste li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font: 400 15.5px/1.45 var(--bs-text); color: rgba(255, 255, 255, .88); }
+.nn-l__haken { color: var(--bs-akzent); font-weight: 700; }
+.nn-l__seite { display: grid; gap: 22px; }
+.nn-l__erg { margin: 0; padding: 18px 20px 19px; border-radius: 12px; background: var(--bs-akzent); color: var(--bs-akzent-tinte); font: 600 clamp(16px, 1.15vw, 17.5px)/1.38 var(--bs-display); text-wrap: pretty; }
+.nn-l__erg b { display: block; margin-bottom: 9px; font: 500 11px/1 var(--bs-mono); letter-spacing: .14em; text-transform: uppercase; }
+.nn-l__wege { display: grid; justify-items: start; gap: 18px; }
+.nn-l__cta { height: 52px; padding: 0 18px; font-size: 14px; }
+.nn-l__mehr { font-size: 13px; }
+
+/* ---------- Tablet und Handy: ohne Leiste (die Sprungleiste im Seitenkopf fuehrt), Karten untereinander ---------- */
+@media (max-width: 991px) {
+  .nn-ls__raster { grid-template-columns: minmax(0, 1fr); }
+  .nn-ls__leiste { display: none; }
+  .nn-l { scroll-margin-top: 84px; }
+}
+@media (max-width: 699px) {
+  .nn-l__unten { grid-template-columns: minmax(0, 1fr); }
+  .nn-l__cta { height: auto; min-height: 52px; padding: 12px 16px; white-space: normal; text-align: left; }
+}
+
+/* ---------- Reduced Motion ---------- */
+.is-reduced .nn-ls__rolle, .is-reduced .nn-l, .is-reduced .nn-l::before { transition: none; }

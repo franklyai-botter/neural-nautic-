@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Funnel auf Subdomain: wiederholt Inhalte der Hauptseite, soll ihr bei Google keine Konkurrenz machen -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#061419" />
+  <!-- Metadaten wie neural-nautic-live/app/leistungen/page.tsx (src/inhalt/leistungen.js → META) -->
+  <title>Leistungen: KI-Beratung für den Mittelstand | NeuralNautic</title>
+  <meta name="description" content="KI-Potenzialanalyse, KI-Architektur, Controlled Pilot, Automatisierung, Agentic Engineering, Governance, Schulung und Werkzeugauswahl für KMU in Berlin und DACH." />
+  <meta name="keywords" content="KI-Beratung Mittelstand, KI-Beratung KMU, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung" />
+  <link rel="canonical" href="https://neuralnautic.de/leistungen" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="NeuralNautic" />
+  <meta property="og:title" content="Leistungen: KI-Beratung für den Mittelstand" />
+  <meta property="og:description" content="KI-Potenzialanalyse, KI-Architektur, Controlled Pilot, Automatisierung, Agentic Engineering, Governance, Schulung und Werkzeugauswahl für KMU in Berlin und DACH." />
+  <meta property="og:url" content="https://neuralnautic.de/leistungen" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/brand/nn-stern-kompass-favicon.ico" />
+  <link rel="apple-touch-icon" href="/brand/nn-stern-kompass-apple-180.png" />
+  <link rel="preload" as="image" href="/brand/nn-stern-kompass-128.png" />
+  <style>
+    /* Erster Eindruck ohne Wartezeit: Grund und Preloader stehen, bevor Skripte und Stylesheets da sind */
+    html, body { margin: 0; background: #061419; color: #fff; }
+    .bs-lader { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: #061419; }
+    .bs-lader img { width: clamp(84px, 9vw, 128px); height: auto; }
+    @media (prefers-reduced-motion: reduce) { .bs-lader { display: none; } }
+  </style>
+  <noscript><style>.bs-lader { display: none; } .nn-ohne-js { position: relative; z-index: 5; padding: 24px; font: 16px/1.5 system-ui, sans-serif; } .nn-ohne-js a { color: #3fd4e0; }</style></noscript>
+</head>
+<body class="nn ks">
+  <!-- Preloader: der NN-Stern (Datei aus public/brand) als Maskenbild, siehe @kern/bausteine/preloader.js -->
+  <div class="bs-lader" data-lader style="--bs-maske:url(/brand/nn-stern-kompass-128.png)"><img src="/brand/nn-stern-kompass-128.png" width="128" height="128" alt="" /></div>
+  <a class="bs-sprung" href="#inhalt">Zum Inhalt springen</a>
+  <!-- Inhalt baut src/seiten/leistungen.js aus src/inhalt/leistungen.js -->
+  <main id="inhalt" tabindex="-1"></main>
+  <noscript><p class="nn-ohne-js">Diese Seite braucht JavaScript. Die vollständige Website: <a href="https://neuralnautic.de/leistungen">neuralnautic.de/leistungen</a></p></noscript>
+  <script type="module" src="/src/seiten/leistungen.js"></script>
+</body>
+</html>
