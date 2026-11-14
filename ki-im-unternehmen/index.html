@@ -19,7 +19,7 @@
     html, body { margin: 0; background: #061419; color: #fff; }
     .bs-lader { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: #061419; }
     /* Notausgang: verschwindet nach 4 s auch dann, wenn kein Skript ihn entfernt (Skriptfehler, Modul laedt nicht) */
-    .bs-lader { animation: bs-lader-weg .3s linear 4s forwards; }
+    .bs-lader { animation: bs-lader-weg 0s 4s forwards; }
     @keyframes bs-lader-weg { to { opacity: 0; visibility: hidden; pointer-events: none; } }
     .bs-lader img { width: clamp(84px, 9vw, 128px); height: auto; }
     @media (prefers-reduced-motion: reduce) { .bs-lader { display: none; } }
