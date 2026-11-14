@@ -31,12 +31,12 @@ main { display: block; }
 .ks-kopf { position: relative; overflow: hidden; background: var(--bg); color: var(--fg); padding: var(--ks-kopf) 0 clamp(64px, 9vw, 120px); }
 .ks-kopf__netz { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .9;
   -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 96%); mask-image: linear-gradient(180deg, #000 30%, transparent 96%); }
-.ks-kopf__innen { position: relative; z-index: 1; display: grid; gap: clamp(20px, 2.4vw, 32px); }
+.ks-kopf__innen { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(20px, 2.4vw, 32px); }
 .ks-kopf__h1 { margin: 0; max-width: 18ch; font: 700 clamp(40px, 6.4vw, 104px)/.95 var(--bs-display); letter-spacing: -.025em; text-transform: uppercase; text-wrap: balance; }
 .ks-kopf__h1 em { font-style: normal; color: var(--accent); }
 .ks-kopf__text { margin: 0; max-width: 62ch; font: 400 clamp(17px, 1.4vw, 21px)/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 84%, transparent); text-wrap: pretty; }
 .ks-kopf__fuss { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 8px; }
-.ks-pille { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--linie);
+.ks-pille { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; max-width: 100%; padding: 0 14px; border-radius: 999px; border: 1px solid var(--linie);
   font: 500 12px/1 var(--bs-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg); text-decoration: none; transition: border-color .25s, color .25s; }
 .ks-pille:hover, .ks-pille:focus-visible { border-color: var(--accent); color: var(--accent); }
 
@@ -90,7 +90,7 @@ main { display: block; }
 .ks-akk__inhalt { padding: 0 4px clamp(22px, 2.4vw, 34px); }
 
 /* ---------- 7 Formular (Downloads; Kontakt kann dieselben Klassen nutzen) ---------- */
-.ks-formular { display: grid; gap: 16px; }
+.ks-formular { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .ks-formular__hinweis { margin: 0; font: 400 14px/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 78%, transparent); }
 .ks-formular__reihe { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 599px) { .ks-formular__reihe { grid-template-columns: minmax(0, 1fr); } }
@@ -108,6 +108,7 @@ main { display: block; }
 .ks-einwilligung a { color: var(--accent); }
 .ks-fehler { margin: 0; padding: 10px 14px; border-left: 3px solid #f08a7a; background: rgba(240, 138, 122, .1); font: 500 14px/1.5 var(--bs-text); color: #ffb4a8; }
 .bs-ton-hell .ks-fehler { color: #8a2a1c; }
+.ks-feld .ks-fehler { padding-block: 6px; font-size: 13.5px; }   /* Fehler am Feld (kontakt.js, Downloads) */
 .ks-formular .bs-knopf[disabled] { opacity: .7; cursor: wait; }
 .ks-danke { display: grid; gap: 12px; align-content: start; }
 .ks-danke__titel { margin: 0; font: 700 clamp(22px, 2vw, 30px)/1.1 var(--bs-display); letter-spacing: -.01em; }
@@ -147,7 +148,8 @@ main { display: block; }
 .ks-weiter__titel i { font-style: normal; color: var(--accent); display: inline-block; transition: transform .7s var(--bs-ease); }
 .ks-weiter:hover .ks-weiter__titel i, .ks-weiter:focus-within .ks-weiter__titel i { transform: translateX(.18em); }
 .ks-weiter__text { margin: 0; max-width: 60ch; font: 400 clamp(16px, 1.3vw, 20px)/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 78%, transparent); }
-.ks-weiter__fuellung { position: absolute; inset: 0; z-index: 0; background: var(--accent); clip-path: ellipse(0% 0% at 50% 100%); transition: clip-path var(--bs-dauer, .75s) var(--bs-ease); pointer-events: none; }
+/* Fuellung fest in Akzentfarbe: --accent wird bei Hover/Fokus zur Textfarbe (Tinte), sonst Text = Flaeche, 1 : 1 (IF-5) */
+.ks-weiter__fuellung { position: absolute; inset: 0; z-index: 0; background: var(--bs-akzent); clip-path: ellipse(0% 0% at 50% 100%); transition: clip-path var(--bs-dauer, .75s) var(--bs-ease); pointer-events: none; }
 .ks-weiter:hover .ks-weiter__fuellung, .ks-weiter:focus-within .ks-weiter__fuellung { clip-path: ellipse(150% 150% at 50% 100%); }
 .ks-weiter:hover, .ks-weiter:focus-within { --fg: var(--bs-akzent-tinte); --accent: var(--bs-akzent-tinte); --muted: rgba(6, 20, 25, .7); }
 .ks-weiter .bs-wrap { position: relative; z-index: 1; }
