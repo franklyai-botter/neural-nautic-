@@ -457,7 +457,7 @@ const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa
 
 document.fonts.ready.then(() => {
   autoWire(document);
-  starten.forEach((f) => f());
+  starten.forEach((f) => { try { f(); } catch (e) { console.warn('[funnel] Start fehlgeschlagen:', e); } });   // NN-WR-02
   ScrollTrigger.refresh();
   k.messen();
   window.__bereit = true;   // fuer die Pruefskripte in qa/start

@@ -59,9 +59,11 @@ export function kapitelseite(o = {}) {
     zielEl.setAttribute('tabindex', '-1');
     zielEl.focus({ preventScroll: true });
   };
+  // kaputte Prozentkodierung (z. B. #%E0%A4%A) wirft sonst einen URIError (NN-WR-14)
+  const idAusHash = (h) => { try { return decodeURIComponent(h); } catch { return h; } };
   document.addEventListener('click', (e) => {
     const a = e.target.closest?.('a[href^="#"]');
-    const zielEl = a && a.getAttribute('href').length > 1 && document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+    const zielEl = a && a.getAttribute('href').length > 1 && document.getElementById(idAusHash(a.getAttribute('href').slice(1)));
     if (!zielEl) return;
     e.preventDefault();
     hinScrollen(zielEl);
@@ -84,11 +86,12 @@ export function kapitelseite(o = {}) {
     gestartet = true;
     document.fonts.ready.then(() => {
       autoWire(document);
-      starten.forEach((f) => f());
+      // ein fehlerhafter Start bricht den Rest nicht ab (NN-WR-02)
+      starten.forEach((f) => { try { f(); } catch (e) { console.warn('[seite] Start fehlgeschlagen:', e); } });
       ScrollTrigger.refresh();
       k.messen();
       // Sprungziel aus der Adresse (z. B. /ki-im-unternehmen#reifegrad von der Startseite): erst jetzt existiert es
-      const h = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      const h = location.hash.length > 1 && document.getElementById(idAusHash(location.hash.slice(1)));
       // Lenis kennt sonst noch die Hoehe des leeren <main> und landet bei 0: vorher neu messen
       if (h) requestAnimationFrame(() => { lenis?.resize?.(); ScrollTrigger.refresh(); lenis?.resize?.(); hinScrollen(h, true); });
       window.__bereit = true;   // fuer die Pruefskripte
