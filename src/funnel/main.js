@@ -135,12 +135,13 @@ const qg = teil(quergalerie({
     // Bild bei Schiff: das moderne NN-Forschungsschiff in Fahrt, Monogramm und Kompassstern als Aufdruck auf dem Rumpf
     // (funnel-vorlage/tools/aufdruck_video.py). enterprise.png ist nicht mehr eingebunden.
     feldFilm({ ...I.SCHIFF_FILM, form: 'gross', lage: 'oben' }),
-    feldZitat({ link: M.link, lage: 'unten' }),
-    feldTitel({ titel: esc(S.titel) }),
+    // Vom Schiff direkt zur Einleitung der Schichten (Frank, 14.11.2026); der Methode-Link steht jetzt am Ende.
+    // Das Titelfeld beginnt das helle Blatt (hellAb = zweites Titelfeld): Kapitelkante Bild -> Sachsprache.
+    feldTitel({ titel: esc(S.titel), text: esc(S.text) }),
     // Architektur-Grafik der sieben Schichten: baut sich Schicht fuer Schicht von unten nach oben auf
     feldBild({ ...S.bild, form: 'hoch', lage: 'mitte', position: '50% 0%', aufbau: 7 }),
     ...S.schichten.map(([nr, titel, text], i) => feldZahl({ nr, titel, text, lage: lagen[i % 3] })),
-    feldZitat({ link: S.link, lage: 'mitte' }),
+    feldZitat({ links: [S.link, M.link], lage: 'mitte' }),
   ],
 }));
 main.append(qg.el);

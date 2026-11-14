@@ -212,7 +212,11 @@ export const SCHIFF_FILM = {
 };
 
 export const SCHICHTEN = {
-  titel: 'Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle.',
+  // Übergang Schiff → Schichten neu (Frank, 14.11.2026): ab hier Sachsprache, keine Weltmeere, Begriff „KI-Architektur“
+  // (global, werkzeugoffen; „Referenzmodell“ ist das eine RAG-System bei spring.gate, nicht dasselbe).
+  // Bisher: „Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle.“
+  titel: 'Was KI im Betrieb trägt',
+  text: 'Unsere KI-Architektur zeigt in sieben Schichten, wie Daten, KI-Modelle und Arbeitsabläufe zusammenspielen. Datenschutz, Sicherheit und klare Zuständigkeiten planen wir über alle Schichten hinweg ein.',
   bild: { src: '/medien/architektur/ki-architektur-vorschau.jpg', w: 1144, h: 1880, alt: 'KI-Architektur in sieben Schichten von Infrastruktur bis Governance', href: '/ki-im-unternehmen#architektur', ariaLabel: 'KI-Architektur in sieben Schichten, mit 3D-Modell' },
   schichten: [
     ['7', 'Governance und Compliance', 'KI-Richtlinie, Rollen, Einstufung nach EU AI Act'],
