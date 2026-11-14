@@ -1,0 +1,172 @@
+/* Gemeinsamer Rahmen der Kapitelseiten (Welle 2). Angelegt von Paket A, gelesen von allen Kapitelseiten.
+   Marke wie die Startseite (src/funnel/funnel.css, nicht importiert, weil seitenspezifisch): Petrol #061419,
+   Cyan #3fd4e0 / #6feff5, Ivory #f5f2eb, Teal #0d7377 (BRAND.md, Website).
+   Klassen mit Praefix ks- (Kapitelseite). Seitenspezifisches steht in src/seiten/<seite>.css.
+
+   Inhalt:  1 Marke und Grund   2 Seitenkopf   3 Abschnitt   4 Karten, Quelle, Liste   5 Tabelle mit Hover
+            6 Akkordeon   7 Formular (Downloads, Kontakt)   8 Ebenenmodell   9 Weiter zum naechsten Kapitel
+            10 Chat-Platzhalter   11 Reduced Motion */
+
+/* ---------- 1 Marke und Grund ---------- */
+:root {
+  --bs-dunkel: #061419; --bs-flaeche: #0b1a20; --bs-hell: #f5f2eb; --bs-tinte: #061419;
+  --bs-akzent: #3fd4e0; --bs-leuchten: #6feff5; --bs-akzent-hell: #0d7377; --bs-akzent-tinte: #061419;
+  --bg: var(--bs-dunkel); --fg: #fff; --accent: var(--bs-akzent); --accent-ink: var(--bs-akzent-tinte); --bar: var(--bs-akzent);
+  --muted: rgba(255, 255, 255, .64);
+  --ks-kopf: clamp(118px, 16vh, 176px);          /* Luft unter dem festen Seitenkopf */
+  --ks-abstand: clamp(84px, 11vw, 156px);        /* senkrechter Abstand der Abschnitte */
+  --ks-schmal: 760px;                            /* Lesebreite */
+}
+html { scroll-behavior: auto; background: var(--bs-dunkel); overflow-x: clip; }   /* nie waagerecht scrollen */
+.bs-wrap.bs-wrap { margin-inline: auto; }       /* wie Startseite: Reset in grund.css hebt margin-inline sonst auf */
+body.nn { margin: 0; font-family: var(--bs-text); font-size: 17px; line-height: 1.55; background: var(--bs-dunkel); color: #fff; }
+main { display: block; }
+.ks [hidden] { display: none !important; }      /* hidden schlaegt eigene display-Regeln (Formular, Danke, Fehler) */
+@media (max-width: 991px) { body.nn { font-size: 16px; } }
+.ks a:not([class]) { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); text-underline-offset: 3px; transition: color .25s; }
+.ks a:not([class]):hover { color: var(--accent); }
+.bs-ton-hell { --accent: var(--bs-akzent-hell); --bar: var(--bs-akzent-hell); }
+
+/* ---------- 2 Seitenkopf: Eyebrow, H1, Einleitung ---------- */
+.ks-kopf { position: relative; overflow: hidden; background: var(--bg); color: var(--fg); padding: var(--ks-kopf) 0 clamp(64px, 9vw, 120px); }
+.ks-kopf__netz { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .9;
+  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 96%); mask-image: linear-gradient(180deg, #000 30%, transparent 96%); }
+.ks-kopf__innen { position: relative; z-index: 1; display: grid; gap: clamp(20px, 2.4vw, 32px); }
+.ks-kopf__h1 { margin: 0; max-width: 18ch; font: 700 clamp(40px, 6.4vw, 104px)/.95 var(--bs-display); letter-spacing: -.025em; text-transform: uppercase; text-wrap: balance; }
+.ks-kopf__h1 em { font-style: normal; color: var(--accent); }
+.ks-kopf__text { margin: 0; max-width: 62ch; font: 400 clamp(17px, 1.4vw, 21px)/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 84%, transparent); text-wrap: pretty; }
+.ks-kopf__fuss { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 8px; }
+.ks-pille { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--linie);
+  font: 500 12px/1 var(--bs-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg); text-decoration: none; transition: border-color .25s, color .25s; }
+.ks-pille:hover, .ks-pille:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- 3 Abschnitt: Kicker, Titel (Aussagesatz), Einleitung, Inhalt ---------- */
+.ks-ab { position: relative; background: var(--bg); color: var(--fg); padding: var(--ks-abstand) 0; scroll-margin-top: 72px; }
+.ks-ab + .ks-ab.bs-ton-dunkel:not(.ks-ab--rand) { padding-top: calc(var(--ks-abstand) * .55); }
+.ks-ab--rand { border-top: 1px solid var(--linie); }
+.ks-ab__kopf { display: grid; gap: 18px; margin-bottom: clamp(36px, 4.4vw, 64px); max-width: 1040px; }
+.ks-ab__titel { margin: 0; font: 700 clamp(30px, 3.9vw, 62px)/1 var(--bs-display); letter-spacing: -.02em; text-wrap: balance; }
+.ks-ab__intro { margin: 0; max-width: 64ch; font: 400 clamp(16px, 1.22vw, 19px)/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); text-wrap: pretty; }
+.ks-ab__unter { margin: 0 0 18px; font: 600 clamp(17px, 1.3vw, 20px)/1.3 var(--bs-display); letter-spacing: -.005em; }
+.ks-zwei { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.ks-drei { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+@media (max-width: 899px) { .ks-zwei, .ks-drei { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- 4 Karten, Quelle, Strichliste ---------- */
+.ks-karte { position: relative; padding: clamp(22px, 2.2vw, 32px); border: 1px solid var(--linie); border-radius: var(--bs-radius); background: color-mix(in srgb, var(--fg) 3%, var(--bg)); }
+.ks-karte--akzent { border-color: color-mix(in srgb, var(--accent) 70%, transparent); background: color-mix(in srgb, var(--accent) 7%, var(--bg)); }
+.ks-karte__titel { margin: 0 0 14px; font: 500 12px/1.2 var(--bs-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.ks-karte--akzent .ks-karte__titel { color: var(--accent); }
+.ks-striche { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ks-striche li { margin: 0; font: 400 16px/1.5 var(--bs-text); color: color-mix(in srgb, var(--fg) 82%, transparent); }
+.ks-quelle { margin: 22px 0 0; max-width: 90ch; font: 400 12.5px/1.6 var(--bs-text); color: var(--muted); }
+.ks-quelle a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.ks-quelle a:hover { color: var(--accent); }
+.ks-figur { margin: 0; }
+.ks-figur__titel { margin: 0 0 24px; font: 600 clamp(17px, 1.3vw, 20px)/1.35 var(--bs-display); letter-spacing: -.005em; max-width: 60ch; }
+
+/* ---------- 5 Tabelle mit Hover (Lando: Ergebnisliste; Zeile hebt sich, Balken links) ---------- */
+.ks-tabelle { border-top: 1px solid var(--linie); }
+.ks-tabelle__zeile { position: relative; display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: 8px 32px; align-items: baseline;
+  padding: clamp(18px, 1.8vw, 26px) clamp(4px, 1vw, 16px); border-bottom: 1px solid var(--linie); isolation: isolate; }
+.ks-tabelle__zeile::before { content: ''; position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--accent) 9%, transparent);
+  clip-path: inset(0 100% 0 0); transition: clip-path var(--bs-dauer, .75s) var(--bs-ease); }
+.ks-tabelle__zeile:hover::before, .ks-tabelle__zeile:focus-within::before { clip-path: inset(0 0 0 0); }
+.ks-tabelle__kopf { margin: 0; font: 700 clamp(18px, 1.5vw, 24px)/1.15 var(--bs-display); letter-spacing: -.01em; text-transform: uppercase; }
+.ks-tabelle__text { margin: 0; font: 400 16px/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 82%, transparent); }
+@media (max-width: 699px) { .ks-tabelle__zeile { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- 6 Akkordeon (natives details/summary) ---------- */
+.ks-akk { border-top: 1px solid var(--linie); }
+.ks-akk__teil { border-bottom: 1px solid var(--linie); }
+.ks-akk__teil > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 16px; align-items: center;
+  padding: clamp(18px, 1.8vw, 26px) 4px; }
+.ks-akk__teil > summary::-webkit-details-marker { display: none; }
+.ks-akk__plus { position: relative; width: 44px; height: 44px; border: 1px solid var(--linie); border-radius: 50%; transition: border-color .3s, background-color .3s; }
+.ks-akk__plus::before, .ks-akk__plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); transition: transform .45s var(--bs-ease); }
+.ks-akk__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+.ks-akk__teil[open] .ks-akk__plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+.ks-akk__teil > summary:hover .ks-akk__plus, .ks-akk__teil > summary:focus-visible .ks-akk__plus { border-color: var(--accent); color: var(--accent); }
+.ks-akk__inhalt { padding: 0 4px clamp(22px, 2.4vw, 34px); }
+
+/* ---------- 7 Formular (Downloads; Kontakt kann dieselben Klassen nutzen) ---------- */
+.ks-formular { display: grid; gap: 16px; }
+.ks-formular__hinweis { margin: 0; font: 400 14px/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 78%, transparent); }
+.ks-formular__reihe { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 599px) { .ks-formular__reihe { grid-template-columns: minmax(0, 1fr); } }
+.ks-feld { display: grid; gap: 8px; min-width: 0; }
+.ks-feld label { font: 500 11.5px/1.2 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ks-feld input, .ks-feld select, .ks-feld textarea { box-sizing: border-box; width: 100%; min-height: 50px; padding: 12px 16px; border: 1px solid var(--linie); border-radius: 10px;
+  background: color-mix(in srgb, var(--fg) 4%, var(--bg)); color: var(--fg); font: 400 16px/1.4 var(--bs-text); transition: border-color .25s, background-color .25s; }
+.ks-feld textarea { min-height: 140px; resize: vertical; }
+.ks-feld input::placeholder, .ks-feld textarea::placeholder { color: color-mix(in srgb, var(--fg) 40%, transparent); }
+.ks-feld input:focus, .ks-feld select:focus, .ks-feld textarea:focus { outline: none; border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--bg)); }
+.ks-feld input:focus-visible, .ks-feld select:focus-visible, .ks-feld textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ks-honig { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.ks-einwilligung { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; cursor: pointer; font: 400 13.5px/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+.ks-einwilligung input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--accent); }
+.ks-einwilligung a { color: var(--accent); }
+.ks-fehler { margin: 0; padding: 10px 14px; border-left: 3px solid #f08a7a; background: rgba(240, 138, 122, .1); font: 500 14px/1.5 var(--bs-text); color: #ffb4a8; }
+.bs-ton-hell .ks-fehler { color: #8a2a1c; }
+.ks-formular .bs-knopf[disabled] { opacity: .7; cursor: wait; }
+.ks-danke { display: grid; gap: 12px; align-content: start; }
+.ks-danke__titel { margin: 0; font: 700 clamp(22px, 2vw, 30px)/1.1 var(--bs-display); letter-spacing: -.01em; }
+.ks-danke p { margin: 0; font: 400 15px/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+.ks-textknopf { justify-self: start; padding: 8px 0; border: 0; background: none; color: var(--accent); font: 600 14px/1.2 var(--bs-display); letter-spacing: .04em; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- 8 Ebenenmodell (Unternehmen / Projekt) ---------- */
+.ks-ebenen { margin: 0; }
+.ks-ebenen__titel { margin: 0 0 22px; font: 600 clamp(17px, 1.3vw, 20px)/1.35 var(--bs-display); max-width: 60ch; }
+.ks-ebene { position: relative; padding: clamp(20px, 2vw, 28px); border: 1px solid var(--linie); border-radius: var(--bs-radius); background: color-mix(in srgb, var(--fg) 3%, var(--bg)); }
+.ks-ebene--aktiv { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent), 0 18px 60px -30px color-mix(in srgb, var(--accent) 60%, transparent); }
+.ks-ebene__kopf { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px 24px; margin-bottom: 16px; }
+.ks-ebene__kicker { margin: 0 0 6px; font: 500 11.5px/1.2 var(--bs-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.ks-ebene--aktiv .ks-ebene__kicker { color: var(--accent); }
+.ks-ebene__titel { margin: 0; font: 700 clamp(22px, 2vw, 30px)/1.1 var(--bs-display); letter-spacing: -.01em; }
+.ks-ebene__titel a { color: inherit; text-decoration: none; }
+.ks-ebene__titel a i { font-style: normal; color: var(--accent); display: inline-block; transition: transform .5s var(--bs-ease); }
+.ks-ebene__titel a:hover { color: var(--accent); }
+.ks-ebene__titel a:hover i { transform: translateX(5px); }
+.ks-ebene__rhythmus { margin: 0; font: 400 13.5px/1.4 var(--bs-text); color: var(--muted); }
+.ks-ebene__liste { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.ks-ebene__liste li { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 8px 13px; border: 1px solid var(--linie); border-radius: 8px; background: var(--bg); font: 400 14px/1.3 var(--bs-text); }
+.ks-ebene__liste b { font: 500 11px/1 var(--bs-mono); color: var(--muted); }
+.ks-ebene--aktiv .ks-ebene__liste b { color: var(--accent); }
+.ks-ebenen__pfeile { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 14px clamp(12px, 2vw, 28px); }
+.ks-ebenen__pfeile span { display: inline-flex; align-items: center; gap: 10px; font: 400 13.5px/1.4 var(--bs-text); color: var(--muted); }
+.ks-ebenen__pfeile b { font: 400 20px/1 var(--bs-text); color: var(--accent); }
+.ks-ebenen__fuss { margin: 14px 0 0; font: 400 13.5px/1.5 var(--bs-text); color: var(--muted); }
+
+/* ---------- 9 Weiter zum naechsten Kapitel (grosser Querverweis am Seitenende) ---------- */
+.ks-weiter { position: relative; display: block; overflow: hidden; background: var(--bg); color: var(--fg); padding: clamp(80px, 10vw, 150px) 0; text-decoration: none; }
+.ks-weiter__innen { display: grid; gap: 22px; }
+.ks-weiter__label { margin: 0; }
+.ks-weiter__titel { margin: 0; font: 700 clamp(44px, 8.4vw, 150px)/.9 var(--bs-display); letter-spacing: -.03em; text-transform: uppercase; text-wrap: balance; }
+.ks-weiter__titel a { color: inherit; text-decoration: none; display: inline-flex; align-items: baseline; gap: .18em; flex-wrap: wrap; }
+.ks-weiter__titel a::after { content: ''; position: absolute; inset: 0; }   /* ganze Flaeche klickbar */
+.ks-weiter__titel i { font-style: normal; color: var(--accent); display: inline-block; transition: transform .7s var(--bs-ease); }
+.ks-weiter:hover .ks-weiter__titel i, .ks-weiter:focus-within .ks-weiter__titel i { transform: translateX(.18em); }
+.ks-weiter__text { margin: 0; max-width: 60ch; font: 400 clamp(16px, 1.3vw, 20px)/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 78%, transparent); }
+.ks-weiter__fuellung { position: absolute; inset: 0; z-index: 0; background: var(--accent); clip-path: ellipse(0% 0% at 50% 100%); transition: clip-path var(--bs-dauer, .75s) var(--bs-ease); pointer-events: none; }
+.ks-weiter:hover .ks-weiter__fuellung, .ks-weiter:focus-within .ks-weiter__fuellung { clip-path: ellipse(150% 150% at 50% 100%); }
+.ks-weiter:hover, .ks-weiter:focus-within { --fg: var(--bs-akzent-tinte); --accent: var(--bs-akzent-tinte); --muted: rgba(6, 20, 25, .7); }
+.ks-weiter .bs-wrap { position: relative; z-index: 1; }
+.ks-weiter .bs-label::before { transition: background-color .3s; }
+
+/* ---------- 10 Chat-Platzhalter (der echte Chat kommt mit dem Server-Teil) ---------- */
+.ks-chat { position: fixed; right: 18px; bottom: 18px; z-index: 60; }
+.ks-chat__knopf { display: grid; place-items: center; width: 64px; height: 64px; padding: 0; border: 1px solid rgba(255, 255, 255, .35); border-radius: 50% 50% 50% 12px;
+  background: rgba(245, 242, 235, .14); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; transition: border-color .3s, transform .45s var(--bs-ease); }
+.ks-chat__knopf img { width: 40px; height: 40px; }
+.ks-chat__knopf:hover, .ks-chat__knopf:focus-visible { border-color: var(--bs-akzent); transform: translateY(-3px); }
+.ks-chat__blase { position: absolute; right: 0; bottom: calc(100% + 12px); width: min(300px, calc(100vw - 36px)); padding: 16px 18px; border: 1px solid rgba(255, 255, 255, .2); border-radius: 12px;
+  background: var(--bs-flaeche); color: #fff; box-shadow: 0 20px 50px -20px rgba(0, 0, 0, .7); }
+.ks-chat__blase[hidden] { display: none; }
+.ks-chat__blase b { display: block; margin-bottom: 4px; font: 600 15px/1.3 var(--bs-display); }
+.ks-chat__blase small { display: block; margin-bottom: 10px; font: 500 10.5px/1.2 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bs-akzent); }
+.ks-chat__blase p { margin: 0; font: 400 14px/1.5 var(--bs-text); color: rgba(255, 255, 255, .82); }
+@media (max-width: 991px) { .ks-chat { right: auto; left: 14px; bottom: 14px; } .ks-chat__knopf { width: 52px; height: 52px; } .ks-chat__knopf img { width: 32px; height: 32px; } .ks-chat__blase { right: auto; left: 0; } }
+
+/* ---------- 11 Reduced Motion ---------- */
+.is-reduced .ks-tabelle__zeile::before, .is-reduced .ks-weiter__fuellung, .is-reduced .ks-akk__plus::before, .is-reduced .ks-akk__plus::after { transition: none; }
+@media (prefers-reduced-motion: reduce) { .ks-chat__knopf { transition: none; } }

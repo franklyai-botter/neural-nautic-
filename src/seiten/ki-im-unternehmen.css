@@ -1,0 +1,137 @@
+/* /ki-im-unternehmen: nur was diese Seite hat (Praefix kiu-). Rahmen und gemeinsame Klassen: gemeinsam.css. */
+
+/* ---------- 1 Vergleich und Riesenzahlen 80 % / 6 % ---------- */
+.kiu-vergleich { margin-bottom: clamp(56px, 7vw, 110px); }
+.kiu-zahlen__reihen { display: grid; gap: clamp(28px, 3.4vw, 48px); }
+.kiu-zahl { display: grid; grid-template-columns: minmax(0, clamp(180px, 22vw, 340px)) minmax(0, 1fr); grid-template-areas: "wert balken" "wert label"; gap: 10px clamp(20px, 3vw, 48px); align-items: end; }
+.kiu-zahl__wert { grid-area: wert; margin: 0; display: flex; align-items: baseline; gap: .04em; font: 700 clamp(84px, 12vw, 200px)/.82 var(--bs-display); letter-spacing: -.05em; color: rgba(255, 255, 255, .5); font-variant-numeric: tabular-nums; }
+.kiu-zahl__wert span { font-size: .42em; letter-spacing: 0; }
+.kiu-zahl--akzent .kiu-zahl__wert { color: var(--accent); text-shadow: 0 0 40px rgba(63, 212, 224, .25); }
+.kiu-zahl__balken { grid-area: balken; height: 14px; border-radius: 7px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+.kiu-zahl__balken i { display: block; width: calc(var(--w) * 100%); min-width: 14px; height: 100%; border-radius: inherit; background: rgba(255, 255, 255, .42); transform-origin: left center; }
+.kiu-zahl--akzent .kiu-zahl__balken i { background: var(--accent); box-shadow: 0 0 18px rgba(63, 212, 224, .5); }
+.kiu-zahl__label { grid-area: label; margin: 0; max-width: 52ch; font: 400 clamp(15px, 1.15vw, 18px)/1.5 var(--bs-text); color: rgba(255, 255, 255, .82); }
+@media (max-width: 699px) {
+  .kiu-zahl { grid-template-columns: minmax(0, 1fr); grid-template-areas: "wert" "balken" "label"; }
+}
+
+/* ---------- 2 Dreieck, Karten Kurs/Crew/Schiff ---------- */
+.kiu-dreieck { max-width: 640px; margin: 0 auto clamp(40px, 5vw, 72px); }
+.kiu-dreieck svg { display: block; width: 100%; height: auto; overflow: visible; }
+.kiu-dreieck__linie { fill: none; stroke: color-mix(in srgb, var(--fg) 35%, transparent); stroke-width: 1.5; stroke-dasharray: 1; }
+.kiu-ecke__ring { fill: var(--bg); stroke: var(--accent); stroke-width: 1.5; transition: fill .35s, stroke-width .35s; }
+.kiu-ecke__punkt { fill: var(--accent); transition: r .35s; }
+.kiu-ecke__name { fill: var(--fg); font: 700 26px var(--bs-display); letter-spacing: -.01em; }
+.kiu-ecke__sach { fill: var(--muted); font: 500 12px var(--bs-mono); letter-spacing: .1em; text-transform: uppercase; }
+.kiu-dreieck__mitte { fill: var(--muted); font: italic 400 22px var(--bs-text); }
+.kiu-ecke.is-an .kiu-ecke__ring { fill: color-mix(in srgb, var(--accent) 16%, var(--bg)); stroke-width: 2.5; }
+.kiu-ecke.is-an .kiu-ecke__punkt { r: 8px; }
+.kiu-kcs { margin-bottom: clamp(56px, 7vw, 110px); }
+.kiu-kcs__karte { display: grid; align-content: start; gap: 12px; transition: border-color .35s, transform .5s var(--bs-ease); outline-offset: 3px; }
+.kiu-kcs__karte:hover, .kiu-kcs__karte:focus-visible { border-color: var(--accent); transform: translateY(-4px); }
+.kiu-kcs__kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.kiu-kcs__kopf h3 { margin: 0; font: 700 clamp(30px, 2.8vw, 44px)/1 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; }
+.kiu-kcs__kopf span { font: 500 11.5px/1.2 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.kiu-kcs__claim { margin: 0; font: italic 500 clamp(18px, 1.5vw, 22px)/1.3 var(--bs-text); }
+.kiu-kcs__text { margin: 0; font: 400 16px/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+
+/* ---------- 3 Reifegrad-Check (Bedienung wie Startseite, Baustein unveraendert) und Downloads ---------- */
+.kiu-check { margin-bottom: clamp(40px, 5vw, 72px); }
+.kiu-check .bs-check__antwort { transition: border-color .3s, color .3s, background-color .3s, transform .45s var(--bs-ease); }
+@media (hover: hover) { .kiu-check .bs-check__antwort:hover { border-color: var(--bs-akzent); background-color: rgba(63, 212, 224, .07); transform: translateY(-4px); } }
+.kiu-check .bs-check__pfeil:disabled { opacity: .2; cursor: not-allowed; border-style: dashed; }
+.is-reduced .kiu-check .bs-check__antwort { transition: none; transform: none; }
+.kiu-download { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(28px, 4vw, 64px); align-items: start;
+  padding: clamp(24px, 3vw, 44px); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: var(--bs-radius);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 9%, var(--bg)), var(--bg) 60%); scroll-margin-top: 90px; }
+.kiu-download__info { display: grid; gap: 14px; align-content: start; }
+.kiu-download__titel { margin: 0; font: 700 clamp(24px, 2.3vw, 36px)/1.05 var(--bs-display); letter-spacing: -.015em; text-wrap: balance; }
+.kiu-download__text { margin: 0; font: 400 15.5px/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+.kiu-download__bild { display: block; width: min(220px, 60%); height: auto; margin-top: 10px; border-radius: 8px; border: 1px solid var(--linie); box-shadow: 0 24px 60px -30px rgba(0, 0, 0, .8); }
+.kiu-download .ks-formular .bs-knopf { justify-self: start; }
+@media (max-width: 899px) { .kiu-download { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- 4 Wertschoepfungsstufen als Pyramide ---------- */
+.kiu-stufen { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.kiu-stufe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 44px); align-items: center; margin: 0; }
+.kiu-stufe__form { display: flex; justify-content: center; }
+.kiu-stufe__form i { display: grid; place-items: center; width: var(--w); height: clamp(48px, 4.4vw, 62px); border-radius: 6px; border: 1px solid var(--linie);
+  background: color-mix(in srgb, var(--fg) 10%, var(--bg)); transform-origin: center; }
+.kiu-stufe__form b { font: 500 13px/1 var(--bs-mono); color: var(--muted); }
+.kiu-stufe__text { padding: 8px 0 8px 18px; border-left: 2px solid var(--linie); }
+.kiu-stufe__text h3 { margin: 0 0 4px; font: 700 clamp(17px, 1.35vw, 21px)/1.2 var(--bs-display); letter-spacing: -.005em; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+.kiu-stufe__text p { margin: 0; font: 400 15px/1.5 var(--bs-text); color: color-mix(in srgb, var(--fg) 72%, transparent); }
+.kiu-stufe--korridor .kiu-stufe__form i { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 20%, var(--bg)); }
+.kiu-stufe--korridor .kiu-stufe__form b { color: var(--accent); font-weight: 700; }
+.kiu-stufe--korridor .kiu-stufe__text { border-left-color: var(--accent); }
+.kiu-stufe--korridor .kiu-stufe__text h3 { color: var(--fg); }
+.kiu-korridor { --korridor: 1; position: relative; margin: 0; padding: 12px 0; isolation: isolate; }
+.kiu-korridor::before { content: ''; position: absolute; inset: 0 -14px; z-index: -1; border-radius: 12px; border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent); opacity: var(--korridor); }
+.kiu-pyramide__hinweis { margin: 26px 0 0; max-width: 70ch; font: 500 15px/1.55 var(--bs-text); color: var(--accent); }
+@media (max-width: 699px) {
+  .kiu-stufe { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .kiu-korridor::before { inset: 0 -8px; }
+}
+
+/* ---------- 5 Straenge ---------- */
+.kiu-straenge { margin-top: clamp(48px, 6vw, 88px); }
+.kiu-strang__kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.kiu-strang__name { font: 700 clamp(26px, 2.6vw, 40px)/1 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; }
+.kiu-strang__titel { font: 500 12px/1.2 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.kiu-strang__note { font: 400 11px/1.2 var(--bs-mono); letter-spacing: .1em; color: var(--muted); }
+.kiu-strang__erg { flex-basis: 100%; margin-top: 4px; font: 400 15px/1.5 var(--bs-text); color: color-mix(in srgb, var(--fg) 78%, transparent); }
+.kiu-schritte { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.kiu-schritte li { position: relative; display: grid; gap: 12px; align-content: start; margin: 0; padding-right: 12px; }
+.kiu-schritte b { position: relative; z-index: 1; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--accent); background: var(--bg); font: 500 12px/1 var(--bs-mono); color: var(--accent); }
+.kiu-schritte li:not(:last-child)::before { content: ''; position: absolute; left: 36px; right: 0; top: 18px; height: 1px; background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.kiu-schritte span { font: 400 14.5px/1.45 var(--bs-text); color: color-mix(in srgb, var(--fg) 84%, transparent); }
+@media (max-width: 899px) {
+  .kiu-schritte { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .kiu-schritte li { grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 14px; padding: 0; }
+  .kiu-schritte li:not(:last-child)::before { left: 18px; right: auto; top: 36px; bottom: -14px; width: 1px; height: auto; }
+}
+
+/* ---------- 6 3D-Modell, Uebersicht der sieben Schichten ---------- */
+.kiu-modell { margin: 0 0 clamp(40px, 5vw, 64px); }
+.kiu-modell__rahmen { position: relative; border-radius: 6px; background: #061419; }
+.kiu-modell__rahmen .m3d { height: min(84vh, 900px); min-height: 460px; }
+.kiu-modell__rahmen:fullscreen { border-radius: 0; }
+.kiu-modell__rahmen:fullscreen .m3d { height: 100vh; border: 0; border-radius: 0; }
+.kiu-modell__signatur { position: absolute; top: 18px; left: 22px; z-index: 2; display: flex; align-items: center; gap: 10px; pointer-events: none; }
+.kiu-modell__signatur img { width: 40px; height: 40px; object-fit: contain; opacity: .92; }
+.kiu-modell__signatur b { display: block; font: 600 17px/1.1 var(--bs-display); color: rgba(255, 255, 255, .86); letter-spacing: .01em; }
+.kiu-modell__signatur small { display: block; font: 500 9.5px/1.4 var(--bs-mono); letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
+.kiu-modell__voll { position: absolute; top: 72px; left: 22px; z-index: 2; min-height: 36px; padding: 7px 14px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, .3);
+  background: rgba(6, 20, 25, .75); color: #fff; font: 500 12.5px/1 var(--bs-text); letter-spacing: .04em; cursor: pointer; transition: border-color .25s, color .25s; }
+.kiu-modell__voll:hover, .kiu-modell__voll:focus-visible { border-color: var(--bs-akzent); color: var(--bs-akzent); }
+.kiu-modell__laden { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; font: 500 11px/1 var(--bs-mono); letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .4); pointer-events: none; transition: opacity .4s; }
+.kiu-modell__rahmen.is-geladen .kiu-modell__laden { opacity: 0; }
+.kiu-modell .ks-quelle { margin-top: 12px; }
+@media (max-width: 820px) {
+  /* Handy: Leinwand zwischen Signatur (oben) und Legende (unten), damit Modell und Beschriftung frei stehen */
+  .kiu-modell__rahmen .m3d { height: 74svh; min-height: 520px; }
+  .kiu-modell__rahmen .m3d canvas { margin-top: 104px; height: calc(100% - 104px - 74px); }
+  .kiu-modell__rahmen .m3d .m3d-hint { display: none; }
+  .kiu-modell__rahmen .m3d .m3d-legend { left: 14px; right: 14px; bottom: 12px; font-size: 10.5px; gap: 4px 12px; }
+  .kiu-modell__signatur { top: 14px; left: 14px; }
+  .kiu-modell__voll { top: 64px; left: 14px; }
+}
+.kiu-arch .kiu-download { margin-bottom: clamp(36px, 4vw, 56px); }
+.kiu-uebersicht { border-top: 1px solid var(--linie); }
+.kiu-uebersicht__sum { font: 600 clamp(17px, 1.4vw, 22px)/1.25 var(--bs-display); color: var(--accent); }
+.kiu-schichten { display: grid; grid-template-columns: minmax(0, 1fr) 48px; gap: 12px; }
+.kiu-schichten__liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.kiu-schichten__liste > li { margin: 0; }
+.kiu-schichten__teile { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 8px; }
+.kiu-schicht { height: 100%; box-sizing: border-box; padding: 12px 16px; border: 1px solid var(--linie); border-radius: 8px; background: color-mix(in srgb, var(--fg) 4%, var(--bg)); }
+.kiu-schicht__titel { margin: 0; font: 600 15px/1.3 var(--bs-display); }
+.kiu-schicht__titel b { margin-right: 10px; font: 500 11px/1 var(--bs-mono); color: var(--muted); }
+.kiu-schicht__text { margin: 4px 0 0; font: 400 13.5px/1.5 var(--bs-text); color: color-mix(in srgb, var(--fg) 74%, transparent); }
+.kiu-schichten__leiste { display: grid; place-items: center; border: 1px solid var(--accent); border-radius: 8px; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.kiu-schichten__leiste span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font: 500 12px/1 var(--bs-mono); letter-spacing: .18em; color: var(--accent); }
+.kiu-schichten__satz { margin: 20px 0 0; font: 400 15px/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+@media (max-width: 699px) { .kiu-schichten__teile { grid-template-columns: minmax(0, 1fr); } .kiu-schichten { grid-template-columns: minmax(0, 1fr) 36px; } }
+
+/* ---------- 7 Umsetzung ---------- */
+.kiu-umsetzung__wege { display: flex; flex-wrap: wrap; gap: 14px; }
