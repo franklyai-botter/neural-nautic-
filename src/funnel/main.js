@@ -175,25 +175,25 @@ function figurStil(rolle) {
   return `--fig:url(${b.src});--fig-maske:url(${b.maske});--k:${(1 / (a.unten - a.oben)).toFixed(4)};--a:${(m.b / m.h).toFixed(4)};--mx:${a.mx ?? a.x};--oben:${a.oben}`;
 }
 function organigramm(buehne) {
+  // Anordnung nach Franks Vorlage (14.11.2026): links untereinander Geschaeftsfuehrung -> Fuehrungskraefte -> Multiplikatoren,
+  // KI-Agenten rechts auf Hoehe der Fuehrungskraefte, unten Team 1 (unter Multiplikatoren) und Team 2 (unter KI-Agenten).
   const kn = Object.fromEntries(ORG.knoten.map(([id, name, n]) => [id, { name, n }]));
   const figurenHtml = (n, exo) => `<span class="nn-org__figuren${exo ? ' nn-org__figuren--exo' : ''}">${'<i></i>'.repeat(n)}</span>`;
   const knoten = (id) => `<div class="nn-org__knoten" data-k="${id}">${figurenHtml(kn[id].n)}<b>${esc(kn[id].name)}</b></div>`;
   const formelText = ORG.formel.map((f) => (Array.isArray(f) ? `${f[0]} (${f[1]})` : f)).join(' ');
+  const kiLinien = ['ki-t1', 'ki-t2'];
   const wurzel = el(`
-    <div class="nn-org">
+    <div class="nn-org nn-org--crew">
       <ul class="sr-only" aria-label="${esc(ORG.label)}">
         <li>${esc(kn.g.name)}<ul><li>${esc(kn.f.name)}<ul><li>${esc(kn.m.name)}<ul><li>${esc(kn.t1.name)}</li><li>${esc(kn.t2.name)}</li></ul></li></ul></li></ul></li>
         <li>${esc(ORG.ki)} ${esc(ORG.kante)} ${esc(kn.t1.name)} und ${esc(kn.t2.name)}</li>
       </ul>
       <p class="sr-only">${esc(formelText)}</p>
       <div class="nn-org__bild" aria-hidden="true">
-        <svg class="nn-org__linien" xmlns="http://www.w3.org/2000/svg">${ORG.linien.map(([a, b]) => `<path data-l="${a}-${b}" pathLength="1" />`).join('')}</svg>
-        <svg class="nn-org__ki-linien" xmlns="http://www.w3.org/2000/svg"><path data-l="ki" /></svg>
-        <div class="nn-org__reihe">${knoten('g')}</div>
-        <div class="nn-org__reihe">${knoten('f')}</div>
-        <div class="nn-org__reihe nn-org__reihe--m">${knoten('m')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b></div></div>
-        <div class="nn-org__reihe nn-org__reihe--teams">${knoten('t1')}${knoten('t2')}</div>
-        <span class="nn-org__kante">${esc(ORG.kante)}</span>
+        <svg class="nn-org__linien" xmlns="http://www.w3.org/2000/svg">${ORG.linien.map(([a, b]) => `<path data-l="${a}-${b}" pathLength="1" />`).join('')}${ORG.linien.map(([a, b]) => `<path class="nn-org__pfeil" data-p="${a}-${b}" />`).join('')}</svg>
+        <svg class="nn-org__ki-linien" xmlns="http://www.w3.org/2000/svg">${kiLinien.map((id) => `<path data-l="${id}" /><path class="nn-org__pfeil" data-p="${id}" />`).join('')}</svg>
+        ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b></div>${knoten('m')}${knoten('t1')}${knoten('t2')}
+        ${kiLinien.map((id) => `<span class="nn-org__kante" data-kante="${id}">${esc(ORG.kante)}</span>`).join('')}
         <div class="nn-org__formel">${ORG.formel.map((f) => (Array.isArray(f)
           ? `<div class="nn-org__term"><b>${esc(f[0])}</b><small>${esc(f[1])}</small></div>` : `<span class="nn-org__zeichen">${esc(f)}</span>`)).join('')}</div>
       </div>
@@ -201,66 +201,77 @@ function organigramm(buehne) {
     </div>`);
   buehne.append(wurzel);
   const bild = qs('.nn-org__bild', wurzel);
-  // Figuren erst kurz vor Sichtbarkeit laden (zwei Fotos und zwei Masken fuer alle 18 Figuren)
+  // Figuren erst kurz vor Sichtbarkeit laden (zwei Fotos und zwei Masken fuer alle Figuren)
   new IntersectionObserver(([e], io) => {
     if (!e.isIntersecting) return;
     io.disconnect();
     wurzel.style.cssText = figurStil('ganzFoto');
     qs('.nn-org__figuren--exo', wurzel).style.cssText = figurStil('ganzExo');
   }, { rootMargin: '100% 100%' }).observe(wurzel);
-  const box = (id) => lageIn(bild, id);
-  // Linien aus den Lagen der Knoten (rechtwinklig, Sammelschiene auf halber Hoehe zwischen den Reihen)
+  // Linien aus den Lagen der Knoten: duenn, rechtwinklig, Pfeilspitze am Ziel
   function zeichnen() {
     const w = bild.offsetWidth; const h = bild.offsetHeight;
     if (!w) return;
     for (const s of bild.querySelectorAll('svg')) s.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    for (const [a, b] of ORG.linien) {
-      const A = box(a); const B = box(b); const y = (A.b + B.t) / 2;
-      qs(`[data-l="${a}-${b}"]`, bild).setAttribute('d', `M${A.x},${A.b} V${y} H${B.x} V${B.t}`);
-    }
-    // KI-Agenten: gestrichelt zu beiden Teams, Eintritt von unten in die Teamkaesten
-    const K = box('ki'); const T1 = box('t1'); const T2 = box('t2');
-    const unten = K.t > T1.b;                                   // mobil steht der KI-Kasten unter den Teams
-    const yb = unten ? (T1.b + K.t) / 2 : Math.max(T1.b, T2.b) + 18;
-    const d = unten
-      ? `M${K.x},${K.t} V${yb} M${T1.x},${T1.b} V${yb} H${T2.x} V${T2.b}`
-      : `M${K.x},${K.b} V${yb} H${T1.x} V${T1.b} M${T2.x},${yb} V${T2.b}`;
-    qs('[data-l="ki"]', bild).setAttribute('d', d);
-    const kante = qs('.nn-org__kante', bild);
-    kante.style.left = `${unten ? K.x + 8 : (T2.x + K.x) / 2}px`;
-    kante.style.top = `${unten ? (yb + K.t) / 2 : yb + 6}px`;
-    kante.classList.toggle('is-seite', unten);
+    const P = Object.fromEntries(['g', 'f', 'm', 't1', 't2', 'ki'].map((id) => [id, lageIn(bild, id)]));
+    const spitze = (x, y) => `M${x - 4.5},${y - 6.5} L${x},${y - 0.5} L${x + 4.5},${y - 6.5}`;
+    const setze = (sel, d) => qs(sel, bild).setAttribute('d', d);
+    const yA = P.m.b + (P.t1.t - P.m.b) * 0.36;     // Knick der Linie Multiplikatoren -> Team 2
+    const yB = P.m.b + (P.t1.t - P.m.b) * 0.68;     // Knick der gestrichelten Linie KI-Agenten -> Team 1
+    const linien = {
+      'g-f': [`M${P.g.x},${P.g.b} V${P.f.t}`, P.g.x, P.f.t],
+      'f-m': [`M${P.f.x},${P.f.b} V${P.m.t}`, P.f.x, P.m.t],
+      'm-t1': [`M${P.m.x},${P.m.b} V${P.t1.t}`, P.m.x, P.t1.t],
+      'm-t2': [`M${P.m.x},${P.m.b} V${yA} H${P.t2.x} V${P.t2.t}`, P.t2.x, P.t2.t],
+    };
+    for (const [id, [d, x, y]] of Object.entries(linien)) { setze(`[data-l="${id}"]`, d); setze(`[data-p="${id}"]`, spitze(x, y)); }
+    // KI-Agenten: zwei gestrichelte Linien nach unten, links mit Knick zu Team 1, rechts gerade zu Team 2
+    const off = Math.max(26, Math.min(P.ki.r - P.ki.l, P.t2.r - P.t2.l) * 0.3);
+    const x1 = P.ki.x - off; const x2 = P.ki.x + off;
+    const e1 = P.t1.x + (P.t1.r - P.t1.x) * 0.55;   // Eintritt in Team 1 (rechte Haelfte, neben der Linie von oben)
+    setze('[data-l="ki-t1"]', `M${x1},${P.ki.b} V${yB} H${e1} V${P.t1.t}`);
+    setze('[data-l="ki-t2"]', `M${x2},${P.ki.b} V${P.t2.t}`);
+    setze('[data-p="ki-t1"]', spitze(e1, P.t1.t));
+    setze('[data-p="ki-t2"]', spitze(x2, P.t2.t));
+    // Pill „unterstützen“ auf jeder gestrichelten Linie, auf Hoehe der Multiplikatoren
+    // (reicht der Abstand nicht, z. B. mobil, stehen die beiden Pills leicht versetzt uebereinander)
+    const ym = (P.m.t + P.m.b) / 2;
+    const [k1, k2] = ['ki-t1', 'ki-t2'].map((id) => qs(`[data-kante="${id}"]`, bild));
+    const dy = x2 - x1 < (k1.offsetWidth + k2.offsetWidth) / 2 + 8 ? k1.offsetHeight / 2 + 3 : 0;
+    [[k1, x1, ym - dy], [k2, x2, ym + dy]].forEach(([s, x, y]) => { s.style.left = `${x}px`; s.style.top = `${y}px`; });
   }
   new ResizeObserver(zeichnen).observe(bild);
   document.fonts.ready.then(zeichnen);
   if (reduced) return;
-  // Einspielung von oben nach unten: Kasten per Clip, Linie waechst, naechster Kasten …; zuletzt die KI-Linien
+  // Einspielung von oben nach unten: Kasten per Clip, Linie waechst, Pfeilspitze, naechster Kasten …; zuletzt KI-Agenten,
+  // die gestrichelten Linien und die Pills, danach die Formel
   const k = (id) => qs(`[data-k="${id}"]`, bild);
   const l = (n) => qs(`[data-l="${n}"]`, bild);
+  const p = (n) => qs(`[data-p="${n}"]`, bild);
   const clip = () => ({ clipPath: 'inset(0% 0% 100% 0% round 10px)' });
   const auf = { clipPath: 'inset(0% 0% 0% 0% round 10px)', duration: 0.55, ease: 'expo.out' };
   const wachsen = { strokeDashoffset: 0, duration: 0.4, ease: 'power2.inOut' };
-  gsap.set(bild.querySelectorAll('.nn-org__linien path'), { strokeDasharray: 1, strokeDashoffset: 1 });
+  const spitzeAn = { autoAlpha: 1, duration: 0.18 };
+  gsap.set(bild.querySelectorAll('.nn-org__linien path[data-l]'), { strokeDasharray: 1, strokeDashoffset: 1 });
+  gsap.set(bild.querySelectorAll('.nn-org__linien .nn-org__pfeil'), { autoAlpha: 0 });
   gsap.set(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 100% 0%)' });
   gsap.set([k('g'), k('f'), k('m'), k('t1'), k('t2'), k('ki')], clip());
   gsap.set(bild.querySelectorAll('.nn-org__figuren i'), { autoAlpha: 0, y: 6 });
-  gsap.set(qs('.nn-org__kante', bild), { autoAlpha: 0 });
+  gsap.set(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 0 });
   gsap.set(bild.querySelectorAll('.nn-org__term'), clip());
   gsap.set(bild.querySelectorAll('.nn-org__zeichen'), { autoAlpha: 0, y: 8 });
-  const punkte = (id) => k(id).querySelectorAll('.nn-org__figuren i');
+  const figuren = (ids) => [ids.flatMap((id) => [...k(id).querySelectorAll('.nn-org__figuren i')]), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'expo.out' }, '<0.15'];
   const tl = gsap.timeline({ paused: true })
-    .to(k('g'), auf).to(punkte('g'), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'expo.out' }, '<0.15')
-    .to(l('g-f'), wachsen, '-=0.15')
-    .to(k('f'), auf).to(punkte('f'), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'expo.out' }, '<0.15')
-    .to(l('f-m'), wachsen, '-=0.15')
-    .to(k('m'), auf).to(punkte('m'), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'expo.out' }, '<0.15')
-    .to([l('m-t1'), l('m-t2')], wachsen, '-=0.15')
-    .to([k('t1'), k('t2')], { ...auf, stagger: 0.08 })
-    .to([...punkte('t1'), ...punkte('t2')], { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.03, ease: 'expo.out' }, '<0.15')
-    .to(k('ki'), auf, '-=0.2')
-    .to(punkte('ki'), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'expo.out' }, '<0.15')
-    .to(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.inOut' }, '-=0.25')
-    .to(qs('.nn-org__kante', bild), { autoAlpha: 1, duration: 0.4 }, '-=0.3')
+    .to(k('g'), auf).to(...figuren(['g']))
+    .to(l('g-f'), wachsen, '-=0.15').to(p('g-f'), spitzeAn, '-=0.05')
+    .to(k('f'), auf).to(...figuren(['f']))
+    .to(l('f-m'), wachsen, '-=0.15').to(p('f-m'), spitzeAn, '-=0.05')
+    .to(k('m'), auf).to(...figuren(['m']))
+    .to([l('m-t1'), l('m-t2')], wachsen, '-=0.15').to([p('m-t1'), p('m-t2')], spitzeAn, '-=0.05')
+    .to([k('t1'), k('t2')], { ...auf, stagger: 0.08 }).to(...figuren(['t1', 't2']))
+    .to(k('ki'), auf, '-=0.2').to(...figuren(['ki']))
+    .to(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.inOut' }, '-=0.2')
+    .to(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 1, duration: 0.35, stagger: 0.1 }, '-=0.45')
     // zuletzt die Formel: Kaesten per Clip, Zeichen dazwischen
     .to(bild.querySelectorAll('.nn-org__term'), { ...auf, stagger: 0.16 }, '-=0.1')
     .to(bild.querySelectorAll('.nn-org__zeichen'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.16, ease: 'expo.out' }, '<0.2');
