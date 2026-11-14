@@ -1,0 +1,82 @@
+{
+  "_hinweis": "Quellliste fuer tools/bilder.py. Quellbilder werden nur gelesen. Steht bei foto oder exo eine Liste, waehlt das Werkzeug die Kombination mit der besten Deckung. Optional je Paar: ausrichtung: {dx, dy, skala, drehung} setzt die Schaetzung ausser Kraft.",
+  "quellen": {
+    "O": "C:/Users/frank/Documents/Codex/2026-11-14/c-users-frank-onedrive-desktop-webseiten/outputs",
+    "M": "C:/Users/frank/OneDrive/Desktop/Webseiten Referenzen/Fotos Frank/Marketing-Referenzen"
+  },
+  "satz": "a",
+  "saetze": {
+    "a": {
+      "figuren": [
+        {
+          "id": "frank",
+          "ansichten": {
+            "links": {
+              "foto": "O/frank-hero-links.png",
+              "exo": "O/helm-hero-links.png"
+            },
+            "frontal": {
+              "foto": "O/frank-hero-frontal.png",
+              "exo": "O/helm-hero-frontal.png"
+            },
+            "rechts": {
+              "foto": "O/frank-hero-rechts.png",
+              "exo": "O/helm-hero-rechts.png"
+            }
+          },
+          "ganzkoerper": {
+            "foto": "M/frank-ganzkoerper-dunkelblau.png",
+            "exo": "M/exoskelett-ganzkoerper-frontal.png"
+          }
+        }
+      ]
+    },
+    "b": {
+      "figuren": [
+        {
+          "id": "frank",
+          "ansichten": {
+            "rechts": {
+              "foto": "M/frank-portraet-rechts.png",
+              "exo": "M/exoskelett-portraet-rechts.png"
+            }
+          },
+          "ganzkoerper": {
+            "foto": "M/frank-ganzkoerper-dunkelblau.png",
+            "exo": "M/exoskelett-ganzkoerper-frontal.png"
+          }
+        }
+      ]
+    }
+  },
+  "szenen": {
+    "frank": {
+      "ansichten": {
+        "links": {
+          "foto": [
+            "O/frank-ganzkoerper-links-1.png",
+            "O/frank-ganzkoerper-links-2.png"
+          ],
+          "exo": [
+            "O/exo-ganzkoerper-links-1.png",
+            "O/exo-ganzkoerper-links-2.png"
+          ]
+        },
+        "frontal": {
+          "foto": "M/frank-ganzkoerper-dunkelblau.png",
+          "exo": "M/exoskelett-ganzkoerper-frontal.png"
+        },
+        "rechts": {
+          "foto": [
+            "O/frank-ganzkoerper-rechts-1.png",
+            "O/frank-ganzkoerper-rechts-2.png"
+          ],
+          "exo": [
+            "O/exo-ganzkoerper-rechts-1.png",
+            "O/exo-ganzkoerper-rechts-2.png"
+          ]
+        }
+      }
+    }
+  }
+}

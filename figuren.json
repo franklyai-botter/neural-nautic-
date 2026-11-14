@@ -1,0 +1,468 @@
+{
+  "_hinweis": "bilder, anker und ausrichtung schreibt tools/bilder.py. buehne, platz, platzGanz, ebene und alt sind Handarbeit und bleiben erhalten. \"fest\": true an einer ausrichtung oder einem anker schuetzt sie vor dem Ueberschreiben.",
+  "buehne": {
+    "grund": "#061419",
+    "kante": "#6feff5",
+    "linien": true,
+    "scrollhoehe": 3.4,
+    "ki": "KI-generiert"
+  },
+  "satz": "a",
+  "saetze": {
+    "a": {
+      "figuren": [
+        {
+          "id": "frank",
+          "alt": "",
+          "ebene": 0,
+          "platz": {
+            "desktop": {
+              "x": 0.5,
+              "y": 0.43,
+              "kopf": 0.4
+            },
+            "mobil": {
+              "x": 0.5,
+              "y": 0.46,
+              "kopf": 0.34
+            }
+          },
+          "platzGanz": {
+            "desktop": {
+              "x": 0.5,
+              "y": 0.17,
+              "kopf": 0.085
+            },
+            "mobil": {
+              "x": 0.5,
+              "y": 0.24,
+              "kopf": 0.07
+            }
+          },
+          "ansichten": {
+            "links": {
+              "foto": "frank-hero-links",
+              "exo": "helm-hero-links",
+              "ausrichtung": {
+                "dx": 0.0016,
+                "dy": 0.0042,
+                "skala": 0.99,
+                "drehung": -0.0
+              },
+              "anker": {
+                "oben": 0.0499,
+                "unten": 1.0,
+                "mx": 0.2564,
+                "x": 0.2437,
+                "y": 0.3499,
+                "b": 0.4838
+              }
+            },
+            "frontal": {
+              "foto": "frank-hero-frontal",
+              "exo": "helm-hero-frontal",
+              "ausrichtung": {
+                "dx": -0.0044,
+                "dy": 0.0143,
+                "skala": 0.97,
+                "drehung": -0.0
+              },
+              "anker": {
+                "oben": 0.0425,
+                "unten": 1.0,
+                "mx": 0.2933,
+                "x": 0.2832,
+                "y": 0.3312,
+                "b": 0.4656
+              }
+            },
+            "rechts": {
+              "foto": "frank-hero-rechts",
+              "exo": "helm-hero-rechts",
+              "ausrichtung": {
+                "dx": -0.0199,
+                "dy": 0.0089,
+                "skala": 0.98,
+                "drehung": -0.0
+              },
+              "anker": {
+                "oben": 0.0606,
+                "unten": 1.0,
+                "mx": 0.2594,
+                "x": 0.2817,
+                "y": 0.354,
+                "b": 0.4733
+              }
+            }
+          },
+          "ganzkoerper": {
+            "foto": "frank-ganzkoerper-dunkelblau",
+            "exo": "exoskelett-ganzkoerper-frontal",
+            "ausrichtung": {
+              "dx": -0.0045,
+              "dy": 0.0036,
+              "skala": 1.0,
+              "drehung": -0.0
+            },
+            "anker": {
+              "oben": 0.1387,
+              "unten": 0.9329,
+              "mx": 0.4929,
+              "x": 0.4941,
+              "y": 0.1877,
+              "b": 0.0791
+            }
+          }
+        }
+      ]
+    },
+    "b": {
+      "figuren": [
+        {
+          "id": "frank",
+          "alt": "",
+          "ebene": 0,
+          "platz": {
+            "desktop": {
+              "x": 0.5,
+              "y": 0.43,
+              "kopf": 0.4
+            },
+            "mobil": {
+              "x": 0.5,
+              "y": 0.46,
+              "kopf": 0.34
+            }
+          },
+          "platzGanz": {
+            "desktop": {
+              "x": 0.5,
+              "y": 0.17,
+              "kopf": 0.085
+            },
+            "mobil": {
+              "x": 0.5,
+              "y": 0.24,
+              "kopf": 0.07
+            }
+          },
+          "ansichten": {
+            "rechts": {
+              "foto": "frank-portraet-rechts",
+              "exo": "exoskelett-portraet-rechts",
+              "ausrichtung": {
+                "dx": -0.0681,
+                "dy": 0.0341,
+                "skala": 0.93,
+                "drehung": -0.0
+              },
+              "anker": {
+                "oben": 0.0818,
+                "unten": 1.0,
+                "mx": 0.2392,
+                "x": 0.2524,
+                "y": 0.3685,
+                "b": 0.4624
+              }
+            }
+          },
+          "ganzkoerper": {
+            "foto": "frank-ganzkoerper-dunkelblau",
+            "exo": "exoskelett-ganzkoerper-frontal",
+            "ausrichtung": {
+              "dx": -0.0045,
+              "dy": 0.0036,
+              "skala": 1.0,
+              "drehung": -0.0
+            },
+            "anker": {
+              "oben": 0.1387,
+              "unten": 0.9329,
+              "mx": 0.4929,
+              "x": 0.4941,
+              "y": 0.1877,
+              "b": 0.0791
+            }
+          }
+        }
+      ]
+    }
+  },
+  "szenen": {
+    "frank": {
+      "alt": "",
+      "platz": {
+        "desktop": {
+          "x": 0.5,
+          "y": 0.5,
+          "hoehe": 0.84
+        },
+        "mobil": {
+          "x": 0.5,
+          "y": 0.5,
+          "hoehe": 0.78
+        }
+      },
+      "ablauf": {
+        "_hinweis": "Beispielablauf der Testseite. bei/von/bis = Scroll-Anteil 0..1. punkte: x,y = Anteil am Foto-Bild der Ansicht, r = Anteil der Bildhoehe.",
+        "scrollhoehe": 4.5,
+        "ansichten": [
+          {
+            "bei": 0.0,
+            "ansicht": "links"
+          },
+          {
+            "bei": 0.34,
+            "ansicht": "frontal"
+          },
+          {
+            "bei": 0.68,
+            "ansicht": "rechts"
+          }
+        ],
+        "exo": [
+          {
+            "von": 0.12,
+            "bis": 0.26,
+            "zu": 1
+          },
+          {
+            "von": 0.86,
+            "bis": 0.97,
+            "zu": 0
+          }
+        ],
+        "punkte": [
+          {
+            "name": "visier",
+            "ansicht": "frontal",
+            "von": 0.38,
+            "bis": 0.46,
+            "x": 0.494,
+            "y": 0.165,
+            "r": 0.05
+          },
+          {
+            "name": "brust",
+            "ansicht": "frontal",
+            "von": 0.46,
+            "bis": 0.54,
+            "x": 0.494,
+            "y": 0.33,
+            "r": 0.075
+          },
+          {
+            "name": "hand",
+            "ansicht": "frontal",
+            "von": 0.54,
+            "bis": 0.62,
+            "x": 0.345,
+            "y": 0.555,
+            "r": 0.05
+          },
+          {
+            "name": "knie",
+            "ansicht": "rechts",
+            "von": 0.72,
+            "bis": 0.82,
+            "x": 0.47,
+            "y": 0.73,
+            "r": 0.055
+          }
+        ]
+      },
+      "ansichten": {
+        "links": {
+          "foto": "frank-ganzkoerper-links-2",
+          "exo": "exo-ganzkoerper-links-2",
+          "ausrichtung": {
+            "dx": 0.002,
+            "dy": 0.0026,
+            "skala": 1.02,
+            "drehung": -0.0
+          },
+          "anker": {
+            "oben": 0.138,
+            "unten": 0.9349,
+            "mx": 0.4956,
+            "x": 0.4976,
+            "y": 0.1945,
+            "b": 0.0911
+          }
+        },
+        "frontal": {
+          "foto": "frank-ganzkoerper-dunkelblau",
+          "exo": "exoskelett-ganzkoerper-frontal",
+          "ausrichtung": {
+            "dx": -0.0045,
+            "dy": 0.0036,
+            "skala": 1.0,
+            "drehung": -0.0
+          },
+          "anker": {
+            "oben": 0.1387,
+            "unten": 0.9329,
+            "mx": 0.4929,
+            "x": 0.4941,
+            "y": 0.1877,
+            "b": 0.0791
+          }
+        },
+        "rechts": {
+          "foto": "frank-ganzkoerper-rechts-2",
+          "exo": "exo-ganzkoerper-rechts-2",
+          "ausrichtung": {
+            "dx": 0.0029,
+            "dy": 0.0023,
+            "skala": 1.02,
+            "drehung": -0.0
+          },
+          "anker": {
+            "oben": 0.1387,
+            "unten": 0.9349,
+            "mx": 0.4788,
+            "x": 0.4839,
+            "y": 0.1919,
+            "b": 0.0859
+          }
+        }
+      }
+    }
+  },
+  "bilder": {
+    "frank-hero-links": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#01151b"
+    },
+    "helm-hero-links": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#00141b"
+    },
+    "frank-hero-frontal": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#001017"
+    },
+    "helm-hero-frontal": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#001118"
+    },
+    "frank-hero-rechts": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#02161b"
+    },
+    "helm-hero-rechts": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#001419"
+    },
+    "frank-ganzkoerper-dunkelblau": {
+      "b": 1024,
+      "h": 1536,
+      "breiten": [
+        1000,
+        640
+      ],
+      "grund": "#022030"
+    },
+    "exoskelett-ganzkoerper-frontal": {
+      "b": 1024,
+      "h": 1536,
+      "breiten": [
+        1000,
+        640
+      ],
+      "grund": "#041b25"
+    },
+    "frank-portraet-rechts": {
+      "b": 1672,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#01151d"
+    },
+    "exoskelett-portraet-rechts": {
+      "b": 1671,
+      "h": 941,
+      "breiten": [
+        1600,
+        1000,
+        640
+      ],
+      "grund": "#001219"
+    },
+    "frank-ganzkoerper-links-2": {
+      "b": 1024,
+      "h": 1536,
+      "breiten": [
+        1000,
+        640
+      ],
+      "grund": "#011b28"
+    },
+    "exo-ganzkoerper-links-2": {
+      "b": 1024,
+      "h": 1536,
+      "breiten": [
+        1000,
+        640
+      ],
+      "grund": "#001925"
+    },
+    "frank-ganzkoerper-rechts-2": {
+      "b": 1024,
+      "h": 1536,
+      "breiten": [
+        1000,
+        640
+      ],
+      "grund": "#011f2e"
+    },
+    "exo-ganzkoerper-rechts-2": {
+      "b": 1024,
+      "h": 1536,
+      "breiten": [
+        1000,
+        640
+      ],
+      "grund": "#001c2a"
+    }
+  }
+}
