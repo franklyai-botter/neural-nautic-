@@ -167,7 +167,8 @@ function zeichnen() {
 new ResizeObserver(() => zeichnen()).observe(leinwand);
 
 /* ---------------- Kapital-Wolke: Ablauf ---------------- */
-const pinnen = () => !reduced && window.matchMedia('(min-width: 992px) and (min-height: 620px)').matches;
+const PIN = '(min-width: 992px) and (min-height: 620px)';
+const pinnen = () => !reduced && window.matchMedia(PIN).matches;
 let lauf = null;          // laufende Zeit-Animation (live: Quartal fuer Quartal; „↻ noch einmal“)
 let scrollN = Q.length;   // Stand aus dem Scroll (nur gepinnt)
 function abspielen() {
@@ -181,33 +182,43 @@ function abspielen() {
 }
 qs('.nn-kapital__nochmal', kapital).addEventListener('click', abspielen);
 // Pin gleich beim Aufbau festlegen (Hoehe der Strecke steht, bevor ScrollTrigger misst)
-const gepinnt = pinnen();
+let gepinnt = pinnen();
 kapital.classList.toggle('is-gepinnt', gepinnt);
 
 S.nachStart(() => {
   zeichnen();
   if (reduced) return;
-  if (gepinnt) {
-    // Scroll fuehrt: von 4 % bis 84 % der Strecke laufen die 15 Quartale durch, danach steht der Endstand
-    ScrollTrigger.create({
-      trigger: qs('.nn-kapital__bahn', kapital), start: 'top top', end: 'bottom bottom',
-      onUpdate: (s) => {
-        scrollN = Math.min(1, Math.max(0, (s.progress - 0.04) / 0.8)) * Q.length;
-        if (!lauf) { zustand.n = scrollN; zeichnen(); }
-      },
-      onRefresh: (s) => { scrollN = Math.min(1, Math.max(0, (s.progress - 0.04) / 0.8)) * Q.length; if (!lauf) { zustand.n = scrollN; zeichnen(); } },
-    });
-  } else {
-    // wie live: einmal abspielen, sobald die Grafik zu R.sichtbarAb sichtbar ist
-    zustand.n = 0;
-    zeichnen();
-    const io = new IntersectionObserver(([e]) => { if (!e.isIntersecting) return; io.disconnect(); abspielen(); }, { threshold: R.sichtbarAb });
-    io.observe(leinwand);
-  }
+  // NN-WR-13: Pin und Ablauf folgen der Fenstergroesse (Drehen, Fenster verkleinern), wie in ai-engineering.js
+  gsap.matchMedia().add({ pin: PIN, frei: 'not all and (min-width: 992px) and (min-height: 620px)' }, (mmk) => {
+    gepinnt = mmk.conditions.pin;
+    kapital.classList.toggle('is-gepinnt', gepinnt);
+    return gepinnt ? pinAufbauen() : freiAufbauen();
+  });
   // Einspielung der Saisontabelle: Zellen per Clip von unten
   gsap.from(saison, { clipPath: 'inset(100% 0% 0% 0%)', duration: 0.8, ease: 'expo.out', stagger: 0.03, clearProps: 'clipPath',
     scrollTrigger: { trigger: qs('.nn-saison', kapital), start: 'top 90%', once: true } });
 });
+
+function pinAufbauen() {
+  // Scroll fuehrt: von 4 % bis 84 % der Strecke laufen die 15 Quartale durch, danach steht der Endstand
+  ScrollTrigger.create({
+    trigger: qs('.nn-kapital__bahn', kapital), start: 'top top', end: 'bottom bottom',
+    onUpdate: (s) => {
+      scrollN = Math.min(1, Math.max(0, (s.progress - 0.04) / 0.8)) * Q.length;
+      if (!lauf) { zustand.n = scrollN; zeichnen(); }
+    },
+    onRefresh: (s) => { scrollN = Math.min(1, Math.max(0, (s.progress - 0.04) / 0.8)) * Q.length; if (!lauf) { zustand.n = scrollN; zeichnen(); } },
+  });
+}
+
+function freiAufbauen() {
+  // wie live: einmal abspielen, sobald die Grafik zu R.sichtbarAb sichtbar ist
+  zustand.n = 0;
+  zeichnen();
+  const io = new IntersectionObserver(([e]) => { if (!e.isIntersecting) return; io.disconnect(); abspielen(); }, { threshold: R.sichtbarAb });
+  io.observe(leinwand);
+  return () => io.disconnect();
+}
 window.__kapital = { zustand, zeichnen, abspielen };   // fuer die Pruefung
 
 S.fertig();
