@@ -192,8 +192,9 @@ export const MANIFEST = {
 
 /* ---------- L5: Kurs, Crew, Schiff und die 7 Schichten ---------- */
 export const METHODE = {
-  titel: 'KI kommt im Betrieb an, wenn Kurs, Crew und Schiff gleichzeitig stimmen.',
-  text: 'Fehlt eines davon, bleibt es beim Experiment. Deshalb planen wir alle drei als ein Vorhaben.',
+  // Überschrift neu (Frank, 14.11.2026); bisher: „KI kommt im Betrieb an, wenn Kurs, Crew und Schiff gleichzeitig stimmen.“
+  titel: 'So kommt KI im Betrieb an.',
+  text: 'Klarer Kurs. Eingespielte Crew. Ein Schiff, das trägt. Fehlt eines davon, bleibt es beim Experiment. Deshalb planen wir alle drei als ein Vorhaben.',
   teile: [
     { name: 'Kurs', fach: 'Strategie', claim: 'Wohin, und was lohnt sich?', desc: 'Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist ein Fahrplan, den Geschäftsführung und Fachbereiche mittragen.' },
     { name: 'Crew', fach: 'Menschen und Befähigung', claim: 'Nutzung statt bloßem Wissen.', desc: 'Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag genutzt werden. Der Betriebsrat ist früh an Bord.' },
