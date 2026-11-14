@@ -8,6 +8,12 @@ import { createSzene } from '@kern/hero/szene.js';
 import figuren from '../../figuren.json';
 
 const lenis = initScroll();
-const hero = createHero(document.querySelector('[data-hero]'), { figuren, lenis });
+// ?extern=1 prueft die Steuerung von aussen (setFortschritt), wie sie die echte Seite nutzen kann
+const extern = new URLSearchParams(location.search).get('extern') === '1';
+const steuerung = extern ? 'extern' : 'eigen';
+const hero = createHero(document.querySelector('[data-hero]'), { figuren, lenis, steuerung });
 window.__hero = hero; // fuer tools/qa_hero.py
-window.__szenen = [...document.querySelectorAll('[data-szene]')].map((el) => createSzene(el, { figuren, szene: el.dataset.szene }));
+window.__punkte = [];
+window.__szenen = [...document.querySelectorAll('[data-szene]')].map((el) => createSzene(el, {
+  figuren, szene: el.dataset.szene, steuerung, onPunkt: (p) => window.__punkte.push(p ? p.name : null),
+}));

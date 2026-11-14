@@ -12,21 +12,21 @@
           "id": "frank",
           "ansichten": {
             "links": {
-              "foto": "O/frank-hero-links.png",
-              "exo": "O/helm-hero-links.png"
+              "foto": "O/frank-auswahl-links-1.png",
+              "exo": "M/referenzhelm-portraet-links.png"
             },
             "frontal": {
-              "foto": "O/frank-hero-frontal.png",
-              "exo": "O/helm-hero-frontal.png"
+              "foto": "O/frank-auswahl-frontal-1.png",
+              "exo": "M/referenzhelm-portraet-frontal.png"
             },
             "rechts": {
-              "foto": "O/frank-hero-rechts.png",
-              "exo": "O/helm-hero-rechts.png"
+              "foto": "M/frank-portraet-rechts.png",
+              "exo": "M/referenzhelm-portraet-rechts.png"
             }
           },
           "ganzkoerper": {
             "foto": "M/frank-ganzkoerper-dunkelblau.png",
-            "exo": "M/exoskelett-ganzkoerper-frontal.png"
+            "exo": "M/referenzhelm-ganzkoerper-frontal.png"
           }
         }
       ]
@@ -53,28 +53,16 @@
     "frank": {
       "ansichten": {
         "links": {
-          "foto": [
-            "O/frank-ganzkoerper-links-1.png",
-            "O/frank-ganzkoerper-links-2.png"
-          ],
-          "exo": [
-            "O/exo-ganzkoerper-links-1.png",
-            "O/exo-ganzkoerper-links-2.png"
-          ]
+          "foto": "O/frank-ganzkoerper-links-2.png",
+          "exo": "M/referenzhelm-ganzkoerper-links.png"
         },
         "frontal": {
           "foto": "M/frank-ganzkoerper-dunkelblau.png",
-          "exo": "M/exoskelett-ganzkoerper-frontal.png"
+          "exo": "M/referenzhelm-ganzkoerper-frontal.png"
         },
         "rechts": {
-          "foto": [
-            "O/frank-ganzkoerper-rechts-1.png",
-            "O/frank-ganzkoerper-rechts-2.png"
-          ],
-          "exo": [
-            "O/exo-ganzkoerper-rechts-1.png",
-            "O/exo-ganzkoerper-rechts-2.png"
-          ]
+          "foto": "O/frank-ganzkoerper-rechts-1.png",
+          "exo": "M/referenzhelm-ganzkoerper-rechts.png"
         }
       }
     }
