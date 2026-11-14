@@ -1,0 +1,3 @@
+/* Per <link> im HTML geladen (HERO.md): der erste Eindruck steht, bevor das Skript laeuft. */
+@import '@kern/base.css';
+@import '@kern/hero/hero.css';

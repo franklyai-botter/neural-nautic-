@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Funnel auf Subdomain: wiederholt Inhalte der Hauptseite, soll ihr bei Google keine Konkurrenz machen -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#061419" />
+  <!-- Titel und Beschreibung wie neural-nautic-live/app/layout.tsx -->
+  <title>KI-Beratung für den Mittelstand | NeuralNautic</title>
+  <meta name="description" content="Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Werkzeugauswahl." />
+  <link rel="icon" href="/brand/nn-stern-kompass-favicon.ico" />
+  <link rel="apple-touch-icon" href="/brand/nn-stern-kompass-apple-180.png" />
+  <link rel="preload" as="image" href="/brand/nn-stern-kompass-128.png" />
+  <link rel="stylesheet" href="/src/funnel/kritisch.css" />
+  <style>
+    /* Erster Eindruck ohne Wartezeit: Grund und Preloader stehen, bevor Skripte und Stylesheets da sind */
+    html, body { margin: 0; background: #061419; color: #fff; }
+    .bs-lader { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: #061419; }
+    .bs-lader img { width: clamp(84px, 9vw, 128px); height: auto; }
+    @media (prefers-reduced-motion: reduce) { .bs-lader { display: none; } }
+    .bs-bildkarte__pin { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
+    .bs-bildkarte__buehne { position: absolute; inset: 0; overflow: hidden; }
+  </style>
+  <noscript><style>.bs-lader { display: none; } .nn-ohne-js { position: relative; z-index: 5; padding: 24px; font: 16px/1.5 system-ui, sans-serif; } .nn-ohne-js a { color: #3fd4e0; }</style></noscript>
+</head>
+<body class="nn">
+  <!-- L1 Preloader: der NN-Stern (Datei aus public/brand) als Maskenbild, siehe @kern/bausteine/preloader.js -->
+  <div class="bs-lader" data-lader style="--bs-maske:url(/brand/nn-stern-kompass-128.png)"><img src="/brand/nn-stern-kompass-128.png" width="128" height="128" alt="" /></div>
+  <a class="bs-sprung" href="#inhalt">Zum Inhalt springen</a>
+
+  <main id="inhalt" tabindex="-1">
+    <!-- L2 + L3: Hero (aus @kern/hero) auf der Strecke der Bildkarte. Das Bild steht fuer den ersten Eindruck im HTML,
+         den Rest (Wirbel, Texte) baut src/funnel/main.js aus src/inhalt/start.js. -->
+    <section class="bs-bildkarte" id="start" aria-label="Frank Schütt, im Wechsel Mensch und Exoskelett">
+      <div class="bs-bildkarte__bahn" data-hero style="--hero-grund:#061419">
+        <div class="bs-bildkarte__pin hero__pin">
+          <div class="bs-bildkarte__buehne hero__buehne">
+      <!-- HERO-BILDER:START -->
+      <picture class="hero__bild" data-figur="frank" style="--asp:1.7768;--ax:0.2832;--ay:0.3312;--ab:0.4656;--xd:0.5;--yd:0.43;--kd:0.4;--xm:0.5;--ym:0.46;--km:0.34;--hof:url('/bilder/frank-hero-frontal-hof.webp')">
+        <img src="/bilder/frank-hero-frontal-1600.webp" srcset="/bilder/frank-hero-frontal-640.webp 640w, /bilder/frank-hero-frontal-1000.webp 1000w, /bilder/frank-hero-frontal-1600.webp 1600w" sizes="(max-width: 991px) 260vw, 95vw"
+             width="1672" height="941" alt="" decoding="async" fetchpriority="high">
+      </picture>
+      <!-- HERO-BILDER:ENDE -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <noscript><p class="nn-ohne-js">Diese Seite braucht JavaScript. Die vollständige Website: <a href="https://neuralnautic.de">neuralnautic.de</a></p></noscript>
+  <script type="module" src="/src/funnel/main.js"></script>
+</body>
+</html>
