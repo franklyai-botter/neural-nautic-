@@ -248,7 +248,7 @@ main.append(seitenkopf({
       </div>
     </details>`));
   main.append(a.el);
-  modellVerdrahten(figur, M);
+  modellVerdrahten(figur, M, A.vorschau);
 }
 
 /* ---------------- 7 Uebergang Umsetzung, dann weiter zum naechsten Kapitel ---------------- */
@@ -270,7 +270,7 @@ S.fertig();
 function downloadKarte(D, { vorschau } = {}) {
   const F = I.DOWNLOAD_FORMULAR;
   const id = (n) => `${D.idp}-${n}`;
-  const feld = (f) => `<div class="ks-feld"><label for="${id(f.name)}">${esc(f.label)}</label><input id="${id(f.name)}" name="${f.name}" type="${f.type}" autocomplete="${f.autoComplete}" placeholder="${esc(f.placeholder)}" /></div>`;
+  const feld = (f) => `<div class="ks-feld"><label for="${id(f.name)}">${esc(f.label)}</label><input id="${id(f.name)}" name="${f.name}" type="${f.type}" autocomplete="${f.autoComplete}" placeholder="${esc(f.placeholder)}" /><p class="ks-fehler" id="${id(f.name)}-fehler" hidden></p></div>`;
   const [fName, fMail, fTel] = F.felder;
   const root = el(`
     <div class="kiu-download" id="${esc(D.idp)}-download">
@@ -286,7 +286,8 @@ function downloadKarte(D, { vorschau } = {}) {
           ${feld(fName)}
           <div class="ks-formular__reihe">${feld(fMail)}${feld(fTel)}</div>
           <div class="ks-honig" aria-hidden="true"><label for="${id(F.honeypot.name)}">${esc(F.honeypot.label)}</label><input id="${id(F.honeypot.name)}" name="${F.honeypot.name}" tabindex="-1" autocomplete="off" /></div>
-          <label class="ks-einwilligung"><input name="consent" type="checkbox" /><span>${teileHtml(F.einwilligung(D.was))}</span></label>
+          <label class="ks-einwilligung"><input id="${id('consent')}" name="consent" type="checkbox" /><span>${teileHtml(F.einwilligung(D.was))}</span></label>
+          <p class="ks-fehler" id="${id('consent')}-fehler" hidden></p>
           <p class="ks-fehler" role="alert" hidden></p>
           <button class="bs-knopf bs-knopf--accent" type="submit"><span>${esc(D.knopf)}</span><i aria-hidden="true">↓</i></button>
         </form>
@@ -298,13 +299,25 @@ function downloadKarte(D, { vorschau } = {}) {
       </div>
     </div>`);
   const form = qs('form', root);
-  const fehler = qs('.ks-fehler', root);
+  const fehler = qs('.ks-fehler[role="alert"]', root);
   const danke = qs('.ks-danke', root);
   const senden = qs('button[type="submit"]', form);
-  const zeigeFehler = (t, feldName) => { fehler.textContent = t; fehler.hidden = false; if (feldName) form.elements[feldName]?.focus(); };
+  // Fehler am Feld (Interface-Review MEDIUM): Meldung direkt unter dem Feld, Feld mit aria-invalid und aria-describedby
+  const zeigeFehler = (t, feldName) => {
+    const f = feldName && form.elements[feldName];
+    const p = f && document.getElementById(`${f.id}-fehler`);
+    if (!p) { fehler.textContent = t; fehler.hidden = false; return; }
+    p.textContent = t; p.hidden = false;
+    f.setAttribute('aria-invalid', 'true'); f.setAttribute('aria-describedby', p.id);
+    f.focus();
+  };
+  const fehlerWeg = () => {
+    qsa('.ks-fehler', form).forEach((p) => { p.hidden = true; });
+    qsa('[aria-invalid]', form).forEach((f) => { f.removeAttribute('aria-invalid'); f.removeAttribute('aria-describedby'); });
+  };
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    fehler.hidden = true;
+    fehlerWeg();
     const fd = new FormData(form);
     const daten = {
       name: String(fd.get('name') || '').trim(), email: String(fd.get('email') || '').trim(), phone: String(fd.get('phone') || '').trim(),
@@ -353,7 +366,7 @@ function downloadKarte(D, { vorschau } = {}) {
    Sichtbarkeit (Stylesheet zuerst, der Renderer misst die Buehne beim Start). Ergaenzt: Vollbild, NN-Signatur,
    Wischen auf dem Handy (waagerecht dreht, senkrecht scrollt), Einflug beim Hereinscrollen.
    ===================================================================================================== */
-function modellVerdrahten(figur, M) {
+function modellVerdrahten(figur, M, ersatz) {
   const rahmen = qs('.kiu-modell__rahmen', figur);
   const voll = qs('.kiu-modell__voll', figur);
   const buehne = qs('.m3d', figur);
@@ -369,22 +382,37 @@ function modellVerdrahten(figur, M) {
         l.onload = ok; l.onerror = ok;
         document.head.appendChild(l);
       });
-      const [szene] = await Promise.all([fetch(M.szene).then((r) => r.json()), css]);
+      const [szene] = await Promise.all([fetch(M.szene).then((r) => {
+        if (!r.ok) throw new Error(`szene.json ${r.status}`);   // NN-WR-06: 404 liefert sonst HTML, json() scheitert unklar
+        return r.json();
+      }), css]);
+      // Canvas-Beschriftungen in Inter: @fontsource registriert die Familie als „Inter Variable“, nicht „Inter“ (NN-IN-06)
+      if (szene.theme?.sans && !szene.theme.sans.includes('Inter Variable')) szene.theme.sans = `'Inter Variable',${szene.theme.sans}`;
       window.SCENE = szene;
       await new Promise((ok, fehler) => {
         const s = document.createElement('script');
-        s.src = M.renderer; s.onload = ok; s.onerror = fehler;
+        s.src = M.renderer; s.onload = ok; s.onerror = () => fehler(new Error('model3d.js nicht geladen'));
         document.body.appendChild(s);
       });
+      io.disconnect();
       // Handy: waagerechtes Wischen dreht, senkrechtes scrollt die Seite (Renderer setzt touch-action: none)
       qs('#model', figur).style.touchAction = 'pan-y';
+      qs('.kiu-modell__ersatz', rahmen)?.remove();
+      rahmen.classList.remove('is-fehler');
       rahmen.classList.add('is-geladen');
       window.__modell = true;   // fuer qa
     } catch (e) {
       console.warn('[ki-im-unternehmen] 3D-Modell nicht geladen:', e?.message || e);
+      // NN-WR-06: Vorschaubild statt endlosem „Lädt“; beim naechsten Eintritt neuer Versuch
+      geladen = false;
+      if (ersatz && !qs('.kiu-modell__ersatz', rahmen)) {
+        rahmen.insertAdjacentHTML('beforeend', `<img class="kiu-modell__ersatz" src="${esc(ersatz.datei)}" alt="${esc(ersatz.alt)}" width="${ersatz.width}" height="${ersatz.height}" decoding="async" />`);
+      }
+      rahmen.classList.add('is-fehler');
     }
   }
-  new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); laden(); } }, { rootMargin: '150% 0px' }).observe(figur);
+  const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) laden(); }, { rootMargin: '150% 0px' });
+  io.observe(figur);
   ['pointerdown', 'wheel', 'keydown'].forEach((t) => buehne.addEventListener(t, () => { beruehrt = true; }, { passive: true }));
   qsa('input[type="range"]', buehne).forEach((r) => r.addEventListener('pointerdown', () => { beruehrt = true; }));
 

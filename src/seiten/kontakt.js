@@ -28,7 +28,7 @@ function feldHtml(f) {
     const typ = f.type === 'email' ? 'email' : (f.name === 'phone' ? 'tel' : 'text');
     eingabe = `<input id="${id}" name="${f.name}" type="${typ}" placeholder="${esc(f.placeholder)}" autocomplete="${AUTO[f.name]}"${pflicht} />`;
   }
-  return `<div class="ks-feld"><label for="${id}">${esc(f.label)}</label>${eingabe}</div>`;
+  return `<div class="ks-feld"><label for="${id}">${esc(f.label)}</label>${eingabe}<p class="ks-fehler" id="${id}-fehler" hidden></p></div>`;
 }
 // Knopftext „Anfrage senden →“: der Pfeil steht als eigenes Zeichen wie bei allen Knoepfen
 const knopfText = F.knopf.replace(/\s*→$/, '');
@@ -58,7 +58,21 @@ S.main.append(ab);
 const form = qs('form', ab);
 const knopfEl = qs('button[type="submit"]', form);
 const knopfSpan = qs('button[type="submit"] > span', form);
-const fehlerEl = qs('.ks-fehler', form);
+const fehlerEl = qs('.ks-fehler[role="alert"]', form);
+
+// Fehler am Feld (Interface-Review MEDIUM): statt der Browser-Blase am ersten Feld jedes ungueltige Feld mit
+// aria-invalid, aria-describedby und Meldung darunter. Text = Meldung des Browsers (dieselbe wie in der Blase).
+function feldPruefen(f) {
+  const p = document.getElementById(`${f.id}-fehler`);
+  if (!p) return;
+  const ok = f.validity.valid;
+  if (ok) { f.removeAttribute('aria-invalid'); f.removeAttribute('aria-describedby'); }
+  else { f.setAttribute('aria-invalid', 'true'); f.setAttribute('aria-describedby', p.id); p.textContent = f.validationMessage; }
+  p.hidden = ok;
+}
+const nachpruefen = (e) => { if (e.target.getAttribute?.('aria-invalid') === 'true') feldPruefen(e.target); };
+form.addEventListener('input', nachpruefen);
+form.addEventListener('change', nachpruefen);
 
 /* SERVER-TEIL (Welle 2): Versand an POST /api/contact (Resend), Daten als JSON { name, company, email, phone, topic, message },
    Regeln und Mailtext in src/inhalt/backend.js → KONTAKT_API, MAIL. Bis dahin wird nichts gesendet: die Funktion meldet
@@ -72,9 +86,10 @@ async function senden(daten) {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   fehlerEl.hidden = true;
+  const felder = [...form.elements].filter((f) => f.willValidate && f.id);
+  felder.forEach(feldPruefen);
   if (!form.checkValidity()) {
-    form.reportValidity();
-    form.querySelector(':invalid')?.focus();
+    felder.find((f) => !f.validity.valid)?.focus();
     return;
   }
   const fd = new FormData(form);

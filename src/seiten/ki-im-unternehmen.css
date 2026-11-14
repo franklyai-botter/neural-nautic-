@@ -94,6 +94,13 @@
 
 /* ---------- 6 3D-Modell, Uebersicht der sieben Schichten ---------- */
 .kiu-modell { margin: 0 0 clamp(40px, 5vw, 64px); }
+/* Legende, Bedienhinweis und Reglerbeschriftung: #707078 aus model3d.css hat auf dem Verlauf nur 3,0 : 1 (IF-8).
+   Datei der Live-Seite bleibt, hier ueberschrieben. Fokusring nach innen: der Rahmen schneidet aussen per Clip ab (IF-3). */
+.kiu-modell .m3d .m3d-legend, .kiu-modell .m3d .m3d-hint, .kiu-modell .m3d .m3d-ctl label { color: var(--muted); }
+.kiu-modell .m3d:focus-visible { outline-offset: -3px; }
+/* Modell nicht geladen (NN-WR-06): Vorschaubild statt „Lädt“ */
+.kiu-modell__ersatz { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: contain; background: #061419; }
+.kiu-modell__rahmen.is-fehler .kiu-modell__laden { opacity: 0; }
 .kiu-modell__rahmen { position: relative; border-radius: 6px; background: #061419; }
 .kiu-modell__rahmen .m3d { height: min(84vh, 900px); min-height: 460px; }
 .kiu-modell__rahmen:fullscreen { border-radius: 0; }

@@ -321,6 +321,9 @@
 
   var stage = canvas.closest('.m3d') || canvas;
   stage.addEventListener('keydown', function (e) {
+    // Funnel (14.11.2026, NN-WR-05): Regler und Knopf behalten ihr Standardverhalten, sonst drehen die Pfeiltasten
+    // auf dem X- und Z-Regler die Y-Achse
+    if (e.target.matches && e.target.matches('input, button')) return;
     var step = e.shiftKey ? 0.20 : 0.06, used = true;
     switch (e.key) {
       case 'ArrowLeft':  goal.y -= step; break;
@@ -345,7 +348,21 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
+  // Funnel (14.11.2026, NN-WR-03): nur zeichnen, solange das Modell im Bild und der Tab sichtbar ist.
+  // Die Schleife endet ausser Sicht; Beobachter und visibilitychange starten sie wieder.
+  var sichtbar = true, laeuft = false;
+  function weiter() {
+    if (laeuft || !sichtbar || document.hidden) return;
+    laeuft = true;
+    requestAnimationFrame(frame);
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { sichtbar = es[es.length - 1].isIntersecting; weiter(); }).observe(canvas);
+  }
+  document.addEventListener('visibilitychange', weiter);
+
   function frame() {
+    if (!sichtbar || document.hidden) { laeuft = false; return; }
     ['x', 'y', 'z'].forEach(function (k) { rot[k] += (goal[k] - rot[k]) * 0.14; });
     ctx.clearRect(0, 0, W, H);
     var c = collect();
@@ -361,8 +378,8 @@
   canvas.style.touchAction = 'none';   // ein Finger dreht, kein Mitscrollen
   resize();
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () { requestAnimationFrame(frame); });
+    document.fonts.ready.then(weiter);
   } else {
-    requestAnimationFrame(frame);
+    weiter();
   }
 })();
