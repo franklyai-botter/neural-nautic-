@@ -162,7 +162,7 @@ window.__hud = { wechsel: kameraWechsel, kameras: KAMERAS };   // fuer die Pruef
 const ST = P.staerken;
 const zwei = (n) => String(n).padStart(2, '0');
 const staerken = el(`
-  <section class="nn-staerken szene" id="staerken" data-ton="dunkel" aria-labelledby="staerken-titel" style="--szene-scroll:4">
+  <section class="nn-staerken szene" id="staerken" data-ton="dunkel" aria-labelledby="staerken-titel" style="--szene-scroll:3">
     <div class="szene__pin">
       <div class="nn-staerken__ui">
         <h2 class="nn-staerken__titel" id="staerken-titel">${esc(ST.h2)}</h2>
@@ -209,7 +209,7 @@ async function szeneAn() {
   window.__szeneLaedt = true;
   try {
     const [{ createSzene }, { default: figuren }] = await Promise.all([import('@kern/hero/szene.js'), import('../../figuren.json')]);
-    szene = createSzene(staerken, { figuren, szene: 'frank', scrollhoehe: 4, ablauf: ABLAUF, platz: PLATZ });
+    szene = createSzene(staerken, { figuren, szene: 'frank', scrollhoehe: 3, ablauf: ABLAUF, platz: PLATZ });
     window.__szenen = [szene];
     szene.bereit.then((m) => { if (m === 'still') { staerken.classList.add('nn-staerken--liste'); ScrollTrigger.refresh(); } });
     if (szene.modus === 'still') { staerken.classList.add('nn-staerken--liste'); ScrollTrigger.refresh(); }

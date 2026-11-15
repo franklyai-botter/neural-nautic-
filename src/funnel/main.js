@@ -50,7 +50,7 @@ const E = I.EINSTIEG;
 // Leerlauf-Scan und Ansichten folgen der Maus wie am Seitenanfang. Kein Zurueckzoomen, kein Ganzkoerper. Strecke:
 //   0,03-0,50 Umwandlung zum Exo     0,50-0,55 das Exo steht
 //   0,55-1,00 Schnitt: L3 faehrt als Vorhang mit Visier-Bogen ueber den stehenden Hero (kein Morphen)
-const HERO_HOEHE = 3.2;                          // Strecke in Bildschirmhoehen; die letzte gehoert dem Vorhang
+const HERO_HOEHE = 2.4;                          // Strecke in Bildschirmhoehen; die letzte gehoert dem Vorhang (vorher 3.2, Frank 15.11.2026: schneller zum Inhalt)
 const HERO_PHASEN = { umVon: 0.03, umBis: 0.5 };
 const startEl = document.getElementById('start');
 const heroEl = qs('[data-hero]', startEl);
@@ -121,6 +121,7 @@ const S = I.SCHICHTEN;
 const lagen = ['oben', 'unten', 'mitte'];
 const qg = teil(quergalerie({
   id: 'methode',
+  tempo: 1.5,   // Galerie 1,5-mal so schnell wie gescrollt (Frank 15.11.2026: Strecke war ~9 Bildschirmhoehen)
   ariaLabel: M.titel,
   felder: [
     feldTitel({ titel: esc(M.titel), text: esc(M.text), weiter: 'weiter scrollen' }),
