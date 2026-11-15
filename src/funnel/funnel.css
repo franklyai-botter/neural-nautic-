@@ -241,3 +241,16 @@ main { display: block; }
   .bs-nachweise__belege img { width: 100%; height: auto; }
 }
 
+
+/* Ziffern der sieben Schichten in Chrom wie das NN-Monogramm (Frank, 15.11.2026). Toene aus nn-monogramm.png
+   (neutralgrau: Schatten ~55–90, Mitte ~105–145, Glanz bis Weiss), harte Bandwechsel wie bei poliertem Metall.
+   Der feine Rand haelt die Ziffer auf dem hellen Blatt lesbar. Das Logo selbst bleibt unberuehrt. */
+#methode .bs-quer__nr {
+  background: linear-gradient(165deg, #fefefe 0%, #d2d2d2 12%, #7a7a7a 26%, #3c3c3c 34%, #9a9a9a 44%, #f4f4f4 52%,
+    #8a8a8a 63%, #434343 74%, #b9b9b9 86%, #ffffff 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  /* Kante ueber einen feinen Schatten statt text-stroke: der Umriss zeichnete die ueberlappenden Innenkonturen der
+     variablen Schrift nach (sichtbar in der 4) */
+  -webkit-text-stroke: 0; filter: drop-shadow(0 0 .6px rgba(40, 44, 46, .7));
+}
