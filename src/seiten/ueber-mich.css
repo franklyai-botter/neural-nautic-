@@ -21,11 +21,11 @@
 .nn-profil__absatz { font: 400 clamp(16px, 1.2vw, 18.5px)/1.7 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); text-wrap: pretty; }
 
 /* HUD (Port von .nhud-* der Live-Seite, NN-Farben Petrol/Aqua) */
-.nn-hud { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: #061419; color: #fff; container-type: inline-size;
+.nn-hud { position: relative; aspect-ratio: 2 / 3; overflow: hidden; border-radius: 6px; background: #061419; color: #fff; container-type: inline-size;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; letter-spacing: .03em; }
-/* Kamerabild: Mantel-Portraet (Taillenbild), 150 % der Kartenbreite, links buendig; Grau mit Teal-Toenung, Rauschen, Zeilen */
+/* Kamerabild: Frank im Ganzkoerper (Referenzbilder 2:3), fuellt die Karte; Grau mit Teal-Toenung, Rauschen, Zeilen */
 .nn-hud { background: #00141d; }
-.nn-hud__bild { position: absolute; left: 0; top: 0; width: 150%; height: auto; max-width: none; filter: grayscale(1) contrast(1.08) brightness(.96);
+.nn-hud__bild { position: absolute; left: 0; top: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; filter: grayscale(1) contrast(1.08) brightness(.96);
   transform: translateX(calc(var(--stoer, 0) * -6px)); }
 .nn-hud__bild--neu { z-index: 1; }
 .nn-hud__toenung { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(13, 115, 119, .34); mix-blend-mode: color; }
@@ -48,7 +48,7 @@
 .nn-hud__gesicht span { position: absolute; left: 0; bottom: calc(100% + 3px); white-space: nowrap; font-size: 2.6cqw; background: #0e2b36; padding: 1px 4px; }
 .nn-hud__abgleich { right: 4%; top: 4%; width: 29%; background: rgba(6, 20, 25, .82); border: 1px solid rgba(255, 255, 255, .55); padding: 5px; }
 .nn-hud__abgleich b { display: block; font-weight: 500; font-size: 2.4cqw; margin-bottom: 4px; }
-.nn-hud__abgleich img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; filter: grayscale(1) contrast(1.1); border: 1px solid rgba(255, 255, 255, .6); }
+.nn-hud__abgleich img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%; filter: grayscale(1) contrast(1.1); border: 1px solid rgba(255, 255, 255, .6); }
 .nn-hud__daten { margin-top: 4px; line-height: 1.5; font-size: 2.3cqw; white-space: nowrap; overflow: hidden; }
 .nn-hud__balken { height: 3px; margin-top: 4px; background: rgba(255, 255, 255, .25); }
 .nn-hud__balken i { display: block; height: 100%; width: var(--w, 98.6%); background: #6feff5; }

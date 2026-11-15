@@ -8,11 +8,11 @@ export const ROUTE = "/ueber-mich";
 export const META = {
   title: "Über mich: Frank Schütt, KI-Berater | NeuralNautic",
   alternates: { canonical: "/ueber-mich" },
-  description: "Frank Schütt, KI-Berater für den Mittelstand in Berlin, bundesweit und im DACH-Raum. Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
+  description: "Frank Schütt, KI-Berater für den Mittelstand in Berlin, bundesweit und im DACH-Raum. Gemeinsam KI in Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   openGraph: {
     type: "profile",
     title: "Frank Schütt, KI-Berater für den Mittelstand",
-    description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
+    description: "Gemeinsam KI in Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
     url: "/ueber-mich",
     images: [{ url: "/og/frank-schuett.jpg", width: 1200, height: 627, alt: "Frank Schütt" }],
   },
@@ -27,7 +27,7 @@ export const PERSON_JSON_LD = {
   "@id": `${SITE_URL}/ueber-mich#frank-schuett`,
   name: "Frank Schütt",
   jobTitle: "KI-Berater für den Mittelstand",
-  description: "Gemeinsam KI in echte Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
+  description: "Gemeinsam KI in Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   url: `${SITE_URL}/ueber-mich`,
   image: `${SITE_URL}/frank-portrait.webp`,
   sameAs: [LINKEDIN_URL, X_URL],
@@ -58,7 +58,7 @@ export const PERSON_JSON_LD = {
 
 export const KOPF = {
   eyebrow: "Über mich",
-  h1: "Gemeinsam KI in echte Arbeitsprozesse bringen.",
+  h1: "Gemeinsam KI in Arbeitsprozesse bringen.",
   text: "Mein Fokus liegt auf pragmatischer KI-Einführung für Unternehmen: verständlich, sicher, messbar und umsetzbar.",
 };
 
@@ -83,6 +83,9 @@ export const HUD = {
   video: { src: "/frank-ki/ueberwachung.mp4", datei: "/inhalt/frank-ki/ueberwachung.mp4" },
   poster: { src: "/frank-ki/ueberwachung.webp", datei: "/inhalt/frank-ki/ueberwachung.webp" },
   portrait: { src: "/frank-portrait.webp", datei: "/inhalt/frank-portrait.webp" },
+  // Abgleich-Panel (Frank, 15.11.2026): sein LinkedIn-Profilbild statt des alten Porträts (oranger Pullover).
+  // Quelle Downloads/linkedin-profilbild-672.jpg, Ausschnitt 4:5 (20,40)–(440,565), Gesicht mittig.
+  portraitAbgleich: { datei: "/inhalt/frank-linkedin.webp" },
   // Rahmen um das Gesicht, läuft mit dem Video mit:
   gesichtText: "FACE ID: MATCH",
   // Gesichtsspur im 4:5-Ausschnitt: [Sekunde, x %, y %, Rahmenbreite %]. Zwischen den Punkten wird

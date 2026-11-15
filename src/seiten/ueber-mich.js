@@ -34,35 +34,35 @@ if (filmVideo) {
 /* ---------------- Profil: HUD-Karte (NnHud.tsx), Name/Rolle/Ort, drei Absaetze ---------------- */
 const H = U.HUD;
 const P = U.PROFIL;
-// Spy-Check im Mantel (Frank, 14.11.2026): die HUD-Karte der Live-Seite als Live-Overlay auf Franks Mantel-Portraets
-// (Taillenbilder frontal, links, rechts aus figuren.json), wie eine Ueberwachungskamera, die alle paar Sekunden per
+// Spy-Check im Mantel (Frank, 14.11.2026): die HUD-Karte der Live-Seite als Live-Overlay auf Frank im Mantel
+// (Ganzkoerper frontal, links, rechts aus figuren.json), wie eine Ueberwachungskamera, die alle paar Sekunden per
 // Scan-Band den Blickwinkel wechselt. Das alte Video ueberwachung.mp4 zeigt andere Kleidung und ist kein Hauptbild mehr.
 // Gesichtsrahmen aus den Kopf-Ankern der Bilder (figuren.json), HUD-Texte wortlich aus HUD. Im Abgleich-Panel steht wie
 // live das echte Portraet. Reduced Motion: Standbild frontal mit allen HUD-Elementen, ohne Rauschen und Wechsel.
-const FIG = figuren.saetze[figuren.satz].figuren[0];
-const HUD_ZOOM = 1.5;            // Bildbreite in Kartenbreiten; das Bild beginnt am linken Rand (Schulter ist dort angeschnitten)
+// Seit 15.11.2026 (Frank): Frank im Ganzkoerper aus den Referenzbildern (figuren.szenen.frank, dieselben wie die L3-Karte
+// der Startseite). Die Taillenbilder zeigten einen Knopfmantel, der zu keinem anderen Bild passt. Karte 2:3 wie die
+// Bilder, das Bild fuellt sie ganz; Gesichtsrahmen aus den Ankern (oben = Scheitel, kh = Kopfhoehe, b = Kopfbreite).
+const ANSICHTEN = figuren.szenen.frank.ansichten;
+const KARTE_SEITE = 2 / 3;                                    // Breite / Hoehe der Karte (= Bilder 1024 x 1536)
 const KAMERAS = ['frontal', 'links', 'rechts'].map((k) => {
-  const v = FIG.ansichten[k];
+  const v = ANSICHTEN[k];
   const a = v.anker;
-  const name = `${v.foto}-taille`;
+  const name = v.foto;
   const m = figuren.bilder[name];
-  const quer = 941 / 1400;                                   // Anker gelten fuer das Portraet (oberer Ausschnitt des Taillenbilds)
-  const hoeheInB = HUD_ZOOM / (m.b / m.h);                    // Bildhoehe in Kartenbreiten
-  const s = a.b * (941 / m.b) * HUD_ZOOM * 0.86;              // Rahmenbreite als Anteil der Kartenbreite
-  const x = a.x * HUD_ZOOM;
-  const y = ((a.auge * quer + 0.035) * hoeheInB) / 1.25;       // Gesichtsmitte als Anteil der Kartenhoehe (Karte 4:5)
+  const s = Math.max(a.kh / KARTE_SEITE, a.b) * 1.25;         // Rahmen (quadratisch) als Anteil der Kartenbreite
+  const ym = a.oben + a.kh * 0.5;                              // Kopfmitte als Anteil der Kartenhoehe
   return {
     src: `/bilder/${name}-1000.webp`, srcset: m.breiten.map((w) => `/bilder/${name}-${w}.webp ${w}w`).join(', '),
-    rahmen: { left: `${((x - s / 2) * 100).toFixed(2)}%`, top: `${((y - (s * 0.8) / 2) * 100).toFixed(2)}%`, width: `${(s * 100).toFixed(2)}%` },
+    rahmen: { left: `${((a.x - s / 2) * 100).toFixed(2)}%`, top: `${((ym - (s * KARTE_SEITE) / 2) * 100).toFixed(2)}%`, width: `${(s * 100).toFixed(2)}%` },
   };
 });
-const HUD_SIZES = '(max-width: 991px) 150vw, 640px';
+const HUD_SIZES = '(max-width: 991px) 100vw, 420px';
 const hudHtml = `
   <div class="nn-hud${reduced ? ' nn-hud--ruhig' : ''}" role="img" aria-label="${esc(H.ariaLabel)}">
     <img class="nn-hud__bild" src="${KAMERAS[0].src}" srcset="${KAMERAS[0].srcset}" sizes="${HUD_SIZES}" alt="" decoding="async" />
     <img class="nn-hud__bild nn-hud__bild--neu" alt="" decoding="async" hidden />
     <div class="nn-hud__toenung"></div>
-    <canvas class="nn-hud__rauschen" width="120" height="150"></canvas>
+    <canvas class="nn-hud__rauschen" width="120" height="180"></canvas>
     <div class="nn-hud__ebene" aria-hidden="true">
       <div class="nn-hud__scan"></div>
       <div class="nn-hud__band"></div>
@@ -73,7 +73,7 @@ const hudHtml = `
       <div class="nn-hud__gesicht"><span>${esc(H.gesichtText)}</span>${[[32, 42], [68, 42], [50, 60], [37, 76], [63, 76], [50, 18]].map(([px, py]) => `<b style="left:${px}%;top:${py}%"></b>`).join('')}</div>
       <div class="nn-hud__abgleich">
         <b>${esc(H.abgleich.titel)}</b>
-        <img src="${esc(H.portrait.datei)}" alt="" decoding="async" />
+        <img src="${esc(H.portraitAbgleich.datei)}" alt="" decoding="async" />
         <div class="nn-hud__daten">${H.abgleich.daten.map((d) => `<div>${esc(d).replace(/ {2,}/g, (m) => '&nbsp;'.repeat(m.length))}</div>`).join('')}</div>
         <div class="nn-hud__balken"><i></i></div>
       </div>

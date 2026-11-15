@@ -34,12 +34,12 @@ export const META_STANDARD = {
     type: "website",
     locale: "de_DE",
     siteName: "NeuralNautic",
-    title: "NeuralNautic: Gemeinsam KI in echte Arbeitsprozesse bringen",
+    title: "NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen",
     description: "KI-Beratung für den Mittelstand: in Berlin, bundesweit und im DACH-Raum.",
     url: "/",
     // Bild der Live-Seite: /og/neuralnautic-og.png (1200 × 627). Nicht kopiert, weil es Logos enthält
     // (NN-Monogramm, for42-Wortmarke). Für den Funnel neu aus public/brand/ erzeugen.
-    images: [{ url: "/og/neuralnautic-og.png", width: 1200, height: 627, alt: "NeuralNautic: Gemeinsam KI in echte Arbeitsprozesse bringen" }],
+    images: [{ url: "/og/neuralnautic-og.png", width: 1200, height: 627, alt: "NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" }],
   },
   twitter: { card: "summary_large_image" },
   viewport: { width: "device-width", initialScale: 1, viewportFit: "cover" },
