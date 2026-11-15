@@ -372,8 +372,10 @@ export const ARCHITEKTUR = {
 // 7 Übergang zum Engineering
 export const UMSETZUNG = {
   kicker: "Umsetzung",
-  h2: "Was in den Betrieb geht, wird ingenieurmäßig gebaut, nicht zusammengeklickt",
-  text: "Ein Prototyp ist heute in Stunden gebaut. Ein System, das Ihre Daten verarbeitet und jeden Tag läuft, braucht Anforderungen, Tests, Sicherheitsprüfung und Verantwortung. Wie wir das machen, steht auf der Seite zu AI Engineering.",
+  // Neu (Frank, 15.11.2026, Fassung A): „ingenieurmäßig“ gestrichen; bisher: „Was in den Betrieb geht, wird
+  // ingenieurmäßig gebaut, nicht zusammengeklickt“, Text begann mit „Ein Prototyp ist heute in Stunden gebaut.“
+  h2: "Ein Prototyp ist schnell gebaut. Ein System für den Betrieb nicht.",
+  text: "Ein System, das Ihre Daten verarbeitet und jeden Tag läuft, braucht Anforderungen, Tests, Sicherheitsprüfung und Verantwortung. Wie wir das machen, steht auf der Seite zu AI Engineering.",
   links: [
     { text: "AI Engineering statt Vibe Coding", href: "/ai-engineering" },
     { text: "KI-Potenzialcheck buchen", href: KI_CHECK_BUCHEN, extern: true },

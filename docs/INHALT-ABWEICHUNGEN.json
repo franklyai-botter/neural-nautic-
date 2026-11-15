@@ -28,5 +28,17 @@
     "art": "text",
     "text": "Die Gründe, warum KI im Ergebnis nicht ankommt, sind fast immer dieselben: kein klarer Kurs, eine Crew, die nicht mitzieht, oder ein Schiff, das nicht seetüchtig ist. Deshalb planen wir alle drei als ein Vorhaben, nicht nacheinander.",
     "grund": "Frank 15.11.2026: Überschrift und Einleitung neu (Fassung A „Kurs, Crew und Schiff: drei Dinge, ein Vorhaben.“)"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Was in den Betrieb geht, wird ingenieurmäßig gebaut, nicht zusammengeklickt",
+    "grund": "Frank 15.11.2026: „ingenieurmäßig“ gestrichen, Überschrift „Ein Prototyp ist schnell gebaut. Ein System für den Betrieb nicht.“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Ein Prototyp ist heute in Stunden gebaut. Ein System, das Ihre Daten verarbeitet und jeden Tag läuft, braucht Anforderungen, Tests, Sicherheitsprüfung und Verantwortung. Wie wir das machen, steht auf der Seite zu AI Engineering.",
+    "grund": "Frank 15.11.2026: „ingenieurmäßig“ gestrichen, Überschrift „Ein Prototyp ist schnell gebaut. Ein System für den Betrieb nicht.“"
   }
 ]
