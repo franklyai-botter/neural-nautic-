@@ -22,6 +22,45 @@ export const LISTE = { h2: "Aktuelle Einordnungen" };
 // rubrik, stand (Datum), titel, befund, folge, quelle, link (optional), grafik: "kapital" (optional:
 // unter dem Befund steht die Kapital-Wolke).
 export const EINORDNUNGEN = [
+  // Neu am 15.11.2026 (Recherche mit Gegenlesen auf den Quellen; Kandidat „AI-Act-Frist 02.12.2026“ zurückgestellt,
+  // bis das Amtsblatt L 2026/1744 nachgelesen ist).
+  {
+    rubrik: "Förderung", stand: "02.11.2026",
+    titel: "Die Bundesregierung will bis 2030 KI in mindestens 55 Prozent der kleinen und mittleren Unternehmen sehen",
+    befund: "Zum Digital-Gipfel am 02.11.2026 hat die KI-Taskforce der Bundesregierung den Bericht „Deutschland als KI-Nation 2030“ vorgelegt, mit 18 Maßnahmen und Zielwerten für 2030: Mindestens 55 % der kleinen und mittleren Unternehmen und 80 % der Großunternehmen sollen dann KI einsetzen. Die Förderung für den Mittelstand soll im Programm „KI stärkt den Mittelstand“ gebündelt werden, mit Mittelstand-Digital-Zentren, Praxisräumen und Finanzierung. KI-Gutscheine sind fest nur für Kommunen vorgesehen, für Unternehmen kündigt der Bericht lediglich eine Prüfung an. Budgets nennt er nicht.",
+    folge: "Neues Geld gibt es noch nicht, aber eine Richtung: Förderung wird gebündelt und nach Reifegrad vergeben. Wer seinen Stand heute kennt, kann künftige Programme schneller nutzen.",
+    quelle: "Bundesregierung, Bericht „Deutschland als KI-Nation 2030“ vom 02.11.2026 (Zielwerte S. 32, Maßnahme 9); Bundesministerium für Digitales und Staatsmodernisierung, Pressemitteilung 68/2026; abgerufen am 15.11.2026.",
+    link: { href: "/ki-im-unternehmen#reifegrad", text: "Reifegrad-Check" },
+  },
+  {
+    rubrik: "Recht", stand: "11.11.2026",
+    titel: "Die Datenschutzbehörden prüfen 2027 gemeinsam den KI-Einsatz bei der Bewerberauswahl",
+    befund: "Der Europäische Datenschutzausschuss hat am 11.11.2026 das Thema seiner sechsten koordinierten Prüfaktion festgelegt: automatisierte, auch KI-gestützte Entscheidungen in der Personalgewinnung. Im Mittelpunkt stehen das Recht, keiner ausschließlich automatisierten Entscheidung unterworfen zu sein, und das Auskunftsrecht bei Werkzeugen zur Vorauswahl von Bewerbungen. Die nationalen Behörden schließen sich freiwillig an, die Prüfungen beginnen im Lauf des Jahres 2027.",
+    folge: "Wer Bewerbungen mit KI sortieren oder vorfiltern lässt, sollte jetzt klären: Entscheidet am Ende ein Mensch, ist das dokumentiert, und können Sie Bewerbern Auskunft geben? Nach dem EU AI Act gelten solche Systeme zudem als hochriskant.",
+    quelle: "Europäischer Datenschutzausschuss, Meldung vom 11.11.2026 zur koordinierten Prüfaktion 2027 (Coordinated Enforcement Framework); abgerufen am 15.11.2026.",
+  },
+  {
+    rubrik: "Studie", stand: "02.11.2026",
+    titel: "Unternehmen bevorzugen KI aus Deutschland, mehr zahlen wollen die meisten dafür nicht",
+    befund: "96 % der befragten Unternehmen würden bevorzugt KI deutscher Anbieter nutzen, 87 % ist das Herkunftsland wichtig. 64 % wollen dafür aber keine Nachteile wie höhere Preise oder weniger Funktionen hinnehmen. Die Vorliebe für Anbieter aus den USA sank von 51 % auf 41 %, für Anbieter aus Frankreich stieg sie von 38 % auf 46 %.",
+    folge: "Herkunft und Datenort entscheiden mit, ersetzen aber keinen fairen Preis und keine guten Funktionen. Lösungen aus Deutschland oder der EU müssen beides bieten.",
+    quelle: "Bitkom, Presseinformation vom 02.11.2026; telefonische Befragungen durch Bitkom Research: 603 Unternehmen ab 20 Beschäftigten (KW 28 bis 33/2026) und 602 Unternehmen (KW 33 bis 39/2026); abgerufen am 15.11.2026.",
+  },
+  {
+    rubrik: "Markt", stand: "03.11.2026",
+    titel: "Die Investitionen in deutsche Rechenzentren steigen 2026 um 57 Prozent auf 23,5 Mrd. Euro",
+    befund: "Nach einer Studie des Borderstep Instituts im Auftrag des Bitkom steigen die Investitionen von 15 Mrd. Euro im Jahr 2025 auf 23,5 Mrd. Euro, davon rund 18 Mrd. Euro für IT-Hardware. Der Anteil von KI und Hochleistungsrechnen an der Kapazität soll von 20 % im Jahr 2026 auf 55 % im Jahr 2035 wachsen. Für 2035 erwartet die Studie in Deutschland rund 10 Gigawatt Kapazität, für die USA 160 und für China 90.",
+    folge: "Rechenleistung gibt es weltweit reichlich, in Deutschland wächst sie aber deutlich langsamer. Wer Daten im Inland verarbeiten will, sollte Kosten und Datenort früh vertraglich klären.",
+    quelle: "Bitkom, Presseinformation vom 03.11.2026 zur Studie des Borderstep Instituts (Zahlen nach der Presseinformation, die Studie selbst ist nicht ausgewertet); abgerufen am 15.11.2026.",
+  },
+  {
+    rubrik: "Technik", stand: "03.10.2026",
+    titel: "Aleph Alpha veröffentlicht mit Kolibri-1 ein offenes Modell für Deutsch und Englisch",
+    befund: "Das Modell ist am 03.10.2026 erschienen und darf kommerziell genutzt werden (Lizenz Apache 2.0). Es hat 78 Mrd. Parameter, von denen je Token nur 3,46 Mrd. aktiv sind, und verarbeitet bis zu rund eine Million Token Kontext, empfohlen sind bis zu 262.144. Für den Betrieb nennt der Hersteller mindestens zwei Grafikkarten vom Typ A100 mit 80 GB oder eine H200.",
+    folge: "Damit gibt es eine weitere Option für den Betrieb im eigenen Haus oder bei einem deutschen Hoster. Die nötige Hardware ist Rechenzentrumsklasse, für die meisten Mittelständler heißt das Betrieb beim Dienstleister. Unabhängige Leistungsvergleiche stehen noch aus.",
+    quelle: "Aleph Alpha, Modellkarte „Kolibri-1“ auf Hugging Face (Veröffentlichung 03.10.2026); abgerufen am 15.11.2026.",
+    link: { href: "/ki-tool-kompass", text: "KI Tool Kompass" },
+  },
   {
     rubrik: "Markt", stand: "29.10.2026", grafik: "kapital",
     titel: "Vier Konzerne haben seit ChatGPT so viel investiert wie vier Apollo-Programme",
