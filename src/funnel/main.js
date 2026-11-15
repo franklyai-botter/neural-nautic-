@@ -146,6 +146,10 @@ const qg = teil(quergalerie({
   ],
 }));
 main.append(qg.el);
+// NN-Monogramm am Ende der Galerie, mittig unter den Kapitel-Links (Frank, 15.11.2026). Datei unveraendert aus
+// Brand-Assets (public/brand/nn-monogramm.png = Brand-Assets/neuralnautic/nn-monogramm.png), nicht gedreht, kein Schatten.
+qs('.bs-quer__feld--zitat', qg.el)?.insertAdjacentHTML('beforeend',
+  `<img class="nn-quer-logo" src="${esc(I.FUSS.logo.src)}" alt="" width="${I.FUSS.logo.w}" height="${I.FUSS.logo.h}" loading="lazy" decoding="async" />`);
 
 /* ---------------- L6: Weiche, L7: der Film als Vorhang darueber ---------------- */
 const W = I.WEGE;
