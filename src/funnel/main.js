@@ -15,6 +15,7 @@ import {
 } from '@kern/bausteine/index.js';
 import './funnel.css';
 import { netzHintergrund } from './netz-hintergrund.js';
+import { chatPlatzhalter } from '../seiten/chat-platzhalter.js';
 import * as I from '../inhalt/start.js';
 import figuren from '../../figuren.json';
 
@@ -489,6 +490,9 @@ main.after(fuss.el, k.daumen);
 const heroBild = qs('.hero__bild img', heroBuehne);
 const bildDa = heroBild ? (heroBild.complete ? Promise.resolve() : new Promise((r) => { heroBild.addEventListener('load', r, { once: true }); heroBild.addEventListener('error', r, { once: true }); })) : Promise.resolve();
 const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5 });
+
+// Chat-Knopf wie auf den Kapitelseiten (Frank 15.11.2026: „wo ist mein Chatbot“); der echte Chat kommt mit dem Server-Teil
+document.body.append(chatPlatzhalter());
 
 document.fonts.ready.then(() => {
   autoWire(document);

@@ -16,7 +16,7 @@ export const SITE = {
   for42: 'https://for42.ai',
 };
 
-export const BERUHIGUNG = '30 Minuten per Video, kostenlos und unverbindlich. Danach wissen Sie, wo KI bei Ihnen zuerst wirkt.';
+export const BERUHIGUNG = '30 Minuten per Video, kostenlos und unverbindlich. Danach wissen Sie, wo KI bei Ihnen als Nächstes wirkt.';   // vorher „zuerst“ (Frank 15.11.2026)
 export const KI = 'KI-generiert';
 
 /* ---------- Bilder: Namen, Maße und Kopf-Anker kommen aus figuren.json (schreibt tools/bilder.py) ----------
