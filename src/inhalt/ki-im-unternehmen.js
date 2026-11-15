@@ -327,7 +327,9 @@ const MODELL_MARKUP = "<div class=\"m3d\" tabindex=\"0\" aria-label=\"Räumliche
 export const ARCHITEKTUR = {
   id: "architektur",
   kicker: "Das Schiff · KI-Architektur",
-  titel: "Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle",
+  // Überschrift wie auf der Startseite (Frank, 15.11.2026); bisher: „Ein seetüchtiges Schiff hat sieben Schichten, und der
+  // Datenschutz geht durch alle“
+  titel: "Was KI im Betrieb trägt",
   intro: "Wer nur ein Modell anschließt, hat eine Demo. Für den Betrieb braucht es Daten, Orchestrierung, Sicherheit und Governance, die zusammenpassen. Die Regulierung betrifft dabei nicht eine Schicht, sondern das Ganze.",
   // Zuerst das drehbare 3D-Modell der KI-Architektur, direkt darunter die volle Grafik als Download gegen Kontaktdaten.
   modell3d: {

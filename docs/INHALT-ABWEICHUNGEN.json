@@ -70,5 +70,11 @@
     "art": "text",
     "text": "Über die Schaltflächen „KI-Check buchen“ und „KI-Potenzialcheck buchen“ können Sie einen KI-Potenzialcheck buchen.",
     "grund": "Frank 15.11.2026: nur noch ein Knopfname „KI-Potenzialcheck buchen“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle",
+    "grund": "Frank 15.11.2026: Überschrift wie auf der Startseite „Was KI im Betrieb trägt“"
   }
 ]
