@@ -378,8 +378,11 @@ export const KANAELE = {
 
 export const ABSCHLUSS = {
   logo: { src: '/brand/nn-monogramm.png', w: 805, h: 821 },
-  titel: 'Bereit für den ersten sinnvollen KI-Schritt?',
-  text: 'Wir prüfen gemeinsam, wo KI in Ihrem Unternehmen messbar Wert schafft.',
+  // Neu (Frank, 15.11.2026): das alte klang „abgehoben und herablassend“, und „ersten“ passt nicht für alle, die schon
+  // Schritte getan haben. Bisher: „Bereit für den ersten sinnvollen KI-Schritt?“ / „Wir prüfen gemeinsam, wo KI in Ihrem
+  // Unternehmen messbar Wert schafft.“
+  titel: 'Sprechen wir über Ihren nächsten KI-Schritt.',
+  text: 'Ob Sie gerade anfangen oder schon Werkzeuge im Einsatz haben: Wir klären gemeinsam, wo KI bei Ihnen Arbeit abnimmt und was sich als Nächstes lohnt.',
   cta: { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true },
   beruhigung: BERUHIGUNG,
 };
