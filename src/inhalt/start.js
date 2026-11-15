@@ -203,12 +203,16 @@ export const METHODE = {
   link: { text: 'Methode im Detail, mit Reifegrad-Check und Architektur →', href: '/ki-im-unternehmen' },
 };
 
-// Bild bei „Schiff“: KI-generierte Animation des modernen NeuralNautic-Forschungsschiffs (Codex, 14.11.2026), mit
-// NN-Monogramm und Kompassstern als Aufdruck auf dem Rumpf (funnel-vorlage/tools/aufdruck_video.py, nahtlose
-// Schleife, 5,4 s). Kein Inhalt der Live-Seite.
-export const SCHIFF_FILM = {
-  quellen: [{ src: '/medien/schiff/schiff-nn.webm', type: 'video/webm' }, { src: '/medien/schiff/schiff-nn.mp4', type: 'video/mp4' }],
-  poster: '/medien/schiff/schiff-nn.webp', w: 1280, h: 720, alt: 'Modernes Forschungsschiff in Fahrt, mit NN-Monogramm und Kompassstern am Rumpf', hinweis: KI,
+// Bild bei „Schiff“ (Frank, 15.11.2026): das Schiff im Laengsschnitt als Bauplan, im Rumpf die KI-Architektur als
+// Raeume, eine Datenschutz-Leitung mit Schloessern laeuft durch alle. Vorlage von Frank (medien-quellen/), die von der
+// Bild-KI nachgebauten Logos am Bug sind getilgt und durch die echten Dateien ersetzt (funnel-vorlage/tools/
+// aufdruck_bild.py). Mobil ein eigener Ausschnitt mit allen fuenf Raeumen. Ersetzt den Schiff-Film (schiff-nn.*).
+// Kein Inhalt der Live-Seite.
+export const SCHIFF_BILD = {
+  src: '/medien/schiff/schiff-architektur.webp', w: 1672, h: 941,
+  mobil: { src: '/medien/schiff/schiff-architektur-mobil.webp', w: 1080, h: 608 },
+  alt: 'Schiff im Längsschnitt als Bauplan: im Rumpf Datenspeicher, Rechenzentrum, KI-Modell, Ablaufsteuerung und Anwendungen, verbunden durch eine Datenschutz-Leitung mit Schlössern; am Bug NN-Monogramm und Kompassstern',
+  hinweis: KI,
 };
 
 export const SCHICHTEN = {

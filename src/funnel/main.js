@@ -10,7 +10,7 @@ import {
   gsap, ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, prefetchOnHover,
 } from '@kern/motion.js';
 import {
-  kopf, menue, preloader, laufband, logowirbel, sternfahrt, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldFilm, feldBuehne, feldZitat,
+  kopf, menue, preloader, laufband, logowirbel, sternfahrt, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldBuehne, feldZitat,
   weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
@@ -132,9 +132,9 @@ const qg = teil(quergalerie({
     // Eigenes HTML/SVG in der Buehne, Aufbau unten (organigramm()). Ersetzt das Bild Mensch + Agent und die Gleichung.
     feldBuehne({ name: 'crew', form: 'gross', lage: 'oben' }),
     feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
-    // Bild bei Schiff: das moderne NN-Forschungsschiff in Fahrt, Monogramm und Kompassstern als Aufdruck auf dem Rumpf
-    // (funnel-vorlage/tools/aufdruck_video.py). enterprise.png ist nicht mehr eingebunden.
-    feldFilm({ ...I.SCHIFF_FILM, form: 'gross', lage: 'oben' }),
+    // Bild bei Schiff (Frank, 15.11.2026): das Schiff im Laengsschnitt, im Rumpf die KI-Architektur als Raeume
+    // (I.SCHIFF_BILD). Ersetzt den Schiff-Film; Schiffsbilder, Werft-Zeichnungen und „ohne Bild“ sind verworfen.
+    feldBild({ ...I.SCHIFF_BILD, form: 'gross', lage: 'oben' }),
     // Vom Schiff direkt zur Einleitung der Schichten (Frank, 14.11.2026); der Methode-Link steht jetzt am Ende.
     // Das Titelfeld beginnt das helle Blatt (hellAb = zweites Titelfeld): Kapitelkante Bild -> Sachsprache.
     feldTitel({ titel: esc(S.titel), text: esc(S.text) }),
