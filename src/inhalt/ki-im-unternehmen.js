@@ -66,8 +66,10 @@ export const KCS = [
 export const VORGEHEN = {
   id: "vorgehen",
   kicker: "Kurs · Crew · Schiff",
-  titel: "KI kommt in die Umsetzung, wenn Kurs, Crew und Schiff gleichzeitig stimmen",
-  intro: "Die Gründe, warum KI im Ergebnis nicht ankommt, sind fast immer dieselben: kein klarer Kurs, eine Crew, die nicht mitzieht, oder ein Schiff, das nicht seetüchtig ist. Deshalb planen wir alle drei als ein Vorhaben, nicht nacheinander.",
+  // Überschrift und Einleitung neu (Frank, 15.11.2026, Fassung A); bisher: „KI kommt in die Umsetzung, wenn Kurs, Crew
+  // und Schiff gleichzeitig stimmen“ / „Die Gründe, warum KI im Ergebnis nicht ankommt, sind fast immer dieselben: …“
+  titel: "Kurs, Crew und Schiff: drei Dinge, ein Vorhaben.",
+  intro: "Wenn KI im Betrieb nicht ankommt, fehlt fast immer eines davon: ein klarer Kurs, eine Crew, die mitzieht, oder eine Architektur, die trägt. Deshalb planen wir alle drei zusammen, nicht nacheinander.",
   // Dreieck als SVG (viewBox 0 -50 600 350), drei Eckpunkte mit Name und Sachbegriff, in der Mitte der Text.
   dreieck: {
     ariaLabel: "Dreieck aus Kurs (Strategie), Crew (Menschen und Befähigung) und Schiff (KI-Architektur)",
