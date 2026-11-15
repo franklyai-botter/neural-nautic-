@@ -61,7 +61,8 @@ export const KOPF = {
 
 // Einträge und Adressen wie im Brief (Live-Adressen).
 // Kacheln (Frank, 15.11.2026): Handy-Screenshot der jeweiligen Seite statt Porträt-/Exo-Bildern, erzeugt mit
-// funnel-vorlage/tools/menuebilder.py (390 x 844, erster Bildschirm). Nach Text- oder Layoutänderungen neu erzeugen.
+// funnel-vorlage/tools/menuebilder.py (390 x 844, erster Bildschirm), Start mit --ruhig start (Porträt ohne Scan-Band).
+// Nach Text- oder Layoutänderungen neu erzeugen.
 const seitenBild = (name) => ({ bild: `/medien/menue/${name}.webp`, position: '50% 50%' });
 export const MENUE = {
   titel: 'Menü',
