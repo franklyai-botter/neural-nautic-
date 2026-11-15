@@ -14,6 +14,7 @@ import {
   weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
+import { netzHintergrund } from './netz-hintergrund.js';
 import * as I from '../inhalt/start.js';
 import figuren from '../../figuren.json';
 
@@ -490,6 +491,7 @@ document.fonts.ready.then(() => {
   ScrollTrigger.refresh();
   k.messen();
   window.__bereit = true;   // fuer die Pruefskripte in qa/start
+  netzHintergrund(main);   // Netz hinter allen dunklen Abschnitten (Frank, 15.11.2026)
 });
 
 /* ---------------- Hero und Ganzkoerper-Szene nachladen ---------------- */

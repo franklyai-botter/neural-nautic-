@@ -18,6 +18,7 @@ import '@fontsource/jetbrains-mono/500.css';
 import { gsap, ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, prefetchOnHover } from '@kern/motion.js';
 import { kopf, menue, preloader, laufband, fusskarte, hilfen } from '@kern/bausteine/index.js';
 import { createNetz } from '@kern/netz/netz.js';
+import { netzHintergrund } from '../funnel/netz-hintergrund.js';
 import { KOPF, MENUE, FUSS, SITE } from '../inhalt/start.js';
 import { CHAT } from '../inhalt/chat.js';
 import './gemeinsam.css';
@@ -95,6 +96,7 @@ export function kapitelseite(o = {}) {
       // Lenis kennt sonst noch die Hoehe des leeren <main> und landet bei 0: vorher neu messen
       if (h) requestAnimationFrame(() => { lenis?.resize?.(); ScrollTrigger.refresh(); lenis?.resize?.(); hinScrollen(h, true); });
       window.__bereit = true;   // fuer die Pruefskripte
+      netzHintergrund(main);   // Netz hinter allen dunklen Abschnitten (Frank, 15.11.2026)
     });
     return offen;
   }
