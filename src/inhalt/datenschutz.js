@@ -269,7 +269,7 @@ export const ABSCHNITTE = [
     "inhalt": [
       {
         "typ": "absatz",
-        "text": "Über die Schaltflächen „KI-Check buchen“ und „KI-Potenzialcheck buchen“ können Sie einen KI-Potenzialcheck buchen. Für die Terminbuchung wird Calendly genutzt. Der Kalender ist nicht in diese Website eingebettet: Sie werden per Link zur Buchungsseite von Calendly weitergeleitet, und erst dann werden Daten an Calendly übermittelt. Für Videotermine wird Google Meet eingesetzt."
+        "text": "Über die Schaltfläche „KI-Potenzialcheck buchen“ können Sie einen KI-Potenzialcheck buchen. Für die Terminbuchung wird Calendly genutzt. Der Kalender ist nicht in diese Website eingebettet: Sie werden per Link zur Buchungsseite von Calendly weitergeleitet, und erst dann werden Daten an Calendly übermittelt. Für Videotermine wird Google Meet eingesetzt."
       },
       {
         "typ": "absatz",

@@ -6,7 +6,7 @@ import { KI_CHECK_BUCHEN, LINKEDIN_COMPANY_URL, LINKEDIN_URL, X_URL } from "./si
 export const KOPF = {
   logo: { src: "/logo-star.png", alt: "NeuralNautic", width: 48, height: 48, href: "/" },
   wortmarke: "NeuralNautic",
-  cta: { text: "KI-Check buchen", href: KI_CHECK_BUCHEN, extern: true },
+  cta: { text: "KI-Potenzialcheck buchen", href: KI_CHECK_BUCHEN, extern: true },
   burger: { oeffnen: "Menü öffnen", schliessen: "Menü schließen" },
   untermenueZeichen: "▾",
 };

@@ -40,5 +40,35 @@
     "art": "text",
     "text": "Ein Prototyp ist heute in Stunden gebaut. Ein System, das Ihre Daten verarbeitet und jeden Tag läuft, braucht Anforderungen, Tests, Sicherheitsprüfung und Verantwortung. Wie wir das machen, steht auf der Seite zu AI Engineering.",
     "grund": "Frank 15.11.2026: „ingenieurmäßig“ gestrichen, Überschrift „Ein Prototyp ist schnell gebaut. Ein System für den Betrieb nicht.“"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "KI-Check buchen",
+    "grund": "Frank 15.11.2026: Buchung heißt überall „KI-Potenzialcheck“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Das Referenzmodell als Grafik für Ihre Unterlagen",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate)"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Das Referenzmodell als Grafik für Ihre Unterlagen",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate)"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Referenzmodell",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate)"
+  },
+  {
+    "seite": "/datenschutz",
+    "art": "text",
+    "text": "Über die Schaltflächen „KI-Check buchen“ und „KI-Potenzialcheck buchen“ können Sie einen KI-Potenzialcheck buchen.",
+    "grund": "Frank 15.11.2026: nur noch ein Knopfname „KI-Potenzialcheck buchen“"
   }
 ]

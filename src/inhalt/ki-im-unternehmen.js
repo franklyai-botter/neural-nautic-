@@ -229,7 +229,7 @@ export const DOWNLOAD_GRAFIK = {
   dateiname: "NeuralNautic_KI-Architektur_7-Schichten.svg",
   datei: "/inhalt/downloads/NeuralNautic_KI-Architektur_7-Schichten.svg",
   kicker: "Zum Herunterladen",
-  titel: "Das Referenzmodell als Grafik für Ihre Unterlagen",
+  titel: "Die KI-Architektur als Grafik für Ihre Unterlagen",
   text: "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
   was: "die Grafik",
   knopf: "Grafik herunterladen",
@@ -329,7 +329,7 @@ export const ARCHITEKTUR = {
   kicker: "Das Schiff · KI-Architektur",
   titel: "Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle",
   intro: "Wer nur ein Modell anschließt, hat eine Demo. Für den Betrieb braucht es Daten, Orchestrierung, Sicherheit und Governance, die zusammenpassen. Die Regulierung betrifft dabei nicht eine Schicht, sondern das Ganze.",
-  // Zuerst das drehbare Referenzmodell, direkt darunter die volle Grafik als Download gegen Kontaktdaten.
+  // Zuerst das drehbare 3D-Modell der KI-Architektur, direkt darunter die volle Grafik als Download gegen Kontaktdaten.
   modell3d: {
     // Modell-Daten (7 Ebenen mit Knoten und Verbindungen): public/inhalt/architektur/szene.json
     szene: "/inhalt/architektur/szene.json",
@@ -350,9 +350,9 @@ export const ARCHITEKTUR = {
     hinweisImModell: "Mausrad dreht · linke Taste halten stellt den Blick ein",
     ariaLabel: "Räumliches Modell der Architektur, drehbar",
     // NN-Signatur unten im Modell: Monogramm (/logo-monogram.png, im Funnel public/brand/nn-monogramm.png) und Wortmarke.
-    signatur: { logo: "/logo-monogram.png", zeile1: "NeuralNautic", zeile2: "Referenzmodell" },
+    signatur: { logo: "/logo-monogram.png", zeile1: "NeuralNautic", zeile2: "KI-Architektur" },
     vollbild: { an: "Vollbild", aus: "Vollbild beenden" },
-    bildunterschrift: "Referenzmodell NeuralNautic, Stand 29.10.2026. Mausrad dreht, gehaltene linke Maustaste stellt den Blick ein. Auf dem Handy dreht waagerechtes Wischen.",
+    bildunterschrift: "KI-Architektur NeuralNautic, Stand 29.10.2026. Mausrad dreht, gehaltene linke Maustaste stellt den Blick ein. Auf dem Handy dreht waagerechtes Wischen.",
   },
   download: DOWNLOAD_GRAFIK,
   // Aufklappbar unter dem Download:

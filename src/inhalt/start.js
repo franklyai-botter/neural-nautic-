@@ -56,7 +56,7 @@ const faecherBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 3 / 4.
 /* ---------- Seitenrahmen ---------- */
 export const KOPF = {
   logo: { src: '/brand/nn-stern-kompass-128.png', alt: '', name: 'NeuralNautic', href: '/' },
-  cta: { text: 'KI-Check buchen', href: SITE.kiCheck, extern: true },
+  cta: { text: 'KI-Potenzialcheck buchen', href: SITE.kiCheck, extern: true },
   menue: { auf: 'Menü öffnen', zu: 'Menü schließen' },
 };
 
@@ -337,7 +337,7 @@ export const STORE = {
     { kicker: 'Checkliste zum Herunterladen', titel: 'Die ausführliche Checkliste für Ihre Leitungsrunde',
       text: 'Fünfzehn Fragen in fünf Feldern mit Auswertung, dazu eine Tabelle, mit der Sie jedes KI-Vorhaben einer Risikoklasse nach EU AI Act zuordnen. Vier Seiten als PDF zum Ausdrucken.',
       knopf: 'Checkliste herunterladen', href: '/ki-im-unternehmen#reifegrad' },
-    { kicker: 'Zum Herunterladen', titel: 'Das Referenzmodell als Grafik für Ihre Unterlagen',
+    { kicker: 'Zum Herunterladen', titel: 'Die KI-Architektur als Grafik für Ihre Unterlagen',
       text: 'Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.',
       knopf: 'Grafik herunterladen', href: '/ki-im-unternehmen#architektur' },
   ],
