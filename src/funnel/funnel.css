@@ -258,3 +258,7 @@ main { display: block; }
 /* NN-Monogramm am Ende der Quer-Galerie, mittig unter den Kapitel-Links (main.js). Schutzraum = halbe Signethoehe. */
 .nn-quer-logo { align-self: center; height: clamp(96px, 14vh, 150px); width: auto; margin-top: clamp(48px, 7vh, 80px); }
 @media (max-width: 991px) { .nn-quer-logo { height: 96px; margin-top: 48px; } }
+
+/* Weiche rueckt unter das leere Ende der Galerie (gleicher heller Grund, unsichtbare Naht). Unter dem Monogramm war
+   das Blatt bis zum Fensterende leer, danach kam der Weiche-Inhalt erst mittig im naechsten Bildschirm (Frank 15.11.2026) */
+@media (min-width: 992px) { #wege { margin-top: -28vh; } }
