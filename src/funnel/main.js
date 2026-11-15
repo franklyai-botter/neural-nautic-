@@ -134,12 +134,12 @@ const qg = teil(quergalerie({
     feldText({ gross: M.teile[2].name, klein: M.teile[2].fach, claim: M.teile[2].claim, text: M.teile[2].desc, lage: 'unten' }),
     // Bild bei Schiff (Frank, 15.11.2026): das Schiff im Laengsschnitt, im Rumpf die KI-Architektur als Raeume
     // (I.SCHIFF_BILD). Ersetzt den Schiff-Film; Schiffsbilder, Werft-Zeichnungen und „ohne Bild“ sind verworfen.
-    feldBild({ ...I.SCHIFF_BILD, form: 'gross', lage: 'oben' }),
+    feldBild({ ...I.SCHIFF_BILD, form: 'breit', lage: 'oben' }),
     // Vom Schiff direkt zur Einleitung der Schichten (Frank, 14.11.2026); der Methode-Link steht jetzt am Ende.
     // Das Titelfeld beginnt das helle Blatt (hellAb = zweites Titelfeld): Kapitelkante Bild -> Sachsprache.
     feldTitel({ titel: esc(S.titel), text: esc(S.text) }),
     // Architektur-Grafik der sieben Schichten: baut sich Schicht fuer Schicht von unten nach oben auf
-    feldBild({ ...S.bild, form: 'hoch', lage: 'mitte', position: '50% 0%', aufbau: 7 }),
+    feldBild({ ...S.bild, form: 'hochgross', lage: 'mitte', position: '50% 0%', aufbau: 7 }),
     ...S.schichten.map(([nr, titel, text], i) => feldZahl({ nr, titel, text, lage: lagen[i % 3] })),
     feldZitat({ links: [S.link, M.link], lage: 'mitte' }),
   ],
