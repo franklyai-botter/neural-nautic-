@@ -338,7 +338,7 @@ export const STORE = {
       text: 'Fünfzehn Fragen in fünf Feldern mit Auswertung, dazu eine Tabelle, mit der Sie jedes KI-Vorhaben einer Risikoklasse nach EU AI Act zuordnen. Vier Seiten als PDF zum Ausdrucken.',
       knopf: 'Checkliste herunterladen', href: '/ki-im-unternehmen#reifegrad' },
     { kicker: 'Zum Herunterladen', titel: 'Die KI-Architektur als Grafik für Ihre Unterlagen',
-      text: 'Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.',
+      text: 'Eine Blaupause für Ihr eigenes Vorhaben: alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.',
       knopf: 'Grafik herunterladen', href: '/ki-im-unternehmen#architektur' },
   ],
 };

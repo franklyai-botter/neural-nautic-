@@ -230,7 +230,7 @@ export const DOWNLOAD_GRAFIK = {
   datei: "/inhalt/downloads/NeuralNautic_KI-Architektur_7-Schichten.svg",
   kicker: "Zum Herunterladen",
   titel: "Die KI-Architektur als Grafik für Ihre Unterlagen",
-  text: "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
+  text: "Eine Blaupause für Ihr eigenes Vorhaben: alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
   was: "die Grafik",
   knopf: "Grafik herunterladen",
   idp: "dl",

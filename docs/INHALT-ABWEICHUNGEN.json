@@ -76,5 +76,17 @@
     "art": "text",
     "text": "Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle",
     "grund": "Frank 15.11.2026: Überschrift wie auf der Startseite „Was KI im Betrieb trägt“"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
+    "grund": "Frank 15.11.2026: KI-Architektur als Blaupause beschrieben"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
+    "grund": "Frank 15.11.2026: KI-Architektur als Blaupause beschrieben"
   }
 ]
