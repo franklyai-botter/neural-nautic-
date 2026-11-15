@@ -311,7 +311,36 @@ function organigramm(buehne) {
     // zuletzt die Formel: Kaesten per Clip, Zeichen dazwischen
     .to(bild.querySelectorAll('.nn-org__term'), { ...auf, stagger: 0.16 }, '-=0.1')
     .to(bild.querySelectorAll('.nn-org__zeichen'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.16, ease: 'expo.out' }, '<0.2');
-  new IntersectionObserver(([e], io) => { if (e.intersectionRatio > 0.35) { io.disconnect(); tl.play(); } }, { threshold: [0, 0.35, 0.6] }).observe(bild);
+  // Tempo (Frank, 15.11.2026: „in den Feldern fehlen oft die …“): Die Abfolge dauert ~9 s, das Organigramm ist in der
+  // Quer-Galerie aber nur 2–3 s im Bild. KI-Linien, Ablauf und Formel kamen erst nach dem Hinausscrollen. Jetzt gut 3 s,
+  // Start schon bei 15 % Sichtbarkeit, und wer vorher weiterscrollt, findet beim Zurueckkommen alles fertig.
+  // Zusaetzlich schiebt der Scrollweg die Abfolge vor: Sichtanteil 15 % -> Anfang, ~95 % -> fertig. Wer zuegig scrollt,
+  // sieht das Organigramm trotzdem vollstaendig, sobald es ganz im Bild steht; wer stehen bleibt, sieht es weiterlaufen.
+  const ORG_DAUER = 3.2;
+  let gestartet = false;
+  const sichtAnteil = () => {
+    const r = bild.getBoundingClientRect();
+    if (!r.width || !r.height) return 0;
+    return window.innerWidth >= 992
+      ? Math.max(0, Math.min(r.right, window.innerWidth) - Math.max(r.left, 0)) / r.width
+      : Math.max(0, Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0)) / r.height;
+  };
+  // Je Bild pruefen (nur solange das Organigramm in der Naehe ist): Start bei 15 %, Vorschub nach Sichtanteil, und wer
+  // schon vorbei ist (wieder 0 % nach dem Start), bekommt beim Zurueckkommen das fertige Bild.
+  let fertig = false;
+  const vorschieben = () => {
+    const s = sichtAnteil();
+    if (!gestartet && s > 0.15) { gestartet = true; tl.timeScale(tl.duration() / ORG_DAUER).play(); }
+    if (gestartet) {
+      const ziel = s <= 0 ? 1 : Math.min(1, Math.max(0, (s - 0.15) / 0.8));
+      if (ziel > tl.progress()) tl.progress(ziel);
+    }
+    if (tl.progress() >= 1) { fertig = true; gsap.ticker.remove(vorschieben); }
+  };
+  new IntersectionObserver(([e]) => {
+    if (fertig) return;
+    if (e.isIntersecting) gsap.ticker.add(vorschieben); else gsap.ticker.remove(vorschieben);
+  }, { rootMargin: '0px 60% 0px 60%' }).observe(bild);
   window.__org = tl;   // fuer qa: window.__org.progress(1)
 }
 
