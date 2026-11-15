@@ -50,7 +50,6 @@ export function bild(rolle, breite = 640, { verh, kopf = [0.5, 0.4] } = {}) {
   // maske = Alpha-Maske der Figur (schreibt tools/bilder.py), mitte = Koerper- bzw. Kopfmitte als Anteil der Bildbreite
   return { src: `/bilder/${name}-${w}.webp`, w, h: Math.round(w / A), position, maske: `/bilder/${name}-hof.webp`, mitte: a.mx ?? a.x };
 }
-const menueBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 4 / 3, kopf }); return { bild: x.src, position: x.position }; };
 const faecherBild = (rolle, kopf) => { const x = bild(rolle, 640, { verh: 3 / 4.1, kopf }); return { bild: x.src, position: x.position }; };
 
 /* ---------- Seitenrahmen ---------- */
@@ -60,21 +59,23 @@ export const KOPF = {
   menue: { auf: 'Menü öffnen', zu: 'Menü schließen' },
 };
 
-// Einträge und Adressen wie im Brief (Live-Adressen). Bilder: nur Franks Bilder, Rollen aus figuren.json.
+// Einträge und Adressen wie im Brief (Live-Adressen).
+// Kacheln (Frank, 15.11.2026): Handy-Screenshot der jeweiligen Seite statt Porträt-/Exo-Bildern, erzeugt mit
+// funnel-vorlage/tools/menuebilder.py (390 x 844, erster Bildschirm). Nach Text- oder Layoutänderungen neu erzeugen.
+const seitenBild = (name) => ({ bild: `/medien/menue/${name}.webp`, position: '50% 50%' });
 export const MENUE = {
   titel: 'Menü',
   eintraege: [
-    { text: 'Start', href: '/', ...menueBild('fotoFrontal') },
-    { text: 'Leistungen', href: '/leistungen', ...menueBild('ganzExo', [0.5, 0.3]) },
-    { text: 'Im Unternehmen', href: '/ki-im-unternehmen', ...menueBild('fotoLinks') },
-    { text: 'Im Projekt', href: '/methode', ...menueBild('exoRechts') },
-    { text: 'AI Engineering', href: '/ai-engineering', ...menueBild('ganzExo', [0.5, -0.9]) },
-    { text: 'KI Tool Kompass', href: '/ki-tool-kompass', ...menueBild('exoLinks') },
-    { text: 'Ausguck', href: '/wissen', ...menueBild('fotoRechts') },
-    { text: 'Über mich', href: '/ueber-mich', ...menueBild('ganzFoto', [0.5, 0.3]) },
-    { text: 'Kontakt', href: '/kontakt', bild: '/inhalt/frank-ki/film.webp', position: '50% 40%' },
+    { text: 'Start', href: '/', ...seitenBild('start') },
+    { text: 'Leistungen', href: '/leistungen', ...seitenBild('leistungen') },
+    { text: 'Im Unternehmen', href: '/ki-im-unternehmen', ...seitenBild('ki-im-unternehmen') },
+    { text: 'Im Projekt', href: '/methode', ...seitenBild('methode') },
+    { text: 'AI Engineering', href: '/ai-engineering', ...seitenBild('ai-engineering') },
+    { text: 'KI Tool Kompass', href: '/ki-tool-kompass', ...seitenBild('ki-tool-kompass') },
+    { text: 'Ausguck', href: '/wissen', ...seitenBild('wissen') },
+    { text: 'Über mich', href: '/ueber-mich', ...seitenBild('ueber-mich') },
+    { text: 'Kontakt', href: '/kontakt', ...seitenBild('kontakt') },
   ],
-  bildHinweis: KI,
   nebenLinks: [
     { text: 'LinkedIn Frank', href: SITE.linkedinFrank, extern: true },
     { text: 'LinkedIn NeuralNautic', href: SITE.linkedinNN, extern: true },
