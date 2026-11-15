@@ -199,7 +199,7 @@ export const METHODE = {
   text: 'Klarer Kurs. Eingespielte Crew. Ein Schiff, das trägt. Fehlt eines davon, bleibt es beim Experiment. Deshalb planen wir alle drei als ein Vorhaben.',
   teile: [
     { name: 'Kurs', fach: 'Strategie', claim: 'Wohin, und was lohnt sich?', desc: 'Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist ein Fahrplan, den Geschäftsführung und Fachbereiche mittragen.' },
-    { name: 'Crew', fach: 'Menschen und Befähigung', claim: 'Nutzung statt bloßem Wissen.', desc: 'Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag genutzt werden. Der Betriebsrat ist früh an Bord.' },
+    { name: 'Crew', fach: 'Menschen und Befähigung', claim: 'Nutzung statt bloßem Wissen.', desc: 'Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag genutzt werden. Der Betriebsrat ist gegebenenfalls früh an Bord.' },
     { name: 'Schiff', fach: 'KI-Architektur', claim: 'Seetüchtig statt Demo.', desc: 'Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb.' },
   ],
   link: { text: 'Methode im Detail, mit Reifegrad-Check und Architektur →', href: '/ki-im-unternehmen' },

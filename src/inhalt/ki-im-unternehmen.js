@@ -56,7 +56,7 @@ export const WORAN_ES_HAENGT = {
 export const KCS = [
   { name: "Kurs",   fach: "Strategie",                claim: "Wohin, und was lohnt sich?",      desc: "Ziele, Engpässe und Anwendungsfälle werden nach Wirkung bewertet. Ergebnis ist ein Fahrplan, den Geschäftsführung und Fachbereiche mittragen.",
     fehlt: "Systeme ohne Nutzen: Es wird gebaut, was technisch geht, nicht was sich rechnet." },
-  { name: "Crew",   fach: "Menschen und Befähigung",  claim: "Nutzung statt bloßem Wissen.",    desc: "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag tatsächlich genutzt werden. Der Betriebsrat ist früh an Bord.",
+  { name: "Crew",   fach: "Menschen und Befähigung",  claim: "Nutzung statt bloßem Wissen.",    desc: "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag tatsächlich genutzt werden. Der Betriebsrat ist gegebenenfalls früh an Bord.",
     fehlt: "Systeme ohne Nutzer: Die Lösung steht, aber niemand arbeitet damit, oft aus Sorge um die eigene Rolle." },
   { name: "Schiff", fach: "KI-Architektur",           claim: "Seetüchtig statt Demo.",          desc: "Systeme, die stabil laufen, sicher sind und sich in Ihre bestehende IT einfügen, mit klarer Verantwortung für den Betrieb.",
     fehlt: "Strategie bleibt Papier: Die Ideen sind gut, aber nichts davon läuft sicher im Betrieb." },
