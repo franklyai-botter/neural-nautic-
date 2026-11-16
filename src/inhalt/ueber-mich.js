@@ -65,6 +65,10 @@ export const KOPF = {
 // KI-Film (NnFilm.tsx): Unterlagen wirbeln zur Kugel und werden zur KI-Architektur, am Ende das
 // NN-Monogramm. KI-generiert aus Franks Porträt. Art. 50 Abs. 4 AI Act: fester Hinweis „KI-generiert“.
 // Stumm, Schleife, nur im Sichtbereich (ab 20 % sichtbar); bei prefers-reduced-motion nur Standbild.
+// Seit 16.11.2026 die Fassung mit Franks Gesicht aus dem eigenen Gesichtsmodell (Werkzeuge/gesichtsmodell,
+// lizenzsauber: MediaPipe Apache 2.0 + eigener Autoencoder, kein InsightFace), Fassung v2 (Nachtraining),
+// Teint mittel, gekuerzt auf 24,3 s (ergebnis/film-eigen-v2-mittel-kurz-web.mp4). Standbild = Bild 262 der
+// gekuerzten Fassung, wie bei der ersten gekuerzten Fassung. Datei unter derselben Adresse wie vorher.
 export const FILM = {
   video: { src: "/frank-ki/film.mp4", datei: "/inhalt/frank-ki/film.mp4" },
   poster: { src: "/frank-ki/film.webp", datei: "/inhalt/frank-ki/film.webp" },
