@@ -3,7 +3,8 @@
      (neural-nautic-live/app/sitemap.ts). Adressen ohne Schrägstrich am Ende, wie die Canonicals.
      lastmod = letzte inhaltliche Änderung der Seite (git log auf src/inhalt/<seite>.js und src/seiten/<seite>.*).
      Neue Seite angelegt oder Inhalt geändert? Hier nachziehen, sonst findet Google sie spät.
-     /impressum und /datenschutz tragen wie live "noindex, follow" und stehen trotzdem hier (wie live). -->
+     /impressum und /datenschutz fehlen bewusst: sie tragen "noindex, follow" (wie live), eine Sitemap mit
+     noindex-Seiten meldet die Search Console als Widerspruch. Live standen sie noch drin. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://neuralnautic.de</loc>
@@ -49,15 +50,5 @@
     <loc>https://neuralnautic.de/kontakt</loc>
     <lastmod>2026-11-14</lastmod>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://neuralnautic.de/impressum</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://neuralnautic.de/datenschutz</loc>
-    <lastmod>2026-11-15</lastmod>
-    <priority>0.2</priority>
   </url>
 </urlset>

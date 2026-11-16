@@ -6,22 +6,8 @@
 # Neubaus verglichen (16.11.2026). Weitergeleitet wird nur, wo es die gleiche Datei im Neubau gibt
 # (Ausnahme /architektur/model3d.js und model3d.css: Nachfolger gleichen Namens, angepasst für den Neubau).
 # Keine Regeln für /api/* (das beantwortet der Worker).
-# Die Seiten selbst (/leistungen usw.) liegen unter denselben Adressen. html_handling "drop-trailing-slash"
-# würde /leistungen/ nur mit 307 (vorübergehend) umleiten; live antwortet dauerhaft (308). Deshalb hier 301.
-# VORAUSSETZUNG: wrangler.jsonc → assets.html_handling = "drop-trailing-slash". Mit dem Standard
-# "auto-trailing-slash" entsteht eine Schleife (/leistungen → 307 /leistungen/ → 301 /leistungen …),
-# geprüft mit wrangler dev am 16.11.2026. Ohne diese Einstellung den folgenden Block entfernen.
-
-/leistungen/                     /leistungen                              301
-/methode/                        /methode                                 301
-/ki-im-unternehmen/              /ki-im-unternehmen                       301
-/ai-engineering/                 /ai-engineering                          301
-/ki-tool-kompass/                /ki-tool-kompass                         301
-/wissen/                         /wissen                                  301
-/ueber-mich/                     /ueber-mich                              301
-/kontakt/                        /kontakt                                 301
-/impressum/                      /impressum                               301
-/datenschutz/                    /datenschutz                             301
+# Die Seiten selbst (/leistungen usw.) liegen unter denselben Adressen. /seite/ -> /seite leitet der Worker
+# dauerhaft um (308 wie live, src/worker/index.js), zusammen mit html_handling "drop-trailing-slash".
 
 # Entfallene Seite: /use-cases ist seit 29.10.2026 in /leistungen aufgegangen (next.config.ts, live 308)
 /use-cases                       /leistungen                              301
