@@ -8,6 +8,9 @@
 # Keine Regeln für /api/* (das beantwortet der Worker).
 # Die Seiten selbst (/leistungen usw.) liegen unter denselben Adressen. html_handling "drop-trailing-slash"
 # würde /leistungen/ nur mit 307 (vorübergehend) umleiten; live antwortet dauerhaft (308). Deshalb hier 301.
+# VORAUSSETZUNG: wrangler.jsonc → assets.html_handling = "drop-trailing-slash". Mit dem Standard
+# "auto-trailing-slash" entsteht eine Schleife (/leistungen → 307 /leistungen/ → 301 /leistungen …),
+# geprüft mit wrangler dev am 16.11.2026. Ohne diese Einstellung den folgenden Block entfernen.
 
 /leistungen/                     /leistungen                              301
 /methode/                        /methode                                 301
