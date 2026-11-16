@@ -1,0 +1,62 @@
+/* Statische Fassung ohne JavaScript (Pruefpunkt A2, NN-CR-03). Von Hand gepflegt, NICHT erzeugt.
+   Das Plugin statischeFassung() in vite.config.js setzt diese Regeln als <style> in den <head> jeder Seite.
+   Mit JavaScript (Klasse .js am <html>, gesetzt per Inline-Skript im <head>) ist die Fassung unsichtbar und wird beim
+   Start entfernt. Ohne JavaScript ist sie das Einzige in <main>: lesbar auf dem dunklen Grund der Seite.
+   Gestaltung ueber die id (#nn-statisch), damit Seitenstile wie „.ks a:not([class])“ (gemeinsam.css) nicht durchschlagen. */
+.js .nn-statisch { display: none !important; }
+/* ohne JavaScript: der Rest von <main> (z. B. das Hero-Standbild der Startseite) bleibt aus */
+html:not(.js) #inhalt > .nn-statisch ~ * { display: none !important; }
+html:not(.js), html:not(.js) body { background: #061419; }
+/* Preloader ohne JavaScript aus (der <noscript>-Stil im Kopf greift nicht ueberall, z. B. bei abgeschalteter Skriptausfuehrung
+   per DevTools/Playwright, dort wird <noscript> nicht ausgewertet) */
+html:not(.js) .bs-lader { display: none !important; }
+
+#nn-statisch {
+  position: relative; z-index: 5; box-sizing: border-box; max-width: 72ch; margin: 0 auto; padding: 28px 20px 72px;
+  font: 400 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #e3eef0; background: #061419; overflow-wrap: break-word; hyphens: auto;
+}
+#nn-statisch h1, #nn-statisch h2, #nn-statisch h3, #nn-statisch h4, #nn-statisch h5, #nn-statisch h6 {
+  color: #fff; font-weight: 700; line-height: 1.25; margin: 1.6em 0 .5em; text-transform: none; letter-spacing: normal;
+}
+#nn-statisch h1 { font-size: 2em; margin-top: .9em; }
+#nn-statisch h2 { font-size: 1.45em; }
+#nn-statisch h3 { font-size: 1.15em; }
+#nn-statisch h4, #nn-statisch h5, #nn-statisch h6 { font-size: 1em; }
+#nn-statisch p, #nn-statisch ul, #nn-statisch ol, #nn-statisch dl, #nn-statisch table, #nn-statisch figure, #nn-statisch blockquote { margin: 0 0 1em; }
+#nn-statisch ul { list-style: disc; padding-left: 1.4em; }
+#nn-statisch ol { list-style: decimal; padding-left: 1.6em; }
+#nn-statisch li { margin: .3em 0; }
+#nn-statisch a { color: #6feff5; text-decoration: underline; text-underline-offset: .15em; }
+#nn-statisch a:hover { text-decoration-thickness: 2px; }
+#nn-statisch a:focus-visible { outline: 2px solid #6feff5; outline-offset: 2px; }
+#nn-statisch strong, #nn-statisch b { color: #fff; font-weight: 700; }
+#nn-statisch a strong, #nn-statisch a b { color: inherit; }
+/* Partner-Logos in Listen auf hellem Feld (dunkle Wortmarken waeren auf dem Grund kaum zu sehen) */
+#nn-statisch li img { background: #fff; padding: 4px 8px; }
+/* Breite aus dem width-Attribut (Logos klein), begrenzt auf die Spalte */
+#nn-statisch img { display: block; max-width: min(100%, 560px); height: auto; margin: .6em 0; border-radius: 6px; }
+#nn-statisch section, #nn-statisch article { margin: 2.2em 0; }
+#nn-statisch article { padding-left: 1em; border-left: 2px solid rgba(111, 239, 245, .35); }
+#nn-statisch figure { margin-left: 0; margin-right: 0; }
+#nn-statisch figcaption { font-size: .92em; color: #a9c0c5; margin: .3em 0 .6em; }
+#nn-statisch table { border-collapse: collapse; width: 100%; font-size: .94em; }
+#nn-statisch th, #nn-statisch td { border: 1px solid rgba(255, 255, 255, .2); padding: .45em .6em; text-align: left; vertical-align: top; }
+#nn-statisch th { color: #fff; }
+#nn-statisch th p, #nn-statisch td p { margin: 0; }
+#nn-statisch dt { font-weight: 600; color: #fff; }
+#nn-statisch dd { margin: 0 0 .4em 1.2em; }
+#nn-statisch blockquote { margin-left: 0; padding-left: 1em; border-left: 3px solid #6feff5; }
+#nn-statisch nav { margin: .6em 0 1em; }
+#nn-statisch nav > a { display: inline-block; margin: 0 1.1em .35em 0; }
+/* Kopf (Logo, Termin, Navigation) und Fuss (Spalten, Impressum, Datenschutz) abgesetzt */
+#nn-statisch > header:first-child { padding-bottom: 1em; border-bottom: 1px solid rgba(255, 255, 255, .16); }
+#nn-statisch > header:first-child > a { display: inline-block; margin: 0 1.1em .35em 0; }
+#nn-statisch > header:first-child > a:first-child { color: #fff; font-weight: 700; font-size: 1.2em; text-decoration: none; }
+#nn-statisch > footer { margin-top: 3em; padding-top: 1.5em; border-top: 1px solid rgba(255, 255, 255, .16); font-size: .93em; }
+#nn-statisch > footer img { max-width: 72px; }
+#nn-statisch > footer > a { display: table; margin-bottom: 1.2em; }   /* eigene Zeile, nur so breit wie der Text */
+#nn-statisch > footer nav { display: inline-block; vertical-align: top; min-width: 14em; margin-right: 1.5em; }
+#nn-statisch > footer nav > p { margin: 0 0 .3em; color: #fff; font-weight: 600; }
+#nn-statisch > footer ul { list-style: none; padding-left: 0; }
+#nn-statisch > footer li { margin: .15em 0; }

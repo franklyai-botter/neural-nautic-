@@ -32,6 +32,7 @@ export const { esc, el, qs, qsa, knopf, ziel } = hilfen;
  * @param {boolean} [o.chat=true]   Chat-Platzhalter unten rechts (der echte Chat kommt mit dem Server-Teil)
  */
 export function kapitelseite(o = {}) {
+  document.getElementById('nn-statisch')?.remove();   // statische Fassung fuer Besuch ohne JavaScript (vite.config.js → statischeFassung) raus, bevor die Seite entsteht
   document.body.classList.add('nn', 'ks');
   const main = document.getElementById('inhalt');
   const lenis = initScroll();

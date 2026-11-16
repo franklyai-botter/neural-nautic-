@@ -11,7 +11,8 @@
     "cf:dev": "npm run build && wrangler dev --port 8791",
     "prebuild": "node tools/kern-holen.mjs",
     "kern": "node tools/kern-holen.mjs",
-    "test:worker": "node tools/worker-test.mjs"
+    "test:worker": "node tools/worker-test.mjs",
+    "statisch": "python -I tools/statisch_erzeugen.py"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.5",
