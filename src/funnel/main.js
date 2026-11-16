@@ -20,6 +20,7 @@ import * as I from '../inhalt/start.js';
 import figuren from '../../figuren.json';
 
 const { esc, knopf, ziel, el, qs } = hilfen;
+document.getElementById('nn-statisch')?.remove();   // statische Fassung fuer Besuch ohne JavaScript (vite.config.js → statischeFassung) raus, bevor die Seite entsteht
 const param = new URLSearchParams(location.search);
 const main = document.getElementById('inhalt');
 const lenis = initScroll();

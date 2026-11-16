@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 6191",
-    "cf:dev": "vite build && wrangler dev"
+    "cf:dev": "vite build && wrangler dev",
+    "statisch": "python -I tools/statisch_erzeugen.py"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.5",
