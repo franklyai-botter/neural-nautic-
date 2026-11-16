@@ -49,11 +49,19 @@ document.addEventListener('click', (e) => {
 /* ---------------- L2: Hero (nur Portraet), Schnitt, L3: Bildkarte als eigene Buehne im Logo-Wirbel ---------------- */
 const E = I.EINSTIEG;
 // L2: Der Hero zeigt nur das Portraet. Scrollen wandelt Frank zum Exo (Kante vom Kopf zu den Schultern); Mausspur,
-// Leerlauf-Scan und Ansichten folgen der Maus wie am Seitenanfang. Kein Zurueckzoomen, kein Ganzkoerper. Strecke:
-//   0,03-0,50 Umwandlung zum Exo     0,50-0,55 das Exo steht
-//   0,55-1,00 Schnitt: L3 faehrt als Vorhang mit Visier-Bogen ueber den stehenden Hero (kein Morphen)
-const HERO_HOEHE = 2.4;                          // Strecke in Bildschirmhoehen; die letzte gehoert dem Vorhang (vorher 3.2, Frank 15.11.2026: schneller zum Inhalt)
-const HERO_PHASEN = { umVon: 0.03, umBis: 0.5 };
+// Leerlauf-Scan und Ansichten folgen der Maus wie am Seitenanfang. Kein Zurueckzoomen, kein Ganzkoerper.
+// Strecke in Bildschirmhoehen gescrollt: Anlauf, Umwandlung zum Exo, das Exo steht, dann Schnitt: L3 faehrt als
+// Vorhang mit Visier-Bogen ueber den stehenden Hero (kein Morphen). Der Vorhang belegt immer genau eine
+// Bildschirmhoehe (funnel.css: .nn-karte--vorhang margin-top -100vh), deshalb werden die Phasen hier aus den
+// Strecken gerechnet. Frank 16.11.2026: bei 2,4 ohne angepasste Phasen kam der Bogen mitten in die Umwandlung.
+// Frank 15.11.2026: schneller zum Inhalt (vorher 3,2) -> Umwandlung bleibt so schnell wie seitdem (0,64).
+const STRECKE = { anlauf: 0.04, umwandlung: 0.64, stehen: 0.12, vorhang: 1 };
+const HERO_WEG = STRECKE.anlauf + STRECKE.umwandlung + STRECKE.stehen + STRECKE.vorhang;   // 1,8
+const HERO_HOEHE = 1 + HERO_WEG;                 // 2,8: Abschnittshoehe = Weg + eine Bildschirmhoehe Pin
+const HERO_PHASEN = {
+  umVon: STRECKE.anlauf / HERO_WEG,                                   // 0,02
+  umBis: (STRECKE.anlauf + STRECKE.umwandlung) / HERO_WEG,            // 0,38; Vorhang ab (Weg - 1) / Weg = 0,44
+};
 const startEl = document.getElementById('start');
 const heroEl = qs('[data-hero]', startEl);
 const heroPin = qs('.hero__pin', startEl);
