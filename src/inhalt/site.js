@@ -24,7 +24,7 @@ export const META_STANDARD = {
   description: "Pragmatische KI-Beratung für Unternehmen: Potenzialanalyse, Controlled Pilot, KI-Automatisierung, Governance, Schulung und Werkzeugauswahl.",
   keywords: "KI-Beratung Mittelstand, KI-Beratung KMU, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung",
   // Verifizierungen der Live-Domain (Google Search Console, Bing Webmaster Tools).
-  // Gelten für https://neuralnautic.de/. Ein Funnel auf einer Subdomain braucht eigene.
+  // Gelten für https://neuralnautic.de/. Stehen statisch in jedem <head> und müssen dort bleiben.
   verification: {
     google: "typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg",
     other: { "msvalidate.01": "3C8697890156E133718E943ECB712C0E" },
@@ -37,8 +37,9 @@ export const META_STANDARD = {
     title: "NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen",
     description: "KI-Beratung für den Mittelstand: in Berlin, bundesweit und im DACH-Raum.",
     url: "/",
-    // Bild der Live-Seite: /og/neuralnautic-og.png (1200 × 627). Nicht kopiert, weil es Logos enthält
-    // (NN-Monogramm, for42-Wortmarke). Für den Funnel neu aus public/brand/ erzeugen.
+    // Bild der Live-Seite: /og/neuralnautic-og.png (1200 × 627), byte-gleich nach public/og/ übernommen
+    // (16.11.2026, Welle 2 SEO), damit Link-Vorschauen beim Umschalten weiter funktionieren. Offen: Das Bild
+    // trägt noch den alten Leitsatz mit „echte“; neu erzeugen nur aus public/brand/, Logo nicht nachbauen.
     images: [{ url: "/og/neuralnautic-og.png", width: 1200, height: 627, alt: "NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" }],
   },
   twitter: { card: "summary_large_image" },
@@ -100,7 +101,9 @@ export const DATEIEN = {
   "/architektur/szene.json": "/inhalt/architektur/szene.json",
   "/architektur/model3d.js": "/inhalt/architektur/model3d.js",
   "/architektur/model3d.css": "/inhalt/architektur/model3d.css",
-  "/og/frank-schuett.jpg": "/inhalt/og/frank-schuett.jpg",
+  // Open-Graph-Bilder unter der alten Adresse (public/og/), weil Vorschau-Dienste sie über die URL zwischenspeichern
+  "/og/frank-schuett.jpg": "/og/frank-schuett.jpg",
+  "/og/neuralnautic-og.png": "/og/neuralnautic-og.png",
   // Logos: nur aus public/brand/
   "/logo-star.png": "/brand/nn-stern-2026-10-kompass.png",
   "/logo-monogram.png": "/brand/nn-monogramm.png",
