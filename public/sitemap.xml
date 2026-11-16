@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap für https://neuralnautic.de, gleiche 11 Adressen und Prioritäten wie die alte Seite
+     (neural-nautic-live/app/sitemap.ts). Adressen ohne Schrägstrich am Ende, wie die Canonicals.
+     lastmod = letzte inhaltliche Änderung der Seite (git log auf src/inhalt/<seite>.js und src/seiten/<seite>.*).
+     Neue Seite angelegt oder Inhalt geändert? Hier nachziehen, sonst findet Google sie spät.
+     /impressum und /datenschutz tragen wie live "noindex, follow" und stehen trotzdem hier (wie live). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://neuralnautic.de</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/leistungen</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/methode</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/ki-im-unternehmen</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/ai-engineering</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/ki-tool-kompass</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/wissen</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/ueber-mich</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/kontakt</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/impressum</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://neuralnautic.de/datenschutz</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.2</priority>
+  </url>
+</urlset>
