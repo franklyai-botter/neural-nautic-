@@ -1,0 +1,56 @@
+# Weiterleitungen alter Adressen von neuralnautic.de (Next.js-Seite, neural-nautic-live @ 447000b).
+# Cloudflare Workers Static Assets, Syntax: Quelle Ziel Status. Die oberste passende Zeile gewinnt,
+# statische Regeln stehen vor den Regeln mit *.
+#
+# Grundlage: alle Dateien aus neural-nautic-live/public/ und app/ (Symbole), per SHA-1 mit public/ des
+# Neubaus verglichen (16.11.2026). Weitergeleitet wird nur, wo es die gleiche Datei im Neubau gibt
+# (Ausnahme /architektur/model3d.js und model3d.css: Nachfolger gleichen Namens, angepasst für den Neubau).
+# Keine Regeln für /api/* (das beantwortet der Worker).
+# Die Seiten selbst (/leistungen usw.) liegen unter denselben Adressen. html_handling "drop-trailing-slash"
+# würde /leistungen/ nur mit 307 (vorübergehend) umleiten; live antwortet dauerhaft (308). Deshalb hier 301.
+# VORAUSSETZUNG: wrangler.jsonc → assets.html_handling = "drop-trailing-slash". Mit dem Standard
+# "auto-trailing-slash" entsteht eine Schleife (/leistungen → 307 /leistungen/ → 301 /leistungen …),
+# geprüft mit wrangler dev am 16.11.2026. Ohne diese Einstellung den folgenden Block entfernen.
+
+/leistungen/                     /leistungen                              301
+/methode/                        /methode                                 301
+/ki-im-unternehmen/              /ki-im-unternehmen                       301
+/ai-engineering/                 /ai-engineering                          301
+/ki-tool-kompass/                /ki-tool-kompass                         301
+/wissen/                         /wissen                                  301
+/ueber-mich/                     /ueber-mich                              301
+/kontakt/                        /kontakt                                 301
+/impressum/                      /impressum                               301
+/datenschutz/                    /datenschutz                             301
+
+# Entfallene Seite: /use-cases ist seit 29.10.2026 in /leistungen aufgegangen (next.config.ts, live 308)
+/use-cases                       /leistungen                              301
+/use-cases/                      /leistungen                              301
+
+# Symbole (Next.js app/favicon.ico, app/icon.png, app/apple-icon.png): byte-gleich in public/brand/
+/favicon.ico                     /brand/nn-stern-kompass-favicon.ico      301
+/icon.png                        /brand/nn-stern-2026-10-kompass.png      301
+/apple-icon.png                  /brand/nn-stern-kompass-apple-180.png    301
+
+# Logos: byte-gleich in public/brand/
+/logo-star.png                   /brand/nn-stern-2026-10-kompass.png      301
+/logo-monogram.png               /brand/nn-monogramm.png                  301
+/partner/for42-wordmark.svg      /brand/partner/for42-wordmark.svg        301
+/partner/springgate-logo.png     /brand/partner/springgate-logo.png       301
+/partner/karlson-logo.png        /brand/partner/karlson-logo.png          301
+
+# Porträt (strukturierte Daten /ueber-mich) und Zertifikat (Links von außen, Lebenslauf, LinkedIn)
+/frank-portrait.webp             /inhalt/frank-portrait.webp              301
+/cert-tuev-sued.pdf              /inhalt/cert-tuev-sued.pdf               301
+
+# Ordner: Dateinamen unverändert, nur der Ort ist neu
+/frank-ki/*                      /inhalt/frank-ki/:splat                  301
+/zertifikate/*                   /inhalt/zertifikate/:splat               301
+/architektur/*                   /inhalt/architektur/:splat               301
+/ki-logos/*                      /medien/ki-logos/:splat                  301
+
+# Ohne Regel, weil sie unter derselben Adresse im Neubau liegen:
+#   /og/neuralnautic-og.png, /og/frank-schuett.jpg (Open Graph), /a54c1e058bc28ff81662082b447a78a9.txt (IndexNow-Schlüssel)
+# Ohne Gegenstück im Neubau (liefern 404): /werkzeug-logos/*, /bg-neural-network.png, /brand-key-visual.png,
+#   /frank-schuett-quadrat.jpeg, /logo-monogram-script.png, /partner/for42-wordmark-nn.svg,
+#   Next.js-Vorlagen /file.svg, /globe.svg, /next.svg, /vercel.svg, /window.svg

@@ -3,15 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <!-- Funnel auf Subdomain: wiederholt Inhalte der Hauptseite, soll ihr bei Google keine Konkurrenz machen -->
-  <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#061419" />
-  <!-- Titel und Beschreibung wie neural-nautic-live/app/datenschutz/page.tsx (src/inhalt/datenschutz.js → META) -->
+  <!-- Metadaten wie neuralnautic.de (neural-nautic-live/app/datenschutz/page.tsx). Seit 15.11.2026 heißt der Leitsatz
+       „Gemeinsam KI in Arbeitsprozesse bringen“ (ohne „echte“), siehe docs/INHALT-ABWEICHUNGEN.json. -->
   <title>Datenschutz | NeuralNautic</title>
   <meta name="description" content="Datenschutzerklärung von NeuralNautic zur Verarbeitung personenbezogener Daten, Hosting, Kontaktaufnahme, Downloads, E-Mail-Versand, KI-Chat, Terminbuchung und Videokonferenzen." />
-  
-  <link rel="icon" href="/brand/nn-stern-kompass-favicon.ico" />
-  <link rel="apple-touch-icon" href="/brand/nn-stern-kompass-apple-180.png" />
+  <meta name="keywords" content="KI-Beratung Mittelstand, KI-Beratung KMU, KI-Automatisierung, KI-Potenzialanalyse, KI-Governance, Controlled AI Pilot, KI-Schulung" />
+  <!-- Wie live: Pflichtseite nicht in den Suchindex, Links darauf dürfen verfolgt werden -->
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://neuralnautic.de/datenschutz" />
+  <!-- Bestätigung der Domain bei Google Search Console (Property https://neuralnautic.de/) und Bing Webmaster
+       Tools. MÜSSEN BLEIBEN: ohne sie verliert das Konto die Bestätigung und den Zugriff auf die Daten. -->
+  <meta name="google-site-verification" content="typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg" />
+  <meta name="msvalidate.01" content="3C8697890156E133718E943ECB712C0E" />
+  <!-- Vorschau beim Teilen (LinkedIn, Messenger, X); Bildadresse absolut auf die Produktivdomain.
+       Wie live: diese Seite setzt kein eigenes openGraph, Titel, Beschreibung und og:url sind die der Startseite. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="NeuralNautic" />
+  <meta property="og:title" content="NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" />
+  <meta property="og:description" content="KI-Beratung für den Mittelstand: in Berlin, bundesweit und im DACH-Raum." />
+  <meta property="og:url" content="https://neuralnautic.de" />
+  <meta property="og:image" content="https://neuralnautic.de/og/neuralnautic-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="627" />
+  <meta property="og:image:alt" content="NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" />
+  <meta name="twitter:description" content="KI-Beratung für den Mittelstand: in Berlin, bundesweit und im DACH-Raum." />
+  <meta name="twitter:image" content="https://neuralnautic.de/og/neuralnautic-og.png" />
+  <meta name="twitter:image:alt" content="NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" />
+  <meta name="twitter:image:width" content="1200" />
+  <meta name="twitter:image:height" content="627" />
+  <!-- Symbole wie live (/favicon.ico 256 px, /icon.png 512 px, /apple-icon.png 180 px): dieselben Dateien aus
+       public/brand/, die alten Adressen leiten per public/_redirects dorthin -->
+  <link rel="icon" href="/brand/nn-stern-kompass-favicon.ico" sizes="16x16 32x32 48x48 256x256" type="image/x-icon" />
+  <link rel="icon" href="/brand/nn-stern-2026-10-kompass.png" sizes="512x512" type="image/png" />
+  <link rel="apple-touch-icon" href="/brand/nn-stern-kompass-apple-180.png" sizes="180x180" type="image/png" />
   <link rel="preload" as="image" href="/brand/nn-stern-kompass-128.png" />
   <link rel="stylesheet" href="/src/funnel/kritisch.css" />
   <style>

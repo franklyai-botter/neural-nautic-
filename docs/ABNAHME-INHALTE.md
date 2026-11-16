@@ -164,7 +164,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 
 | Einheit | Datei → Schlüssel | Zielplatz | Art |
 |---|---|---|---|
-| Metadaten inkl. Open-Graph-Profilbild | `ueber-mich.js` → `META`; `public/inhalt/og/frank-schuett.jpg` | `<head>` | S |
+| Metadaten inkl. Open-Graph-Profilbild | `ueber-mich.js` → `META`; `public/og/frank-schuett.jpg` (seit 16.11. unter der alten Adresse) | `<head>` | S |
 | JSON-LD Person (Name, Rolle, sameAs, 2 Zertifikate, Themen) | → `PERSON_JSON_LD` | `<head>` | S |
 | Seitenkopf: „Über mich“, H1, Einleitung | → `KOPF` | Seitenkopf | S |
 | KI-Film (Video, Poster, Beschreibungen, „KI-generiert“, Abspielregeln) | → `FILM`; `public/inhalt/frank-ki/film.mp4`, `film.webp` | Film oben; auch L7 der Startseite | S |
@@ -230,10 +230,13 @@ Logos), `ki-logos/` und `frank-schuett-quadrat.jpeg` (Startseite, Bereich des Ag
    Dateien in den Worker verlegen.
 3. **Open-Graph-Bild der Startseite fehlt:** `og/neuralnautic-og.png` enthält NN-Monogramm und
    for42-Wortmarke und wurde deshalb nicht kopiert. Für den Funnel neu aus `public/brand/` erzeugen.
+   **Stand 16.11.2026 (Welle 2 SEO):** Die Seite ersetzt neuralnautic.de, das Bild liegt deshalb byte-gleich
+   unter `public/og/` (gleiche Adresse wie live). Offen: Es trägt noch den Leitsatz mit „echte“.
 4. **Rechtstexte sind laut Live-Code ein Entwurf** („vor Livegang rechtlich prüfen lassen“). Die
    Datenschutzerklärung beschreibt Hosting, Resend, Mistral, Calendly und Google Meet der Live-Seite.
    Weicht der Funnel davon ab (andere Subdomain, Funktionen ohne Backend), muss sie angepasst werden.
 5. **Verifizierungen** (Google, Bing) gelten nur für `neuralnautic.de`, nicht für eine Subdomain.
+   **Stand 16.11.2026:** Die Seite ersetzt neuralnautic.de; beide Tags stehen in jedem `<head>`.
 6. **Footer-Claim** „Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.“ steht wortgleich
    bei for42 (Hinweis aus dem Strukturvorschlag).
 7. **Startseite, Abweichungen in `start.js` gegenüber der Live-Seite** (Bereich „Bühne“): Im
