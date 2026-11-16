@@ -67,8 +67,8 @@ export const KOPF = {
 // Stumm, Schleife, nur im Sichtbereich (ab 20 % sichtbar); bei prefers-reduced-motion nur Standbild.
 // Seit 16.11.2026 die Fassung mit Franks Gesicht aus dem eigenen Gesichtsmodell (Werkzeuge/gesichtsmodell,
 // lizenzsauber: MediaPipe Apache 2.0 + eigener Autoencoder, kein InsightFace), Fassung v2 (Nachtraining),
-// Teint mittel, gekuerzt auf 24,3 s (ergebnis/film-eigen-v2-mittel-kurz-web.mp4). Standbild = Bild 262 der
-// gekuerzten Fassung, wie bei der ersten gekuerzten Fassung. Datei unter derselben Adresse wie vorher.
+// Teint mittel, volle Laenge 33,2 s (ergebnis/film-eigen-v2-mittel-web.mp4; Frank 16.11.2026: „nimm mal den
+// laengeren“). Standbild = Bild 288 wie beim Original (film-eigen-v2-mittel.webp). Datei unter derselben Adresse.
 export const FILM = {
   video: { src: "/frank-ki/film.mp4", datei: "/inhalt/frank-ki/film.mp4" },
   poster: { src: "/frank-ki/film.webp", datei: "/inhalt/frank-ki/film.webp" },
