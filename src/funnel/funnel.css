@@ -186,6 +186,17 @@ main { display: block; }
 }
 @media (max-width: 639px) { .nn-leistungen .bs-karten__feld { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
 
+/* ---------- L5: Kurs, Crew und Schiff fuellen die Hoehe (Frank, 16.11.2026) ----------
+   Ein gemeinsames Band von knapp unter dem Seitenkopf bis 30 px ueber dem unteren Rand. Kurs (3:4,3) und Schiff (16:9)
+   wachsen mit der Fensterhoehe (Schiff hoechstens 92 % der Breite); das Organigramm skaliert main.js (crewAusrichten)
+   auf dieselbe Hoehe, mit denselben Werten. Mobil (senkrechter Zickzack) und Reduced Motion bleiben wie gehabt. */
+@media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
+  #methode { --band-oben: min(110px, 12vh); --band-unten: 30px; --band-h: calc(100vh - var(--band-oben) - var(--band-unten)); }
+  #methode .bs-quer__feld:has(> .bs-quer__buehne[data-buehne="kurs"]), #methode .bs-quer__feld--breit { padding-top: var(--band-oben); }
+  #methode .bs-quer__feld--hoch > .bs-quer__buehne[data-buehne="kurs"] { width: calc(var(--band-h) * 3 / 4.3); }
+  #methode .bs-quer__feld--breit .bs-quer__clip { width: min(92vw, calc(var(--band-h) * 16 / 9)); }
+}
+
 /* ---------- Aufgabe 4/5: Kurs-Feld frei, Hero nur Portraet, Schnitt per Vorhang, Bildkarte als eigene Buehne ---------- */
 /* L5 Kurs: kein Rand um das Feld; das Netz laeuft zum Feldrand weich aus, der Stern schwirrt frei darueber */
 .bs-quer__buehne[data-buehne="kurs"] { border: 0; }

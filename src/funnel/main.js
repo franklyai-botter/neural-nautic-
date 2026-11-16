@@ -377,27 +377,36 @@ organigramm(crewTeile);
 const orgWurzel = crewTeile.firstElementChild;
 crewPaar.append(qs('p.sr-only', orgWurzel), qs('.nn-org__formel', orgWurzel), qs('.bs-ki', orgWurzel));
 
-// Organigramm und Gleichung oben buendig mit dem Titel „Crew“ (Frank, 14.11.2026): Felder um den Abstand des Titels setzen
+// Feld des Organigramms (Lage und Groesse setzt crewAusrichten)
 const crewFelder = [qg.buehnen.crew.closest('.bs-quer__feld')];
-const crewTitel = [...qg.el.querySelectorAll('.bs-quer__gross')].find((h) => h.textContent === M.teile[1].name);
-// Massstab an die verfuegbare Hoehe koppeln (Frank: beide Organigramme und die Formel immer ganz im Fenster): Oberkante
-// am Crew-Titel, das Paar wird bei Bedarf gleichmaessig verkleinert (0,62 … 1); reicht das nicht, rueckt es nach oben.
+// Organigramm und Formel fuellen die Hoehe (Frank, 16.11.2026: „das Organigramm sollte den ganzen Raum vertikal
+// ausfuellen, der Kurs und das Schiff auch“). Vorher oben buendig mit dem Crew-Titel (14.11.) und hoechstens
+// Originalgroesse: auf hohen Bildschirmen begann es auf halber Hoehe. Jetzt dasselbe Band wie Kurs und Schiff
+// (funnel.css: --band-oben = min(110px, 12vh), --band-unten = 30px). Das Paar wird gleichmaessig skaliert
+// (0,62 … 1,9) und die Buehne bekommt die skalierte Groesse, damit die Galerie den Platz einplant und nichts ueberlappt.
+const crewBuehne = qg.buehnen.crew;
 function crewAusrichten() {
   crewFelder.forEach((f) => { f.style.paddingTop = ''; });
   crewPaar.style.transform = '';
   crewPaar.style.transformOrigin = '';
-  if (reduced || window.innerWidth < 992 || !crewTitel) return;
-  const spur = crewFelder[0].parentElement.getBoundingClientRect().top;
-  const kopf = Math.min(110, window.innerHeight * 0.12);                  // Platz unter dem Seitenkopf
-  const rand = 30;                                                        // Luft unten (KI-Label, Fensterrand)
-  let oben = Math.max(kopf, crewTitel.getBoundingClientRect().top - spur);
+  crewPaar.style.width = '';
+  crewBuehne.style.width = '';
+  crewBuehne.style.height = '';
+  delete crewPaar.dataset.skala;
+  if (reduced || window.innerWidth < 992) return;
+  const oben = Math.min(110, window.innerHeight * 0.12);                  // wie --band-oben
+  const rand = 30;                                                        // wie --band-unten
   const h = crewPaar.offsetHeight;
   const w = crewPaar.offsetWidth;
-  let s = Math.min(1, (window.innerHeight - oben - rand) / h, (window.innerWidth * 0.94) / w);
-  if (s < 0.62) { s = 0.62; oben = Math.max(kopf, window.innerHeight - rand - h * s); }
+  const s = Math.max(0.62, Math.min(1.9, (window.innerHeight - oben - rand) / h, (window.innerWidth * 0.94) / w));
   crewFelder.forEach((f) => { f.style.paddingTop = `${Math.round(oben)}px`; });
-  if (s < 0.999) { crewPaar.style.transformOrigin = '50% 0'; crewPaar.style.transform = `scale(${s.toFixed(3)})`; }
+  crewPaar.style.width = `${w}px`;
+  crewPaar.style.transformOrigin = '0 0';
+  crewPaar.style.transform = `scale(${s.toFixed(3)})`;
+  crewBuehne.style.width = `${Math.round(w * s)}px`;
+  crewBuehne.style.height = `${Math.round(h * s)}px`;
   crewPaar.dataset.skala = s.toFixed(3);
+  ScrollTrigger.refresh();   // Galerie-Laenge neu messen (Feld ist breiter geworden)
 }
 document.fonts.ready.then(crewAusrichten);
 window.addEventListener('resize', crewAusrichten);
