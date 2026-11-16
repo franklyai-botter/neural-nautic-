@@ -23,8 +23,9 @@ body.nn { margin: 0; font-family: var(--bs-text); font-size: 17px; line-height: 
 main { display: block; }
 .ks [hidden] { display: none !important; }      /* hidden schlaegt eigene display-Regeln (Formular, Danke, Fehler) */
 @media (max-width: 991px) { body.nn { font-size: 16px; } }
-.ks a:not([class]) { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); text-underline-offset: 3px; transition: color .25s; }
-.ks a:not([class]):hover { color: var(--accent); }
+/* nicht im Menue (dort waren sonst alle Punkte unterstrichen, Frank 16.11.2026) */
+.ks a:not([class]):not(.bs-menue a) { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); text-underline-offset: 3px; transition: color .25s; }
+.ks a:not([class]):not(.bs-menue a):hover { color: var(--accent); }
 .bs-ton-hell { --accent: var(--bs-akzent-hell); --bar: var(--bs-akzent-hell); }
 
 /* ---------- 2 Seitenkopf: Eyebrow, H1, Einleitung ---------- */

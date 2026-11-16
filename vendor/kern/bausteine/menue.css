@@ -37,9 +37,12 @@
 .bs-menue__cta { display: none; }
 
 @media (max-width: 991px) {
-  .bs-menue__innen { grid-template-columns: 1fr; padding: 84px var(--bs-rand) calc(20px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; }
+  /* Liste darf nicht unter ihren Inhalt schrumpfen: sonst legt sie sich auf kleinen Handys ueber Trennlinie und Fuss
+     (Frank 16.11.2026: „das Menue auf dem Handy ist ueberschichtet“). Reicht die Hoehe nicht, scrollt das Menue. */
+  .bs-menue__innen { grid-template-columns: 1fr; grid-template-rows: minmax(min-content, 1fr) auto; padding: 84px var(--bs-rand) calc(20px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; }
   .bs-menue__bilder { display: none; }
-  .bs-menue__nav a { font-size: clamp(26px, 5.6vh, 44px); gap: 14px; }
+  /* Schrift auch an der Breite begrenzt und ohne Umbruch: „Im Unternehmen“ brach auf 375 px in zwei Zeilen um */
+  .bs-menue__nav a { font-size: min(clamp(26px, 5.6vh, 44px), 8.2vw); gap: 14px; white-space: nowrap; }
   .bs-menue__fuss { gap: 4px 20px; }
   .bs-menue__cta { display: inline-flex; margin: 8px 0 0; width: 100%; justify-content: center; }
 }
