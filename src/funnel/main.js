@@ -492,7 +492,7 @@ const heroBild = qs('.hero__bild img', heroBuehne);
 const bildDa = heroBild ? (heroBild.complete ? Promise.resolve() : new Promise((r) => { heroBild.addEventListener('load', r, { once: true }); heroBild.addEventListener('error', r, { once: true }); })) : Promise.resolve();
 const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5 });
 
-// Chat-Knopf wie auf den Kapitelseiten (Frank 15.11.2026: „wo ist mein Chatbot“); der echte Chat kommt mit dem Server-Teil
+// KI-Chat wie auf den Kapitelseiten (Frank 15.11.2026: „wo ist mein Chatbot“), Server /api/chat
 document.body.append(chatWidget());
 
 document.fonts.ready.then(() => {

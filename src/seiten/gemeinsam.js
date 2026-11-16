@@ -29,7 +29,7 @@ export const { esc, el, qs, qsa, knopf, ziel } = hilfen;
 /**
  * Seitenrahmen aufbauen. Gibt { main, lenis, kopf, teil(b), nachStart(fn), fertig() } zurueck.
  * @param {object} [o]
- * @param {boolean} [o.chat=true]   Chat-Platzhalter unten rechts (der echte Chat kommt mit dem Server-Teil)
+ * @param {boolean} [o.chat=true]   KI-Chat unten rechts (src/seiten/chat.js, Server: /api/chat)
  */
 export function kapitelseite(o = {}) {
   document.getElementById('nn-statisch')?.remove();   // statische Fassung fuer Besuch ohne JavaScript (vite.config.js → statischeFassung) raus, bevor die Seite entsteht
@@ -72,7 +72,7 @@ export function kapitelseite(o = {}) {
     history.replaceState(null, '', a.getAttribute('href'));
   });
 
-  // Fusskarte mit Laufband, Daumen-CTA (mobil), Chat-Platzhalter
+  // Fusskarte mit Laufband, Daumen-CTA (mobil), KI-Chat
   const fuss = fusskarte(FUSS);
   const fussBand = teil(laufband({ art: 'schrift', lenis, tempo: 70, eintraege: [`${esc(SITE.name)} ·`] }));
   fuss.band.appendChild(fussBand.el);
@@ -229,5 +229,4 @@ export function zahlHoch(zahlEl, wert, { dauer = 1.6, start = 'top 85%', format 
   gsap.to(o, { v: wert, duration: dauer, ease: 'expo.out', scrollTrigger: { trigger: zahlEl, start, once: true }, onUpdate: () => { zahlEl.textContent = format(o.v); } });
 }
 
-/* Chat-Platzhalter: Knopf wie live (Kompassrose), oeffnet einen Hinweis. Sendet nichts.
-   SERVER-TEIL (Welle 2): hier den echten Chat einsetzen (src/inhalt/chat.js → CHAT, backend.js → CHAT_API). */
+/* KI-Chat: src/seiten/chat.js (Daten src/inhalt/chat.js, Server /api/chat in src/worker/api.js). */

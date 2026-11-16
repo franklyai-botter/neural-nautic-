@@ -5,7 +5,7 @@
 
    Inhalt:  1 Marke und Grund   2 Seitenkopf   3 Abschnitt   4 Karten, Quelle, Liste   5 Tabelle mit Hover
             6 Akkordeon   7 Formular (Downloads, Kontakt)   8 Ebenenmodell   9 Weiter zum naechsten Kapitel
-            10 Chat-Platzhalter   11 Reduced Motion */
+            10 KI-Chat   11 Reduced Motion */
 
 /* ---------- 1 Marke und Grund ---------- */
 :root {
@@ -156,7 +156,7 @@ main { display: block; }
 .ks-weiter .bs-wrap { position: relative; z-index: 1; }
 .ks-weiter .bs-label::before { transition: background-color .3s; }
 
-/* ---------- 10 Chat-Platzhalter: jetzt in chat-platzhalter.css (auch Startseite) ---------- */
+/* ---------- 10 KI-Chat: in src/seiten/chat.css (auch Startseite) ---------- */
 
 /* ---------- 11 Reduced Motion ---------- */
 .is-reduced .ks-tabelle__zeile::before, .is-reduced .ks-weiter__fuellung, .is-reduced .ks-akk__plus::before, .is-reduced .ks-akk__plus::after { transition: none; }
