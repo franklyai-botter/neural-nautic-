@@ -73,5 +73,21 @@ export const CHAT = {
     // (visualViewport) angepasst; am Desktop Fenster über dem Knopf, Breite min(380px, 100vw − 40px).
     mobilMaxHoehe: 480,
     desktopBreite: "min(380px, calc(100vw - 40px))",
+    // Wie CHAT_API in backend.js: der Server nimmt die letzten 20 Nachrichten, je höchstens 2000 Zeichen.
+    // Der Client schickt deshalb nicht mehr (Neubau, live schickt den ganzen Verlauf).
+    maxVerlauf: 20,
+    // Neubau: Ohne Antwort nach 60 s gilt die Anfrage als gescheitert (fehler.verbindung). Live wartet unbegrenzt.
+    zeitlimitMs: 60000,
+  },
+
+  // Neubau, nicht live: Namen und Ansagen für Screenreader (live fehlen sie). Sichtbar wird davon nichts.
+  barrierefrei: {
+    eingabe: "Ihre Frage an den NeuralNautic Assistenten",
+    senden: "Frage senden",
+    verlauf: "Gesprächsverlauf",
+    ich: "Sie:",
+    assistent: "Assistent:",
+    laedt: "Antwort wird geladen …",
+    neuerTab: "(öffnet in neuem Tab)",
   },
 };

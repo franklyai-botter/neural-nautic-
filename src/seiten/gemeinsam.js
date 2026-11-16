@@ -20,7 +20,7 @@ import { kopf, menue, preloader, laufband, fusskarte, hilfen } from '@kern/baust
 import { createNetz } from '@kern/netz/netz.js';
 import { netzHintergrund } from '../funnel/netz-hintergrund.js';
 import { KOPF, MENUE, FUSS, SITE } from '../inhalt/start.js';
-import { chatPlatzhalter } from './chat-platzhalter.js';
+import { chatWidget } from './chat.js';
 import './gemeinsam.css';
 
 export { gsap, ScrollTrigger, reduced, hilfen };
@@ -76,7 +76,7 @@ export function kapitelseite(o = {}) {
   const fussBand = teil(laufband({ art: 'schrift', lenis, tempo: 70, eintraege: [`${esc(SITE.name)} ·`] }));
   fuss.band.appendChild(fussBand.el);
   main.after(fuss.el, k.daumen);
-  if (o.chat !== false) document.body.append(chatPlatzhalter());
+  if (o.chat !== false) document.body.append(chatWidget());
 
   // Preloader (Stern als Maske), falls die Seite ihn im HTML hat
   const offen = preloader(document.querySelector('[data-lader]'), { bereit: document.fonts.ready, still: reduced, maxWarten: 300, dauer: 0.5 });
