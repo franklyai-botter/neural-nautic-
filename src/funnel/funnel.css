@@ -95,13 +95,18 @@ main { display: block; }
 .nn-org__pfeil { fill: none; stroke: var(--org-linie); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
 .nn-org__ki-linien path.nn-org__pfeil { stroke-dasharray: none; }
 /* Crew: Anordnung nach Franks Vorlage (zwei Spalten, KI-Agenten rechts auf Hoehe der Fuehrungskraefte) */
-.nn-org--crew .nn-org__bild { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-areas: "g ki" "f ki" "m ki" "t1 t2" "w0 w0" "w1 w1" "w2 w2"; justify-items: center; align-items: center; column-gap: clamp(14px, 2vw, 30px); }
+.nn-org--crew .nn-org__bild { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-areas: "g ki" "f ki" "m ki" "tt tt" "w0 w0" "w1 w1" "w2 w2"; justify-items: center; align-items: center; column-gap: clamp(14px, 2vw, 30px); }
 .nn-org--crew [data-k="g"] { grid-area: g; } .nn-org--crew [data-k="f"] { grid-area: f; } .nn-org--crew [data-k="m"] { grid-area: m; }
-.nn-org--crew [data-k="ki"] { grid-area: ki; } .nn-org--crew [data-k="t1"] { grid-area: t1; } .nn-org--crew [data-k="t2"] { grid-area: t2; }
-.nn-org--crew [data-k="t1"], .nn-org--crew [data-k="t2"] { margin-top: 14px; }   /* Platz fuer zwei Knickhoehen */
+.nn-org--crew [data-k="ki"] { grid-area: ki; }
+/* Teams (Frank, 16.11.2026: vier Teams mit je vier): nebeneinander ueber die volle Breite, Bezeichnung unter den Figuren,
+   damit vier Kaesten auch bei 1440 px und mobil in eine Zeile passen. Abstand oben: Platz fuer zwei Knickhoehen. */
+.nn-org--crew .nn-org__teams { grid-area: tt; justify-self: stretch; display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+.nn-org--crew .nn-org__teams .nn-org__knoten { flex-direction: column; gap: 5px; padding: 8px 10px 7px; }
 /* KI-Agenten als senkrechte Spalte ueber Geschaeftsfuehrung bis Multiplikatoren, Exos oben, ein Pill darunter */
 .nn-org--crew [data-k="ki"] { align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; width: clamp(118px, 10.5vw, 160px); padding: 12px 8px; }
 .nn-org--crew [data-k="ki"] .nn-org__kante { position: static; transform: none; margin-top: 2px; }
+/* Acht KI-Agenten in zwei Reihen zu vier (Frank, 16.11.2026) */
+.nn-org--crew [data-k="ki"] .nn-org__figuren--exo { display: grid; grid-template-columns: repeat(4, auto); gap: 6px 1px; }
 .nn-org--crew [data-k="w0"] { grid-area: w0; margin-top: 8px; }
 .nn-org--crew .nn-org__bild { padding-right: 26px; }   /* Platz fuer die KI-Linie rechts an den Teams vorbei */ .nn-org--crew [data-k="w1"] { grid-area: w1; } .nn-org--crew [data-k="w2"] { grid-area: w2; }
 .nn-org__schritt { padding: 10px 20px; }
@@ -134,7 +139,7 @@ main { display: block; }
 .nn-crew-paar { position: relative; display: grid; }
 .nn-crew-paar__teile { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(28px, 3vw, 56px); align-items: start; }
 .nn-crew-paar > .nn-org__formel { margin-top: clamp(26px, 3.6vh, 40px); }
-.nn-crew-paar > .bs-ki { left: 0; right: auto; top: 0; bottom: auto; }   /* links oben frei, rechts steht die KI-Spalte */
+.nn-crew-paar > .bs-ki { left: 0; right: auto; top: auto; bottom: -22px; }   /* unter der Formel links (oben links steht seit 16.11. die breitere Geschaeftsfuehrung) */
 @media (max-width: 991px) {
   .nn-crew-paar__teile { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   .nn-crew-paar > .nn-org__formel { margin-top: 32px; }

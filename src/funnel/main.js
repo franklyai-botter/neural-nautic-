@@ -170,14 +170,17 @@ wch.danach.appendChild(film.el);
 main.append(wch.el);
 
 /* ---------------- L5: Organigramm der Crew (Feld nach dem Crew-Text) ----------------
-   Struktur fest vorgegeben (Frank, 14.11.2026): Geschaeftsfuehrung -> Fuehrungskraefte -> Multiplikatoren -> Team 1 und
-   Team 2; KI-Agenten unterstuetzen beide Teams (gestrichelt). Punkte = Personen. Sichtbar ist HTML mit SVG-Linien
+   Struktur fest vorgegeben (Frank, 14.11.2026): Geschaeftsfuehrung -> Fuehrungskraefte -> Multiplikatoren -> Teams;
+   KI-Agenten unterstuetzen alle Ebenen (gestrichelt). Punkte = Personen. Anzahlen (Frank, 16.11.2026): Geschaeftsfuehrung 2,
+   Fuehrungskraefte 3, Multiplikatoren 4, vier Teams mit je 4. Sichtbar ist HTML mit SVG-Linien
    (aria-hidden), Screenreader lesen eine verschachtelte Liste. Einspielung von oben nach unten, Reduced Motion: sofort. */
 const ORG = {
   label: 'Organigramm der Crew',
-  knoten: [['g', 'Geschäftsführung', 1], ['f', 'Führungskräfte', 3], ['m', 'Multiplikatoren', 2], ['t1', 'Team 1', 4], ['t2', 'Team 2', 4]],
-  ki: 'KI-Agenten', kiAnzahl: 4, kante: 'unterstützen',
-  linien: [['g', 'f'], ['f', 'm'], ['m', 't1'], ['m', 't2'], ['t1', 'w0'], ['t2', 'w0'], ['w0', 'w1'], ['w1', 'w2']],
+  knoten: [['g', 'Geschäftsführung', 2], ['f', 'Führungskräfte', 3], ['m', 'Multiplikatoren', 4],
+    ['t1', 'Team 1', 4], ['t2', 'Team 2', 4], ['t3', 'Team 3', 4], ['t4', 'Team 4', 4]],
+  teams: ['t1', 't2', 't3', 't4'],
+  ki: 'KI-Agenten', kiAnzahl: 8, kante: 'unterstützen',   // acht in zwei Reihen (Frank, 16.11.2026: „in den Kasten passen noch 4 rein“)
+  linien: [['g', 'f'], ['f', 'm'], ['m', 't1'], ['m', 't2'], ['m', 't3'], ['m', 't4'], ['t1', 'w0'], ['t2', 'w0'], ['t3', 'w0'], ['t4', 'w0'], ['w0', 'w1'], ['w1', 'w2']],
   // Ablauf unter den Teams (Frank, 14.11.2026)
   ablauf: ['Wissen aus den Teams sichern', 'In Prozessen automatisieren', 'Bewährte Abläufe skalieren'],
   // „Die Agenten speichern auch das Wissen und optimieren die Prozesse.“ (Frank, 14.11.2026)
@@ -197,17 +200,19 @@ function figurStil(rolle) {
 }
 function organigramm(buehne) {
   // Anordnung nach Franks Vorlage (14.11.2026): links untereinander Geschaeftsfuehrung -> Fuehrungskraefte -> Multiplikatoren,
-  // KI-Agenten rechts auf Hoehe der Fuehrungskraefte, unten Team 1 (unter Multiplikatoren) und Team 2 (unter KI-Agenten).
+  // KI-Agenten rechts daneben als Spalte; darunter die Teams nebeneinander ueber die volle Breite (seit 16.11.2026 vier).
   const kn = Object.fromEntries(ORG.knoten.map(([id, name, n]) => [id, { name, n }]));
   const figurenHtml = (n, exo) => `<span class="nn-org__figuren${exo ? ' nn-org__figuren--exo' : ''}">${'<i></i>'.repeat(n)}</span>`;
   const knoten = (id) => `<div class="nn-org__knoten" data-k="${id}">${figurenHtml(kn[id].n)}<b>${esc(kn[id].name)}</b></div>`;
   const formelText = ORG.formel.map((f) => (Array.isArray(f) ? `${f[0]} (${f[1]})` : f)).join(' ');
-  const kiLinien = ['ki-g', 'ki-f', 'ki-m', 'ki-t1', 'ki-t2'];   // KI-Agenten unterstuetzen alle Ebenen (Frank, 14.11.2026)
+  const T = ORG.teams;
+  const kiLinien = ['ki-g', 'ki-f', 'ki-m', ...T.map((t) => `ki-${t}`)];   // KI-Agenten unterstuetzen alle Ebenen (Frank, 14.11.2026)
+  const ebenen = ['g', 'f', 'm', ...T].map((id) => kn[id].name);
   const wurzel = el(`
     <div class="nn-org nn-org--crew">
       <ul class="sr-only" aria-label="${esc(ORG.label)}">
-        <li>${esc(kn.g.name)}<ul><li>${esc(kn.f.name)}<ul><li>${esc(kn.m.name)}<ul><li>${esc(kn.t1.name)}</li><li>${esc(kn.t2.name)}</li></ul></li></ul></li></ul></li>
-        <li>${esc(ORG.ki)} ${esc(ORG.kante)} alle Ebenen: ${esc(['g', 'f', 'm', 't1'].map((id) => kn[id].name).join(', '))} und ${esc(kn.t2.name)}</li>
+        <li>${esc(kn.g.name)}<ul><li>${esc(kn.f.name)}<ul><li>${esc(kn.m.name)}<ul>${T.map((t) => `<li>${esc(kn[t].name)}</li>`).join('')}</ul></li></ul></li></ul></li>
+        <li>${esc(ORG.ki)} ${esc(ORG.kante)} alle Ebenen: ${esc(ebenen.slice(0, -1).join(', '))} und ${esc(ebenen.at(-1))}</li>
         <li>${esc(ORG.kiAblaufText)}</li>
       </ul>
       <ol class="sr-only" aria-label="Ablauf aus den Teams">${ORG.ablauf.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>
@@ -217,7 +222,7 @@ function organigramm(buehne) {
         <svg class="nn-org__ki-linien" xmlns="http://www.w3.org/2000/svg">${kiLinien.map((id) => `<path data-l="${id}" /><path class="nn-org__pfeil" data-p="${id}" />`).join('')}</svg>
         <svg class="nn-org__ki-linien nn-org__ki-unten" xmlns="http://www.w3.org/2000/svg">${ORG.kiAblauf.map(([id]) => `<path data-l="ki-${id}" /><path class="nn-org__pfeil" data-p="ki-${id}" />`).join('')}</svg>
         ${ORG.kiAblauf.map(([id, t]) => `<span class="nn-org__kante" data-kante="ki-${id}">${esc(t)}</span>`).join('')}
-        ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b><span class="nn-org__kante">${esc(ORG.kante)}</span></div>${knoten('m')}${knoten('t1')}${knoten('t2')}
+        ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b><span class="nn-org__kante">${esc(ORG.kante)}</span></div>${knoten('m')}<div class="nn-org__teams">${T.map(knoten).join('')}</div>
         ${ORG.ablauf.map((t, i) => `<div class="nn-org__knoten nn-org__schritt" data-k="w${i}"><b>${esc(t)}</b></div>`).join('')}
         <div class="nn-org__formel">${ORG.formel.map((f) => (Array.isArray(f)
           ? `<div class="nn-org__term"><b>${esc(f[0])}</b><small>${esc(f[1])}</small></div>` : `<span class="nn-org__zeichen">${esc(f)}</span>`)).join('')}</div>
@@ -238,41 +243,40 @@ function organigramm(buehne) {
     const w = bild.offsetWidth; const h = bild.offsetHeight;
     if (!w) return;
     for (const s of bild.querySelectorAll('svg')) s.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    const P = Object.fromEntries(['g', 'f', 'm', 't1', 't2', 'ki', 'w0', 'w1', 'w2'].map((id) => [id, lageIn(bild, id)]));
+    const P = Object.fromEntries(['g', 'f', 'm', ...T, 'ki', 'w0', 'w1', 'w2'].map((id) => [id, lageIn(bild, id)]));
     const spitze = (x, y) => `M${x - 4.5},${y - 6.5} L${x},${y - 0.5} L${x + 4.5},${y - 6.5}`;
     const setze = (sel, d) => qs(sel, bild).setAttribute('d', d);
-    const yA = P.m.b + (P.t1.t - P.m.b) * 0.36;     // Knick der Linie Multiplikatoren -> Team 2
-    const yB = P.m.b + (P.t1.t - P.m.b) * 0.68;     // Knick der gestrichelten Linie KI-Agenten -> Team 1
-    const tb = Math.max(P.t1.b, P.t2.b); const yC = tb + (P.w0.t - tb) * 0.5;   // Teams laufen zusammen
+    // Verteiler-Linien: Multiplikatoren -> alle Teams (Knick bei yA), KI-Agenten -> alle Teams gestrichelt (Knick bei yB,
+    // Eintritt rechts der Mitte), Teams laufen bei yC zusammen
+    const tt = Math.min(...T.map((t) => P[t].t)); const tb = Math.max(...T.map((t) => P[t].b));
+    const yA = P.m.b + (tt - P.m.b) * 0.36;
+    const yB = P.m.b + (tt - P.m.b) * 0.68;
+    const yC = tb + (P.w0.t - tb) * 0.5;
     const linien = {
       'g-f': [`M${P.g.x},${P.g.b} V${P.f.t}`, P.g.x, P.f.t],
       'f-m': [`M${P.f.x},${P.f.b} V${P.m.t}`, P.f.x, P.m.t],
-      'm-t1': [`M${P.m.x},${P.m.b} V${P.t1.t}`, P.m.x, P.t1.t],
-      'm-t2': [`M${P.m.x},${P.m.b} V${yA} H${P.t2.x} V${P.t2.t}`, P.t2.x, P.t2.t],
-      't1-w0': [`M${P.t1.x},${P.t1.b} V${yC} H${P.w0.x} V${P.w0.t}`, P.w0.x, P.w0.t],
-      't2-w0': [`M${P.t2.x},${P.t2.b} V${yC} H${P.w0.x} V${P.w0.t}`, P.w0.x, P.w0.t],
+      ...Object.fromEntries(T.map((t) => [`m-${t}`, [`M${P.m.x},${P.m.b} V${yA} H${P[t].x} V${P[t].t}`, P[t].x, P[t].t]])),
+      ...Object.fromEntries(T.map((t) => [`${t}-w0`, [`M${P[t].x},${P[t].b} V${yC} H${P.w0.x} V${P.w0.t}`, P.w0.x, P.w0.t]])),
       'w0-w1': [`M${P.w0.x},${P.w0.b} V${P.w1.t}`, P.w1.x, P.w1.t],
       'w1-w2': [`M${P.w1.x},${P.w1.b} V${P.w2.t}`, P.w2.x, P.w2.t],
     };
     for (const [id, [d, x, y]] of Object.entries(linien)) { setze(`[data-l="${id}"]`, d); setze(`[data-p="${id}"]`, spitze(x, y)); }
     // KI-Agenten als Spalte rechts: kurze gestrichelte Pfeile nach links zu Geschaeftsfuehrung, Fuehrungskraeften und
-    // Multiplikatoren, nach unten zu den Teams (links mit Knick zu Team 1, rechts gerade zu Team 2)
+    // Multiplikatoren, nach unten zu allen Teams (Eintritt rechts der Mitte, neben der Linie von oben)
     const links = (x, y) => `M${x + 6.5},${y - 4.5} L${x + 0.5},${y} L${x + 6.5},${y + 4.5}`;
     for (const id of ['g', 'f', 'm']) {
       const y = (P[id].t + P[id].b) / 2;
       setze(`[data-l="ki-${id}"]`, `M${P.ki.l},${y} H${P[id].r}`);
       setze(`[data-p="ki-${id}"]`, links(P[id].r, y));
     }
-    const off = Math.max(18, (P.ki.r - P.ki.l) * 0.28);
-    const x1 = P.ki.x - off; const x2 = P.ki.x + off;
-    const e1 = P.t1.x + (P.t1.r - P.t1.x) * 0.55;   // Eintritt in Team 1 (rechte Haelfte, neben der Linie von oben)
-    setze('[data-l="ki-t1"]', `M${x1},${P.ki.b} V${yB} H${e1} V${P.t1.t}`);
-    setze('[data-l="ki-t2"]', `M${x2},${P.ki.b} V${P.t2.t}`);
-    setze('[data-p="ki-t1"]', spitze(e1, P.t1.t));
-    setze('[data-p="ki-t2"]', spitze(x2, P.t2.t));
+    for (const t of T) {
+      const e = P[t].x + (P[t].r - P[t].x) * 0.55;
+      setze(`[data-l="ki-${t}"]`, `M${P.ki.x},${P.ki.b} V${yB} H${e} V${P[t].t}`);
+      setze(`[data-p="ki-${t}"]`, spitze(e, P[t].t));
+    }
     // KI-Agenten speichern das Wissen und optimieren die Prozesse: die Spalte laeuft rechts an den Teams vorbei nach
     // unten und fuehrt von rechts in die ersten beiden Ablaufschritte (keine neue Kreuzung)
-    const xr = Math.min(w - 4, Math.max(P.ki.r - 10, P.t2.r + 14));
+    const xr = Math.min(w - 4, Math.max(P.ki.r - 10, P[T.at(-1)].r + 14));
     const start = xr <= P.ki.r - 6 ? `M${xr},${P.ki.b}` : `M${P.ki.r},${P.ki.b - 14} H${xr}`;
     const yw = (id) => (P[id].t + P[id].b) / 2;
     setze('[data-l="ki-w0"]', `${start} V${yw('w0')} H${P.w0.r}`);
@@ -300,7 +304,7 @@ function organigramm(buehne) {
   gsap.set(bild.querySelectorAll('.nn-org__linien .nn-org__pfeil'), { autoAlpha: 0 });
   gsap.set(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 100% 0%)' });
   gsap.set(qs('.nn-org__ki-unten', bild), { clipPath: 'inset(0% 0% 100% 0%)' });
-  gsap.set([k('g'), k('f'), k('m'), k('t1'), k('t2'), k('ki'), k('w0'), k('w1'), k('w2')], clip());
+  gsap.set([k('g'), k('f'), k('m'), ...T.map(k), k('ki'), k('w0'), k('w1'), k('w2')], clip());
   gsap.set(bild.querySelectorAll('.nn-org__figuren i'), { autoAlpha: 0, y: 6 });
   gsap.set(bild.querySelectorAll('.nn-org__kante'), { autoAlpha: 0 });
   gsap.set(bild.querySelectorAll('.nn-org__term'), clip());
@@ -312,13 +316,13 @@ function organigramm(buehne) {
     .to(k('f'), auf).to(...figuren(['f']))
     .to(l('f-m'), wachsen, '-=0.15').to(p('f-m'), spitzeAn, '-=0.05')
     .to(k('m'), auf).to(...figuren(['m']))
-    .to([l('m-t1'), l('m-t2')], wachsen, '-=0.15').to([p('m-t1'), p('m-t2')], spitzeAn, '-=0.05')
-    .to([k('t1'), k('t2')], { ...auf, stagger: 0.08 }).to(...figuren(['t1', 't2']))
+    .to(T.map((t) => l(`m-${t}`)), wachsen, '-=0.15').to(T.map((t) => p(`m-${t}`)), spitzeAn, '-=0.05')
+    .to(T.map(k), { ...auf, stagger: 0.08 }).to(...figuren(T))
     .to(k('ki'), auf, '-=0.2').to(...figuren(['ki']))
     .to(qs('.nn-org__ki-linien', bild), { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.inOut' }, '-=0.2')
     .to(k('ki').querySelectorAll('.nn-org__kante'), { autoAlpha: 1, duration: 0.35 }, '-=0.45')
     // Ablauf: die Teams laufen zusammen, dann Schritt fuer Schritt nach unten
-    .to([l('t1-w0'), l('t2-w0')], wachsen, '-=0.1').to([p('t1-w0'), p('t2-w0')], spitzeAn, '-=0.05').to(k('w0'), auf)
+    .to(T.map((t) => l(`${t}-w0`)), wachsen, '-=0.1').to(T.map((t) => p(`${t}-w0`)), spitzeAn, '-=0.05').to(k('w0'), auf)
     .to(l('w0-w1'), wachsen, '-=0.15').to(p('w0-w1'), spitzeAn, '-=0.05').to(k('w1'), auf)
     .to(l('w1-w2'), wachsen, '-=0.15').to(p('w1-w2'), spitzeAn, '-=0.05').to(k('w2'), auf)
     // KI-Agenten speichern das Wissen und optimieren die Prozesse (nach dem Ablauf, vor der Formel)
@@ -396,7 +400,7 @@ function crewAusrichten() {
   if (reduced || window.innerWidth < 992) return;
   const oben = Math.min(110, window.innerHeight * 0.12);                  // wie --band-oben
   const rand = 30;                                                        // wie --band-unten
-  const h = crewPaar.offsetHeight;
+  const h = crewPaar.offsetHeight + 24;                                    // + Hinweis „KI-generiert“ unter der Formel
   const w = crewPaar.offsetWidth;
   const s = Math.max(0.62, Math.min(1.9, (window.innerHeight - oben - rand) / h, (window.innerWidth * 0.94) / w));
   crewFelder.forEach((f) => { f.style.paddingTop = `${Math.round(oben)}px`; });
