@@ -74,13 +74,15 @@ const nachpruefen = (e) => { if (e.target.getAttribute?.('aria-invalid') === 'tr
 form.addEventListener('input', nachpruefen);
 form.addEventListener('change', nachpruefen);
 
-/* SERVER-TEIL (Welle 2): Versand an POST /api/contact (Resend), Daten als JSON { name, company, email, phone, topic, message },
-   Regeln und Mailtext in src/inhalt/backend.js → KONTAKT_API, MAIL. Bis dahin wird nichts gesendet: die Funktion meldet
-   sofort Erfolg, die Seite zeigt den Danke-Zustand. Antwortet der Server spaeter mit Fehler, kommt dessen `error` oder
-   F.fehlerStandard in .ks-fehler. */
+/* Versand an POST /api/contact (Worker src/worker/api.js, Mail ueber Resend), Daten als JSON
+   { name, company, email, phone, topic, message }. Danke nur, wenn der Server den Versand bestaetigt (NN-CR-01);
+   sonst steht dessen `error` oder F.fehlerStandard in .ks-fehler. */
 async function senden(daten) {
-  void daten;
-  return { ok: true };
+  const res = await fetch(F.anfrage?.endpoint || '/api/contact', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(daten),
+  });
+  const j = await res.json().catch(() => ({}));
+  return res.ok && j.ok === true ? { ok: true } : { ok: false, error: j.error };
 }
 
 form.addEventListener('submit', async (e) => {

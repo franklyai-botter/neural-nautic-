@@ -1,0 +1,22 @@
+/* Preloader-Maske. Kritischer Teil (erste zwei Regeln) gehoert zusaetzlich inline in den <head>. */
+.bs-lader { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: var(--bs-dunkel, #0b0d0e); }
+.bs-lader img { width: clamp(84px, 9vw, 128px); height: auto; }
+/* Oeffnung: Signet als Loch (Maske: volle Flaeche minus Signet), das Loch waechst ueber --bs-g */
+.bs-lader.is-offen {
+  --bs-g: 60px;
+  -webkit-mask-image: var(--bs-maske), linear-gradient(#000, #000);
+  mask-image: var(--bs-maske), linear-gradient(#000, #000);
+  -webkit-mask-size: var(--bs-g) var(--bs-g), 100% 100%;
+  mask-size: var(--bs-g) var(--bs-g), 100% 100%;
+  -webkit-mask-position: center, center;
+  mask-position: center, center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) { .bs-lader { display: none; } }
+/* Notausgang, gehoert ebenfalls inline in den <head>: verschwindet nach 4 s auch dann, wenn kein Skript ihn entfernt */
+.bs-lader { animation: bs-lader-weg 0s 4s forwards; }
+@keyframes bs-lader-weg { to { opacity: 0; visibility: hidden; pointer-events: none; } }

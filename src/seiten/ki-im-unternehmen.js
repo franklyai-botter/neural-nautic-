@@ -265,7 +265,7 @@ S.fertig();
 /* =====================================================================================================
    Download gegen freiwillige Kontaktdaten (wie ArchitekturDownload.tsx). Regeln wie der Server der Live-Seite
    (backend.js → LEAD): Honeypot leer, Angaben freiwillig, E-Mail/Telefon nach Muster, mit Kontaktdaten ist die
-   Einwilligung Pflicht. Danach startet der Download der Datei aus public/inhalt/downloads/.
+   Einwilligung Pflicht. Danach liefert der Worker die Datei (POST D.endpoint).
    ===================================================================================================== */
 function downloadKarte(D, { vorschau } = {}) {
   const F = I.DOWNLOAD_FORMULAR;
@@ -334,17 +334,22 @@ function downloadKarte(D, { vorschau } = {}) {
     senden.disabled = true;
     qs('span', senden).textContent = F.ladeText;
     try {
-      // SERVER-TEIL (Welle 2): Meldung an Frank, sobald der Worker steht. Wie live: POST D.endpoint mit
-      // JSON { name, email, phone, consent, website } (F.anfrage), Antwort ist die Datei. Bis dahin wird nichts gesendet
-      // (auch nicht, wenn Kontaktdaten angegeben sind); die Datei kommt direkt aus public/inhalt/downloads/.
-      //   const res = await fetch(D.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(daten) });
-      //   if (!res.ok) { const j = await res.json().catch(() => ({})); return zeigeFehler(j.error ?? F.fehlerStandard); }
+      // Wie live: POST D.endpoint mit JSON { name, email, phone, consent, website } (F.anfrage). Der Worker meldet
+      // Angaben per Mail an Frank und antwortet mit der Datei selbst (sie liegt nicht oeffentlich, A8).
+      const res = await fetch(D.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(daten) });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        return zeigeFehler(j.error ?? F.fehlerStandard);
+      }
+      const blob = await res.blob();
+      const adresse = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = D.datei;
+      link.href = adresse;
       link.download = D.dateiname;
       document.body.appendChild(link);
       link.click();
       link.remove();
+      setTimeout(() => URL.revokeObjectURL(adresse), 60_000);
       window.__downloads = [...(window.__downloads || []), D.dateiname];   // fuer qa
       form.hidden = true;
       danke.hidden = false;

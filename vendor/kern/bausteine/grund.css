@@ -1,0 +1,70 @@
+/* Gemeinsame Grundlage aller Bausteine.
+   Marke kommt vom Funnel ueber Variablen (auf :root oder body setzen):
+     --bs-dunkel      dunkler Grund (z. B. Petrol)        --bs-hell        heller Grund
+     --bs-flaeche     dunkle Kartenflaeche                --bs-tinte       Schrift auf hellem Grund
+     --bs-akzent      Akzent auf dunklem Grund            --bs-akzent-hell Akzent auf hellem Grund (kontraststark)
+     --bs-akzent-tinte Schrift auf Akzent                 --bs-leuchten    hellere Akzentstufe (Hover, Glanz)
+     --bs-display / --bs-text / --bs-mono   Schriften     --bs-rand        Seitenrand
+   Abschnitte waehlen den Ton ueber .bs-ton-dunkel / .bs-ton-hell; data-ton="dunkel|hell" steuert den Kopf. */
+:root {
+  --bs-dunkel: #0b0d0e; --bs-flaeche: #14181c; --bs-hell: #ffffff; --bs-tinte: #0b0d0e;
+  --bs-akzent: #3fd4e0; --bs-akzent-hell: #0d7377; --bs-akzent-tinte: #061419; --bs-leuchten: #6feff5;
+  --bs-display: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
+  --bs-text: 'Inter Variable', Inter, system-ui, sans-serif;
+  --bs-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --bs-rand: clamp(16px, 2.2vw, 32px);
+  --bs-radius: 14px;
+  --bs-ease: cubic-bezier(.65, .05, 0, 1);   /* Lando: Hover-Clip 0,75 s */
+  --bs-dauer: .75s;
+}
+
+.bs-ton-dunkel { --bg: var(--bs-dunkel); --fg: #fff; --muted: rgba(255, 255, 255, .64); --linie: rgba(255, 255, 255, .16);
+  --accent: var(--bs-akzent); --bar: var(--bs-akzent); background: var(--bg); color: var(--fg); }
+.bs-ton-hell { --bg: var(--bs-hell); --fg: var(--bs-tinte); --muted: color-mix(in srgb, var(--bs-tinte) 66%, transparent); --linie: color-mix(in srgb, var(--bs-tinte) 16%, transparent);
+  --accent: var(--bs-akzent-hell); --bar: var(--bs-akzent-hell); background: var(--bg); color: var(--fg); }
+
+.bs-wrap { width: min(1320px, 100% - 2 * var(--bs-rand)); margin-inline: auto; }
+[class^="bs-"] :where(h1, h2, h3, p, ul, ol, figure, blockquote), [class*=" bs-"] :where(h1, h2, h3, p, ul, ol, figure, blockquote) { margin: 0; padding: 0; }
+[class^="bs-"] :where(ul, ol), [class*=" bs-"] :where(ul, ol) { list-style: none; }
+[class^="bs-"] :where(a), [class*=" bs-"] :where(a) { text-decoration: none; }
+
+.bs-label { font: 500 12px/1.2 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; color: var(--muted); }
+.bs-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); flex: none; }
+.bs-label--mitte { justify-content: center; }
+.bs-h2 { font: 700 clamp(32px, 4.4vw, 72px)/.98 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; text-wrap: balance; }
+.bs-h2 em, .bs-h1 em { font-style: normal; color: var(--accent); }
+.bs-lauf { font: 400 clamp(16px, 1.25vw, 19px)/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); text-wrap: pretty; }
+
+/* Knoepfe */
+.bs-knopf { display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 22px; border-radius: 10px; border: 0; cursor: pointer;
+  font: 700 15px/1 var(--bs-display); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+  transition: height .3s, background-color .3s, color .3s, border-color .3s; }
+.bs-knopf i { font-style: normal; font-size: 18px; transition: transform .5s var(--bs-ease); }
+.bs-knopf:hover i { transform: translate(3px, -3px); }
+.bs-knopf--accent { background: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+.bs-knopf--accent:hover { background: var(--bs-leuchten); }
+.bs-knopf--linie { border: 1.5px solid currentColor; color: inherit; background: transparent; }
+.bs-knopf--linie:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.bs-knopf--gross { height: 68px; padding: 0 30px; font-size: 18px; border-radius: 12px; }
+/* 320 px (IF-2): nowrap-Knoepfe trieben die Rasterspuren ueber den Bildschirm. Schmal duerfen sie umbrechen und wachsen. */
+.bs-knopf { max-width: 100%; }
+@media (max-width: 479px) {
+  .bs-knopf { height: auto; min-height: 56px; padding-block: 12px; white-space: normal; text-align: center; line-height: 1.15; }
+  .bs-knopf--gross { min-height: 60px; }
+}
+.bs-link { font: 600 14px/1.25 var(--bs-display); letter-spacing: .05em; text-transform: uppercase; display: inline-flex; gap: 8px; align-items: baseline;
+  border-bottom: 1px solid var(--accent); padding-bottom: 5px; transition: color .25s, border-color .25s; }
+.bs-link i { font-style: normal; color: var(--accent); transition: transform .5s var(--bs-ease); }
+.bs-link:hover { color: var(--accent); }
+.bs-link:hover i { transform: translateX(4px); }
+
+/* Kennzeichnung generierter Bilder */
+.bs-ki { position: absolute; left: 10px; bottom: 10px; z-index: 2; padding: 5px 8px 4px; border-radius: 6px; background: rgba(6, 12, 14, .62); color: rgba(255, 255, 255, .86);
+  font: 500 9.5px/1 var(--bs-mono); letter-spacing: .1em; text-transform: uppercase; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: none; }
+
+/* Sprunglink */
+.bs-sprung { position: fixed; left: 12px; top: -80px; z-index: 2000; background: var(--bs-akzent); color: var(--bs-akzent-tinte); padding: 12px 16px; border-radius: 8px; font: 600 15px/1 var(--bs-text); }
+.bs-sprung:focus { top: 12px; }
+
+/* Fokus: auf hellem Grund die kontraststarke Akzentstufe (Lando: Lime auf Weiss war kaum sichtbar) */
+.bs-ton-hell :focus-visible { outline-color: var(--bs-akzent-hell); }

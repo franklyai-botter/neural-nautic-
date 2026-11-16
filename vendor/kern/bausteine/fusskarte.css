@@ -1,0 +1,43 @@
+/* Fusskarte mit Leuchtrand. Der Verlauf dahinter laeuft vom hellen Grund in den Akzent (Lando: Lime-Verlauf). */
+@property --bs-winkel { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.bs-fuss { position: relative; z-index: 3; padding: 14vh var(--bs-rand) 0; background: radial-gradient(120% 90% at 50% 0%, var(--bs-hell) 58%, var(--bs-akzent) 100%); }
+.bs-fuss__karte { position: relative; border-radius: 30px 30px 0 0; padding: clamp(40px, 9vh, 96px) clamp(20px, 4vw, 64px) 26px; min-height: 80vh; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: clamp(30px, 6vh, 70px) clamp(24px, 5vw, 80px); align-content: space-between;
+  box-shadow: 0 -30px 90px -30px color-mix(in srgb, var(--bs-akzent) 70%, transparent); }
+/* Leuchtrand: konischer Verlauf, nur als 1,5-px-Rand sichtbar (Maske), der Lichtpunkt wandert */
+.bs-fuss__rand { position: absolute; inset: 0; border-radius: inherit; padding: 1.5px 1.5px 0; pointer-events: none; z-index: 2;
+  background: conic-gradient(from var(--bs-winkel) at 50% 50%, transparent 0deg, var(--bs-leuchten) 40deg, var(--bs-akzent) 80deg, transparent 140deg, transparent 180deg, color-mix(in srgb, var(--bs-akzent) 70%, transparent) 230deg, transparent 290deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: bs-rand 9s linear infinite; }
+@keyframes bs-rand { to { --bs-winkel: 360deg; } }
+.bs-fuss__karte::before { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(60% 50% at 50% 0%, color-mix(in srgb, var(--bs-akzent) 16%, transparent), transparent 70%); }
+.bs-fuss__band { position: absolute; left: 0; right: 0; top: 34%; opacity: .07; pointer-events: none; color: var(--bs-akzent); }
+.bs-fuss__kopf { position: relative; display: grid; gap: 20px; justify-items: start; align-content: start; }
+.bs-fuss__logo { width: 76px; height: auto; }
+.bs-fuss__claim { font: 700 clamp(28px, 3vw, 48px)/.96 var(--bs-display); letter-spacing: -.03em; text-transform: uppercase; max-width: 10.5em; }
+.bs-fuss__ort { font: 500 12px/1.3 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+/* Spalten beginnen auf Hoehe der Ueberschrift, nicht des Logos (Frank 15.11.2026): Abstand der Ueberschrift im linken Block,
+   in fusskarte.js gemessen (ResizeObserver); einspaltig (bis 1180 px) ohne Versatz */
+@media (min-width: 1181px) { .bs-fuss__spalten { padding-top: var(--fuss-claim-oben, 0px); } }
+.bs-fuss__spalten { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px clamp(16px, 2.4vw, 40px); align-content: start; }
+.bs-fuss__spalten nav { display: grid; gap: 12px; align-content: start; }
+.bs-fuss__spalten .bs-label { color: var(--bs-akzent); }
+.bs-fuss__spalten .bs-label::before { display: none; }
+.bs-fuss__spalten ul { display: grid; gap: 2px; }
+.bs-fuss__spalten a { display: inline-block; padding: 5px 0; font: 600 clamp(13px, 1vw, 15px)/1.15 var(--bs-display); letter-spacing: .02em; overflow-wrap: anywhere; text-transform: uppercase; }
+.bs-fuss__spalten a:hover, .bs-fuss__spalten a:focus-visible, .bs-fuss__ende a:hover { color: var(--bs-akzent); }
+.bs-fuss__ende { position: relative; grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; border-top: 1px solid var(--linie); padding-top: 18px;
+  font: 500 11px/1.4 var(--bs-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.bs-fuss__ende ul { display: flex; gap: 24px; }
+.bs-fuss__ende a { padding: 6px 0; display: inline-block; }
+
+@media (max-width: 1180px) { .bs-fuss__karte { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 991px) {
+  .bs-fuss { padding-inline: 8px; padding-top: 10vh; }
+  .bs-fuss__karte { min-height: 0; border-radius: 22px 22px 0 0; padding-bottom: 96px; }
+  .bs-fuss__spalten { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* unter 360 px (320 px, 400 % Zoom) eine Spalte, sonst brechen die Linktexte mitten im Wort (IF-2) */
+@media (max-width: 359px) { .bs-fuss__spalten { grid-template-columns: minmax(0, 1fr); } }
+.is-reduced .bs-fuss__rand { animation: none; }

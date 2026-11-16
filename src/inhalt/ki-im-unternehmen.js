@@ -192,8 +192,8 @@ export const REIFEGRAD_CHECK = {
 };
 
 // --- Downloads gegen freiwillige Kontaktdaten (ArchitekturDownload.tsx) -------
-// Dasselbe Formular für beide Unterlagen. BACKEND (Welle 2): POST an den Endpunkt, Meldung per Mail
-// (Regeln in backend.js). Die Dateien liegen unter public/inhalt/downloads/.
+// Dasselbe Formular für beide Unterlagen: POST an den Endpunkt, Meldung per Mail (Regeln in backend.js).
+// Die Dateien liefert nur der Worker aus (src/worker/dateien/), nicht öffentlich.
 export const DOWNLOAD_FORMULAR = {
   hinweis: "Alle Angaben sind freiwillig: Der Download startet auch, wenn Sie die Felder leer lassen. Wenn Sie uns Ihre Kontaktdaten hinterlassen, melden wir uns gern bei Fragen.",
   felder: [
@@ -227,7 +227,6 @@ export const DOWNLOAD_FORMULAR = {
 export const DOWNLOAD_GRAFIK = {
   endpoint: "/api/architektur-download",
   dateiname: "NeuralNautic_KI-Architektur_7-Schichten.svg",
-  datei: "/inhalt/downloads/NeuralNautic_KI-Architektur_7-Schichten.svg",
   kicker: "Zum Herunterladen",
   titel: "Die KI-Architektur als Grafik für Ihre Unterlagen",
   text: "Eine Blaupause für Ihr eigenes Vorhaben: alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
@@ -239,7 +238,6 @@ export const DOWNLOAD_GRAFIK = {
 export const DOWNLOAD_CHECKLISTE = {
   endpoint: "/api/checkliste-download",
   dateiname: "NeuralNautic_KI-Checkliste_Reifegrad-und-Risiko.pdf",
-  datei: "/inhalt/downloads/NeuralNautic_KI-Checkliste_Reifegrad-und-Risiko.pdf",
   kicker: "Checkliste zum Herunterladen",
   titel: "Die ausführliche Checkliste für Ihre Leitungsrunde",
   text: "Fünfzehn Fragen in fünf Feldern mit Auswertung, dazu eine Tabelle, mit der Sie jedes KI-Vorhaben einer Risikoklasse nach EU AI Act zuordnen. Vier Seiten als PDF zum Ausdrucken.",

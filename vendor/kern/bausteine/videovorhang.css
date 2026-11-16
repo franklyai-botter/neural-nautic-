@@ -1,0 +1,14 @@
+.bs-vorhang { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
+.bs-vorhang__bild { position: absolute; left: 0; top: -9%; width: 100%; height: 118%; }
+.bs-vorhang__bild img, .bs-vorhang__bild video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bs-vorhang__bild video { opacity: 0; transition: opacity .6s; }
+.bs-vorhang.is-bereit .bs-vorhang__bild video { opacity: 1; }
+.bs-vorhang .bs-ki { left: var(--bs-rand); bottom: 22px; }
+.bs-vorhang__knopf { position: absolute; right: calc(var(--bs-rand) + 8px); bottom: 18px; z-index: 2; width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, .85); background: rgba(6, 12, 14, .45); color: #fff; display: grid; place-items: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background-color .3s, color .3s, border-color .3s; }
+.bs-vorhang__knopf:hover { background: var(--bs-akzent); border-color: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+/* Symbol: Dreieck (abspielen) oder zwei Balken (anhalten) */
+.bs-vorhang__knopf i { width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 12px; border-color: transparent transparent transparent currentColor; margin-left: 3px; }
+.bs-vorhang__knopf[aria-pressed="true"] i { width: 12px; height: 14px; border: 0; border-left: 4px solid currentColor; border-right: 4px solid currentColor; margin-left: 0; }
+.bs-vorhang__inhalt { position: absolute; left: var(--bs-rand); bottom: 9vh; z-index: 1; }
+@media (max-width: 991px) { .bs-vorhang { height: 78svh; } .bs-vorhang__knopf { bottom: 76px; right: 12px; } }

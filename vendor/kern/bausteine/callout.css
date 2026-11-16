@@ -1,0 +1,15 @@
+.bs-callout { position: relative; z-index: 2; padding: 16vh 0 18vh; text-align: center; }
+.bs-callout.bs-ton-dunkel { --bg: var(--bs-flaeche); background: var(--bs-flaeche); }
+.bs-callout__innen { display: grid; justify-items: center; gap: 24px; }
+.bs-callout__logo { width: 84px; height: auto; margin-bottom: 6px; }
+.bs-callout__titel { font: 700 clamp(40px, 6.6vw, 112px)/.92 var(--bs-display); letter-spacing: -.035em; text-transform: uppercase; max-width: 12em; text-wrap: balance; }
+.bs-callout__text { max-width: 36em; font-size: clamp(17px, 1.5vw, 22px); }
+.bs-callout__wege { display: grid; justify-items: center; gap: 14px; margin-top: 12px; }
+.bs-callout__wege .bs-klein { max-width: 40ch; font-size: 13.5px; }
+.bs-callout--satz .bs-callout__titel { font-size: clamp(28px, 3.9vw, 66px); line-height: .98; letter-spacing: -.025em; max-width: 19em; }
+/* gross = Abschluss: so gross wie „Naechstes Kapitel“ (Frank, 15.11.2026: vorher bis 120 px, „zu gross“) */
+.bs-callout--gross .bs-callout__titel { font-size: clamp(32px, 4.4vw, 76px); line-height: .95; max-width: 16em; }
+@media (max-width: 991px) {
+  .bs-callout { padding: 12vh 0 13vh; }
+  .bs-callout .bs-knopf--gross { height: 60px; font-size: 15px; padding: 0 20px; }
+}

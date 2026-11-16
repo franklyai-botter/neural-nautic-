@@ -1,0 +1,94 @@
+.bs-quer { position: relative; }
+.bs-quer__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; overflow: clip; }   /* clip: nicht programmatisch scrollbar, Fokus verschiebt den Pin nicht (K-WR-06) */
+.bs-quer__spur { display: flex; align-items: stretch; gap: clamp(40px, 6vw, 110px); height: 100%; padding: 0 4vw 0 var(--bs-rand); width: max-content; will-change: transform; }
+/* Helles Blatt: faehrt mit dem Inhalt herein, linke Kante gewoelbt (Visier-Bogen). Harte Kante statt Farbverlauf. */
+.bs-quer__spur.hat-blatt { padding-right: 0; }
+.bs-quer__blatt { flex: none; display: flex; align-items: stretch; gap: inherit; padding: 0 4vw 0 calc(11vh + 7vw); border-radius: 22vh 0 0 22vh / 50% 0 0 50%; }
+.bs-quer__feld { flex: none; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.bs-quer__feld--oben { justify-content: flex-start; padding-top: 17vh; }
+.bs-quer__feld--unten { justify-content: flex-end; padding-bottom: 9vh; }
+.bs-quer__feld--titel { width: min(88vw, 780px); gap: 26px; }
+/* Erste Ueberschrift oben buendig wie die Felder mit lage 'oben' (17vh), nicht mittig: sonst klafft beim Einfahren
+   eine halbe Bildschirmhoehe zwischen dem Abschnitt davor und der Ueberschrift (Frank, 15.11.2026) */
+@media (min-width: 992px) { .bs-quer__spur > .bs-quer__feld--titel:first-child { justify-content: flex-start; padding-top: 17vh; } }
+.bs-quer__feld--titel:not(:first-child) { margin-left: clamp(40px, 8vw, 160px); }
+.bs-quer__blatt > .bs-quer__feld--titel:first-child { width: min(80vw, 640px); }
+.bs-quer__feld--titel .bs-lauf { max-width: 34em; }
+.bs-quer__weiter { font: 500 12px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; gap: 12px; align-items: center; }
+.bs-quer__weiter span { color: var(--accent); font-size: 20px; animation: bs-schub 1.6s ease-in-out infinite; }
+@keyframes bs-schub { 50% { transform: translateX(10px); } }
+
+.bs-quer__feld--text { width: clamp(300px, 28vw, 420px); }
+.bs-quer__klein { font: 500 12px/1.2 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+/* so gross wie die Ueberschrift der Galerie (.bs-h2), Frank 15.11.2026: „in der Ebene alle die gleiche Groesse“ */
+.bs-quer__gross { font: 700 clamp(32px, 4.4vw, 72px)/.98 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; }
+.bs-quer__claim { font: 600 clamp(20px, 1.8vw, 28px)/1.12 var(--bs-display); letter-spacing: -.01em; }
+.bs-quer__feld--text .bs-lauf, .bs-quer__feld--zahl .bs-lauf { font-size: 16px; line-height: 1.5; }
+
+.bs-quer__feld--zahl { width: clamp(230px, 19vw, 300px); gap: 12px; margin-left: clamp(-70px, -3vw, -20px); }
+.bs-quer__nr { font: 700 clamp(84px, 10vw, 156px)/.8 var(--bs-display); letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px var(--fg); }
+.bs-quer__feld--zahl h3 { font: 700 clamp(22px, 2vw, 30px)/1 var(--bs-display); letter-spacing: -.01em; text-transform: uppercase; hyphens: auto; }
+
+.bs-quer__feld--bild a { display: block; border-radius: 8px; }
+.bs-quer__clip { position: relative; overflow: hidden; border-radius: 8px; }
+.bs-quer__clip img { width: 100%; height: 100%; object-fit: cover; }
+.bs-quer__clip picture { display: contents; }
+.bs-quer__feld--gross .bs-quer__clip { width: clamp(420px, 44vw, 700px); aspect-ratio: 16 / 9; }
+/* breit: Hauptbild eines Abschnitts, etwa zwei Drittel der Breite; 128vh deckelt die Hoehe auf 72vh, damit es auch mit
+   „oben“ (17vh Abstand) im Bild bleibt */
+.bs-quer__feld--breit .bs-quer__clip { width: max(520px, min(64vw, 128vh, 1180px)); aspect-ratio: 16 / 9; }
+.bs-quer__feld--hoch .bs-quer__clip { width: clamp(230px, 23vw, 360px); aspect-ratio: 3 / 4.3; }
+/* hochgross: grosse Hochformat-Grafik (z. B. Plakat der Schichten), Seitenverhaeltnis 3:5. Die Hoehe ist gedeckelt auf
+   80vh und auf Fensterhoehe minus 180 px, damit sie mit „mitte“ auch auf 720 px hohen Bildschirmen unter dem Kopf bleibt */
+.bs-quer__feld--hochgross .bs-quer__clip { width: max(280px, min(32vw, 48vh, calc((100vh - 180px) * .6), 560px)); aspect-ratio: 3 / 5; }
+.bs-quer__feld--klein .bs-quer__clip { width: clamp(170px, 15vw, 240px); aspect-ratio: 1; }
+.bs-quer__feld--bild.is-ton img { filter: saturate(.35) brightness(.9); opacity: .82; }
+/* Paarfeld: zwei Figuren gleich gross, unten buendig, dazwischen ein Plus aus zwei Balken */
+.bs-quer__feld--paar .bs-quer__clip { height: min(74vh, 720px); aspect-ratio: 1 / 1.02; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 0; }
+.bs-quer__figur { position: relative; overflow: hidden; }
+.bs-quer__paar .bs-quer__figur img { position: absolute; top: 0; left: 50%; height: 100%; width: auto; max-width: none; object-fit: fill; transform: translateX(calc(var(--mitte, .5) * -100%));
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.bs-quer__plus { position: absolute; left: 50%; top: 46%; width: clamp(44px, 5.4vw, 84px); aspect-ratio: 1; translate: -50% -50%; --bs-plus: 1; color: var(--bs-akzent); }
+.bs-quer__plus::before, .bs-quer__plus::after { content: ''; position: absolute; left: 0; top: 50%; width: 100%; height: 17%; margin-top: -8.5%; background: currentColor; transform: scaleX(var(--bs-plus)); }
+.bs-quer__plus::after { transform: rotate(90deg) scaleX(var(--bs-plus)); }
+.bs-quer__film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
+.bs-quer__film.is-laeuft video { opacity: 1; }
+.bs-quer__buehne { background: var(--bs-dunkel); }
+.bs-quer__buehne > .bs-quer__stand { position: absolute; inset: 0; }
+
+.bs-quer__feld--zitat { max-width: clamp(320px, 40vw, 640px); gap: 30px; align-items: flex-start; }
+/* Kapitel-Links am Ende der Galerie groesser als der Standard-Textlink (14 px), Frank 15.11.2026 */
+.bs-quer__feld--zitat .bs-link { font-size: clamp(17px, 1.5vw, 24px); line-height: 1.2; letter-spacing: .03em; }
+.bs-quer__satz { font: 600 clamp(24px, 2.5vw, 38px)/1.12 var(--bs-display); letter-spacing: -.01em; }
+
+/* Mobil: senkrecht im Zickzack */
+@media (max-width: 991px) {
+  .bs-quer__pin { position: static; height: auto; overflow: visible; }
+  .bs-quer__spur { flex-direction: column; width: auto; height: auto; padding: 10vh var(--bs-rand) 12vh; gap: 8vh; transform: none !important; }
+  .bs-quer__feld, .bs-quer__feld--oben, .bs-quer__feld--unten { padding: 0; justify-content: flex-start; }
+  .bs-quer__feld--titel { width: auto; margin-left: 0 !important; margin-top: 4vh; }
+  .bs-quer__weiter { display: none; }
+  .bs-quer__feld--text, .bs-quer__feld--zitat { width: 86%; }
+  .bs-quer__feld--zahl { width: 72%; margin-left: 0; }
+  .bs-quer__feld--bild { width: 78%; }
+  .bs-quer__feld--bild.hat-mobil { width: 100%; }
+  .bs-quer__feld--bild .bs-quer__clip { width: 100% !important; }
+  .bs-quer__feld--paar { width: 92%; }
+  .bs-quer__feld--paar .bs-quer__clip { height: auto; }
+  .bs-quer__feld--klein { width: 46%; }
+  .bs-quer__feld--hoch { width: 62%; }
+  .bs-quer__feld--hochgross { width: 86%; }
+  .bs-quer__spur > .bs-quer__feld:nth-child(even):not(.bs-quer__feld--titel), .bs-quer__blatt > .bs-quer__feld:nth-child(even):not(.bs-quer__feld--titel) { align-self: flex-end; }
+  .bs-quer__spur.hat-blatt { padding-bottom: 0; padding-right: var(--bs-rand); }
+  .bs-quer__blatt { flex-direction: column; gap: 8vh; margin-inline: calc(-1 * var(--bs-rand)); padding: 16vh var(--bs-rand) 12vh; border-radius: 50% 50% 0 0 / 9vh 9vh 0 0; }
+  .bs-quer__blatt > .bs-quer__feld--titel:first-child { width: auto; margin-top: 0; }
+}
+
+/* Reduced Motion */
+.is-reduced .bs-quer__pin { position: static; height: auto; overflow: visible; }
+.is-reduced .bs-quer__spur { flex-wrap: wrap; width: auto; height: auto; padding: 12vh var(--bs-rand); row-gap: 8vh; transform: none !important; }
+.is-reduced .bs-quer__feld, .is-reduced .bs-quer__feld--oben, .is-reduced .bs-quer__feld--unten { padding: 0; justify-content: flex-start; }
+.is-reduced .bs-quer__feld--titel { margin-left: 0 !important; flex-basis: 100%; }
+.is-reduced .bs-quer__weiter { display: none; }
+.is-reduced .bs-quer__blatt { display: contents; }
+.is-reduced .bs-quer__spur.hat-blatt { padding-right: var(--bs-rand); }

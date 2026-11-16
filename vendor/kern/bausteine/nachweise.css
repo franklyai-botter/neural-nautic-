@@ -1,0 +1,18 @@
+.bs-nachweise { position: relative; z-index: 3; padding: 12vh 0 10vh; }
+.bs-nachweise__kopf { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(24px, 6vw, 100px); align-items: end; }
+.bs-nachweise__kopf .bs-h2 { font-size: clamp(30px, 4vw, 64px); }
+.bs-nachweise__text { display: grid; gap: 22px; }
+.bs-nachweise__belege { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(24px, 6vw, 100px); align-items: end; margin-top: clamp(50px, 10vh, 110px); }
+.bs-nachweise__belege figure { display: grid; gap: 18px; }
+.bs-nachweise__belege figure > a { display: block; overflow: hidden; border-radius: 8px; box-shadow: 0 30px 70px rgba(6, 12, 14, .18); border: 1px solid var(--linie); max-width: 420px; background: #fff; }
+.bs-nachweise__belege .is-quer figure > a { max-width: 640px; }
+.bs-nachweise__belege img { width: 100%; height: auto; }
+.bs-nachweise__belege figcaption { font: 700 clamp(17px, 1.6vw, 24px)/1.12 var(--bs-display); letter-spacing: -.01em; max-width: 24em; }
+.bs-nachweise__belege figcaption a { border-bottom: 1px solid var(--accent); }
+.bs-nachweise__belege figcaption a:hover { color: var(--accent); }
+.bs-nachweise__band { margin-top: 14vh; display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+@media (max-width: 991px) {
+  .bs-nachweise__kopf, .bs-nachweise__belege { grid-template-columns: 1fr; }
+  .bs-nachweise__belege { gap: 8vh; }
+  .bs-nachweise__band { margin-top: 10vh; }
+}

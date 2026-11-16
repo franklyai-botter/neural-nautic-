@@ -1,0 +1,9 @@
+.bs-manifest { padding: 18vh 0 9vh;   /* unten vorher 20vh (Frank 15.11.2026: Abstand zur Galerie zu gross) */ position: relative; z-index: 1; }
+.bs-manifest .bs-label { margin-bottom: 34px; }
+.bs-manifest__titel { font: 700 clamp(40px, 7.4vw, 124px)/.92 var(--bs-display); letter-spacing: -.035em; text-transform: uppercase; max-width: 13.5em; }
+.bs-manifest__titel em { font-style: normal; color: var(--accent); }
+.bs-manifest__text { display: grid; gap: 22px; margin-top: clamp(44px, 9vh, 100px); margin-left: auto; width: min(100%, 620px); }
+@media (max-width: 991px) {
+  .bs-manifest { padding: 12vh 0 7vh; }
+  .bs-manifest__titel { font-size: clamp(36px, 10.4vw, 72px); }
+}

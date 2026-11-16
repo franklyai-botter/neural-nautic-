@@ -75,16 +75,16 @@ export const DOWNLOAD_API = [
     seite: "/ki-im-unternehmen",
     contentType: "image/svg+xml; charset=utf-8",
     dateiname: "NeuralNautic_KI-Architektur_7-Schichten.svg",
-    datei: "public/inhalt/downloads/NeuralNautic_KI-Architektur_7-Schichten.svg",
+    datei: "src/worker/dateien/NeuralNautic_KI-Architektur_7-Schichten.svg",
   },
   {
-    // Auf der Live-Seite liegt das PDF bewusst nicht in public/, sondern wird nur über diese Route ausgeliefert.
+    // Wie live liegt das PDF nicht in public/, sondern wird nur über diese Route ausgeliefert (src/worker/api.js).
     pfad: "/api/checkliste-download",
     unterlage: "KI-Checkliste Reifegrad und Risiko (PDF)",
     seite: "/ki-im-unternehmen",
     contentType: "application/pdf",
     dateiname: "NeuralNautic_KI-Checkliste_Reifegrad-und-Risiko.pdf",
-    datei: "public/inhalt/downloads/NeuralNautic_KI-Checkliste_Reifegrad-und-Risiko.pdf",
+    datei: "src/worker/dateien/NeuralNautic_KI-Checkliste_Reifegrad-und-Risiko.pdf",
   },
 ];
 
