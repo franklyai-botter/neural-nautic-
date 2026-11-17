@@ -1,0 +1,93 @@
+/* Check: dunkle Tafel, eine Frage nach der anderen, Antworten als grosse Wahlflaechen */
+.bs-check { --bg: var(--bs-dunkel); --fg: #fff; --muted: rgba(255, 255, 255, .64); --linie: rgba(255, 255, 255, .16); --accent: var(--bs-akzent); }
+.bs-check__form { position: relative; background: var(--bs-dunkel); color: #fff; border-radius: 26px; padding: clamp(20px, 3.4vw, 48px); display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(18px, 3vh, 30px);
+  box-shadow: 0 40px 90px -40px rgba(6, 12, 14, .55); overflow: hidden; }
+.bs-check__form::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 100% 0%, color-mix(in srgb, var(--bs-akzent) 13%, transparent), transparent 70%); }
+.bs-check__form > * { position: relative; }
+
+/* Schrittleiste 1 … n und Ziel */
+.bs-check__leiste { display: flex; gap: 8px; align-items: center; }
+.bs-check__leiste li { flex: 1; display: flex; align-items: center; gap: 8px; }
+.bs-check__leiste li:last-child { flex: none; }
+.bs-check__leiste li:not(:last-child)::after { content: ''; flex: 1; height: 2px; background: rgba(255, 255, 255, .16); border-radius: 2px; transition: background-color .4s; }
+.bs-check__leiste li:has(.is-fertig)::after { background: var(--bs-akzent); }
+.bs-check__schritt { width: 40px; height: 40px; flex: none; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .3); background: transparent; color: rgba(255, 255, 255, .7); cursor: pointer;
+  font: 500 13px/1 var(--bs-mono); display: grid; place-items: center; transition: background-color .3s, color .3s, border-color .3s, transform .3s; }
+.bs-check__schritt:disabled { cursor: default; opacity: .45; }
+.bs-check__schritt.is-fertig { border-color: var(--bs-akzent); color: var(--bs-akzent); }
+.bs-check__schritt[aria-current="step"] { background: var(--bs-akzent); border-color: var(--bs-akzent); color: var(--bs-akzent-tinte); transform: scale(1.08); }
+.bs-check__schritt:not(:disabled):hover { border-color: var(--bs-leuchten); color: #fff; }
+.bs-check__schritt[aria-current="step"]:hover { color: var(--bs-akzent-tinte); }
+
+/* Mindesthoehe nur gegen Springen zwischen den Schritten; vorher 46vh, das liess unter den Karten ~135 px leer (Frank, 15.11.2026) */
+.bs-check__buehne { min-height: clamp(240px, 28vh, 300px); display: grid; }
+.bs-check__frage { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: clamp(18px, 3.4vh, 34px); align-content: start; grid-area: 1 / 1; }
+.bs-check__frage[hidden], .bs-check__ergebnis[hidden] { display: none; }
+.bs-check__legende { padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; float: left; width: 100%; }
+.bs-check__zaehler { font: 500 13px/1 var(--bs-mono); letter-spacing: .1em; color: var(--bs-akzent); }
+.bs-check__titel { font: 700 clamp(26px, 3.4vw, 54px)/.98 var(--bs-display); letter-spacing: -.025em; text-transform: uppercase; flex-basis: 100%; order: 2; text-wrap: balance; }
+.bs-check__etikett { font: 500 10.5px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--linie); border-radius: 999px; padding: 5px 9px 4px; }
+.bs-check__antworten { clear: both; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+/* Text direkt unter der Ziffer, damit alle Kartentexte auf einer Hoehe beginnen (vorher unten buendig, je nach Zeilenzahl versetzt) */
+.bs-check__antwort { position: relative; display: grid; align-content: start; gap: 16px; min-height: clamp(140px, 20vh, 190px); padding: 18px; border-radius: var(--bs-radius); cursor: pointer; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .04); transition: border-color .3s, color .3s; }
+/* Fuellung faehrt als Ellipse von oben herein (wie der Karten-Hover) */
+.bs-check__antwort::before { content: ''; position: absolute; inset: 0; background: var(--bs-akzent); clip-path: ellipse(100% 0% at 50% 0%); transition: clip-path var(--bs-dauer) var(--bs-ease); }
+.bs-check__antwort > * { position: relative; }
+.bs-check__antwort input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.bs-check__wert { font: 700 clamp(34px, 3.4vw, 54px)/.8 var(--bs-display); letter-spacing: -.03em; color: transparent; -webkit-text-stroke: 1.5px var(--bs-akzent); transition: color .3s, -webkit-text-stroke-color .3s; }
+.bs-check__text { font: 500 clamp(14px, 1.08vw, 16.5px)/1.34 var(--bs-text); color: rgba(255, 255, 255, .86); transition: color .3s; }
+.bs-check__antwort:hover { border-color: var(--bs-akzent); }
+.bs-check__antwort:has(input:focus-visible) { outline: 2px solid var(--bs-leuchten); outline-offset: 3px; border-color: var(--bs-akzent); }
+.bs-check__antwort.is-an { border-color: var(--bs-akzent); }
+.bs-check__antwort.is-an::before { clip-path: ellipse(100% 130% at 50% 0%); }
+.bs-check__antwort.is-an .bs-check__text { color: var(--bs-akzent-tinte); }
+.bs-check__antwort.is-an .bs-check__wert { color: var(--bs-akzent-tinte); -webkit-text-stroke-color: var(--bs-akzent-tinte); }
+
+.bs-check__fuss { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 48px; }
+.bs-check__offen { margin: 0; font: 500 12px/1.4 var(--bs-mono); letter-spacing: .06em; color: var(--muted); }
+.bs-check__pfeile { display: flex; gap: 8px; margin-left: auto; }
+.bs-check__pfeil { width: 48px; height: 48px; border-radius: 10px; border: 1.5px solid rgba(255, 255, 255, .5); background: transparent; color: #fff; cursor: pointer; display: grid; place-items: center; transition: background-color .25s, color .25s, border-color .25s, opacity .25s; }
+.bs-check__pfeil i { font-style: normal; font-size: 19px; }
+.bs-check__pfeil:disabled { opacity: .3; cursor: default; }
+.bs-check__pfeil:not(:disabled):hover { background: var(--bs-akzent); border-color: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+.bs-check__pfeil[data-r="1"]:not(:disabled) { background: var(--bs-akzent); border-color: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+.bs-check :focus-visible { outline-color: var(--bs-leuchten); }
+
+/* Ergebnis: grosse Stufe mit Text */
+.bs-check__ergebnis { grid-area: 1 / 1; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px clamp(24px, 4vw, 64px); align-content: start; outline: none; }
+.bs-check__kopf { grid-column: 1 / -1; margin: 0; font: 500 12px/1.3 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bs-akzent); }
+.bs-check__stufe { grid-row: 2 / 6; margin: 0; display: grid; align-content: start; gap: 10px; }
+.bs-check__ziffer { display: flex; align-items: flex-start; gap: 10px; color: var(--bs-akzent); }
+.bs-check__ziffer small { font: 500 12px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; margin-top: .9em; }
+.bs-check__ziffer b { font: 700 clamp(120px, 17vw, 250px)/.78 var(--bs-display); letter-spacing: -.05em; }
+.bs-check__name { font: 700 clamp(24px, 2.6vw, 40px)/1 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; }
+.bs-check__hinweis { margin: 0; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--bs-akzent) 50%, transparent); font: 500 14px/1.5 var(--bs-text); color: var(--bs-leuchten); }
+.bs-check__schrittText { margin: 0; font: 400 clamp(15px, 1.25vw, 18px)/1.55 var(--bs-text); color: rgba(255, 255, 255, .86); max-width: 62ch; }
+.bs-check__schrittText b { color: #fff; font-weight: 600; }
+.bs-check__ctas { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: flex-start; margin-top: 8px; }
+.bs-check__cta { display: grid; gap: 8px; justify-items: start; }
+.bs-check__cta small { font: 400 12.5px/1.4 var(--bs-text); color: var(--muted); max-width: 30ch; }
+.bs-check__neu { color: #fff; }
+/* folgt der Textfarbe des Abschnitts (hell wie dunkel), statt fest Tinte (IF-7: auf Petrol 1,0 : 1) */
+/* Fussnote an der Inhaltskante des Formulars (gleicher Innenabstand), auf dunklem Grund ist die Formularflaeche unsichtbar */
+.bs-check__fussnote { margin: 16px clamp(20px, 3.4vw, 48px) 0; font: 400 12px/1.55 var(--bs-text); color: color-mix(in srgb, currentColor 66%, transparent); max-width: 110ch; }
+
+@media (max-width: 1100px) { .bs-check__antworten { grid-template-columns: 1fr 1fr; } .bs-check__antwort { min-height: 130px; } }
+@media (max-width: 991px) {
+  .bs-check__form { border-radius: 20px; padding: 18px 16px; }
+  .bs-check__fussnote { margin-inline: 16px; }
+  .bs-check__schritt { width: 32px; height: 32px; font-size: 12px; }
+  .bs-check__leiste, .bs-check__leiste li { gap: 4px; }
+  .bs-check__antworten { grid-template-columns: 1fr; gap: 8px; }
+  .bs-check__antwort { min-height: 0; grid-template-columns: auto 1fr; align-items: center; gap: 14px; padding: 14px; }
+  .bs-check__wert { font-size: 30px; }
+  .bs-check__titel { font-size: clamp(24px, 7.4vw, 38px); }
+  .bs-check__ergebnis { grid-template-columns: 1fr; }
+  .bs-check__stufe { grid-row: auto; grid-template-columns: auto 1fr; align-items: end; gap: 14px; }
+  .bs-check__ziffer b { font-size: 110px; }
+  .bs-check__ctas .bs-knopf { height: 52px; font-size: 14px; padding: 0 16px; }
+}
+.is-reduced .bs-check__antwort::before, .is-reduced .bs-check__schritt { transition: none; }
+/* unter 360 px passt die Schrittleiste mit 32-px-Schritten nicht in die Tafel (IF-2) */
+@media (max-width: 359px) { .bs-check__schritt { width: 28px; height: 28px; } .bs-check__fuss { flex-wrap: wrap; } }

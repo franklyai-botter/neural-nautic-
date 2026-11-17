@@ -1,0 +1,110 @@
+/* /ai-engineering (Paket B). Rahmen, Seitenkopf, Abschnitte, Weiter: src/seiten/gemeinsam.css (Paket A).
+   Hier: Tabellen mit Hover (Vergleich, Risikoklassen), die Strecke der 5 Stationen (grosse Szene), 4 Ergebniskarten. */
+
+/* ---------- Tabellen mit Hover (Lando: Calendar-Zeilen; Zeile fuellt sich von links) ---------- */
+.nn-tab-w { overflow-x: auto; }
+.nn-tab { width: 100%; border-collapse: collapse; border-top: 1px solid var(--linie); font: 400 16px/1.5 var(--bs-text); }
+.nn-tab th, .nn-tab td { padding: clamp(16px, 1.6vw, 24px) clamp(10px, 1.2vw, 20px); text-align: left; vertical-align: top; border-bottom: 1px solid var(--linie); }
+.nn-tab thead th { padding-top: 12px; padding-bottom: 12px; font: 500 11.5px/1.3 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.nn-tab tbody th { font: 700 clamp(16px, 1.3vw, 20px)/1.2 var(--bs-display); letter-spacing: -.005em; text-transform: uppercase; }
+.nn-tab tbody td { color: color-mix(in srgb, var(--fg) 82%, transparent); }
+.nn-tab tbody tr { position: relative; background-image: linear-gradient(color-mix(in srgb, var(--accent) 10%, transparent), color-mix(in srgb, var(--accent) 10%, transparent));
+  background-repeat: no-repeat; background-size: 0% 100%; transition: background-size var(--bs-dauer) var(--bs-ease); }
+.nn-tab tbody tr:hover, .nn-tab tbody tr:focus-within { background-size: 100% 100%; }
+.nn-ml { display: none; }
+
+/* Vergleich: Spalte AI Engineering hervorgehoben */
+.nn-vergleich th:first-child { width: 22%; }
+.nn-vergleich td { width: 39%; }
+.nn-vergleich .nn-tab__hervor { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.nn-vergleich thead .nn-tab__hervor { color: var(--accent); border-top: 3px solid var(--accent); }
+.nn-vergleich tbody td.nn-tab__hervor { color: var(--fg); font-weight: 500; }
+.nn-nachsatz { margin-top: clamp(28px, 3vw, 44px); max-width: 70ch; font: 400 clamp(16px, 1.2vw, 18.5px)/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+
+/* Risikoklassen: die Klassen mit AI Engineering hervorgehoben */
+.nn-risiko th:first-child { width: 14%; }
+.nn-risiko tbody tr.is-wir { background-color: color-mix(in srgb, var(--accent) 8%, transparent); }
+.nn-risiko tbody tr.is-wir th { color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.nn-hinweise { display: grid; gap: 14px; margin-top: clamp(26px, 3vw, 40px); max-width: 82ch; }
+.nn-hinweis { font: 400 14.5px/1.6 var(--bs-text); color: var(--muted); }
+.nn-hinweis--wir { padding-left: 16px; border-left: 3px solid var(--accent); color: color-mix(in srgb, var(--fg) 82%, transparent); }
+.nn-satzlink { margin-top: 10px; font: 500 clamp(16px, 1.2vw, 18.5px)/1.55 var(--bs-text); }
+.nn-satzlink a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Stationen: Strecke mit 5 Kurven (gepinnt per position: sticky) ---------- */
+.nn-st { position: relative; padding-top: var(--ks-abstand); }
+.nn-st__kopf { display: grid; gap: 18px; max-width: 1040px; }
+.nn-st__bahn { position: relative; height: calc(100vh * (var(--n) * .62 + 1)); }
+.nn-st__pin { position: sticky; top: 0; height: 100vh; display: grid; align-items: center; overflow: hidden; }
+.nn-st__raster { display: grid; grid-template-columns: minmax(220px, .62fr) minmax(0, 1.38fr); gap: clamp(28px, 4vw, 72px); align-items: center; padding-top: clamp(72px, 9vh, 96px); }
+.nn-st__strecke svg { width: 100%; height: min(78vh, 720px); overflow: visible; }
+.nn-st__grund { fill: none; stroke: var(--linie); stroke-width: 22; stroke-linecap: round; }
+.nn-st__spur { fill: none; stroke: var(--bs-akzent); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 8px rgba(63, 212, 224, .55)); }
+.nn-st__kurve circle { fill: var(--bs-dunkel); stroke: var(--linie); stroke-width: 2; transition: fill .4s, stroke .4s; }
+.nn-st__kurve text { font: 700 19px var(--bs-mono); fill: var(--muted); transition: fill .4s; }
+.nn-st__kurve.is-erreicht circle { stroke: var(--bs-akzent); }
+.nn-st__kurve.is-erreicht text { fill: #fff; }
+.nn-st__kurve.is-aktiv circle { fill: var(--bs-akzent); }
+.nn-st__kurve.is-aktiv text { fill: var(--bs-akzent-tinte); }
+.nn-st__wagen { fill: #fff; filter: drop-shadow(0 0 10px rgba(111, 239, 245, .9)); }
+.nn-st__liste { display: grid; gap: clamp(10px, 1.6vh, 18px); counter-reset: none; }
+.nn-station { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 16px; padding: clamp(12px, 1.6vh, 18px) 18px; border-radius: 14px; border: 1px solid transparent; opacity: .55; transition: opacity .5s, border-color .5s, background-color .5s; }
+.nn-station.is-erreicht { opacity: .8; }
+.nn-station.is-aktiv { opacity: 1; border-color: color-mix(in srgb, var(--bs-akzent) 55%, transparent); background: var(--bs-flaeche); }
+.nn-station__nr { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--linie); font: 700 15px/1 var(--bs-mono); color: var(--muted); transition: background-color .4s, color .4s, border-color .4s; }
+.nn-station.is-erreicht .nn-station__nr { border-color: var(--bs-akzent); color: #fff; }
+.nn-station.is-aktiv .nn-station__nr { background: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+.nn-station__titel { margin: 0 0 6px; font: 700 clamp(18px, 1.5vw, 24px)/1.15 var(--bs-display); letter-spacing: -.005em; text-transform: uppercase; }
+.nn-station__text { margin: 0 0 8px; font: 400 clamp(14.5px, 1.05vw, 16px)/1.5 var(--bs-text); color: rgba(255, 255, 255, .84); }
+.nn-station__erg { margin: 0; font: 500 14px/1.4 var(--bs-text); color: #fff; }
+.nn-station__erg span { color: var(--bs-akzent); font-weight: 700; }
+.nn-station__erg b { font: 500 11px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bs-akzent); }
+
+/* ohne Pin (schmal, niedrig): statt der Kurven-Grafik eine senkrechte Linie, die sich beim Scrollen fuellt (--p) */
+@media not all and (min-width: 992px) and (min-height: 760px) {
+  .nn-st__bahn { height: auto; }
+  .nn-st__pin { position: relative; height: auto; overflow: visible; padding-bottom: var(--ks-abstand); }
+  .nn-st__raster { grid-template-columns: minmax(0, 1fr); padding-top: clamp(36px, 5vw, 60px); }
+  .nn-st__strecke { display: none; }
+  .nn-st__liste { position: relative; }
+  .nn-st__liste::before, .nn-st__liste::after { content: ''; position: absolute; left: 22px; top: 26px; bottom: 26px; width: 2px; background: var(--linie); }
+  .nn-st__liste::after { background: var(--bs-akzent); transform: scaleY(var(--p, 0)); transform-origin: top; }
+  .nn-station { position: relative; z-index: 1; grid-template-columns: 46px minmax(0, 1fr); gap: 14px; padding: 12px 0; opacity: 1; border: 0; background: none; }
+  .nn-station.is-aktiv { background: none; }
+  .nn-station__nr { background: var(--bs-dunkel); }
+}
+.is-still .nn-st__bahn { height: auto; }
+.is-still .nn-st__pin { position: relative; height: auto; padding-bottom: var(--ks-abstand); }
+.is-still .nn-station { opacity: 1; }
+.is-still .nn-st__liste::after { transform: scaleY(1); }
+
+/* ---------- Was Sie bekommen: 4 Karten ---------- */
+.nn-erg__karten { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); }
+.nn-erg__karte { position: relative; display: grid; align-content: start; gap: 12px; min-height: 240px; padding: clamp(20px, 2vw, 28px); border-radius: 14px; background: var(--bs-dunkel); color: #fff; }
+.nn-erg__karte::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: var(--bs-akzent); clip-path: ellipse(100% 0% at 50% 100%); transition: clip-path var(--bs-dauer) var(--bs-ease); z-index: 0; }
+.nn-erg__karte > * { position: relative; z-index: 1; transition: color .4s; }
+.nn-erg__karte:hover::after { clip-path: ellipse(150% 140% at 50% 100%); }
+.nn-erg__karte:hover > * { color: var(--bs-akzent-tinte); }
+.nn-erg__nr { font: 500 12px/1 var(--bs-mono); letter-spacing: .12em; color: var(--bs-akzent); }
+.nn-erg__karte h3 { margin: 0; font: 700 clamp(19px, 1.5vw, 24px)/1.12 var(--bs-display); text-transform: uppercase; letter-spacing: -.005em; }
+.nn-erg__karte p { margin: 0; font: 400 15px/1.55 var(--bs-text); color: rgba(255, 255, 255, .82); }
+.nn-erg .nn-satzlink { margin-top: clamp(26px, 3vw, 40px); }
+@media (max-width: 1100px) { .nn-erg__karten { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---------- Handy: Tabellen als Karten, Spaltenetikett vor jeder Zelle ---------- */
+@media (max-width: 767px) {
+  .nn-tab, .nn-tab tbody, .nn-tab tr, .nn-tab th, .nn-tab td { display: block; width: auto !important; }
+  .nn-tab thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .nn-tab tbody tr { padding: 16px 0; border-bottom: 1px solid var(--linie); }
+  .nn-tab th, .nn-tab td { padding: 4px 6px; border: 0; }
+  .nn-tab tbody th { margin-bottom: 6px; font-size: 18px; }
+  .nn-ml { display: inline; font: 500 11px/1 var(--bs-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .nn-vergleich td.nn-tab__hervor { margin-top: 6px; padding: 8px 10px; border-radius: 8px; }
+  .nn-risiko tbody tr.is-wir th { box-shadow: none; }
+  .nn-risiko tbody tr.is-wir { padding-left: 10px; box-shadow: inset 3px 0 0 var(--accent); }
+  .nn-erg__karten { grid-template-columns: minmax(0, 1fr); }
+  .nn-erg__karte { min-height: 0; }
+}
+
+/* ---------- Reduced Motion ---------- */
+.is-reduced .nn-tab tbody tr, .is-reduced .nn-station, .is-reduced .nn-erg__karte::after { transition: none; }

@@ -1,25 +1,34 @@
 {
+  // Cloudflare Workers mit Static Assets plus kleinem Worker fuer /api/* und die Header (src/worker/).
+  // Gleicher Weg wie nn-ki-agententeam und Karlson. Nicht Vercel: Hobby-Plan erlaubt keine
+  // gewerbliche Nutzung und hat keine AVV.
+  // Workers Builds: Build-Befehl `npm run build`, Deploy `npx wrangler deploy`. Push = Deploy.
+  // Geheimnisse (nicht hier, sondern per `npx wrangler secret put`): RESEND_API_KEY, MISTRAL_API_KEY.
+  // Ohne sie antworten Kontakt und Chat ehrlich mit 503; Downloads ohne Kontaktdaten gehen trotzdem.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
-  "name": "neural-nautic",
-  "compatibility_date": "2026-10-01",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "name": "funnel-neuralnautic",
+  "main": "src/worker/index.js",
+  "compatibility_date": "2026-11-01",
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Adressen ohne Schraegstrich wie auf neuralnautic.de: /leistungen liefert leistungen/index.html,
+    // /leistungen/ leitet auf /leistungen um. Passt zu den Canonicals.
+    "html_handling": "drop-trailing-slash",
+    // Jede Anfrage zuerst durch den Worker: Header und noindex je Adresse an einer Stelle (index.js)
+    "run_worker_first": true
   },
-  "services": [
-    {
-      // Selbstreferenz, Name muss dem Worker-Namen entsprechen
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "neural-nautic"
-    }
+  // Downloads werden in den Worker eingebettet, nicht aus public/ ausgeliefert (A8)
+  "rules": [
+    { "type": "Data", "globs": ["**/*.pdf"] },
+    { "type": "Text", "globs": ["**/*.svg"] }
   ],
-  "images": {
-    // next/image-Optimierung ueber Cloudflare Images (Free: 5.000 Transformationen/Monat)
-    "binding": "IMAGES"
-  },
+  // Workers Logs: in der Datenschutzerklaerung (Abschnitt 4) genannt, Loeschung nach hoechstens 7 Tagen
   "observability": {
     "enabled": true
-  }
+  },
+  // Vorschau unter funnel-neuralnautic.<konto>.workers.dev (noindex per Worker), keine Vorschau-URLs je Branch
+  "workers_dev": true,
+  "preview_urls": false
 }

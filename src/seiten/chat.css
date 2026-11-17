@@ -1,0 +1,156 @@
+/* KI-Chat (Pruefpunkt A7). Masse wie live (src/inhalt/chat.js), Gestaltung wie der Neubau: Milchglas, Petrol, Cyan.
+   Lage: Desktop rechts unten. Bis 991 px sitzt dort „KI-Check buchen“ (Kern .bs-daumen), der Chat-Knopf geht nach links.
+   Unter 640 px: kleiner Knopf (62 x 74) und das Fenster als Blatt ueber dem Knopf (Hoehe und Lage setzt chat.js).
+   Ebenen: ueber „KI-Check buchen“ (690), unter Menue-Vorhang (700) und Seitenkopf (800).
+
+   Inhalt:  1 Grundwerte   2 Knopf   3 Hinweisblase   4 Fenster   5 Verlauf und Antworten   6 Eingabe
+            7 Lage mobil und Tablet   8 Fusskarte haelt Platz frei (C1)   9 Bewegung */
+
+/* ---------- 1 Grundwerte ---------- */
+.nn-chat {
+  --nc-akzent: var(--bs-akzent, #3fd4e0); --nc-leuchten: var(--bs-leuchten, #6feff5);
+  --nc-flaeche: rgba(8, 22, 28, .92); --nc-kopf: rgba(14, 43, 54, .78); --nc-linie: rgba(111, 239, 245, .16);
+  --nc-leise: rgba(255, 255, 255, .76); --nc-fehler: #f08a7a;
+  --nc-ease: cubic-bezier(.22, .61, .36, 1);
+  font-family: var(--bs-text, 'Inter Variable', Inter, system-ui, sans-serif);
+}
+.nn-chat [hidden] { display: none !important; }
+.nn-chat .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.nn-chat :focus-visible { outline: 2px solid var(--nc-akzent); outline-offset: 2px; }
+
+/* ---------- 2 Knopf: Sprechblase aus hellem Milchglas mit dem NN-Stern (wie live), offen ein runder Schliessen-Knopf ---------- */
+.nn-chat__knopf { position: fixed; right: 20px; bottom: max(20px, calc(20px + env(safe-area-inset-bottom, 0px))); z-index: 696;
+  display: grid; place-items: center; width: 88px; height: 104px; padding: 0; border: 0; border-radius: 18px; background: transparent; color: #fff;
+  cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.nn-chat__knopf:focus-visible { outline-offset: 3px; }
+.nn-chat__form { position: relative; display: grid; place-items: center; width: 100%; height: 100%; transition: transform .45s var(--bs-ease, var(--nc-ease)); }
+.nn-chat__glas { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .38)) drop-shadow(0 0 14px rgba(63, 212, 224, .25)); }
+/* Stern unveraendert: nicht gedreht, nicht umgefaerbt, kein Schatten (BRAND.md) */
+.nn-chat__stern { position: relative; width: 58px; height: 58px; margin-top: -16px; object-fit: contain; }
+.nn-chat__knopf:hover .nn-chat__form, .nn-chat__knopf:focus-visible .nn-chat__form { transform: translateY(-3px); }
+.nn-chat__x { display: none; }
+.nn-chat.ist-offen .nn-chat__knopf { width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(111, 239, 245, .4);
+  background: rgba(10, 74, 74, .94); box-shadow: 0 8px 26px rgba(0, 0, 0, .45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.nn-chat.ist-offen .nn-chat__form { display: none; }
+.nn-chat.ist-offen .nn-chat__x { display: block; }
+.nn-chat.ist-offen .nn-chat__knopf:hover { background: rgba(13, 115, 119, .96); }
+
+/* ---------- 3 Hinweisblase „Fragen zu KI? Ich helfe.“ ---------- */
+.nn-chat__tipp { position: fixed; right: 24px; bottom: calc(132px + env(safe-area-inset-bottom, 0px)); z-index: 695; max-width: 220px;
+  padding: 10px 36px 10px 14px; border: 1px solid rgba(13, 115, 119, .45); border-radius: 14px; background: rgba(245, 242, 235, .97); color: #061419;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 18px rgba(63, 212, 224, .25); animation: nn-chat-tipp .32s var(--nc-ease) both; }
+.nn-chat__tipp p { margin: 0; font: 500 13px/1.45 var(--bs-text, inherit); }
+.nn-chat__tipp::after { content: ''; position: absolute; bottom: -7px; right: 34px; width: 12px; height: 12px; background: rgb(245, 242, 235);
+  border-right: 1px solid rgba(13, 115, 119, .45); border-bottom: 1px solid rgba(13, 115, 119, .45); transform: rotate(45deg); }
+.nn-chat__tipp-zu { position: absolute; top: 2px; right: 2px; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 8px;
+  background: none; color: #0d7377; font: 400 19px/1 var(--bs-text, inherit); cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.nn-chat__tipp-zu:hover { background: rgba(13, 115, 119, .1); }
+.nn-chat__tipp :focus-visible { outline-color: #0d7377; outline-offset: 0; }
+
+/* ---------- 4 Fenster: Kopf, DSGVO-Hinweis, Verlauf, Eingabe, Haftung ---------- */
+.nn-chat__fenster { position: fixed; right: 20px; bottom: calc(144px + env(safe-area-inset-bottom, 0px)); z-index: 695;
+  display: flex; flex-direction: column; width: min(380px, calc(100vw - 40px));
+  max-height: calc(100vh - 144px - 92px); max-height: calc(100dvh - 144px - 92px);   /* oben bleibt der Seitenkopf frei */
+  overflow: hidden; border: 1px solid var(--nc-linie); border-radius: 18px; background: var(--nc-flaeche); color: #fff;
+  backdrop-filter: blur(18px) saturate(1.15); -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, .6), 0 0 0 1px rgba(63, 212, 224, .06); animation: nn-chat-auf .24s var(--nc-ease) both; }
+.nn-chat__griff { display: none; flex-shrink: 0; width: 36px; height: 4px; margin: 10px auto 2px; border-radius: 2px; background: rgba(255, 255, 255, .28); }
+.nn-chat__kopf { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 14px 18px; border-bottom: 1px solid var(--nc-linie); background: var(--nc-kopf); }
+.nn-chat__kopf img { flex-shrink: 0; width: 40px; height: 40px; object-fit: contain; }
+.nn-chat__titel { margin: 0; font: 600 14px/1.25 var(--bs-display, inherit); letter-spacing: .02em; }
+.nn-chat__etikett { margin: 0 0 0 auto; font: 500 10.5px/1.3 var(--bs-mono, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--nc-akzent); text-align: right; }
+.nn-chat__hinweis { flex-shrink: 0; margin: 12px 14px 0; padding: 10px 12px; border: 1px solid rgba(63, 212, 224, .22); border-radius: 10px; background: rgba(63, 212, 224, .06); }
+.nn-chat__hinweis-text { margin: 0; font: 400 12px/1.55 var(--bs-text, inherit); color: var(--nc-leise); }
+.nn-chat .nn-chat__hinweis-text a[href] { color: var(--nc-akzent); text-decoration: underline; text-underline-offset: 2px; }
+.nn-chat__ok { display: inline-block; min-height: 24px; margin: -4px 0; padding: 2px 8px; border: 1px solid rgba(63, 212, 224, .45); border-radius: 6px; background: none;
+  color: var(--nc-akzent); font: 600 12px/1.5 var(--bs-text, inherit); cursor: pointer; touch-action: manipulation; }
+.nn-chat__ok:hover { background: rgba(63, 212, 224, .12); }
+.nn-chat__haftung { flex-shrink: 0; margin: 0; padding: 8px 14px 10px; border-top: 1px solid rgba(255, 255, 255, .06);
+  font: 400 11px/1.45 var(--bs-text, inherit); color: rgba(255, 255, 255, .68); text-align: center; }
+
+/* ---------- 5 Verlauf und Antworten ---------- */
+.nn-chat__verlauf { position: relative; display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto; min-height: 0; padding: 14px;
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(111, 239, 245, .3) transparent; }
+.nn-chat__verlauf:focus-visible { outline-offset: -3px; border-radius: 4px; }
+.nn-chat__begruessung { margin: 0; font: 400 14px/1.6 var(--bs-text, inherit); color: var(--nc-leise); }
+.nn-chat__zeile { display: flex; }
+.nn-chat__zeile--ich { justify-content: flex-end; }
+.nn-chat__blase { max-width: 88%; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px 14px 14px 4px; background: rgba(255, 255, 255, .05);
+  font: 400 14px/1.6 var(--bs-text, inherit); color: #fff; overflow-wrap: anywhere; }
+.nn-chat__zeile--ich .nn-chat__blase { border-color: rgba(63, 212, 224, .32); border-radius: 14px 14px 4px 14px; background: rgba(63, 212, 224, .14); }
+.nn-chat__zeile--ich p { white-space: pre-wrap; }
+.nn-chat__zeile--fehler .nn-chat__blase { border-color: rgba(240, 138, 122, .55); background: rgba(240, 138, 122, .1); color: #ffd9d2; }
+.nn-chat__text > * { margin: 0; }
+.nn-chat__text > * + * { margin-top: .6em; }
+/* Kern-Reset (grund.css: [class^="bs-"] :where(ul, ol) { list-style: none }) trifft auch hier, weil <html> bs-geladen traegt */
+.nn-chat__text ul, .nn-chat__text ol { padding-left: 1.3em; }
+.nn-chat__text ul { list-style: disc; }
+.nn-chat__text ol { list-style: decimal; }
+.nn-chat__text li + li { margin-top: .3em; }
+.nn-chat__text li::marker { color: var(--nc-akzent); }
+.nn-chat__text strong { font-weight: 650; }
+.nn-chat__zwischentitel strong { font-family: var(--bs-display, inherit); font-weight: 650; }
+.nn-chat .nn-chat__text a[href] { color: var(--nc-akzent); text-decoration: underline; text-underline-offset: 2px; }
+.nn-chat .nn-chat__text a[href]:hover { color: var(--nc-leuchten); }
+.nn-chat__text code { padding: .1em .35em; border-radius: 4px; background: rgba(255, 255, 255, .08); font: 500 .88em/1.4 var(--bs-mono, monospace); }
+.nn-chat__text pre { overflow-x: auto; padding: 10px; border-radius: 8px; background: rgba(0, 0, 0, .3); white-space: pre; }
+.nn-chat__text pre code { padding: 0; background: none; }
+.nn-chat__laden { display: flex; gap: 6px; padding: 8px 4px; }
+.nn-chat__laden span { width: 7px; height: 7px; border-radius: 50%; background: var(--nc-akzent); animation: nn-chat-puls 1.2s ease-in-out infinite; }
+.nn-chat__laden span:nth-child(2) { animation-delay: .2s; }
+.nn-chat__laden span:nth-child(3) { animation-delay: .4s; }
+
+/* ---------- 6 Eingabe ---------- */
+.nn-chat__eingabe { display: flex; gap: 10px; flex-shrink: 0; margin: 0; padding: 12px 14px 10px; border-top: 1px solid var(--nc-linie); }
+.nn-chat__eingabe input { flex: 1 1 auto; min-width: 0; min-height: 44px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, .24); border-radius: 10px;
+  background: rgba(6, 20, 25, .7); color: #fff; font: 400 16px/1.3 var(--bs-text, inherit); }   /* 16 px: iOS zoomt sonst beim Tippen */
+.nn-chat__eingabe input::placeholder { color: rgba(255, 255, 255, .6); opacity: 1; }
+.nn-chat__eingabe input:focus { border-color: var(--nc-akzent); }
+.nn-chat__eingabe input:focus-visible { outline-offset: 1px; }
+.nn-chat__senden { display: grid; place-items: center; flex-shrink: 0; align-self: flex-end; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 10px;
+  background: var(--nc-akzent); color: #061419; cursor: pointer; transition: background .18s, color .18s; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.nn-chat__senden:hover:not(:disabled) { background: var(--nc-leuchten); }
+.nn-chat__senden:disabled { background: rgba(63, 212, 224, .14); color: rgba(111, 239, 245, .5); cursor: default; }
+
+/* ---------- 7 Lage: bis 991 px links (rechts sitzt „KI-Check buchen“), unter 640 px kleiner Knopf und Blatt ---------- */
+@media (max-width: 991.98px) {
+  .nn-chat__knopf { right: auto; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .nn-chat.ist-offen .nn-chat__knopf { width: 52px; height: 52px; }
+  .nn-chat__tipp { right: auto; left: 12px; bottom: calc(124px + env(safe-area-inset-bottom, 0px)); }
+  .nn-chat__tipp::after { right: auto; left: 38px; }
+  .nn-chat__fenster { right: auto; left: 12px; bottom: calc(136px + env(safe-area-inset-bottom, 0px));
+    max-height: calc(100vh - 136px - 84px); max-height: calc(100dvh - 136px - 84px); }
+}
+@media (max-width: 639.98px) {
+  .nn-chat__knopf { width: 62px; height: 74px; }
+  .nn-chat__stern { width: 40px; height: 40px; margin-top: -12px; }
+  .nn-chat__tipp { bottom: calc(94px + env(safe-area-inset-bottom, 0px)); }
+  .nn-chat__tipp::after { left: 25px; }
+  /* Blatt: Lage und Hoehe setzt chat.js aus visualViewport (wie live). Ohne Messung gilt das hier. */
+  .nn-chat__fenster { left: 8px; right: 8px; width: auto; bottom: calc(94px + env(safe-area-inset-bottom, 0px));
+    height: min(480px, calc(100vh - 94px - 80px)); height: min(480px, calc(100dvh - 94px - 80px)); max-height: none; border-radius: 20px; }
+  .nn-chat__griff { display: block; }
+  .nn-chat__kopf { padding: 8px 16px 12px; }
+  .nn-chat__haftung { padding-bottom: max(10px, env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ---------- 8 C1: Fusskarte haelt unten Platz fuer den Knopf frei (am Seitenende liegt sonst „Datenschutz“ darunter) ----------
+   Unter 640 px reicht der Kern (96 px, Knopf 74 + 12). Tablet: Knopf 104 + 12 links unten. Desktop: Knopf rechts, die Zeile
+   „Impressum · Datenschutz“ rueckt um den Teil ein, den der Knopf (88 + 20 + 16 Luft) in die Karte hineinragt. */
+@media (min-width: 640px) and (max-width: 991.98px) { body.nn-chat-da .bs-fuss__karte { padding-bottom: 132px; } }
+@media (min-width: 992px) { body.nn-chat-da .bs-fuss__ende { padding-right: max(0px, calc(124px - var(--bs-rand, 32px) - clamp(20px, 4vw, 64px))); } }
+
+/* ---------- 9 Bewegung ---------- */
+@keyframes nn-chat-auf { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes nn-chat-tipp { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes nn-chat-puls { 0%, 100% { opacity: .3; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+@media (prefers-reduced-motion: reduce) {
+  .nn-chat__fenster, .nn-chat__tipp { animation: none; }
+  .nn-chat__form, .nn-chat__senden { transition: none; }
+  .nn-chat__knopf:hover .nn-chat__form, .nn-chat__knopf:focus-visible .nn-chat__form { transform: none; }
+  /* drei ruhende Punkte statt Pulsieren */
+  .nn-chat__laden span { animation: none; opacity: .9; }
+  .nn-chat__laden span:nth-child(2) { opacity: .6; }
+  .nn-chat__laden span:nth-child(3) { opacity: .35; }
+}

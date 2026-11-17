@@ -1,0 +1,8 @@
+@import '@kern/base.css';
+@import '@kern/hero/hero.css';
+
+:root { --bg: #061419; --fg: #f5f2eb; --accent: #3fd4e0; --bar: #6feff5; }
+body { font-family: 'Inter Variable', 'Inter', system-ui, sans-serif; }
+.kopf { position: fixed; top: 0; left: 0; z-index: 10; padding: clamp(14px, 2.2vw, 28px) clamp(14px, 2.2vw, 32px); pointer-events: none; }
+.kopf__logo { width: 40px; height: 40px; }
+.platzhalter { height: 140vh; background: #061419; }

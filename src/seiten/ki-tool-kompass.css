@@ -1,0 +1,53 @@
+/* /ki-tool-kompass (Paket B). Rahmen, Seitenkopf, Abschnitte, Akkordeon, Weiter: src/seiten/gemeinsam.css (Paket A).
+   Hier: die grosse Szene (11 Kategorien, Stern im Netz gepinnt), Kriterien-Zeilen, Bruecke als Link-Karte. */
+
+/* ---------- Kategorien ---------- */
+.nn-kat { position: relative; padding: var(--ks-abstand) 0; }
+.nn-kat__raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(28px, 4.4vw, 80px); align-items: start; }
+.nn-kat__leiste { position: sticky; top: clamp(92px, 12vh, 124px); display: grid; gap: clamp(18px, 2.4vh, 30px); }
+.nn-kat__buehne { position: relative; height: min(58vh, 560px); border-radius: 18px; overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 55%, transparent 100%); }
+.nn-kat__buehne > * { position: absolute; inset: 0; }
+.nn-kat__liste { border-top: 1px solid var(--linie); }
+.nn-kat__zeile { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: baseline; gap: 12px; padding: clamp(18px, 2.1vh, 26px) clamp(8px, 1vw, 16px);
+  border-bottom: 1px solid var(--linie); isolation: isolate; }
+.nn-kat__zeile::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--bs-akzent); clip-path: inset(0 100% 0 0); transition: clip-path var(--bs-dauer) var(--bs-ease); }
+.nn-kat__nr { font: 500 12px/1 var(--bs-mono); letter-spacing: .12em; color: var(--bs-akzent); transition: color .3s; }
+.nn-kat__name { font: 700 clamp(20px, 1.9vw, 32px)/1.1 var(--bs-display); letter-spacing: -.01em; text-transform: uppercase; transition: color .3s, transform .6s var(--bs-ease); display: inline-block; }
+@media (hover: hover) {
+  .nn-kat__zeile:hover::before { clip-path: inset(0 0 0 0); }
+  .nn-kat__zeile:hover .nn-kat__nr, .nn-kat__zeile:hover .nn-kat__name { color: var(--bs-akzent-tinte); }
+  .nn-kat__zeile:hover .nn-kat__name { transform: translateX(10px); }
+}
+
+/* ---------- Kriterien (Akkordeon aus gemeinsam.css) ---------- */
+.nn-krit__frage { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.nn-krit__frage b { font: 500 12px/1 var(--bs-mono); letter-spacing: .12em; color: var(--accent); }
+.nn-krit__frage span { font: 700 clamp(18px, 1.6vw, 26px)/1.18 var(--bs-display); letter-spacing: -.01em; }
+.nn-krit .ks-akk__inhalt { overflow: hidden; padding-left: calc(56px + 12px + 4px); }
+.nn-krit__text { margin: 0; max-width: 70ch; font: 400 clamp(15.5px, 1.15vw, 18px)/1.6 var(--bs-text); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+
+/* ---------- Bruecke: Kaufen oder bauen (ganze Karte ist der Link) ---------- */
+.nn-br { padding: 0 0 var(--ks-abstand); }
+.nn-br__karte { position: relative; display: grid; gap: 18px; padding: clamp(28px, 4vw, 64px); border-radius: 18px; background: var(--bs-dunkel); color: #fff; overflow: hidden; isolation: isolate; --accent: var(--bs-akzent); --muted: rgba(255, 255, 255, .7); }
+.nn-br__fuellung { position: absolute; inset: 0; z-index: -1; background: var(--bs-akzent); clip-path: ellipse(0% 0% at 50% 100%); transition: clip-path var(--bs-dauer) var(--bs-ease); }
+.nn-br__titel { max-width: 22ch; font: 700 clamp(28px, 3.6vw, 58px)/1 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; text-wrap: balance; transition: color .4s; }
+.nn-br__titel i { font-style: normal; color: var(--bs-akzent); display: inline-block; transition: transform .7s var(--bs-ease), color .4s; }
+.nn-br__text { max-width: 62ch; font: 400 clamp(16px, 1.25vw, 19px)/1.55 var(--bs-text); color: rgba(255, 255, 255, .82); transition: color .4s; }
+.nn-br__karte:hover .nn-br__fuellung, .nn-br__karte:focus-visible .nn-br__fuellung { clip-path: ellipse(150% 150% at 50% 100%); }
+.nn-br__karte:hover, .nn-br__karte:focus-visible { --muted: rgba(6, 20, 25, .72); --accent: var(--bs-akzent-tinte); }
+.nn-br__karte:hover .nn-br__titel, .nn-br__karte:hover .nn-br__text, .nn-br__karte:focus-visible .nn-br__titel, .nn-br__karte:focus-visible .nn-br__text { color: var(--bs-akzent-tinte); }
+.nn-br__karte:hover .nn-br__titel i, .nn-br__karte:focus-visible .nn-br__titel i { color: var(--bs-akzent-tinte); transform: translateX(.2em); }
+.nn-br__karte:focus-visible { outline: 2px solid var(--bs-akzent-hell); outline-offset: 4px; }
+
+/* ---------- Tablet und Handy ---------- */
+@media (max-width: 991px) {
+  .nn-kat__raster { grid-template-columns: minmax(0, 1fr); }
+  .nn-kat__leiste { position: relative; top: 0; }
+  .nn-kat__buehne { height: 42vh; }
+  .nn-kat__zeile, .nn-krit__frage { grid-template-columns: 40px minmax(0, 1fr); }
+  .nn-krit .ks-akk__inhalt { padding-left: calc(40px + 12px + 4px); }
+}
+
+/* ---------- Reduced Motion ---------- */
+.is-reduced .nn-kat__zeile::before, .is-reduced .nn-kat__name, .is-reduced .nn-br__fuellung, .is-reduced .nn-br__titel i { transition: none; }

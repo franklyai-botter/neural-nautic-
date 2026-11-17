@@ -1,0 +1,32 @@
+/* /kontakt (Paket C): Formular in der Leuchtrand-Karte (wie die Fusskarte: konischer Verlauf als 1,5-px-Rand, Lichtpunkt
+   laeuft in 9 s um), dahinter das neuronale Netz. Formularklassen ks-* aus gemeinsam.css. */
+@property --nn-kt-winkel { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.nn-kontakt { position: relative; overflow: hidden; background: var(--bg); color: var(--fg); padding: 0 0 clamp(90px, 11vw, 160px); }
+.nn-kontakt__netz { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .7;
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 45%, #000 30%, transparent 85%); mask-image: radial-gradient(80% 70% at 50% 45%, #000 30%, transparent 85%); }
+.nn-kontakt__wrap { position: relative; z-index: 1; }
+.nn-kontakt__karte { position: relative; max-width: 880px; margin: 0 auto; padding: clamp(26px, 4vw, 56px); border-radius: 24px;
+  background: color-mix(in srgb, var(--bs-flaeche) 92%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 40px 90px -50px rgba(0, 0, 0, .8), inset 0 0 0 1px rgba(255, 255, 255, .08); }
+.nn-kontakt__rand { position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none; z-index: 2;
+  background: conic-gradient(from var(--nn-kt-winkel) at 50% 50%, transparent 0deg, var(--bs-leuchten) 40deg, var(--bs-akzent) 80deg, transparent 140deg, transparent 180deg, color-mix(in srgb, var(--bs-akzent) 70%, transparent) 230deg, transparent 290deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: nn-kt-rand 9s linear infinite; }
+@keyframes nn-kt-rand { to { --nn-kt-winkel: 360deg; } }
+.nn-kontakt__formular { gap: 20px; }
+.nn-kontakt__formular select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px; background-repeat: no-repeat; }
+.nn-kontakt__formular select option { background: var(--bs-flaeche); color: #fff; }
+.nn-kontakt__senden { padding-top: 6px; }
+.nn-kontakt__senden .bs-knopf { width: 100%; justify-content: center; }
+.nn-kontakt__formular .ks-formular__hinweis { font-size: 13px; color: var(--muted); }
+.nn-kontakt__danke { justify-items: center; text-align: center; padding: clamp(24px, 5vw, 60px) 0; gap: 16px; }
+.nn-kontakt__haken { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; border: 1.5px solid var(--bs-akzent); color: var(--bs-akzent);
+  font: 600 34px/1 var(--bs-display); box-shadow: 0 0 40px -6px color-mix(in srgb, var(--bs-akzent) 60%, transparent); }
+.nn-kontakt__danke .ks-danke__titel { font-size: clamp(28px, 3vw, 44px); text-transform: uppercase; }
+.nn-kontakt__danke .ks-danke__titel:focus { outline: none; }
+.nn-kontakt__danke p { font-size: 17px; }
+.is-reduced .nn-kontakt__rand { animation: none; }
+@media (prefers-reduced-motion: reduce) { .nn-kontakt__rand { animation: none; } }
+@media (max-width: 599px) { .nn-kontakt__karte { border-radius: 18px; } }

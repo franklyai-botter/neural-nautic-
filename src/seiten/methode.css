@@ -1,0 +1,52 @@
+/* /methode: nur was diese Seite hat (Praefix me-). Rahmen und gemeinsame Klassen: gemeinsam.css. */
+
+.me-ebenen { padding-top: 0; }
+
+/* ---------- Strecke mit fuenf nummerierten Kurven ---------- */
+.me-strecke { position: relative; background: var(--bg); color: var(--fg); }
+.me-strecke__bahn { position: relative; }
+.me-strecke__raster { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 0 clamp(18px, 3vw, 40px); padding: clamp(40px, 6vw, 90px) 0; }
+.me-strecke__karte { display: none; }
+.me-strecke__leiste { display: none; }
+.me-strecke__phasen { position: relative; display: grid; gap: clamp(40px, 6vw, 72px); grid-column: 2; }
+.me-strecke__raster::before { content: ''; grid-column: 1; grid-row: 1; justify-self: center; width: 2px; border-radius: 1px; background: linear-gradient(var(--accent), color-mix(in srgb, var(--accent) 20%, transparent)); }
+.me-phase { position: relative; display: grid; gap: 14px; }
+.me-phase__nr { margin: 0; font: 700 clamp(56px, 7vw, 120px)/.85 var(--bs-display); letter-spacing: -.04em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.me-phase__nr::before { content: ''; position: absolute; left: calc(-1 * (clamp(18px, 3vw, 40px) + 18px) - 7px); top: .3em; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); box-shadow: 0 0 12px rgba(63, 212, 224, .6); }
+.me-phase__titel { margin: 0; font: 700 clamp(32px, 4.2vw, 68px)/.95 var(--bs-display); letter-spacing: -.025em; text-transform: uppercase; }
+.me-phase__text { margin: 0; max-width: 58ch; font: 400 clamp(16px, 1.25vw, 19px)/1.6 var(--bs-text); color: rgba(255, 255, 255, .82); }
+.me-phase__erg { display: flex; gap: 12px; align-items: baseline; margin: 6px 0 0; padding: 14px 16px; max-width: 58ch; border: 1px solid rgba(63, 212, 224, .4); border-radius: 10px; background: rgba(63, 212, 224, .06); font: 500 15.5px/1.5 var(--bs-text); }
+.me-phase__erg b { color: var(--accent); font-size: 14px; }
+
+/* Desktop gepinnt: links die Strecke, rechts die aktive Phase, unten die Leiste */
+.me-strecke.is-gepinnt .me-strecke__bahn { height: 560vh; }
+.me-strecke.is-gepinnt .me-strecke__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; align-items: center; }
+.me-strecke.is-gepinnt .me-strecke__raster { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 24px clamp(32px, 5vw, 96px); align-items: center;
+  height: calc(100svh - clamp(160px, 20vh, 200px)); margin-top: clamp(70px, 9vh, 100px); padding: 0; }
+.me-strecke.is-gepinnt .me-strecke__raster::before { display: none; }
+.me-strecke.is-gepinnt .me-strecke__karte { display: block; grid-column: 1; grid-row: 1 / span 2; height: 100%; min-height: 0; }
+.me-strecke.is-gepinnt .me-strecke__karte svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.me-strecke.is-gepinnt .me-strecke__phasen { grid-column: 2; grid-row: 1; display: grid; gap: 0; align-self: center; }
+.me-strecke.is-gepinnt .me-phase { grid-area: 1 / 1; opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(30px); transition: opacity .5s, clip-path .8s var(--bs-ease), transform .8s var(--bs-ease); }
+.me-strecke.is-gepinnt .me-phase.is-aktiv { opacity: 1; clip-path: inset(0 0 0 0); transform: none; }
+.me-strecke.is-gepinnt .me-phase__nr::before { display: none; }
+.me-strecke.is-gepinnt .me-strecke__leiste { display: flex; grid-column: 2; grid-row: 2; list-style: none; margin: 0; padding: 0; gap: 6px; }
+.me-strecke__leiste li { flex: 1; display: grid; gap: 6px; margin: 0; padding-top: 10px; border-top: 2px solid rgba(255, 255, 255, .16); transition: border-color .4s; }
+.me-strecke__leiste b { font: 500 11px/1 var(--bs-mono); color: rgba(255, 255, 255, .5); }
+.me-strecke__leiste span { font: 500 12.5px/1.2 var(--bs-text); color: rgba(255, 255, 255, .6); }
+.me-strecke__leiste li.is-aktiv { border-top-color: var(--accent); }
+.me-strecke__leiste li.is-aktiv b, .me-strecke__leiste li.is-aktiv span { color: var(--accent); }
+.me-strecke__strasse { fill: none; stroke: rgba(255, 255, 255, .06); stroke-width: 34; stroke-linecap: round; }
+.me-strecke__mitte { fill: none; stroke: rgba(255, 255, 255, .22); stroke-width: 1.5; stroke-dasharray: 6 10; }
+.me-strecke__linie { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(63, 212, 224, .7)); }
+.me-strecke__wagen { fill: #fff; stroke: var(--accent); stroke-width: 3; filter: drop-shadow(0 0 8px rgba(63, 212, 224, .9)); }
+.me-kurve circle { fill: var(--bg); stroke: rgba(255, 255, 255, .3); stroke-width: 1.5; transition: stroke .4s, fill .4s; }
+.me-kurve text { fill: rgba(255, 255, 255, .55); font: 600 17px var(--bs-mono); transition: fill .4s; }
+.me-kurve.is-erreicht circle { stroke: var(--accent); fill: color-mix(in srgb, var(--accent) 14%, var(--bg)); }
+.me-kurve.is-erreicht text { fill: var(--accent); }
+.is-reduced .me-phase { transition: none !important; }
+
+/* ---------- Prinzipien ---------- */
+.me-prinzipien__liste { list-style: none; margin: 0; padding: 0; }
+.me-prinzipien__liste li { margin: 0; }
+.me-prinzipien__nr { display: inline-block; min-width: 2.4em; font: 500 12px/1 var(--bs-mono); letter-spacing: .06em; color: var(--accent); vertical-align: .35em; }

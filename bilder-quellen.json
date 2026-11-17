@@ -1,0 +1,119 @@
+{
+  "_hinweis": "Quellliste fuer tools/bilder.py. Quellbilder werden nur gelesen. Steht bei foto oder exo eine Liste, waehlt das Werkzeug die Kombination mit der besten Deckung. Optional je Paar: ausrichtung: {dx, dy, skala, drehung} setzt die Schaetzung ausser Kraft.",
+  "quellen": {
+    "O": "C:/Users/frank/Documents/Codex/2026-11-14/c-users-frank-onedrive-desktop-webseiten/outputs",
+    "M": "C:/Users/frank/OneDrive/Desktop/Webseiten Referenzen/Fotos Frank/Marketing-Referenzen"
+  },
+  "satz": "a",
+  "saetze": {
+    "a": {
+      "figuren": [
+        {
+          "id": "frank",
+          "ansichten": {
+            "links": {
+              "foto": "O/frank-auswahl-links-1.png",
+              "exo": "O/referenzhelm-portraet-links-taille.png",
+              "ausrichtung": {
+                "dx": -0.0074,
+                "dy": 0.2881,
+                "skala": 1.5175,
+                "drehung": 0.0
+              }
+            },
+            "frontal": {
+              "foto": "O/frank-auswahl-frontal-1.png",
+              "exo": "O/referenzhelm-portraet-frontal-taille.png",
+              "ausrichtung": {
+                "dx": -0.0434,
+                "dy": 0.2673,
+                "skala": 1.458,
+                "drehung": 0.0
+              }
+            },
+            "rechts": {
+              "foto": "M/frank-portraet-rechts.png",
+              "exo": "O/referenzhelm-portraet-rechts-taille.png",
+              "ausrichtung": {
+                "dx": -0.0917,
+                "dy": 0.2458,
+                "skala": 1.3985,
+                "drehung": 0.0
+              }
+            }
+          },
+          "ganzkoerper": {
+            "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
+            "exo": "M/referenzhelm-ganzkoerper-frontal.png"
+          }
+        }
+      ]
+    },
+    "b": {
+      "figuren": [
+        {
+          "id": "frank",
+          "ansichten": {
+            "rechts": {
+              "foto": "M/frank-portraet-rechts.png",
+              "exo": "M/exoskelett-portraet-rechts.png"
+            }
+          },
+          "ganzkoerper": {
+            "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
+            "exo": "M/exoskelett-ganzkoerper-frontal.png"
+          }
+        }
+      ]
+    },
+    "c": {
+      "figuren": [
+        {
+          "id": "frank",
+          "ansichten": {
+            "links": {
+              "foto": "O/frank-auswahl-links-1-taille.png",
+              "exo": "O/referenzhelm-portraet-links-taille.png"
+            },
+            "frontal": {
+              "foto": "O/frank-auswahl-frontal-1-taille.png",
+              "exo": "O/referenzhelm-portraet-frontal-taille.png"
+            },
+            "rechts": {
+              "foto": "O/frank-portraet-rechts-taille.png",
+              "exo": "O/referenzhelm-portraet-rechts-taille.png"
+            }
+          },
+          "ganzkoerper": {
+            "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
+            "exo": "M/referenzhelm-ganzkoerper-frontal.png"
+          }
+        }
+      ]
+    }
+  },
+  "szenen": {
+    "frank": {
+      "ansichten": {
+        "links": {
+          "foto": [
+            "O/frank-ganzkoerper-links-1-hochglanz.png",
+            "O/frank-ganzkoerper-links-2-hochglanz.png"
+          ],
+          "exo": "M/referenzhelm-ganzkoerper-links.png"
+        },
+        "frontal": {
+          "foto": "O/frank-mantel-dunkelblau-hochglanz.png",
+          "exo": "M/referenzhelm-ganzkoerper-frontal.png"
+        },
+        "rechts": {
+          "foto": [
+            "O/frank-ganzkoerper-rechts-1-hochglanz.png",
+            "O/frank-ganzkoerper-rechts-2-hochglanz.png"
+          ],
+          "exo": "M/referenzhelm-ganzkoerper-rechts.png"
+        }
+      }
+    }
+  }
+}

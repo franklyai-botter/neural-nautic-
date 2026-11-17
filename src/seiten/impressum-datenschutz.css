@@ -1,0 +1,34 @@
+/* Vorlage „Lesen“ (/impressum, /datenschutz, Paket C): heller Grund, Lesebreite, ruhige Gliederung.
+   Bei der Datenschutzerklaerung links ein mitlaufendes Verzeichnis der 25 Abschnitte (ab 1100 px). */
+.nn-lesen { position: relative; background: var(--bg); color: var(--fg); padding: clamp(64px, 8vw, 120px) 0 clamp(80px, 10vw, 150px); }
+.nn-lesen__raster { display: grid; grid-template-columns: minmax(0, var(--ks-schmal, 760px)); justify-content: start; gap: clamp(40px, 6vw, 110px); }
+.nn-lesen--nav .nn-lesen__raster { grid-template-columns: minmax(220px, 300px) minmax(0, var(--ks-schmal, 760px)); }
+.nn-lesen__text { min-width: 0; display: grid; gap: clamp(36px, 3.6vw, 52px); }
+
+.nn-lesen__teil { scroll-margin-top: 96px; }
+.nn-lesen__teil--unter { margin-top: calc(clamp(36px, 3.6vw, 52px) * -.45); padding-left: clamp(14px, 1.6vw, 22px); border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+.nn-lesen__titel { margin: 0 0 14px; font: 700 clamp(19px, 1.5vw, 23px)/1.2 var(--bs-display); letter-spacing: -.01em; text-wrap: balance; }
+h3.nn-lesen__titel { font-size: clamp(17px, 1.3vw, 20px); }
+.nn-lesen__teil p, .nn-lesen__liste { margin: 0; font: 400 16px/1.75 var(--bs-text); color: color-mix(in srgb, var(--fg) 84%, transparent); text-wrap: pretty; }
+.nn-lesen__teil p + p, .nn-lesen__teil p + .nn-lesen__liste, .nn-lesen__liste + p { margin-top: 12px; }
+.nn-lesen__liste { padding-left: 1.2em; display: grid; gap: 4px; }
+.nn-lesen__liste li { margin: 0; padding-left: 4px; }
+.nn-lesen__liste li::marker { color: var(--accent); }
+/* lange Adressen (Anbieterlinks, E-Mail) duerfen umbrechen, nie seitlich ueberstehen */
+.ks .nn-lesen__teil a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; overflow-wrap: anywhere; transition: text-decoration-color .25s; }
+.ks .nn-lesen__teil a:hover { text-decoration-color: currentColor; }
+
+/* Verzeichnis */
+.nn-lesen__nav { position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 120px); max-height: calc(100svh - 120px); overflow: auto; overscroll-behavior: contain; padding-right: 8px; }
+.nn-lesen__nav ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--linie); }
+.nn-lesen__nav li { margin: 0; }
+.ks .nn-lesen__nav a { display: block; text-decoration: none; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; font: 500 13px/1.35 var(--bs-text); color: var(--muted); text-decoration: none; transition: color .25s, border-color .25s; }
+.ks .nn-lesen__nav-unter a { padding-left: 28px; font-size: 12.5px; }
+.ks .nn-lesen__nav a:hover { color: var(--fg); }
+.ks .nn-lesen__nav a[aria-current] { color: var(--accent); border-left-color: var(--accent); }
+
+@media (max-width: 1099px) {
+  .nn-lesen--nav .nn-lesen__raster { grid-template-columns: minmax(0, 1fr); }
+  .nn-lesen__nav { display: none; }
+}
+@media (max-width: 991px) { .nn-lesen__teil { scroll-margin-top: 80px; } }

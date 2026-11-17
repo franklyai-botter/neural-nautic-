@@ -1,0 +1,115 @@
+/* Karten mit Detailfeld. Desktop: gepinnt, Figur in der Mitte, je vier Karten links und rechts. */
+.bs-karten { position: relative; z-index: 2; --bg: var(--bs-flaeche); background: var(--bs-flaeche); }
+.bs-karten .bs-karten__bahn { height: calc(100vh + (var(--bs-schritte, 8) * var(--bs-schritt, .3) + var(--bs-auftakt, 0)) * 100vh); }
+/* Breite Buehne hinter den Karten (z. B. fuer eine Szene, in der die Figur von der Seite in die Mitte wandert) */
+.bs-karten__buehne { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.bs-karten__buehne:empty { display: none; }
+.bs-karten__pin > :not(.bs-karten__buehne) { position: relative; z-index: 1; }
+.bs-karten.is-breit .bs-karten__figur { background: none; overflow: visible; }
+.bs-karten.is-breit .bs-karten__stand { visibility: hidden; }
+.bs-karten .bs-karten__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: clamp(14px, 2.4vh, 26px); padding: clamp(84px, 11vh, 104px) 0 clamp(16px, 2.6vh, 26px); }
+.bs-karten__kopf { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 10px clamp(24px, 4vw, 70px); align-items: end; }
+.bs-karten__kopf .bs-label { grid-column: 1 / -1; }
+.bs-karten__h { font-size: clamp(26px, 3.1vw, 48px); }
+.bs-karten__kopf .bs-lauf { font-size: 15px; line-height: 1.45; max-width: 44ch; justify-self: end; }
+.bs-karten__feld { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(14px, 2vw, 30px); min-height: 0; }
+.bs-karten__spalte { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(0, 1fr); gap: 12px; min-height: 0; will-change: transform; }
+.bs-karte-w { min-height: 0; display: grid; }
+.bs-karten__alle { text-align: center; }
+
+.bs-karte { position: relative; width: 100%; height: 100%; min-height: 0; border: 0; padding: 0; text-align: left; border-radius: var(--bs-radius); overflow: hidden; cursor: pointer;
+  background: color-mix(in srgb, var(--bs-flaeche) 80%, #fff 5%); color: #fff; outline-offset: 3px; display: block; }
+.bs-karte__rahmen { position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, .16); border-radius: inherit; transition: border-color .4s; pointer-events: none; z-index: 3; }
+.bs-karte__vorn { position: absolute; inset: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.bs-karte__nr { font: 500 11px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bs-akzent); display: flex; justify-content: space-between; }
+.bs-karte__nr span:last-child { color: rgba(255, 255, 255, .5); }
+.bs-karte__bild { flex: 1; min-height: 0; border-radius: 9px; background-color: var(--bs-dunkel); background-repeat: no-repeat; transition: transform var(--bs-dauer) var(--bs-ease), filter .4s; filter: saturate(.75) brightness(.92); }
+.bs-karte__titel { font: 700 clamp(13px, 1.12vw, 17.5px)/1.04 var(--bs-display); letter-spacing: -.005em; text-transform: uppercase; hyphens: auto; overflow-wrap: break-word; }
+/* Ergebnis faehrt als Ellipse von oben darueber (Lando: 0,75 s cubic-bezier(.65,.05,0,1)) */
+.bs-karte__erg { position: absolute; inset: 0; z-index: 2; background: var(--bs-akzent); color: var(--bs-akzent-tinte); padding: 14px; display: flex; flex-direction: column; gap: 10px;
+  clip-path: ellipse(100% 0% at 50% 0%); transition: clip-path var(--bs-dauer) var(--bs-ease); }
+.bs-karte__erg small { font: 500 11px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; }
+.bs-karte__ergtext { font: 600 clamp(14px, 1.2vw, 18px)/1.16 var(--bs-display); letter-spacing: -.005em; margin-top: auto; hyphens: auto; overflow-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 7; line-clamp: 7; overflow: hidden; }
+.bs-karte__erg b { font: 700 11.5px/1.1 var(--bs-display); text-transform: uppercase; letter-spacing: .06em; border-top: 1px solid color-mix(in srgb, var(--bs-akzent-tinte) 35%, transparent); padding-top: 10px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.bs-karte__erg b i { font: 400 20px/.6 var(--bs-display); }
+.bs-karte.is-aktiv .bs-karte__erg, .bs-karte:focus-visible .bs-karte__erg { clip-path: ellipse(100% 120% at 50% 0%); }
+.bs-karte.is-aktiv .bs-karte__rahmen, .bs-karte:focus-visible .bs-karte__rahmen { border-color: var(--bs-akzent); }
+.bs-karte.is-aktiv .bs-karte__bild { transform: scale(1.1); filter: none; }
+@media (hover: hover) {
+  .bs-karte:hover .bs-karte__erg { clip-path: ellipse(100% 120% at 50% 0%); }
+  .bs-karte:hover .bs-karte__rahmen { border-color: var(--bs-akzent); }
+}
+
+/* Figur in der Mitte: Standbild mit Marker oder die Ganzkoerper-Szene (Klasse .is-szene blendet das Standbild aus) */
+.bs-karten__figur { position: relative; height: 100%; min-height: 0; aspect-ratio: 2 / 3; border-radius: 22px; overflow: hidden; background: var(--bs-dunkel); will-change: transform; }
+.bs-karten__stand { position: absolute; inset: 0; }
+.bs-karten__stand img { width: 100%; height: 100%; object-fit: cover; }
+.bs-karten__figur.is-szene .bs-karten__stand { visibility: hidden; }
+.bs-karten__punkt { position: absolute; width: 0; height: 0; opacity: 0; transition: left .7s var(--bs-ease), top .7s var(--bs-ease), opacity .3s; }
+.bs-karten__punkt.is-an { opacity: 1; }
+.bs-karten__punkt::before, .bs-karten__punkt::after { content: ''; position: absolute; left: 0; top: 0; border-radius: 50%; translate: -50% -50%; }
+.bs-karten__punkt::before { width: clamp(70px, 9vw, 130px); height: clamp(70px, 9vw, 130px); border: 1.5px solid var(--bs-akzent); box-shadow: 0 0 34px color-mix(in srgb, var(--bs-akzent) 60%, transparent), inset 0 0 26px color-mix(in srgb, var(--bs-akzent) 35%, transparent); animation: bs-puls 2.4s ease-in-out infinite; }
+.bs-karten__punkt::after { width: 8px; height: 8px; background: var(--bs-leuchten); box-shadow: 0 0 14px var(--bs-leuchten); }
+@keyframes bs-puls { 50% { transform: scale(1.12); opacity: .7; } }
+
+/* ---------- Detailfeld (Dialog) ---------- */
+.bs-detail { border: 0; padding: 0; margin: auto; width: min(1080px, calc(100vw - 2 * var(--bs-rand))); max-height: min(760px, calc(100dvh - 32px)); background: transparent; color: #fff; overflow: visible; }
+.bs-detail::backdrop { background: rgba(4, 10, 12, 0); transition: background-color .45s, backdrop-filter .45s; }
+.bs-detail.is-open::backdrop { background: rgba(4, 10, 12, .72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.bs-detail__innen { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-rows: minmax(0, 1fr) auto; max-height: inherit; border-radius: 22px; overflow: hidden;
+  background: var(--bs-flaeche); border: 1px solid rgba(255, 255, 255, .16); box-shadow: 0 50px 120px -30px rgba(0, 0, 0, .8), 0 0 80px -30px color-mix(in srgb, var(--bs-akzent) 60%, transparent);
+  clip-path: ellipse(120% 0% at 50% 0%); transition: clip-path var(--bs-dauer) var(--bs-ease); }
+.bs-detail.is-open .bs-detail__innen { clip-path: ellipse(160% 140% at 50% 0%); }
+.bs-detail.is-zu .bs-detail__innen { transition-duration: .4s; }
+.bs-detail__bild { position: relative; grid-row: 1 / 3; min-height: 380px; background: var(--bs-dunkel); }
+.bs-detail__bild > span:first-child { position: absolute; inset: 0; background-repeat: no-repeat; }
+.bs-detail__text { padding: clamp(24px, 4vw, 52px) clamp(20px, 4vw, 52px) 20px; display: grid; gap: 18px; align-content: start; overflow-y: auto; --fg: #fff; --muted: rgba(255, 255, 255, .64); --accent: var(--bs-akzent); }
+.bs-detail__titel { font: 700 clamp(28px, 3.4vw, 52px)/.96 var(--bs-display); letter-spacing: -.02em; text-transform: uppercase; outline: none; hyphens: auto; }
+.bs-detail__erg { background: var(--bs-akzent); color: var(--bs-akzent-tinte); border-radius: 12px; padding: 16px 18px; display: grid; gap: 8px; }
+.bs-detail__erg small { font: 500 11px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; }
+.bs-detail__erg p { font: 600 clamp(17px, 1.6vw, 22px)/1.18 var(--bs-display); }
+.bs-detail__wege { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 26px; margin-top: 6px; }
+.bs-detail__leiste { grid-column: 2; display: flex; align-items: center; gap: 10px; padding: 14px clamp(20px, 4vw, 52px) 18px; border-top: 1px solid rgba(255, 255, 255, .12); }
+.bs-detail__pfeil, .bs-detail__zu { height: 44px; min-width: 44px; border-radius: 10px; border: 1.5px solid rgba(255, 255, 255, .5); background: transparent; color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font: 600 13px/1 var(--bs-display); letter-spacing: .06em; text-transform: uppercase; transition: background-color .25s, color .25s, border-color .25s; }
+.bs-detail__pfeil i, .bs-detail__zu i { font-style: normal; font-size: 18px; }
+.bs-detail__zu { margin-left: auto; padding: 0 16px; }
+.bs-detail__pfeil:hover, .bs-detail__zu:hover { background: var(--bs-akzent); border-color: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+.bs-detail__zahl { font: 500 12px/1 var(--bs-mono); letter-spacing: .1em; color: rgba(255, 255, 255, .64); min-width: 62px; text-align: center; }
+
+/* ---------- Mobil: Figur bleibt oben stehen, Karten laufen darunter durch ---------- */
+@media (max-width: 991px) {
+  .bs-karten .bs-karten__bahn { height: auto; }
+  .bs-karten .bs-karten__pin { position: static; height: auto; overflow: visible; display: block; padding: 12vh 0 14vh; }
+  .bs-karten__kopf { grid-template-columns: 1fr; margin-bottom: 26px; }
+  .bs-karten__kopf .bs-lauf { justify-self: start; }
+  .bs-karten__h { font-size: clamp(28px, 8vw, 44px); }
+  .bs-karten__feld { display: flex; flex-direction: column; }
+  .bs-karten__figur { order: -1; position: sticky; top: 62px; z-index: 2; height: 44svh; flex: none; aspect-ratio: auto; width: 100%; box-shadow: 0 26px 30px -8px var(--bs-flaeche); }
+  .bs-karten__stand img { object-fit: contain; }
+  .bs-karten__spalte { position: relative; z-index: 1; grid-template-columns: 1fr 1fr; grid-auto-rows: auto; gap: 10px; margin-top: 10px; }
+  .bs-karten__spalte--l { margin-top: 18px; }
+  .bs-karte-w { aspect-ratio: 4 / 4.6; }
+  .bs-karte__vorn, .bs-karte__erg { padding: 12px; }
+  .bs-karte__titel { font-size: clamp(14px, 4.1vw, 19px); }
+  .bs-karte__ergtext { font-size: clamp(13px, 3.7vw, 16px); -webkit-line-clamp: 6; line-clamp: 6; }
+  .bs-karten__alle { margin-top: 34px; position: relative; z-index: 1; }
+
+  .bs-detail { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
+  .bs-detail__innen { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr) auto; }
+  .bs-detail__bild { grid-row: auto; min-height: 0; height: 22dvh; }
+  .bs-detail__leiste { grid-column: 1; }
+}
+
+/* Reduced Motion und kurze Fenster: nichts gepinnt */
+.is-reduced .bs-karten .bs-karten__bahn { height: auto; }
+.is-reduced .bs-karten .bs-karten__pin { position: static; height: auto; overflow: visible; }
+.is-reduced .bs-karten__pin .bs-karten__feld { min-height: 640px; }
+.is-reduced .bs-karten__punkt::before { animation: none; }
+.is-reduced .bs-detail__innen, .is-reduced .bs-karte__erg { transition: none; }
+@media (max-width: 991px) { .is-reduced .bs-karten__pin .bs-karten__feld { min-height: 0; } .is-reduced .bs-karten__figur { position: relative; top: auto; } }
+@media (min-width: 992px) and (max-height: 620px) {
+  .bs-karten .bs-karten__bahn { height: auto; }
+  .bs-karten .bs-karten__pin { position: static; height: auto; }
+  .bs-karten__feld { min-height: 560px; }
+}

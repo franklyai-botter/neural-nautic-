@@ -1,0 +1,105 @@
+/* Bildpaar-Hero und Ganzkoerper-Szene. Farben je Funnel ueber --hero-grund / --hero-kante
+   (setzt hero.js aus figuren.json; im HTML fuer den ersten Eindruck zusaetzlich inline moeglich). */
+
+.hero {
+  position: relative;
+  height: calc(var(--hero-scroll, 3.4) * 100vh);
+  height: calc(var(--hero-scroll, 3.4) * 100svh);
+  background: var(--hero-grund, #061419);
+  color: #f5f2eb;
+}
+.hero__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.hero__buehne, .szene__buehne {
+  position: absolute; inset: 0; overflow: hidden;
+  container-type: size;      /* cqw/cqh = Buehne, ohne den Scrollbalken-Fehler von vw */
+  touch-action: pan-y;       /* waagerechtes Wischen steuert, senkrechtes scrollt */
+}
+
+/* Verlauf wie im Canvas (shader.js grundBei), damit die Uebergabe nicht aufhellt */
+.hero__buehne::before, .szene__buehne::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, .03) 0, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, .34) 100%);
+}
+
+/* Erster Eindruck und Standbild: gleiche Rechnung wie layout.js (rechteckKopf) */
+.hero__bild {
+  --x: var(--xd); --y: var(--yd); --k: var(--kd); --fmt: 1.5;
+  --L: min(100cqh, calc(100cqw / var(--fmt)));
+  --hh: calc(var(--L) * var(--k) / var(--ab));
+  position: absolute; display: block; margin: 0; pointer-events: none;
+  height: var(--hh);
+  width: calc(var(--hh) * var(--asp));
+  left: calc(100cqw * var(--x) - var(--hh) * var(--asp) * var(--ax));
+  top: calc(100cqh * var(--y) - var(--hh) * var(--ay));
+  -webkit-mask: var(--hof) center / 100% 100% no-repeat;
+  mask: var(--hof) center / 100% 100% no-repeat;
+}
+.hero__bild img { width: 100%; height: 100%; max-width: none; }
+@media (max-width: 991px) {
+  .hero__bild { --x: var(--xm); --y: var(--ym); --k: var(--km); --fmt: 0.5; }
+}
+
+.hero__canvas, .szene__canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0; transition: opacity .45s ease;
+}
+.hero__canvas.ist-da, .szene__canvas.ist-da { opacity: 1; }
+.hero--gl .hero__bild { visibility: hidden; transition: visibility 0s .7s; }
+
+/* wechselnde Besetzung (wechsel: "besuch", ?mitte=): Fotos erst zeigen, wenn hero.js die Plaetze vergeben hat */
+.hero[data-wechsel]:not(.hero--geordnet) .hero__bild { visibility: hidden; }
+
+/* steuerung: 'extern' - die Seite pinnt und fuehrt den Fortschritt selbst */
+.hero.hero--extern { height: 100vh; height: 100svh; }
+.hero.hero--extern .hero__pin { position: relative; }
+.szene.szene--extern { height: 100vh; height: 100svh; }
+.szene.szene--extern .szene__pin { position: relative; height: 100%; }
+
+/* Standbild: Reduced Motion oder kein WebGL2. Keine gepinnte Strecke, keine Bewegung. */
+.hero--still { height: 100vh; height: 100svh; }
+.hero--still .hero__schalter { display: none; }
+
+/* Kennzeichnung nach Art. 50 KI-VO: klein, dauerhaft sichtbar */
+.hero__ki, .szene__ki {
+  position: absolute; left: clamp(14px, 2.2vw, 32px); bottom: clamp(12px, 2vw, 26px); z-index: 3; margin: 0;
+  font: 500 10px/1 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(245, 242, 235, .62); pointer-events: none;
+}
+
+/* Sperrschalter, nur mobil: Wischen steuert dann nur die Szene */
+.hero__schalter {
+  position: absolute; right: 14px; bottom: 12px; z-index: 4; display: none;
+  min-height: 44px; padding: 0 16px; border: 1px solid rgba(245, 242, 235, .28); border-radius: 999px;
+  background: rgba(8, 12, 14, .62); color: #f5f2eb; cursor: pointer;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  font: 500 10px/1 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase;
+  transition: opacity .3s ease, border-color .3s ease;
+}
+.hero__schalter-b { display: none; }
+.hero--gesperrt .hero__schalter { border-color: var(--hero-kante, #6feff5); }
+.hero--gesperrt .hero__schalter-a { display: none; }
+.hero--gesperrt .hero__schalter-b { display: inline; }
+.hero--gesperrt .hero__buehne { touch-action: none; }
+.hero--unterwegs .hero__schalter { opacity: 0; pointer-events: none; }
+@media (max-width: 991px) { .hero--gl .hero__schalter { display: inline-flex; align-items: center; } }
+html.hero-sperre, html.hero-sperre body { overflow: hidden; overscroll-behavior: none; }
+
+/* ---------- Ganzkoerper-Szene (szene.js) ---------- */
+.szene {
+  position: relative;
+  height: calc(var(--szene-scroll, 4) * 100vh);
+  height: calc(var(--szene-scroll, 4) * 100svh);
+  background: var(--hero-grund, #061419);
+  color: #f5f2eb;
+}
+.szene__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.szene__bild {
+  --hh: calc(min(100cqh, calc(100cqw / 1.5)) * var(--hoehe, .84) / var(--span, .8));
+  position: absolute; display: block; pointer-events: none; max-width: none;
+  height: var(--hh); width: calc(var(--hh) * var(--asp, .6667));
+  left: calc(100cqw * var(--x, .5) - var(--hh) * var(--asp, .6667) * var(--mx, .5));
+  top: calc(100cqh * var(--y, .5) - var(--hh) * var(--my, .5));
+  -webkit-mask: var(--hof) center / 100% 100% no-repeat; mask: var(--hof) center / 100% 100% no-repeat;
+}
+.szene--gl .szene__bild { visibility: hidden; transition: visibility 0s .7s; }
+.szene--still { height: 100vh; height: 100svh; }

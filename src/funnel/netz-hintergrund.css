@@ -1,0 +1,7 @@
+/* Netz hinter dem Inhalt dunkler Abschnitte (netz-hintergrund.js). isolation macht den Abschnitt zum Stapelkontext:
+   die Ebene mit z-index -1 liegt dann ueber dem Abschnittsgrund und unter jedem Inhalt, ohne dass die Kinder
+   umpositioniert werden muessen (die Quer-Galerie haengt an position: sticky). */
+.nn-netz { position: relative; isolation: isolate; }
+.nn-netz__grund { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+/* fensterhoch und mitlaufend; in kurzen Abschnitten nur so hoch wie der Abschnitt */
+.nn-netz__fenster { position: sticky; top: 0; height: 100vh; height: 100svh; max-height: 100%; overflow: hidden; }

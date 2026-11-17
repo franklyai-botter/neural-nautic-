@@ -1,0 +1,41 @@
+.bs-store { position: relative; z-index: 3; padding: 22vh 0 14vh; margin-top: -12vh; }
+.bs-store__innen { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 5vw, 90px); align-items: center; }
+.bs-store__text { display: grid; gap: 22px; justify-items: start; }
+.bs-store__zeile { font: 600 clamp(18px, 1.7vw, 26px)/1.15 var(--bs-display); letter-spacing: -.01em; color: var(--accent); }
+.bs-store__titel { font-size: clamp(36px, 5vw, 84px); }
+.bs-store__collage { position: relative; aspect-ratio: 1 / 1.02; }
+.bs-store--ohne-bild .bs-store__innen { grid-template-columns: 1fr; }
+.bs-store--ohne-bild .bs-store__text { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 18px clamp(24px, 6vw, 100px); align-items: end; }
+.bs-store--ohne-bild .bs-store__text > .bs-label, .bs-store--ohne-bild .bs-store__text > .bs-store__zeile { grid-column: 1 / -1; }
+.bs-store--ohne-bild .bs-store__titel { font-size: clamp(30px, 3.9vw, 62px); }
+.bs-store__platz:empty { display: none; }
+.bs-store__platz { margin-top: clamp(34px, 7vh, 70px); }
+.bs-store__bild { position: absolute; margin: 0; }
+.bs-store__bild > div { position: relative; overflow: hidden; border-radius: 18px; height: 100%; box-shadow: 0 30px 70px -24px rgba(6, 12, 14, .4); }
+.bs-store__bild img { width: 100%; height: 100%; object-fit: cover; object-position: 27% 30%; }
+.bs-store__bild--1 { left: 0; top: 4%; width: 60%; aspect-ratio: 3 / 4; z-index: 1; }
+.bs-store__bild--2 { right: 0; bottom: 0; width: 52%; aspect-ratio: 3 / 3.9; z-index: 2; }
+.bs-store__bild--3 { right: 6%; top: 0; width: 30%; aspect-ratio: 1; }
+
+.bs-store__teaser { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: clamp(60px, 12vh, 130px); margin-inline: auto; }   /* zentriert: der Listen-Reset aus grund.css hebt margin-inline der .bs-wrap sonst auf */
+.bs-store__karte { display: grid; gap: 12px; align-content: start; height: 100%; padding: clamp(22px, 2.6vw, 36px); border-radius: var(--bs-radius); border: 1px solid var(--linie); background: color-mix(in srgb, var(--fg) 4%, transparent);
+  transition: background-color .35s, color .35s, border-color .35s; }
+.bs-store__karte small { font: 500 11.5px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); transition: color .35s; }
+.bs-store__karte b { font: 700 clamp(22px, 2.2vw, 34px)/1.02 var(--bs-display); letter-spacing: -.015em; text-transform: uppercase; text-wrap: balance; }
+.bs-store__karte > span { font-size: 15.5px; line-height: 1.5; color: var(--muted); transition: color .35s; max-width: 52ch; }
+.bs-store__karte em { font: 700 14px/1 var(--bs-display); font-style: normal; letter-spacing: .05em; text-transform: uppercase; display: inline-flex; gap: 10px; align-items: center; margin-top: 10px; }
+.bs-store__karte em i { font-style: normal; transition: transform .5s var(--bs-ease); }
+.bs-store__karte:hover, .bs-store__karte:focus-visible { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.bs-store__karte:hover small, .bs-store__karte:focus-visible small { color: var(--bs-akzent); }
+.bs-store__karte:hover > span, .bs-store__karte:focus-visible > span { color: color-mix(in srgb, var(--bg) 74%, transparent); }
+.bs-store__karte:hover em i { transform: translateX(5px); }
+
+@media (max-width: 991px) {
+  .bs-store { padding: 16vh 0 10vh; margin-top: -8vh; }
+  .bs-store__innen { grid-template-columns: 1fr; gap: 8vh; }
+  .bs-store--ohne-bild .bs-store__text { grid-template-columns: 1fr; }
+  .bs-store__collage { width: min(100%, 460px); margin-inline: auto; }
+  .bs-store__teaser { grid-template-columns: 1fr; }
+  .bs-store .bs-knopf--gross { height: 60px; font-size: 15px; padding: 0 20px; }
+}
+.is-reduced .bs-store { margin-top: 0; }

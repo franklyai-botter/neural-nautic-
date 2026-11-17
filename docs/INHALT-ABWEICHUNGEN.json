@@ -1,0 +1,284 @@
+[
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle.",
+    "grund": "Frank 14.11.2026: Übergang Schiff -> Schichten neu, Überschrift „Was KI im Betrieb trägt“ mit Einleitung (Begriff KI-Architektur, keine Weltmeere)"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "KI kommt im Betrieb an, wenn Kurs, Crew und Schiff gleichzeitig stimmen.",
+    "grund": "Frank 14.11.2026: Methode-Überschrift neu „So kommt KI im Betrieb an.“"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "text",
+    "text": "Gemeinsam KI in echte Arbeitsprozesse bringen.",
+    "grund": "Frank 15.11.2026: „echte“ gestrichen, Leitsatz jetzt „Gemeinsam KI in Arbeitsprozesse bringen“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "KI kommt in die Umsetzung, wenn Kurs, Crew und Schiff gleichzeitig stimmen",
+    "grund": "Frank 15.11.2026: Überschrift und Einleitung neu (Fassung A „Kurs, Crew und Schiff: drei Dinge, ein Vorhaben.“)"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Die Gründe, warum KI im Ergebnis nicht ankommt, sind fast immer dieselben: kein klarer Kurs, eine Crew, die nicht mitzieht, oder ein Schiff, das nicht seetüchtig ist. Deshalb planen wir alle drei als ein Vorhaben, nicht nacheinander.",
+    "grund": "Frank 15.11.2026: Überschrift und Einleitung neu (Fassung A „Kurs, Crew und Schiff: drei Dinge, ein Vorhaben.“)"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Was in den Betrieb geht, wird ingenieurmäßig gebaut, nicht zusammengeklickt",
+    "grund": "Frank 15.11.2026: „ingenieurmäßig“ gestrichen, Überschrift „Ein Prototyp ist schnell gebaut. Ein System für den Betrieb nicht.“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Ein Prototyp ist heute in Stunden gebaut. Ein System, das Ihre Daten verarbeitet und jeden Tag läuft, braucht Anforderungen, Tests, Sicherheitsprüfung und Verantwortung. Wie wir das machen, steht auf der Seite zu AI Engineering.",
+    "grund": "Frank 15.11.2026: „ingenieurmäßig“ gestrichen, Überschrift „Ein Prototyp ist schnell gebaut. Ein System für den Betrieb nicht.“"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "KI-Check buchen",
+    "grund": "Frank 15.11.2026: Buchung heißt überall „KI-Potenzialcheck“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Das Referenzmodell als Grafik für Ihre Unterlagen",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate)"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Das Referenzmodell als Grafik für Ihre Unterlagen",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate)"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Referenzmodell",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate)"
+  },
+  {
+    "seite": "/datenschutz",
+    "art": "text",
+    "text": "Über die Schaltflächen „KI-Check buchen“ und „KI-Potenzialcheck buchen“ können Sie einen KI-Potenzialcheck buchen.*",
+    "grund": "Frank 15.11.2026: nur noch ein Knopfname „KI-Potenzialcheck buchen“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Ein seetüchtiges Schiff hat sieben Schichten, und der Datenschutz geht durch alle",
+    "grund": "Frank 15.11.2026: Überschrift wie auf der Startseite „Was KI im Betrieb trägt“"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
+    "grund": "Frank 15.11.2026: KI-Architektur als Blaupause beschrieben"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Alle sieben Schichten mit Bausteinen, Datenfluss und Erläuterungen in einem Bild, verlustfrei skalierbar (SVG) für Präsentationen und Strategiepapiere.",
+    "grund": "Frank 15.11.2026: KI-Architektur als Blaupause beschrieben"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Bereit für den ersten sinnvollen KI-Schritt?",
+    "grund": "Frank 15.11.2026: Abschluss neu „Sprechen wir über Ihren nächsten KI-Schritt.“ (alt klang herablassend, „ersten“ passt nicht für alle)"
+  },
+  {
+    "seite": "/",
+    "art": "text",
+    "text": "Wir prüfen gemeinsam, wo KI in Ihrem Unternehmen messbar Wert schafft.",
+    "grund": "Frank 15.11.2026: Abschluss neu „Sprechen wir über Ihren nächsten KI-Schritt.“ (alt klang herablassend, „ersten“ passt nicht für alle)"
+  },
+  {
+    "seite": "/kontakt",
+    "art": "text",
+    "text": "Bereit für den ersten sinnvollen KI-Schritt?",
+    "grund": "Frank 15.11.2026: Abschluss neu „Sprechen wir über Ihren nächsten KI-Schritt.“ (alt klang herablassend, „ersten“ passt nicht für alle)"
+  },
+  {
+    "seite": "/kontakt",
+    "art": "text",
+    "text": "Wir prüfen gemeinsam, wo KI in Ihrem Unternehmen messbar Wert schafft.",
+    "grund": "Frank 15.11.2026: Abschluss neu „Sprechen wir über Ihren nächsten KI-Schritt.“ (alt klang herablassend, „ersten“ passt nicht für alle)"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "30 Minuten per Video, kostenlos und unverbindlich. Danach wissen Sie, wo KI bei Ihnen zuerst wirkt.",
+    "grund": "Frank 15.11.2026: „als Nächstes“ statt „zuerst“ (nicht alle stehen am Anfang)"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag genutzt werden. Der Betriebsrat ist früh an Bord.",
+    "grund": "Frank 15.11.2026: „gegebenenfalls“ ergänzt (nicht jeder Betrieb hat einen Betriebsrat)"
+  },
+  {
+    "seite": "/",
+    "art": "meta",
+    "schluessel": "property:og:title",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/",
+    "art": "meta",
+    "schluessel": "property:og:image:alt",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/",
+    "art": "meta",
+    "schluessel": "name:twitter:title",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/",
+    "art": "meta",
+    "schluessel": "name:twitter:image:alt",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/impressum",
+    "art": "meta",
+    "schluessel": "property:og:title",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/impressum",
+    "art": "meta",
+    "schluessel": "property:og:image:alt",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/impressum",
+    "art": "meta",
+    "schluessel": "name:twitter:title",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/impressum",
+    "art": "meta",
+    "schluessel": "name:twitter:image:alt",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/datenschutz",
+    "art": "meta",
+    "schluessel": "property:og:title",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/datenschutz",
+    "art": "meta",
+    "schluessel": "property:og:image:alt",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/datenschutz",
+    "art": "meta",
+    "schluessel": "name:twitter:title",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/datenschutz",
+    "art": "meta",
+    "schluessel": "name:twitter:image:alt",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen); Impressum/Datenschutz erben wie live die Angaben der Startseite"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "meta",
+    "schluessel": "name:description",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "meta",
+    "schluessel": "property:og:description",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "meta",
+    "schluessel": "name:twitter:description",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "meta",
+    "schluessel": "json-ld:Person.description",
+    "grund": "Frank 15.11.2026: Leitsatz ohne „echte“, jetzt „Gemeinsam KI in Arbeitsprozesse bringen“ (das Bild /og/neuralnautic-og.png trägt noch „echte“, offen)"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "meta",
+    "schluessel": "json-ld:Person.image",
+    "grund": "NN-WR-09: Datei liegt im Neubau unter /inhalt/frank-portrait.webp, die alte Adresse leitet per public/_redirects (301) weiter; strukturierte Daten zeigen direkt auf die Datei"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "meta",
+    "schluessel": "json-ld:Person.hasCredential[0].url",
+    "grund": "NN-WR-09: Datei liegt im Neubau unter /inhalt/cert-tuev-sued.pdf, die alte Adresse leitet per public/_redirects (301) weiter; strukturierte Daten zeigen direkt auf die Datei"
+  },
+  {
+    "seite": "/",
+    "art": "link",
+    "ziel": "/cert-tuev-sued.pdf",
+    "grund": "Datei liegt im Neubau unter /inhalt/cert-tuev-sued.pdf (verlinkt); die alte Adresse leitet per public/_redirects (301) weiter"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "link",
+    "ziel": "/cert-tuev-sued.pdf",
+    "grund": "Datei liegt im Neubau unter /inhalt/cert-tuev-sued.pdf (verlinkt); die alte Adresse leitet per public/_redirects (301) weiter"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Führungskräfte, Multiplikatoren und Teams werden so eingebunden und geschult, dass die neuen Abläufe im Alltag tatsächlich genutzt werden. Der Betriebsrat ist früh an Bord.",
+    "grund": "Frank 15.11.2026: „gegebenenfalls“ ergänzt (nicht jeder Betrieb hat einen Betriebsrat); Fassung auf /ki-im-unternehmen mit „tatsächlich“"
+  },
+  {
+    "seite": "/ki-im-unternehmen",
+    "art": "text",
+    "text": "Referenzmodell NeuralNautic, Stand 29.10.2026.*",
+    "grund": "Frank 15.11.2026: 7-Schichten-Grafik heißt „KI-Architektur“ („Referenzmodell“ = das RAG bei spring.gate); Bildunterschrift des 3D-Modells"
+  },
+  {
+    "seite": "/wissen",
+    "art": "text",
+    "text": "≈ *",
+    "grund": "Kapitalzähler: Zählerstand während der Animation (live aufgenommen bei ≈ 67 Mrd. $, 2023 Q2). Quartalsdaten und Textregeln sind gleich wie live (kapital.ts), Endstand beidseitig ≈ 1.248 Mrd. $ bis 2026 Q3; geprüft 17.11.2026 (D8)"
+  },
+  {
+    "seite": "/wissen",
+    "art": "text",
+    "text": "kumuliert bis *",
+    "grund": "Kapitalzähler: Zählerstand während der Animation (live aufgenommen bei ≈ 67 Mrd. $, 2023 Q2). Quartalsdaten und Textregeln sind gleich wie live (kapital.ts), Endstand beidseitig ≈ 1.248 Mrd. $ bis 2026 Q3; geprüft 17.11.2026 (D8)"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "text",
+    "text": "KI-generierter Film: Unterlagen wirbeln zu einer Kugel und werden zu einer KI-Architektur",
+    "grund": "Frank 17.11.2026: „Das Video nehmen wir komplett raus“ – KI-Film (NnFilm.tsx) auf /ueber-mich und auf der Startseite entfallen, Dateien /frank-ki/* entfernt"
+  },
+  {
+    "seite": "/ueber-mich",
+    "art": "text",
+    "text": "KI-generiertes Video von Frank Schütt mit Analyse-Overlay",
+    "grund": "Überwachungs-Karte zeigt seit 14.11.2026 Standbilder statt Video; Beschreibung seit 17.11.2026 „KI-generiertes Bild …“ (Video entfallen)"
+  }
+]

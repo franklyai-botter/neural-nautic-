@@ -1,0 +1,4 @@
+# Sicherheits-Header und noindex setzt der Worker (src/worker/index.js) fuer jede Antwort.
+# Hier nur das Zwischenspeichern der Dateien mit Hash im Namen.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

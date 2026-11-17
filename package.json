@@ -1,34 +1,29 @@
 {
-  "name": "neural-nautic-website",
-  "version": "0.1.0",
+  "name": "funnel-neuralnautic",
   "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Marketing-Funnel NeuralNautic nach Lando-Vorbild, nur Franks Bilder",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 6191",
+    "cf:dev": "npm run build && wrangler dev --port 8791",
+    "prebuild": "node tools/kern-holen.mjs",
+    "kern": "node tools/kern-holen.mjs",
+    "test:worker": "node tools/worker-test.mjs",
+    "statisch": "python -I tools/statisch_erzeugen.py"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.94.0",
-    "next": "^16.3.8",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "resend": "^6.12.2"
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/inter-tight": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.20",
+    "three": "^0.174.0"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.20.11",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "^16.3.8",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "wrangler": "^4.151.0"
+    "vite": "^6.3.0",
+    "wrangler": "^4.40.0"
   }
 }

@@ -1,0 +1,334 @@
+{
+  "_hinweis": "Steuert tools/gravur.py: alten KI-Text entfernen (entfernen = Kaesten in Quellpixeln), echte Wortmarke drucken (viereck = oben links, oben rechts, unten rechts, unten links; Leserichtung links nach rechts). Ganzkoerper: nur entfernen, der Druck waere unter 8 px hoch.",
+  "wortmarke": "public/brand/partner/for42-wordmark.svg",
+  "bilder": {
+    "referenzhelm-portraet-links": {
+      "entfernen": [
+        [
+          506,
+          468,
+          572,
+          494
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              504.7,
+              476.3
+            ],
+            [
+              572.6,
+              472.8
+            ],
+            [
+              573.3,
+              485.7
+            ],
+            [
+              505.4,
+              489.2
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-portraet-rechts": {
+      "entfernen": [
+        [
+          332,
+          490,
+          398,
+          524
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              333.6,
+              492.5
+            ],
+            [
+              399.6,
+              509.0
+            ],
+            [
+              396.4,
+              521.5
+            ],
+            [
+              330.4,
+              505.0
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "exoskelett-portraet-rechts": {
+      "entfernen": [
+        [
+          344,
+          462,
+          408,
+          496
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              344.3,
+              465.1
+            ],
+            [
+              410.6,
+              480.4
+            ],
+            [
+              407.7,
+              492.9
+            ],
+            [
+              341.4,
+              477.6
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-portraet-frontal": {
+      "entfernen": [
+        [
+          298,
+          482,
+          364,
+          514
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              250,
+              489
+            ],
+            [
+              278,
+              494
+            ],
+            [
+              278,
+              506
+            ],
+            [
+              250,
+              500
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        },
+        {
+          "viereck": [
+            [
+              630,
+              495
+            ],
+            [
+              656,
+              490
+            ],
+            [
+              656,
+              501
+            ],
+            [
+              630,
+              507
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-ganzkoerper-frontal": {
+      "entfernen": [
+        [
+          448,
+          364,
+          480,
+          380
+        ]
+      ]
+    },
+    "referenzhelm-ganzkoerper-links": {
+      "entfernen": [
+        [
+          472,
+          354,
+          512,
+          372
+        ],
+        [
+          534,
+          348,
+          562,
+          364
+        ]
+      ]
+    },
+    "referenzhelm-ganzkoerper-rechts": {
+      "entfernen": [
+        [
+          460,
+          358,
+          490,
+          374
+        ]
+      ]
+    },
+    "exoskelett-ganzkoerper-frontal": {
+      "entfernen": [
+        [
+          460,
+          358,
+          486,
+          374
+        ]
+      ]
+    },
+    "referenzhelm-portraet-links-taille": {
+      "entfernen": [
+        [
+          506,
+          468,
+          572,
+          494
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              504.7,
+              476.3
+            ],
+            [
+              572.6,
+              472.8
+            ],
+            [
+              573.3,
+              485.7
+            ],
+            [
+              505.4,
+              489.2
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-portraet-frontal-taille": {
+      "entfernen": [
+        [
+          298,
+          482,
+          364,
+          514
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              250,
+              489
+            ],
+            [
+              278,
+              494
+            ],
+            [
+              278,
+              506
+            ],
+            [
+              250,
+              500
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        },
+        {
+          "viereck": [
+            [
+              630,
+              495
+            ],
+            [
+              656,
+              490
+            ],
+            [
+              656,
+              501
+            ],
+            [
+              630,
+              507
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    },
+    "referenzhelm-portraet-rechts-taille": {
+      "entfernen": [
+        [
+          332,
+          490,
+          398,
+          524
+        ]
+      ],
+      "drucke": [
+        {
+          "viereck": [
+            [
+              333.6,
+              492.5
+            ],
+            [
+              399.6,
+              509.0
+            ],
+            [
+              396.4,
+              521.5
+            ],
+            [
+              330.4,
+              505.0
+            ]
+          ],
+          "woelbung": 0.0,
+          "deckkraft": 0.9
+        }
+      ]
+    }
+  }
+}

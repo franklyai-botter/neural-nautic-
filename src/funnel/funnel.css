@@ -1,0 +1,280 @@
+/* NeuralNautic-Funnel: Marke fuer die Bausteine (@kern/bausteine) und das Wenige, was nur diese Seite hat.
+   Farben laut BRAND.md (Website): Petrol #061419, Cyan #3fd4e0 / #6feff5, Ivory #f5f2eb, Teal #0d7377. */
+:root {
+  --bs-dunkel: #061419; --bs-flaeche: #0b1a20; --bs-hell: #f5f2eb; --bs-tinte: #061419;
+  --bs-akzent: #3fd4e0; --bs-leuchten: #6feff5; --bs-akzent-hell: #0d7377; --bs-akzent-tinte: #061419;
+  --bg: var(--bs-dunkel); --fg: #fff; --accent: var(--bs-akzent); --accent-ink: var(--bs-akzent-tinte); --bar: var(--bs-akzent);
+  --muted: rgba(255, 255, 255, .64);
+}
+html { scroll-behavior: auto; background: #061419; overflow-x: clip; }   /* nie waagerecht scrollen */
+/* Raster: der Reset fuer p/ul/ol/figure in grund.css ([class*=" bs-"] :where(…) { margin: 0 }) hebt margin-inline der .bs-wrap auf,
+   solche Bloecke klebten links (Leistungen-Link, Download-Teaser, Nachweise). Eigentlich in grund.css zu beheben. */
+.bs-wrap.bs-wrap { margin-inline: auto; }
+body.nn { font-family: var(--bs-text); font-size: 17px; line-height: 1.55; }
+main { display: block; }
+@media (max-width: 991px) { body.nn { font-size: 16px; } }
+
+/* ---------- L2: Bedienelemente ueber dem Hero (blenden beim Scrollen aus) ---------- */
+.nn-hero-ui { position: absolute; inset: 0; z-index: 4; pointer-events: none; transition: opacity .4s; }
+.nn-hero-ui > * { pointer-events: auto; }
+.hero--unterwegs .nn-hero-ui, .is-unterwegs .nn-hero-ui { opacity: 0; visibility: hidden; transition: opacity .3s, visibility 0s .3s; }
+.nn-widget { position: absolute; left: 18px; bottom: 58px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; width: 310px; padding: 16px 16px 14px; color: #fff;
+  border: 1px solid rgba(255, 255, 255, .4); border-radius: 0 12px 12px 12px; background: rgba(6, 20, 25, .35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: border-color .3s, background-color .3s; }
+.nn-widget__lasche { position: absolute; left: -1px; bottom: 100%; padding: 7px 12px 6px; border: 1px solid rgba(255, 255, 255, .4); border-bottom: 0; border-radius: 10px 14px 0 0;
+  font: 500 10.5px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; background: rgba(6, 20, 25, .35); transition: border-color .3s, color .3s; }
+.nn-widget__zahl { display: grid; justify-items: center; width: 58px; height: 58px; align-content: center; border-radius: 50%; border: 1px solid var(--bs-akzent); color: var(--bs-akzent); position: relative; }
+.nn-widget__zahl::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1px dashed rgba(63, 212, 224, .45); animation: nn-dreh 18s linear infinite; }
+.nn-widget__zahl b { font: 700 22px/1 var(--bs-display); }
+.nn-widget__zahl small { font: 500 9px/1 var(--bs-mono); letter-spacing: .1em; text-transform: uppercase; }
+.nn-widget__text { font: 600 15.5px/1.18 var(--bs-display); letter-spacing: -.005em; }
+.nn-widget:hover, .nn-widget:focus-visible { border-color: var(--bs-akzent); background: rgba(6, 20, 25, .6); }
+.nn-widget:hover .nn-widget__lasche, .nn-widget:focus-visible .nn-widget__lasche { border-color: var(--bs-akzent); color: var(--bs-akzent); }
+@keyframes nn-dreh { to { transform: rotate(360deg); } }
+.nn-scrollen { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); margin: 0; font: 500 10.5px/1 var(--bs-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); display: grid; justify-items: center; gap: 8px; pointer-events: none !important; }
+.nn-scrollen span { width: 1px; height: 34px; background: linear-gradient(var(--bs-akzent), transparent); animation: nn-tropf 2.2s var(--bs-ease) infinite; transform-origin: top; }
+@keyframes nn-tropf { 0% { transform: scaleY(0); } 55% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* Platzhalter-Standbild, solange der Hero aus @kern/hero nicht eingebunden ist */
+.nn-hero-ersatz { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; }
+
+/* ---------- L3: Einstieg um die Bildkarte ---------- */
+.nn-satz { font: 400 clamp(15px, 1.15vw, 17.5px)/1.5 var(--bs-text); color: rgba(255, 255, 255, .84); }
+.nn-satz strong { color: #fff; font-weight: 600; }
+.nn-beruhigung { font: 400 14px/1.5 var(--bs-text); color: rgba(255, 255, 255, .8); max-width: 34ch; }
+.nn-beleg { font: 500 13px/1.45 var(--bs-text); color: rgba(255, 255, 255, .84); max-width: 30ch; }
+.nn-belege { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; align-items: center; }
+.nn-pille { display: inline-flex; align-items: center; height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, .28); font: 500 12px/1 var(--bs-text); letter-spacing: .03em; white-space: nowrap; transition: border-color .25s, color .25s, background-color .25s; }
+.nn-pille:hover, .nn-pille:focus-visible { border-color: var(--bs-akzent); color: var(--bs-akzent); }
+.nn-mini { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, .28); background: #f5f2eb; transition: border-color .25s, transform .4s var(--bs-ease); }
+.nn-mini img { width: 36px; height: 36px; object-fit: contain; }
+.nn-mini:hover, .nn-mini:focus-visible { border-color: var(--bs-akzent); transform: translateY(-3px); }
+.bs-bildkarte__platz--um .bs-klein { font-size: 11.5px; line-height: 1.45; }
+
+@media (max-width: 991px) {
+  .nn-widget { left: 12px; bottom: 140px; width: min(280px, calc(100vw - 24px)); padding: 12px; }
+  .nn-widget__zahl { width: 48px; height: 48px; }
+  .nn-widget__text { font-size: 14px; }
+  .nn-scrollen { display: none; }
+  .nn-belege { justify-content: flex-start; }
+  .nn-beruhigung, .nn-beleg { max-width: none; }
+  /* Sperrschalter des Heros sitzt unten rechts, dort steht mobil der CTA: Schalter eine Zeile hoeher */
+  .hero__schalter { bottom: 76px !important; }
+}
+@media (max-width: 991px) and (max-height: 700px) { .nn-widget { display: none; } }
+
+/* ---------- L5: Bild bei Kurs (Sternfahrt) ---------- */
+.bs-quer__buehne[data-buehne="kurs"] { border: 1px solid rgba(255, 255, 255, .08); }
+
+/* ---------- Reduced Motion ---------- */
+.is-reduced .nn-widget__zahl::after, .is-reduced .nn-scrollen span { animation: none; }
+.is-reduced .nn-scrollen { display: none; }
+.is-reduced .nn-hero-ui { bottom: auto; height: 100vh; height: 100svh; }
+
+/* ---------- L5: Organigramm der Crew (Feld nach dem Crew-Text) ----------
+   Hoehe ergibt sich aus dem Inhalt (statt 16:9), damit alle Ebenen samt KI-Linien im Fenster stehen. */
+.bs-quer__buehne[data-buehne="crew"], .bs-quer__buehne[data-buehne="gleichung"] { aspect-ratio: auto !important; height: auto; background: none; overflow: visible; }
+.nn-org { --org-linie: rgba(245, 242, 235, .55); --fh: clamp(38px, 3.2vw, 48px); position: relative; }
+.nn-org__bild { position: relative; display: grid; gap: clamp(20px, 2.8vh, 30px); padding: 2px 0 0; }
+.nn-org__linien, .nn-org__ki-linien { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.nn-org__linien path, .nn-org__ki-linien path { fill: none; stroke: var(--org-linie); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+.nn-org__ki-linien path { stroke-dasharray: 5 5; }
+.nn-org__reihe { position: relative; display: flex; justify-content: center; gap: 18px; }
+/* Knoten: Figuren und Bezeichnung in einer Zeile (wie „● ● ● Führungskräfte“) */
+.nn-org__knoten { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; padding: 6px 14px 6px 10px; border: 1px solid rgba(245, 242, 235, .3); border-radius: 10px; background: var(--bs-dunkel); }
+.nn-org__knoten b { font: 600 clamp(14px, 1.02vw, 16px)/1.15 var(--bs-display); letter-spacing: -.005em; color: #f5f2eb; white-space: nowrap; }
+.nn-org__knoten--ki { border-style: dashed; border-color: rgba(63, 212, 224, .7); }
+.nn-org__knoten--ki b { color: var(--bs-akzent); }
+/* Figur: Ausschnitt Kopf bis Fuss aus dem Ganzkoerperbild, freigestellt mit der Hof-Maske; alle gleich gross */
+.nn-org__figuren { display: flex; gap: 1px; flex: none; filter: drop-shadow(0 0 1.5px rgba(111, 239, 245, .75)) drop-shadow(0 0 6px rgba(111, 239, 245, .3)); }   /* Hof wie beim Bild Mensch + Agent */
+.nn-org__figuren i { --hi: calc(var(--fh) * var(--k, 1.26)); --wi: calc(var(--hi) * var(--a, .667)); --w: calc(var(--fh) * .36);
+  --pos: calc(var(--w) / 2 - var(--wi) * var(--mx, .49)) calc(var(--hi) * var(--oben, .14) * -1);
+  display: block; width: var(--w); height: var(--fh); background: var(--fig, none) no-repeat var(--pos) / var(--wi) var(--hi);
+  -webkit-mask: var(--fig-maske, none) no-repeat var(--pos) / var(--wi) var(--hi); mask: var(--fig-maske, none) no-repeat var(--pos) / var(--wi) var(--hi); }
+.nn-org__kante { position: absolute; z-index: 2; transform: translate(-50%, -50%); padding: 3px 9px 4px; border: 1px solid rgba(245, 242, 235, .35); border-radius: 999px;
+  background: var(--bs-dunkel); font: 500 11px/1 var(--bs-text); letter-spacing: .01em; color: rgba(245, 242, 235, .85); white-space: nowrap; }
+.nn-org__pfeil { fill: none; stroke: var(--org-linie); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.nn-org__ki-linien path.nn-org__pfeil { stroke-dasharray: none; }
+/* Crew: Anordnung nach Franks Vorlage (zwei Spalten, KI-Agenten rechts auf Hoehe der Fuehrungskraefte) */
+.nn-org--crew .nn-org__bild { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-areas: "g ki" "f ki" "m ki" "tt tt" "w0 w0" "w1 w1" "w2 w2"; justify-items: center; align-items: center; column-gap: clamp(14px, 2vw, 30px); }
+.nn-org--crew [data-k="g"] { grid-area: g; } .nn-org--crew [data-k="f"] { grid-area: f; } .nn-org--crew [data-k="m"] { grid-area: m; }
+.nn-org--crew [data-k="ki"] { grid-area: ki; }
+/* Teams (Frank, 16.11.2026: vier Teams mit je vier): nebeneinander ueber die volle Breite, Bezeichnung unter den Figuren,
+   damit vier Kaesten auch bei 1440 px und mobil in eine Zeile passen. Abstand oben: Platz fuer zwei Knickhoehen. */
+.nn-org--crew .nn-org__teams { grid-area: tt; justify-self: stretch; display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+.nn-org--crew .nn-org__teams .nn-org__knoten { flex-direction: column; gap: 5px; padding: 8px 10px 7px; }
+/* KI-Agenten als senkrechte Spalte ueber Geschaeftsfuehrung bis Multiplikatoren, Exos oben, ein Pill darunter */
+.nn-org--crew [data-k="ki"] { align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; width: clamp(118px, 10.5vw, 160px); padding: 12px 8px; }
+.nn-org--crew [data-k="ki"] .nn-org__kante { position: static; transform: none; margin-top: 2px; }
+/* Acht KI-Agenten in zwei Reihen zu vier (Frank, 16.11.2026) */
+.nn-org--crew [data-k="ki"] .nn-org__figuren--exo { display: grid; grid-template-columns: repeat(4, auto); gap: 6px 1px; }
+.nn-org--crew [data-k="w0"] { grid-area: w0; margin-top: 8px; }
+.nn-org--crew .nn-org__bild { padding-right: 26px; }   /* Platz fuer die KI-Linie rechts an den Teams vorbei */ .nn-org--crew [data-k="w1"] { grid-area: w1; } .nn-org--crew [data-k="w2"] { grid-area: w2; }
+.nn-org__schritt { padding: 10px 20px; }
+.nn-org__schritt b { font-size: clamp(14.5px, 1.08vw, 17px); }
+/* Formel MI + KI = Magie */
+.nn-org__formel { display: flex; justify-content: center; align-items: stretch; gap: 12px; margin-top: 30px; }
+.nn-org__term { display: grid; align-content: center; justify-items: center; gap: 4px; min-width: 112px; max-width: 170px; padding: 9px 14px 10px; border: 1px solid rgba(245, 242, 235, .3); border-radius: 10px; background: var(--bs-dunkel); text-align: center; }
+.nn-org__term b { font: 700 clamp(18px, 1.4vw, 22px)/1 var(--bs-display); letter-spacing: -.01em; color: #f5f2eb; }
+.nn-org__term small { font: 500 11px/1.25 var(--bs-text); color: rgba(245, 242, 235, .7); }
+.nn-org__zeichen { align-self: center; font: 600 26px/1 var(--bs-display); color: var(--bs-akzent); }
+@media (max-width: 991px) {
+  .bs-quer__feld:has(> .bs-quer__buehne[data-buehne="crew"]), .bs-quer__feld:has(> .bs-quer__buehne[data-buehne="gleichung"]) { width: 100%; }
+  .nn-org { --fh: 30px; }
+  .nn-org__bild { gap: 22px; }
+  .nn-org__formel { order: 6; gap: 6px; margin-top: 8px; }
+  .nn-org__knoten { gap: 7px; padding: 5px 10px 5px 7px; }
+  .nn-org__knoten b { font-size: 13.5px; }
+  .nn-org__kante { font-size: 10px; padding: 2px 7px 3px; }
+  .nn-org--crew .nn-org__bild { column-gap: 10px; }
+  .nn-org--crew .nn-org__schritt { max-width: 62%; }
+  .nn-org--crew .nn-org__schritt b { white-space: normal; text-align: center; }
+  .nn-org__term { min-width: 0; flex: 1; padding: 8px 6px 9px; }
+  .nn-org__term b { font-size: 17px; }
+  .nn-org__term small { font-size: 10px; }
+  .nn-org__zeichen { font-size: 20px; }
+}
+
+/* ---------- L5: Crew-Paar (Organigramm + Gleichung nebeneinander, Formel mittig darunter) ---------- */
+.bs-quer__feld--gross .bs-quer__buehne[data-buehne="crew"] { width: clamp(460px, 46vw, 720px); }
+.nn-crew-paar { position: relative; display: grid; }
+.nn-crew-paar__teile { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(28px, 3vw, 56px); align-items: start; }
+.nn-crew-paar > .nn-org__formel { margin-top: clamp(26px, 3.6vh, 40px); }
+.nn-crew-paar > .bs-ki { left: 0; right: auto; top: auto; bottom: -22px; }   /* unter der Formel links (oben links steht seit 16.11. die breitere Geschaeftsfuehrung) */
+@media (max-width: 991px) {
+  .nn-crew-paar__teile { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .nn-crew-paar > .nn-org__formel { margin-top: 32px; }
+  .nn-crew-paar > .bs-ki { top: auto; bottom: -26px; }
+}
+
+/* ---------- L8: Leistungen als grosse Karten (Baustein karten ohne Figur, ohne Pin) ---------- */
+.nn-leistungen .bs-karten__bahn { height: auto; }
+.nn-leistungen .bs-karten__pin { position: static; height: auto; overflow: visible; display: block; padding: clamp(96px, 13vh, 150px) 0 clamp(80px, 11vh, 130px); }
+.nn-leistungen .bs-karten__kopf { margin-bottom: clamp(34px, 5vh, 60px); }
+.nn-leistungen .bs-karten__feld { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; min-height: 0; }
+.nn-leistungen .bs-karten__spalte { display: contents; }
+.nn-leistungen .bs-karten__figur, .nn-leistungen .bs-karte__bild { display: none; }
+.nn-leistungen .bs-karten__alle { margin: clamp(30px, 4.5vh, 48px) auto 0; }   /* der p-Reset aus grund.css hebt sonst margin-inline der .bs-wrap auf */
+.nn-leistungen .bs-karte-w { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 14px; padding: 20px 20px 22px; border-radius: var(--bs-radius); background: var(--bs-dunkel); aspect-ratio: auto; }
+.nn-leistungen .bs-karte-w > :not(.nn-lk__titel) { position: relative; z-index: 1; }
+.nn-lk__titel { margin: 0; font: inherit; }
+/* Knopf = Titelzeile; sein Pseudo-Element macht die ganze Karte klickbar, Ellipse und Rahmen beziehen sich auf die Karte */
+.nn-leistungen .bs-karte { position: static; display: block; width: 100%; height: auto; padding: 0; background: none; overflow: visible; border-radius: 0; outline: none; }
+.nn-leistungen .bs-karte::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: var(--bs-radius); }
+.nn-leistungen .bs-karte:focus-visible::after { outline: 2px solid var(--bs-akzent); outline-offset: 3px; }
+.nn-leistungen .bs-karte__vorn { position: relative; inset: auto; z-index: 1; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.nn-leistungen .bs-karte__nr { align-items: center; justify-content: flex-start; gap: 10px; font-size: 11.5px; }
+.nn-leistungen .bs-karte__nr span:last-child { margin-left: auto; }
+.nn-lk__stern { display: block; width: 20px; height: 20px; flex: none; }
+.nn-leistungen .bs-karte__titel { font: 700 clamp(18px, 1.36vw, 22px)/1.08 var(--bs-display); letter-spacing: -.005em; text-transform: uppercase; color: #fff;
+  hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; word-break: normal; text-wrap: balance; }
+/* Ellipsen-Hover des Bausteins (0,75 s, cubic-bezier(.65,.05,0,1)) als dunkle Petrol-Flaeche hinter dem Inhalt:
+   der Chrom-Stern steht nie auf Farbe (BRAND.md) */
+.nn-leistungen .bs-karte__erg { inset: 0; z-index: 0; padding: 0; background: #0e2b36; border-radius: var(--bs-radius); }
+.nn-leistungen .bs-karte__erg > * { display: none; }
+.nn-leistungen .bs-karte__rahmen { border-radius: var(--bs-radius); }
+.nn-lk__kurz { font: 400 15.5px/1.5 var(--bs-text); color: rgba(255, 255, 255, .8); hyphens: manual; text-wrap: pretty; }
+.nn-lk__erg { margin-top: auto; display: grid; gap: 7px; padding: 13px 15px 14px; border-radius: 10px; background: var(--bs-akzent); color: var(--bs-akzent-tinte); }
+.nn-lk__erg small { font: 500 10.5px/1 var(--bs-mono); letter-spacing: .12em; text-transform: uppercase; }
+.nn-lk__erg p { font: 600 15px/1.3 var(--bs-display); hyphens: manual; text-wrap: pretty; }
+.nn-leistungen .nn-lk__mehr { z-index: 3; align-self: flex-start; font-size: 13px; }
+/* Detailfeld ohne Bild: eine Spalte */
+.nn-leistungen .bs-detail { width: min(760px, calc(100vw - 2 * var(--bs-rand))); }
+.nn-leistungen .bs-detail__innen { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
+.nn-leistungen .bs-detail__bild { display: none; }
+.nn-leistungen .bs-detail__leiste { grid-column: 1; }
+.nn-leistungen .bs-detail__titel { font-size: clamp(26px, 3.2vw, 42px); hyphens: manual; overflow-wrap: normal; }
+@media (max-width: 1199px) { .nn-leistungen .bs-karten__feld { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 991px) {
+  .nn-leistungen .bs-karten__pin { padding: 12vh 0 12vh; }
+  .nn-leistungen .bs-karte-w { aspect-ratio: auto; padding: 18px 18px 20px; }
+  .nn-leistungen .bs-karte__titel { font-size: clamp(18px, 4.6vw, 21px); }
+}
+@media (max-width: 639px) { .nn-leistungen .bs-karten__feld { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+
+/* ---------- L5: Kurs, Crew und Schiff fuellen die Hoehe (Frank, 16.11.2026) ----------
+   Ein gemeinsames Band von knapp unter dem Seitenkopf bis 30 px ueber dem unteren Rand. Kurs (3:4,3) und Schiff (16:9)
+   wachsen mit der Fensterhoehe (Schiff hoechstens 92 % der Breite); das Organigramm skaliert main.js (crewAusrichten)
+   auf dieselbe Hoehe, mit denselben Werten. Mobil (senkrechter Zickzack) und Reduced Motion bleiben wie gehabt. */
+@media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
+  #methode { --band-oben: min(110px, 12vh); --band-unten: 30px; --band-h: calc(100vh - var(--band-oben) - var(--band-unten)); }
+  #methode .bs-quer__feld:has(> .bs-quer__buehne[data-buehne="kurs"]), #methode .bs-quer__feld--breit { padding-top: var(--band-oben); }
+  #methode .bs-quer__feld--hoch > .bs-quer__buehne[data-buehne="kurs"] { width: calc(var(--band-h) * 3 / 4.3); }
+  #methode .bs-quer__feld--breit .bs-quer__clip { width: min(92vw, calc(var(--band-h) * 16 / 9)); }
+}
+
+/* ---------- Aufgabe 4/5: Kurs-Feld frei, Hero nur Portraet, Schnitt per Vorhang, Bildkarte als eigene Buehne ---------- */
+/* L5 Kurs: kein Rand um das Feld; das Netz laeuft zum Feldrand weich aus, der Stern schwirrt frei darueber */
+.bs-quer__buehne[data-buehne="kurs"] { border: 0; }
+.bs-quer__buehne[data-buehne="kurs"] .bs-sternfahrt__netz, .bs-quer__buehne[data-buehne="kurs"] .bs-sternfahrt__licht {
+  -webkit-mask-image: radial-gradient(ellipse 74% 68% at 50% 50%, #000 64%, transparent 100%);
+  mask-image: radial-gradient(ellipse 74% 68% at 50% 50%, #000 64%, transparent 100%); }
+
+/* L2: Hero nur Portraet. index.html setzt fuer den ersten Eindruck .bs-bildkarte__pin relativ; hier wieder gepinnt */
+.nn-hero .hero__pin { position: sticky; top: 0; }
+
+/* Schnitt: L3 faehrt als Vorhang mit Visier-Bogen ueber den stehenden Hero (letzte Bildschirmhoehe seiner Strecke).
+   Ohne WebGL2 und bei Reduced Motion fehlt die Klasse: dann folgt L3 einfach auf den Hero. */
+.nn-karte { z-index: 2; background: var(--bs-dunkel); }
+.nn-karte--vorhang { margin-top: -100vh; margin-top: -100svh; overflow: clip;
+  border-radius: 50% 50% 0 0 / min(14vh, 130px) min(14vh, 130px) 0 0; }
+.nn-karte--vorhang::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 40vh; z-index: 6; pointer-events: none;
+  border-top: 1px solid rgba(111, 239, 245, .55); border-radius: inherit; }
+
+/* L3: Bildkarte als eigene Buehne, darin ein Hero mit steuerung 'extern' (HERO.md, Kleine Buehne) */
+.nn-karte .bs-bildkarte__buehne { background: var(--hero-grund, #061419); }
+.nn-karte .bs-bildkarte__buehne .nn-karte-hero.hero { position: absolute; inset: 0; height: auto; background: var(--hero-grund, #061419); }
+.nn-karte .bs-bildkarte__buehne .nn-karte-hero .hero__pin { position: absolute; inset: 0; height: auto; }
+.nn-karte .nn-karte-hero .hero__schalter { display: none !important; }   /* Karte scrollt nicht: kein Sperrschalter */
+.nn-karte .nn-karte-hero .hero__ki { left: 16px; bottom: 14px; }
+/* Standbild des Heros (erster Eindruck, Reduced Motion, ohne WebGL2): bildkarte.css zwingt Bilder direkt in
+   .bs-bildkarte__buehne auf „cover“ (Gesicht laege links bzw. mobil ausserhalb); hier gilt wieder die Rechnung aus hero.css */
+.nn-hero .hero__buehne > .hero__bild { inset: auto; width: calc(var(--hh) * var(--asp)); height: var(--hh);
+  left: calc(100cqw * var(--x) - var(--hh) * var(--asp) * var(--ax)); top: calc(100cqh * var(--y) - var(--hh) * var(--ay)); }
+.nn-hero .hero__bild img { position: static; inset: auto; width: 100%; height: 100%; object-fit: fill; }
+
+/* ---------- L10: Reifegrad-Check – Bedienung sichtbar machen (Frank, 14.11.2026; Baustein unveraendert) ---------- */
+.bs-check__antwort { transition: border-color .3s, color .3s, background-color .3s, transform .45s var(--bs-ease); }
+@media (hover: hover) {
+  .bs-check__antwort:hover { border-color: var(--bs-akzent); background-color: rgba(63, 212, 224, .07); transform: translateY(-4px); }
+}
+.bs-check__antwort:active { transform: translateY(-1px) scale(.985); transition-duration: .08s; }
+.bs-check__pfeil:disabled { opacity: .2; cursor: not-allowed; border-style: dashed; }
+.nn-check-hinweis { align-self: center; margin-right: 8px; font: 500 11px/1.2 var(--bs-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.bs-check__pfeile:not(:has(.bs-check__pfeil[data-r="1"]:disabled:not([hidden]))) .nn-check-hinweis { display: none; }
+.is-reduced .bs-check__antwort { transition: none; }
+.is-reduced .bs-check__antwort:hover, .is-reduced .bs-check__antwort:active { transform: none; }
+
+/* ---------- L11: Zertifikate als Paar mittig, gleiche Hoehe und Unterkante, Bildunterschrift mittig darunter (Frank, 14.11.2026) ---------- */
+.bs-nachweise__belege { grid-template-columns: auto auto; justify-content: center; align-items: start; gap: clamp(32px, 4.5vw, 80px); }
+.bs-nachweise__belege figure { justify-items: center; width: min-content; }   /* Spalte so breit wie das Bild, Unterschrift bricht darunter um */
+.bs-nachweise__belege figure > a, .bs-nachweise__belege .is-quer figure > a { height: clamp(240px, 36vh, 400px); width: auto; max-width: none; }
+.bs-nachweise__belege img { width: auto; height: 100%; }
+.bs-nachweise__belege figcaption { text-align: center; max-width: none; min-width: 14em; }
+@media (max-width: 991px) {
+  .bs-nachweise__belege { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .bs-nachweise__belege figure { width: auto; }
+  .bs-nachweise__belege figure > a, .bs-nachweise__belege .is-quer figure > a { height: auto; width: min(100%, 460px); }
+  .bs-nachweise__belege img { width: 100%; height: auto; }
+}
+
+
+/* Ziffern der sieben Schichten in Chrom wie das NN-Monogramm (Frank, 15.11.2026). Toene aus nn-monogramm.png
+   (neutralgrau: Schatten ~55–90, Mitte ~105–145, Glanz bis Weiss), harte Bandwechsel wie bei poliertem Metall.
+   Der feine Rand haelt die Ziffer auf dem hellen Blatt lesbar. Das Logo selbst bleibt unberuehrt. */
+#methode .bs-quer__nr {
+  background: linear-gradient(165deg, #fefefe 0%, #d2d2d2 12%, #7a7a7a 26%, #3c3c3c 34%, #9a9a9a 44%, #f4f4f4 52%,
+    #8a8a8a 63%, #434343 74%, #b9b9b9 86%, #ffffff 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  /* Kante ueber einen feinen Schatten statt text-stroke: der Umriss zeichnete die ueberlappenden Innenkonturen der
+     variablen Schrift nach (sichtbar in der 4) */
+  -webkit-text-stroke: 0; filter: drop-shadow(0 0 .6px rgba(40, 44, 46, .7));
+}
+
+/* NN-Monogramm am Ende der Quer-Galerie, mittig unter den Kapitel-Links (main.js). Schutzraum = halbe Signethoehe. */
+.nn-quer-logo { align-self: center; height: clamp(96px, 14vh, 150px); width: auto; margin-top: clamp(48px, 7vh, 80px); }
+@media (max-width: 991px) { .nn-quer-logo { height: 96px; margin-top: 48px; } }
+
+/* Weiche rueckt unter das leere Ende der Galerie (gleicher heller Grund, unsichtbare Naht). Unter dem Monogramm war
+   das Blatt bis zum Fensterende leer, danach kam der Weiche-Inhalt erst mittig im naechsten Bildschirm (Frank 15.11.2026) */
+@media (min-width: 992px) { #wege { margin-top: -28vh; } }
