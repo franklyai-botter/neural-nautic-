@@ -4,8 +4,12 @@
 # /impressum und /datenschutz bleiben erlaubt: beide tragen "noindex, follow" im Kopf, und ein Crawler muss
 # die Seite abrufen dürfen, um das zu lesen.
 #
-# KI-Crawler: neu gegenüber der alten Seite, nach Playbook "Website-Auffindbarkeit-Launch", Stufe 4
-# (Bot-Namen dort Stand 06.11.2026, vor dem Umschalten auf den Herstellerseiten erneut prüfen).
+# KI-Crawler: neu gegenüber der alten Seite, nach Playbook "Website-Auffindbarkeit-Launch", Stufe 4.
+# Bot-Namen am 17.11.2026 auf den Herstellerseiten geprüft: OpenAI (developers.openai.com/api/docs/bots),
+# Anthropic (support.claude.com, Artikel 8896518), Perplexity (docs.perplexity.ai/guides/bots), Google
+# (Common Crawlers, User-triggered Fetchers: Google-Agent), Apple (support.apple.com/119829), Meta
+# (developers.facebook.com, Web Crawlers), Amazon (developer.amazon.com/amazonbot), Common Crawl (commoncrawl.org/ccbot).
+# Ohne Herstellerseite geprüft: bingbot (Bing-Hilfe lieferte keinen Text), Bytespider (ByteDance veröffentlicht keine).
 # Suche und Antworten erlaubt, Training gesperrt. Kostet keine Sichtbarkeit in der Suche.
 # Nutzerabrufe (ChatGPT-User, Claude-User, Perplexity-User, Google-Agent) halten sich nach Angabe der
 # Hersteller nicht an robots.txt; sie stehen hier nur, um die Absicht festzuhalten.
