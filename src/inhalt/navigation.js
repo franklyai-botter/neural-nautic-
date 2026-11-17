@@ -31,7 +31,7 @@ export const LINKS = [
 // --- Fuß (Footer.tsx) ---------------------------------------------------------
 export const FUSS = {
   logo: { src: "/logo-monogram.png", alt: "NeuralNautic", width: 54, height: 54 },
-  claim: "Pragmatische KI-Beratung. Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.",
+  claim: "Pragmatische KI-Beratung. Für den Mittelstand gebaut.",
   ort: "Berlin · Bundesweit · DACH",
   // Auf der Live-Seite steht das laufende Jahr: „© {Jahr} · NeuralNautic · in Gründung · Frank Schütt“.
   copyright: (jahr = new Date().getFullYear()) => `© ${jahr} · NeuralNautic · in Gründung · Frank Schütt`,
