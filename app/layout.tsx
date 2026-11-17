@@ -27,8 +27,11 @@ export const metadata: Metadata = {
     google: "typZi4c5OCY5dq0a-n3W-PnLEDYXUK1wwrJcNquXOQg",
     other: { "msvalidate.01": "3C8697890156E133718E943ECB712C0E" },
   },
+  // Archiv alt.neuralnautic.de (Zweig `alt`, 17.11.2026): nie indexieren. metadataBase zeigt auf das
+  // Archiv, damit die relativen Canonicals der Seiten nicht auf die neue neuralnautic.de zeigen.
+  robots: { index: false, follow: false },
   // Vorschau beim Teilen (LinkedIn, Messenger). Ohne diese Angaben baut LinkedIn keine Link-Vorschau.
-  metadataBase: new URL("https://neuralnautic.de"),
+  metadataBase: new URL("https://alt.neuralnautic.de"),
   openGraph: {
     type: "website",
     locale: "de_DE",
@@ -46,6 +49,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${display.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body>
         <NeuralBackground />
+        <div
+          role="note"
+          style={{
+            position: "relative", zIndex: 30, padding: "8px 16px", textAlign: "center",
+            fontSize: 13, lineHeight: 1.4, background: "#0A4A4A", color: "#FFFFFF",
+          }}
+        >
+          Archiv: alte Fassung von neuralnautic.de, Stand bis 17.11.2026 – aktuelle Seite:{" "}
+          <a href="https://neuralnautic.de" style={{ color: "#00D4D4", textDecoration: "underline" }}>
+            neuralnautic.de
+          </a>
+        </div>
         {children}
         <ChatWidget />
       </body>

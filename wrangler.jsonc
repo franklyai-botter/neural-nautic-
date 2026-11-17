@@ -1,9 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "neural-nautic",
+  // Archiv der alten Seite (Zweig `alt`, eingefroren 17.11.2026). Eigener Worker,
+  // der Live-Worker `neural-nautic` (neuralnautic.de) bleibt davon unberuehrt.
+  "name": "neural-nautic-alt",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "routes": [{ "pattern": "alt.neuralnautic.de", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
@@ -12,7 +17,7 @@
     {
       // Selbstreferenz, Name muss dem Worker-Namen entsprechen
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "neural-nautic"
+      "service": "neural-nautic-alt"
     }
   ],
   "images": {

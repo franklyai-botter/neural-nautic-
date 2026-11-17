@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [{ source: "/use-cases", destination: "/leistungen", permanent: true }];
   },
+  // Archiv alt.neuralnautic.de (Zweig `alt`): jede Antwort des Workers mit noindex.
+  // Direkt ausgelieferte statische Dateien deckt public/_headers ab.
+  async headers() {
+    return [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
 };
 
 export default nextConfig;

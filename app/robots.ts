@@ -1,9 +1,8 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "./site";
 
+// Archiv alt.neuralnautic.de (Zweig `alt`): komplett gesperrt, keine Sitemap.
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/", disallow: "/api/" },
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    rules: { userAgent: "*", disallow: "/" },
   };
 }
