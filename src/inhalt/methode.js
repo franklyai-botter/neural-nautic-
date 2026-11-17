@@ -45,6 +45,6 @@ export const PRINZIPIEN = {
 };
 
 export const ABSCHLUSS = {
-  h2: "Bereit, gemeinsam zu starten?",
+  h2: "Sprechen wir über Ihren nächsten KI-Schritt.",   // Frank 17.11.2026, vorher „Bereit, gemeinsam zu starten?“
   cta: { text: "KI-Potenzialcheck buchen", href: KI_CHECK_BUCHEN, extern: true },
 };

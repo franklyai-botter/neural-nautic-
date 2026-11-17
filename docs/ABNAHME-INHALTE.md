@@ -251,3 +251,12 @@ Logos), `ki-logos/` und `frank-schuett-quadrat.jpeg` (Startseite, Bereich des Ag
     ist der Autor der Wertschöpfungsstufen (Punkt 1). **Das Checklisten-PDF selbst nennt in seinen
     Quellenangaben einen for42-Kollegen als Urheber des Readiness-Checks** (unverändert kopierte
     Datei). Vor dem Einsatz im Funnel entscheiden, ob das PDF so bleibt.
+
+## Änderungen 17.11.2026 abends (Frank: „a bis d ja, e B“)
+
+| Inhalt | Quelle | Platz | Art |
+|---|---|---|---|
+| Reifegrad-Check: „Ihre Stufe · Durchschnitt …“, „Empfohlener nächster Schritt:“, Intro „… Ihre Stufe mit einem empfohlenen nächsten Schritt.“ (vorher Einstiegsstufe/erster Schritt) | `ki-im-unternehmen.js` → `REIFEGRAD`, `start.js` → `CHECK` | Startseite L10, /ki-im-unternehmen | X |
+| /methode Abschluss „Sprechen wir über Ihren nächsten KI-Schritt.“ (vorher „Bereit, gemeinsam zu starten?“) | `methode.js` | Callout am Seitenende | X |
+| Chat: Titel „NeuralNautic KI-Assistent“ (Art. 50), Fehler „Bitte versuchen Sie es erneut.“, Hinweis wie Datenschutz Abschn. 8 („Ich speichere Ihre Fragen nicht. Zur Antwort gehen sie an Mistral AI …“) | `chat.js` → `CHAT` | Chat | X |
+| Chat-Knopf und Buchungsleiste bis 991 px beim Runterscrollen weg (Variante B); alle Breiten: weichen aus, solange sie einen Knopf verdecken würden | `src/seiten/chat.js`, `chat.css` | Seitenrand | S |

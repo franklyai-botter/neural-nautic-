@@ -388,6 +388,7 @@ export function chatWidget() {
     knopf.setAttribute('aria-expanded', String(auf));
     knopf.setAttribute('aria-label', auf ? CHAT.knopf.ariaSchliessen : CHAT.knopf.ariaOeffnen);
     fenster.hidden = !auf;
+    if (!auf) document.documentElement.classList.remove('nn-unten-weg');   // nach dem Schliessen sind Knopf und Leiste da
     lage();
     // Mobil: „Zurueck“ schliesst den Chat statt die Seite zu verlassen (eigener Verlaufseintrag, gleiche Adresse)
     if (auf && blatt && !verlaufEintrag) {
@@ -521,6 +522,55 @@ export function chatWidget() {
     eingabe.focus({ preventScroll: true });
     fragen(text);
   });
+
+  /* ---------- Handy und Tablet (bis 991 px): Knopf und „KI-Potenzialcheck buchen“ beim Runterscrollen weg ----------
+     Frank 17.11.2026 (Variante B): beim Lesen nach unten blenden sie aus, beim Hochscrollen, beim Halten (0,7 s ohne
+     Scrollen) und am Seitenende wieder ein. Bei offenem Chat bleiben sie weg (Blatt). Desktop unveraendert. */
+  const untenMQ = window.matchMedia('(max-width: 991.98px)');
+  let letztY = window.scrollY;
+  let ruheUhr = 0;
+  const untenWeg = (weg) => document.documentElement.classList.toggle('nn-unten-weg', weg);
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const d = y - letztY;
+    letztY = y;
+    if (!untenMQ.matches || offen) return;
+    const ende = y + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (ende || d < -4) untenWeg(false);
+    else if (d > 6 && y > 120) { untenWeg(true); if (!tipp.hidden) tippWeg(); }
+    clearTimeout(ruheUhr);
+    ruheUhr = setTimeout(() => untenWeg(false), 700);
+  }, { passive: true });
+  untenMQ.addEventListener('change', () => untenWeg(false));
+
+  /* ---------- Alle Breiten: Knopf und Hinweisblase weichen aus, solange sie einen Knopf der Seite verdecken wuerden ----------
+     Pruefung (Ismajl-Check, 17.11.2026): am Desktop lagen beide ueber „KI-Potenzialcheck buchen“ der Bildkarte (Startseite).
+     Gemessen wird die Ruhelage (fixe Lage aus dem berechneten Stil), nicht die verschobene, sonst flackert es. */
+  const ruheLage = (e) => {
+    const cs = getComputedStyle(e);
+    const w = e.offsetWidth;
+    const h = e.offsetHeight;
+    const rechts = parseFloat(cs.right);
+    const l = cs.right === 'auto' || Number.isNaN(rechts) ? parseFloat(cs.left) : window.innerWidth - rechts - w;
+    const b = window.innerHeight - parseFloat(cs.bottom);
+    return { l, r: l + w, t: b - h, b };
+  };
+  let weichtBild = 0;
+  function weichtPruefen() {
+    weichtBild = 0;
+    if (offen) return;
+    const lagen = [ruheLage(knopf)];
+    if (!tipp.hidden) lagen.push(ruheLage(tipp));
+    const deckt = [...document.querySelectorAll('main .bs-knopf')].some((a) => {
+      const q = a.getBoundingClientRect();
+      return q.width > 0 && lagen.some((r) => q.left < r.r && r.l < q.right && q.top < r.b && r.t < q.bottom);
+    });
+    root.classList.toggle('weicht', deckt);
+  }
+  const weicht = () => { if (!weichtBild) weichtBild = requestAnimationFrame(weichtPruefen); };
+  window.addEventListener('scroll', weicht, { passive: true });
+  window.addEventListener('resize', weicht);
+  weicht();
 
   document.body.classList.add('nn-chat-da');   // Fusskarte haelt unten Platz frei (chat.css)
   return root;

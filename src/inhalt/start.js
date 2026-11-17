@@ -316,7 +316,7 @@ export const CHECK = {
   texte: {
     zaehler: (i) => RC.texte.zaehler(i),
     offen: (n) => RC.texte.offen(n),
-    ergebnis: 'Ihre Einstiegsstufe',                    // aus „Ihre Einstiegsstufe · Durchschnitt …“
+    ergebnis: 'Ihre Stufe',                            // aus „Ihre Stufe · Durchschnitt …“ (vorher „Einstiegsstufe“)
     neu: RC.texte.neu,
   },
   ctas: [

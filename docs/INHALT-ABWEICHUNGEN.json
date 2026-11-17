@@ -286,5 +286,29 @@
     "art": "text",
     "text": "KI-generiertes Video von Frank Schütt mit Analyse-Overlay",
     "grund": "Überwachungs-Karte zeigt seit 14.11.2026 Standbilder statt Video; Beschreibung seit 17.11.2026 „KI-generiertes Bild …“ (Video entfallen)"
+  },
+  {
+    "seite": "/methode",
+    "art": "text",
+    "text": "Bereit, gemeinsam zu starten?",
+    "grund": "Frank 17.11.2026: kein „erster Schritt“/„Einstieg“ (viele Kunden sind schon weiter), Abschluss wie Startseite: „Sprechen wir über Ihren nächsten KI-Schritt.“"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "Bevor wir Kurs setzen, schauen wir, wo Ihr Unternehmen steht. Bewerten Sie jede Dimension ehrlich von 0 bis 3. Das Ergebnis ist eine Einstiegsstufe mit einem empfohlenen ersten Schritt. Gespeichert oder übertragen wird dabei nichts.",
+    "grund": "Frank 17.11.2026: kein „erster Schritt“/„Einstieg“ (viele Kunden sind schon weiter), Abschluss wie Startseite: Reifegrad-Check „Ihre Stufe“, „Empfohlener nächster Schritt“"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "Empfohlener erster Schritt:",
+    "grund": "Frank 17.11.2026: kein „erster Schritt“/„Einstieg“ (viele Kunden sind schon weiter), Abschluss wie Startseite: „Empfohlener nächster Schritt:“"
+  },
+  {
+    "seite": "*",
+    "art": "text",
+    "text": "Ihre Einstiegsstufe",
+    "grund": "Frank 17.11.2026: kein „erster Schritt“/„Einstieg“ (viele Kunden sind schon weiter), Abschluss wie Startseite: „Ihre Stufe“"
   }
 ]

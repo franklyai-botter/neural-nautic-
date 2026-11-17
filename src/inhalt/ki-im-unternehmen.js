@@ -131,7 +131,7 @@ const DIMENSIONEN = [
   ] },
 ];
 
-// n, name, schritt (empfohlener erster Schritt)
+// n, name, schritt (empfohlener nächster Schritt; Frank 17.11.2026, vorher „erster“ und „Einstiegsstufe“)
 const EINSTIEGSSTUFEN = [
   { n: 1, name: "Grundlagen",  schritt: "Ein bis drei Leuchtturm-Anwendungsfälle mit hoher Wirkung und guter Machbarkeit wählen, die Datenlage grob erfassen, einen Verantwortlichen und erste Regeln festlegen. Ziel: ein Nachweis in wenigen Wochen." },
   { n: 2, name: "Aufbau",      schritt: "Aus dem Nachweis eine Bewegung machen: Führung und Belegschaft praktisch einbinden statt mit Folien, KI-Kompetenz aufbauen, den Betriebsrat informieren, Erfolge sichtbar machen." },
@@ -181,10 +181,10 @@ export const REIFEGRAD_CHECK = {
     querEtikett: "TRAGFÄHIGKEIT",
     offen: (n) => `Noch ${n} von 6 Dimensionen offen. Das Ergebnis erscheint hier.`,
     // Durchschnitt mit deutschem Komma, z. B. „1,7“
-    ergebnisKopf: (avg) => `Ihre Einstiegsstufe · Durchschnitt ${avg.toLocaleString("de-DE")}`,
+    ergebnisKopf: (avg) => `Ihre Stufe · Durchschnitt ${avg.toLocaleString("de-DE")}`,
     ergebnisStufe: (stufe) => `Stufe ${stufe.n}: ${stufe.name}`,
     gekappt: (vorlaeufig, finale) => `Nach dem Durchschnitt wäre es Stufe ${vorlaeufig}. Daten oder Regeln tragen das aber noch nicht, deshalb Stufe ${finale}. Erst diese Grundlage nachziehen, dann den nächsten Schritt gehen.`,
-    schrittLabel: "Empfohlener erster Schritt:",
+    schrittLabel: "Empfohlener nächster Schritt:",
     cta: { text: "Ergebnis gemeinsam besprechen", href: "/kontakt" },
     neu: "Neu beginnen",
     fussnote: "Grundlage: for42-Reifegrad-Diagnostik, angelehnt an etablierte Reifegradmodelle und bewusst auf sechs Dimensionen reduziert. Daten sowie Regeln und Datenschutz begrenzen die Stufe nach oben: Ohne diese Grundlage bleibt jede Skalierung im Pilotstadium. Eine Selbsteinschätzung, kein Audit. Die Stufen entsprechen der ausführlichen Checkliste mit fünfzehn Fragen weiter unten.",
@@ -251,7 +251,7 @@ export const REIFEGRAD = {
   id: "reifegrad",
   kicker: "Reifegrad-Check",
   titel: "Wo Sie heute stehen, zeigen sechs Fragen in fünf Minuten",
-  intro: "Bevor wir Kurs setzen, schauen wir, wo Ihr Unternehmen steht. Bewerten Sie jede Dimension ehrlich von 0 bis 3. Das Ergebnis ist eine Einstiegsstufe mit einem empfohlenen ersten Schritt. Gespeichert oder übertragen wird dabei nichts.",
+  intro: "Bevor wir Kurs setzen, schauen wir, wo Ihr Unternehmen steht. Bewerten Sie jede Dimension ehrlich von 0 bis 3. Das Ergebnis ist Ihre Stufe mit einem empfohlenen nächsten Schritt. Gespeichert oder übertragen wird dabei nichts.",
   check: REIFEGRAD_CHECK,
   checkliste: DOWNLOAD_CHECKLISTE,
 };

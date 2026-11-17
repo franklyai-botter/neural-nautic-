@@ -153,6 +153,22 @@
   html.nn-chat-blatt .bs-daumen { display: none; }
 }
 
+/* ---------- 7b Bis 991 px: Knopf, Hinweisblase und „KI-Potenzialcheck buchen“ beim Runterscrollen weg (chat.js,
+   Variante B, Frank 17.11.2026). Nur translate/opacity, kein Layoutsprung. .bs-daumen behaelt seine Uebergaenge (grund.css). */
+/* Alle Breiten: weichen aus, solange sie einen Knopf der Seite verdecken wuerden (chat.js weichtPruefen) */
+.nn-chat__knopf, .nn-chat__tipp { transition: translate .3s var(--nc-ease), opacity .3s var(--nc-ease); }
+.nn-chat.weicht:not(.ist-offen) .nn-chat__knopf, .nn-chat.weicht .nn-chat__tipp { translate: 0 calc(100% + 32px); opacity: 0; pointer-events: none; }
+.nn-chat.weicht .nn-chat__knopf:focus-visible { translate: none; opacity: 1; pointer-events: auto; }
+@media (max-width: 991.98px) {
+  .bs-daumen { transition: height .3s, background-color .3s, color .3s, border-color .3s, translate .3s cubic-bezier(.22, .61, .36, 1), opacity .3s; }
+  html.nn-unten-weg .nn-chat__knopf, html.nn-unten-weg .nn-chat__tipp, html.nn-unten-weg .bs-daumen {
+    translate: 0 calc(100% + 32px); opacity: 0; pointer-events: none; }
+  html.nn-unten-weg .nn-chat__knopf:focus-visible, html.nn-unten-weg .bs-daumen:focus-visible { translate: none; opacity: 1; pointer-events: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nn-chat__knopf, .nn-chat__tipp, .bs-daumen { transition: none; }
+}
+
 /* ---------- 8 C1: Fusskarte haelt unten Platz fuer den Knopf frei (am Seitenende liegt sonst „Datenschutz“ darunter) ----------
    Unter 640 px reicht der Kern (96 px, Knopf 74 + 12). Tablet: Knopf 104 + 12 links unten. Desktop: Knopf rechts, die Zeile
    „Impressum · Datenschutz“ rueckt um den Teil ein, den der Knopf (88 + 20 + 16 Luft) in die Karte hineinragt. */
