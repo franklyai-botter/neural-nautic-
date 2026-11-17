@@ -514,7 +514,11 @@ main.after(fuss.el, k.daumen);
 /* ---------------- L1: Preloader, dann Bewegung verdrahten ---------------- */
 const heroBild = qs('.hero__bild img', heroBuehne);
 const bildDa = heroBild ? (heroBild.complete ? Promise.resolve() : new Promise((r) => { heroBild.addEventListener('load', r, { once: true }); heroBild.addEventListener('error', r, { once: true }); })) : Promise.resolve();
-const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5 });
+// verdeckt (Frank 17.11.2026): Hero (Porträt, Canvas, Widget), Seitenkopf, Buchungsleiste und Chat bleiben während der
+// Öffnung der Kompassrose unsichtbar und blenden danach in 0,28 s ein. Vorher schien das Gesicht durch die Rose, und die
+// Zwickel zwischen den Strahlen zogen beim Aufzoomen als dunkle schräge Balken darüber (mobil blitzte die cyan Leiste durch).
+const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5,
+  verdeckt: [heroPin, k.el, k.daumen, '.nn-chat'] });
 
 // KI-Chat wie auf den Kapitelseiten (Frank 15.11.2026: „wo ist mein Chatbot“), Server /api/chat
 document.body.append(chatWidget());
