@@ -73,7 +73,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 | „Hinter NeuralNautic stehen geprüfte Kompetenz …“ + Absatz + Link | `start.js` → `VERTRAUEN` | L11 | S |
 | Partner & Netzwerk (for42, spring.gate, Karlson) | `start.js` → `VERTRAUEN` | L11 Laufband | S |
 | Abschluss „Bereit für den ersten sinnvollen KI-Schritt?“ + Satz + Knopf + Beruhigung | `start.js` → `ABSCHLUSS` | L10, L12 | X |
-| (neu im Funnel) KI-Film, 8 Leistungskarten, Store-Teaser, Kanäle | `start.js` → `FILM`, `LEISTUNGEN`, `STORE`, `KANAELE` | L7, L8, L10, L12 | S |
+| (neu im Funnel) 8 Leistungskarten, Store-Teaser, Kanäle (KI-Film L7 entfallen 17.11.2026, Frank: „Video komplett raus“) | `start.js` → `LEISTUNGEN`, `STORE`, `KANAELE` | L8, L10, L12 | S |
 
 ## 4. `/leistungen` → Karten, die sich öffnen (Helm-Galerie groß)
 
@@ -167,8 +167,8 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 | Metadaten inkl. Open-Graph-Profilbild | `ueber-mich.js` → `META`; `public/og/frank-schuett.jpg` (seit 16.11. unter der alten Adresse) | `<head>` | S |
 | JSON-LD Person (Name, Rolle, sameAs, 2 Zertifikate, Themen) | → `PERSON_JSON_LD` | `<head>` | S |
 | Seitenkopf: „Über mich“, H1, Einleitung | → `KOPF` | Seitenkopf | S |
-| KI-Film (Video, Poster, Beschreibungen, „KI-generiert“, Abspielregeln) | → `FILM`; `public/inhalt/frank-ki/film.mp4`, `film.webp` | Film oben; auch L7 der Startseite | S |
-| Überwachungs-Karte: Video, Poster, Porträt, Gesichtsspur, „FACE ID: MATCH“, Abgleich-Panel, 4 Skills, REC, „KI-generiert“, Uhr | → `HUD`; `public/inhalt/frank-ki/ueberwachung.mp4`, `ueberwachung.webp`, `public/inhalt/frank-portrait.webp` | HUD-Karte | S |
+| ~~KI-Film (Video, Poster, Beschreibungen, „KI-generiert“, Abspielregeln)~~ | entfallen 17.11.2026 (Frank: „Video komplett raus“), Dateien aus `public/` entfernt | – | – |
+| Überwachungs-Karte: Porträt, „FACE ID: MATCH“, Abgleich-Panel, 4 Skills, REC, „KI-generiert“, Uhr (Video, Poster und Gesichtsspur entfallen 17.11.2026; Standbilder im Mantel seit 14.11.) | → `HUD`; `public/inhalt/frank-portrait.webp`, `frank-linkedin.webp` | HUD-Karte | S |
 | Name, Rolle, Ort | → `PROFIL` | unter der Karte | S |
 | 3 Absätze „Ich unterstütze …“ | → `PROFIL.absaetze` | Einstieg | S |
 | „Was mich auszeichnet“ + 6 Stärken | → `PROFIL.staerken` | 6 quer laufende Kapitel | S |
@@ -199,10 +199,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 
 | Datei | Größe | Herkunft (Live) | genutzt von |
 |---|---|---|---|
-| `frank-ki/film.mp4` | 3.430.090 B (3,27 MB) | `public/frank-ki/` | `/ueber-mich`, L7 |
-| `frank-ki/film.webp` | 30.488 B | `public/frank-ki/` | Poster |
-| `frank-ki/ueberwachung.mp4` | 1.590.706 B (1,52 MB) | `public/frank-ki/` | HUD-Karte |
-| `frank-ki/ueberwachung.webp` | 107.644 B | `public/frank-ki/` | Poster HUD |
+| ~~`frank-ki/film.mp4`, `film.webp`, `ueberwachung.mp4`, `ueberwachung.webp`~~ | – | `public/frank-ki/` | entfernt 17.11.2026 (Video komplett raus) |
 | `frank-portrait.webp` | 65.308 B | `public/` | HUD-Abgleich, JSON-LD |
 | `cert-tuev-sued.pdf` | 519.077 B | `public/` | Zertifikat TÜV SÜD |
 | `zertifikate/tuev-sued-vorschau.webp` | 39.512 B | `public/zertifikate/` | Zertifikate |

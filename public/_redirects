@@ -30,7 +30,7 @@
 /cert-tuev-sued.pdf              /inhalt/cert-tuev-sued.pdf               301
 
 # Ordner: Dateinamen unverändert, nur der Ort ist neu
-/frank-ki/*                      /inhalt/frank-ki/:splat                  301
+# (/frank-ki/* entfällt seit 17.11.2026: KI-Film und Überwachungs-Video sind nicht mehr auf der Seite, 404)
 /zertifikate/*                   /inhalt/zertifikate/:splat               301
 /architektur/*                   /inhalt/architektur/:splat               301
 /ki-logos/*                      /medien/ki-logos/:splat                  301
@@ -38,5 +38,8 @@
 # Ohne Regel, weil sie unter derselben Adresse im Neubau liegen:
 #   /og/neuralnautic-og.png, /og/frank-schuett.jpg (Open Graph), /a54c1e058bc28ff81662082b447a78a9.txt (IndexNow-Schlüssel)
 # Ohne Gegenstück im Neubau (liefern 404): /werkzeug-logos/*, /bg-neural-network.png, /brand-key-visual.png,
-#   /frank-schuett-quadrat.jpeg, /logo-monogram-script.png, /partner/for42-wordmark-nn.svg,
+#   /frank-schuett-quadrat.jpeg, /logo-monogram-script.png, /partner/for42-wordmark-nn.svg, /frank-ki/*,
 #   Next.js-Vorlagen /file.svg, /globe.svg, /next.svg, /vercel.svg, /window.svg
+#   Geprüft 17.11.2026: keine dieser Dateien hat ein byte-gleiches Gegenstück im Neubau (SHA-1), und keine hat einen
+#   klaren Nachfolger. Ein Bild auf ein anderes Bild oder auf eine Seite umzuleiten, wertet Google als Soft-404;
+#   404 ist hier die ehrliche Antwort. /werkzeug-logos/* gehörte zum Werkzeug-Laufband, das schon live entfernt war.

@@ -37,14 +37,17 @@ S.main.append(ab);
 
 /* ---------------- Einordnung 1 mit der Kapital-Wolke ---------------- */
 const e1 = W.EINORDNUNGEN.find((e) => e.grafik === 'kapital');
+// ID nach der Stelle in EINORDNUNGEN, wie bei den uebrigen (vorher fest „einordnung-1“: doppelt mit dem ersten
+// Listeneintrag, weil die Kapital-Einordnung nicht an erster Stelle steht)
+const i1 = W.EINORDNUNGEN.indexOf(e1);
 const [achseVon, achseBis] = KW.achse(Q);
 const kapital = el(`
-  <article class="nn-kapital" aria-labelledby="einordnung-1">
+  <article class="nn-kapital" aria-labelledby="einordnung-${i1 + 1}">
     <div class="nn-kapital__bahn">
       <div class="nn-kapital__pin">
         <div class="bs-wrap nn-kapital__raster">
           <div class="nn-kapital__text">
-            ${kopfHtml(e1, 0)}
+            ${kopfHtml(e1, i1)}
             <p class="nn-einordnung__befund">${esc(e1.befund)}</p>
             <div class="nn-kapital__fortschritt" aria-hidden="true"><i></i></div>
           </div>

@@ -11,7 +11,7 @@ import {
 } from '@kern/motion.js';
 import {
   kopf, menue, preloader, laufband, logowirbel, sternfahrt, bildkarte, manifest, quergalerie, feldTitel, feldText, feldZahl, feldBild, feldBuehne, feldZitat,
-  weiche, videoVorhang, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
+  weiche, karten, callout, store, check, nachweise, faecher, fusskarte, hilfen,
 } from '@kern/bausteine/index.js';
 import './funnel.css';
 import { netzHintergrund } from './netz-hintergrund.js';
@@ -162,11 +162,12 @@ main.append(qg.el);
 qs('.bs-quer__feld--zitat', qg.el)?.insertAdjacentHTML('beforeend',
   `<img class="nn-quer-logo" src="${esc(I.FUSS.logo.src)}" alt="" width="${I.FUSS.logo.w}" height="${I.FUSS.logo.h}" loading="lazy" decoding="async" />`);
 
-/* ---------------- L6: Weiche, L7: der Film als Vorhang darueber ---------------- */
+/* ---------------- L6: Weiche ----------------
+   Der KI-Film als Vorhang ueber der Weiche (L7) ist entfallen (Frank 17.11.2026: „Das Video nehmen wir komplett
+   raus“). Der Platz „danach“ bleibt leer, die Weiche steht damit als normaler Abschnitt (weiche.css: ohne Inhalt
+   kein Abstand), danach folgen direkt die Leistungen. */
 const W = I.WEGE;
 const wch = teil(weiche({ id: 'wege', titel: esc(W.titel), links: W.links, rechts: W.rechts, bildHinweis: I.KI }));
-const film = teil(videoVorhang({ ...I.FILM, id: 'film' }));
-wch.danach.appendChild(film.el);
 main.append(wch.el);
 
 /* ---------------- L5: Organigramm der Crew (Feld nach dem Crew-Text) ----------------
@@ -224,7 +225,7 @@ function organigramm(buehne) {
         ${ORG.kiAblauf.map(([id, t]) => `<span class="nn-org__kante" data-kante="ki-${id}">${esc(t)}</span>`).join('')}
         ${knoten('g')}${knoten('f')}<div class="nn-org__knoten nn-org__knoten--ki" data-k="ki">${figurenHtml(ORG.kiAnzahl, true)}<b>${esc(ORG.ki)}</b><span class="nn-org__kante">${esc(ORG.kante)}</span></div>${knoten('m')}<div class="nn-org__teams">${T.map(knoten).join('')}</div>
         ${ORG.ablauf.map((t, i) => `<div class="nn-org__knoten nn-org__schritt" data-k="w${i}"><b>${esc(t)}</b></div>`).join('')}
-        <div class="nn-org__formel">${ORG.formel.map((f) => (Array.isArray(f)
+        <div class="nn-org__formel" aria-hidden="true">${ORG.formel.map((f) => (Array.isArray(f)
           ? `<div class="nn-org__term"><b>${esc(f[0])}</b><small>${esc(f[1])}</small></div>` : `<span class="nn-org__zeichen">${esc(f)}</span>`)).join('')}</div>
       </div>
       ${hilfen.kiHinweis(I.KI)}
@@ -379,6 +380,8 @@ qg.buehnen.crew.append(crewPaar);
 const crewTeile = qs('.nn-crew-paar__teile', crewPaar);
 organigramm(crewTeile);
 const orgWurzel = crewTeile.firstElementChild;
+// Die sichtbare Formel verlaesst hier das aria-hidden-Bild; sie traegt selbst aria-hidden, Screenreader lesen sie
+// einmal aus dem p.sr-only (vorher doppelt)
 crewPaar.append(qs('p.sr-only', orgWurzel), qs('.nn-org__formel', orgWurzel), qs('.bs-ki', orgWurzel));
 
 // Feld des Organigramms (Lage und Groesse setzt crewAusrichten)

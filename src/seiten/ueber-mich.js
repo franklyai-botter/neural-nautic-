@@ -1,7 +1,9 @@
-// /ueber-mich (Paket C, Vorlage „Mensch“ nach Landos „Off Track“): Seitenkopf, KI-Film, Ueberwachungs-Karte (HUD) mit Profil,
+// /ueber-mich (Paket C, Vorlage „Mensch“ nach Landos „Off Track“): Seitenkopf, Ueberwachungs-Karte (HUD) mit Profil,
 // die 6 Staerken als quer laufende Kapitel in der Ganzkoerper-Szene aus dem Hero-Kern (die eine grosse Szene der Seite),
 // Gespraech/LinkedIn, Zertifikate als Titel mit Lorbeer, weiter zum Kontakt.
-// Texte, Dateien und Abspielregeln wortlich aus src/inhalt/ueber-mich.js (page.tsx, NnFilm.tsx, NnHud.tsx, LinkedInButton.tsx).
+// Der KI-Film unter dem Seitenkopf (NnFilm.tsx der Live-Seite) ist entfallen (Frank 17.11.2026: „Das Video nehmen wir
+// komplett raus“); das Profil folgt direkt auf den Seitenkopf.
+// Texte und Dateien wortlich aus src/inhalt/ueber-mich.js (page.tsx, NnHud.tsx, LinkedInButton.tsx).
 // JSON-LD Person und Open Graph stehen statisch in ueber-mich/index.html.
 import { kapitelseite, seitenkopf, weiterKapitel, esc, el, qs, qsa, knopf, ziel, reduced, gsap, ScrollTrigger } from './gemeinsam.js';
 import * as U from '../inhalt/ueber-mich.js';
@@ -11,25 +13,6 @@ import './ueber-mich.css';
 
 const S = kapitelseite();
 S.main.append(seitenkopf(U.KOPF));
-
-/* ---------------- KI-Film (NnFilm.tsx): stumm, Schleife, nur im Sichtbereich ab 20 %, Reduced Motion = Standbild ---------------- */
-const F = U.FILM;
-const film = el(`
-  <section class="nn-film bs-ton-dunkel" data-ton="dunkel" aria-label="${esc(F.ariaLabel)}">
-    <div class="bs-wrap">
-      <figure class="nn-film__rahmen" style="aspect-ratio:${esc(F.seitenverhaeltnis)}">
-        ${reduced
-    ? `<img class="nn-film__medium" src="${esc(F.poster.datei)}" alt="${esc(F.standbildAlt)}" width="1280" height="720" decoding="async" />`
-    : `<video class="nn-film__medium" src="${esc(F.video.datei)}" poster="${esc(F.poster.datei)}" muted loop playsinline preload="${esc(F.regeln.preload)}" aria-label="${esc(F.ariaLabel)}"></video>`}
-        <figcaption class="nn-film__ki">${esc(F.kennzeichnung)}</figcaption>
-      </figure>
-    </div>
-  </section>`);
-S.main.append(film);
-const filmVideo = qs('video', film);
-if (filmVideo) {
-  new IntersectionObserver(([e]) => { if (e.isIntersecting) filmVideo.play().catch(() => {}); else filmVideo.pause(); }, { threshold: F.regeln.sichtbarAb }).observe(filmVideo);
-}
 
 /* ---------------- Profil: HUD-Karte (NnHud.tsx), Name/Rolle/Ort, drei Absaetze ---------------- */
 const H = U.HUD;
@@ -288,10 +271,6 @@ S.main.append(weiterKapitel({ label: 'Weiter zum nächsten Kapitel', titel: KONT
 S.nachStart(() => {
   ScrollTrigger.create({ trigger: staerken, start: 'top top', end: 'bottom bottom', onUpdate: (s) => staerkenSetzen(s.progress), onRefresh: (s) => { aktiv = -1; staerkenSetzen(s.progress); } });
   if (reduced) return;
-  // Film: faehrt per Clip auf und zoomt beim Hereinfahren leicht zurueck (Parallaxe)
-  const rahmen = qs('.nn-film__rahmen', film);
-  gsap.fromTo(rahmen, { clipPath: 'inset(14% 10% 14% 10% round 18px)' }, { clipPath: 'inset(0% 0% 0% 0% round 12px)', ease: 'none', scrollTrigger: { trigger: rahmen, start: 'top 95%', end: 'top 35%', scrub: true } });
-  gsap.fromTo(qs('.nn-film__medium', film), { scale: 1.16 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: rahmen, start: 'top bottom', end: 'bottom top', scrub: true } });
   // HUD-Karte und Name: Clip von unten
   gsap.from(qs('.nn-profil__karte', profil), { clipPath: 'inset(100% 0% 0% 0%)', duration: 1.2, ease: 'expo.inOut', clearProps: 'clipPath', scrollTrigger: { trigger: profil, start: 'top 80%', once: true } });
   // Zertifikate: Bilder per Clip, Lorbeer waechst, Rest steigt auf

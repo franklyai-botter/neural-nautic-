@@ -62,39 +62,23 @@ export const KOPF = {
   text: "Mein Fokus liegt auf pragmatischer KI-Einführung für Unternehmen: verständlich, sicher, messbar und umsetzbar.",
 };
 
-// KI-Film (NnFilm.tsx): Unterlagen wirbeln zur Kugel und werden zur KI-Architektur, am Ende das
-// NN-Monogramm. KI-generiert aus Franks Porträt. Art. 50 Abs. 4 AI Act: fester Hinweis „KI-generiert“.
-// Stumm, Schleife, nur im Sichtbereich (ab 20 % sichtbar); bei prefers-reduced-motion nur Standbild.
-// Seit 16.11.2026 die Fassung mit Franks Gesicht aus dem eigenen Gesichtsmodell (Werkzeuge/gesichtsmodell,
-// lizenzsauber: MediaPipe Apache 2.0 + eigener Autoencoder, kein InsightFace), Fassung v2 (Nachtraining),
-// Teint mittel, volle Laenge 33,2 s (ergebnis/film-eigen-v2-mittel-web.mp4; Frank 16.11.2026: „nimm mal den
-// laengeren“). Standbild = Bild 288 wie beim Original (film-eigen-v2-mittel.webp). Datei unter derselben Adresse.
-export const FILM = {
-  video: { src: "/frank-ki/film.mp4", datei: "/inhalt/frank-ki/film.mp4" },
-  poster: { src: "/frank-ki/film.webp", datei: "/inhalt/frank-ki/film.webp" },
-  seitenverhaeltnis: "16 / 9",
-  ariaLabel: "KI-generierter Film: Unterlagen wirbeln zu einer Kugel und werden zu einer KI-Architektur",
-  standbildAlt: "KI-generiertes Standbild: Frank Schütt in einer Kugel aus Unterlagen",
-  kennzeichnung: "KI-generiert",
-  regeln: { stumm: true, schleife: true, playsInline: true, preload: "metadata", sichtbarAb: 0.2, reduzierteBewegung: "nur Standbild" },
-};
+// KI-Film (NnFilm.tsx der Live-Seite) entfallen: Frank 17.11.2026 „Das Video nehmen wir komplett raus“.
+// Die Filmdateien liegen nicht mehr in public/ (Original der eigenen Fassung: Werkzeuge/gesichtsmodell/ergebnis/).
 
-// Überwachungs-Karte statt Porträt (NnHud.tsx): KI-Video + Analyse-Overlay in NN-Farben (Petrol, Aqua).
-// Art. 50 Abs. 4 AI Act: fester Hinweis „KI-generiert“. Video nur im Sichtbereich (ab 25 % sichtbar),
+// Überwachungs-Karte statt Porträt (NnHud.tsx): auf der Live-Seite KI-Video + Analyse-Overlay in NN-Farben
+// (Petrol, Aqua). Im Neubau seit 14.11.2026 Standbilder von Frank im Mantel mit Kamerawechsel statt Video
+// (src/seiten/ueber-mich.js), deshalb heißt es in der Beschreibung „Bild“ statt „Video“ (17.11.2026, Video entfallen).
+// Art. 50 Abs. 4 AI Act: fester Hinweis „KI-generiert“. Bewegung nur im Sichtbereich (ab 25 % sichtbar),
 // bei prefers-reduced-motion nur Standbild. Das echte Porträt steht im Abgleich-Panel der Karte.
 export const HUD = {
-  ariaLabel: "KI-generiertes Video von Frank Schütt mit Analyse-Overlay",
-  video: { src: "/frank-ki/ueberwachung.mp4", datei: "/inhalt/frank-ki/ueberwachung.mp4" },
-  poster: { src: "/frank-ki/ueberwachung.webp", datei: "/inhalt/frank-ki/ueberwachung.webp" },
+  ariaLabel: "KI-generiertes Bild von Frank Schütt mit Analyse-Overlay",
   portrait: { src: "/frank-portrait.webp", datei: "/inhalt/frank-portrait.webp" },
   // Abgleich-Panel (Frank, 15.11.2026): sein LinkedIn-Profilbild statt des alten Porträts (oranger Pullover).
   // Quelle Downloads/linkedin-profilbild-672.jpg, Ausschnitt 4:5 (20,40)–(440,565), Gesicht mittig.
   portraitAbgleich: { datei: "/inhalt/frank-linkedin.webp" },
-  // Rahmen um das Gesicht, läuft mit dem Video mit:
+  // Rahmen um das Gesicht (Lage je Ansicht aus den Kopf-Ankern in figuren.json, src/seiten/ueber-mich.js).
+  // Die Gesichtsspur des alten Videos (Sekunde, Lage) ist mit dem Video entfallen.
   gesichtText: "FACE ID: MATCH",
-  // Gesichtsspur im 4:5-Ausschnitt: [Sekunde, x %, y %, Rahmenbreite %]. Zwischen den Punkten wird
-  // linear interpoliert; Rahmenhöhe = Breite × 0,8.
-  spur: [[0, 51, 33, 13], [1.5, 59, 33, 13], [3, 51, 34, 14], [4.5, 58, 35, 15], [6.2, 59, 37, 15]],
   abgleich: {
     titel: "PROFIL ABGEGLICHEN",
     // Im Original mit geschützten Leerzeichen ausgerichtet: „ID    : NN-FS“

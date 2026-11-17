@@ -25,7 +25,7 @@ const CSP = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "media-src 'self' blob:",
+  // kein media-src mehr: seit 17.11.2026 kein Film auf der Seite (default-src 'self' gilt)
   "connect-src 'self'",
   "worker-src 'self' blob:",
   "frame-src 'none'",

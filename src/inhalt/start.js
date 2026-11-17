@@ -208,7 +208,7 @@ export const METHODE = {
 // Bild bei „Schiff“ (Frank, 15.11.2026): das Schiff im Laengsschnitt als Bauplan, im Rumpf die KI-Architektur als
 // Raeume, eine Datenschutz-Leitung mit Schloessern laeuft durch alle. Vorlage von Frank (medien-quellen/), die von der
 // Bild-KI nachgebauten Logos am Bug sind getilgt und durch die echten Dateien ersetzt (funnel-vorlage/tools/
-// aufdruck_bild.py). Mobil ein eigener Ausschnitt mit allen fuenf Raeumen. Ersetzt den Schiff-Film (schiff-nn.*).
+// aufdruck_bild.py). Mobil ein eigener Ausschnitt mit allen fuenf Raeumen. Ersetzt den Schiff-Film (Dateien seit 17.11.2026 entfernt).
 // Kein Inhalt der Live-Seite.
 export const SCHIFF_BILD = {
   src: '/medien/schiff/schiff-architektur.webp', w: 1672, h: 941,
@@ -247,16 +247,8 @@ export const WEGE = {
   alle: { text: 'Alle Leistungen im Überblick →', href: '/leistungen' },
 };
 
-/* ---------- L7: Film ---------- */
-// Dateien legt der Inhalts-Agent nach public/inhalt/frank-ki/ (Namen wie auf der Live-Seite).
-export const FILM = {
-  video: '/inhalt/frank-ki/film.mp4',
-  poster: '/inhalt/frank-ki/film.webp',
-  w: 1280, h: 720,
-  hinweis: KI,
-  alt: 'KI-generierter Film: Frank Schütt in einer Kugel aus Unterlagen',
-  knopf: { an: 'Film anhalten', aus: 'Film abspielen' },
-};
+/* ---------- L7: entfallen ---------- */
+// Der KI-Film ist entfallen (Frank 17.11.2026: „Das Video nehmen wir komplett raus“), auch auf /ueber-mich.
 
 /* ---------- L8: die 8 Leistungen (Kurztext und Ergebnis wörtlich aus /leistungen) ---------- */
 // „teil“: Ausschnitt des Ganzkörperbilds, der auf der Karte steht (x/y in %, zoom) = das Bauteil des Exoskeletts.

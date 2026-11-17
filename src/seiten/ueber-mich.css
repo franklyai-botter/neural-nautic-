@@ -1,14 +1,10 @@
-/* /ueber-mich (Paket C, Vorlage „Mensch“): Film, HUD-Karte, Staerken in der Ganzkoerper-Szene, Zertifikate mit Lorbeer. */
-
-/* ---------- KI-Film ---------- */
-.nn-film { background: var(--bg); padding: 0 0 clamp(60px, 7vw, 110px); }
-.nn-film__rahmen { position: relative; margin: 0; overflow: hidden; border-radius: 12px; background: #061419; box-shadow: 0 50px 100px -60px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(255, 255, 255, .1); }
-.nn-film__medium { display: block; width: 100%; height: 100%; object-fit: cover; }
-.nn-film__ki { position: absolute; left: 14px; bottom: 14px; z-index: 2; padding: 4px 9px; border-radius: 4px; background: rgba(6, 20, 25, .75); color: #f5f2eb;
-  font: 500 10px/1.2 var(--bs-text); letter-spacing: .12em; text-transform: uppercase; }
+/* /ueber-mich (Paket C, Vorlage „Mensch“): HUD-Karte, Staerken in der Ganzkoerper-Szene, Zertifikate mit Lorbeer.
+   Der KI-Film unter dem Seitenkopf ist entfallen (Frank 17.11.2026). */
 
 /* ---------- Profil: HUD-Karte und Text ---------- */
 .nn-profil { background: var(--bg); color: var(--fg); padding: clamp(40px, 6vw, 100px) 0 clamp(80px, 9vw, 140px); }
+/* Direkt unter dem Seitenkopf: dessen Abstand nach unten reicht (wie vorher zwischen Kopf und Film) */
+.ks-kopf + .nn-profil { padding-top: 0; }
 .nn-profil__raster { display: grid; grid-template-columns: minmax(280px, 420px) minmax(0, 1fr); gap: clamp(36px, 6vw, 110px); align-items: center; }
 .nn-profil__karte { display: grid; gap: 18px; }
 .nn-profil__wer p { margin: 0; }

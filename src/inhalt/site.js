@@ -88,11 +88,8 @@ export const WEITERLEITUNGEN = [{ source: "/use-cases", destination: "/leistunge
 // --- Dateien: Pfad auf der Live-Seite -> Pfad im Funnel ----------------------
 // Medien liegen unter public/inhalt/ (Namen behalten). Logos kommen aus public/brand/
 // (byte-gleich mit den Live-Dateien, per SHA-1 geprüft am 14.11.2026) und wurden nicht kopiert.
+// /frank-ki/* (KI-Film, Überwachungs-Video) ist entfallen (Frank 17.11.2026: Video komplett raus).
 export const DATEIEN = {
-  "/frank-ki/film.mp4": "/inhalt/frank-ki/film.mp4",
-  "/frank-ki/film.webp": "/inhalt/frank-ki/film.webp",
-  "/frank-ki/ueberwachung.mp4": "/inhalt/frank-ki/ueberwachung.mp4",
-  "/frank-ki/ueberwachung.webp": "/inhalt/frank-ki/ueberwachung.webp",
   "/frank-portrait.webp": "/inhalt/frank-portrait.webp",
   "/cert-tuev-sued.pdf": "/inhalt/cert-tuev-sued.pdf",
   "/zertifikate/tuev-sued-vorschau.webp": "/inhalt/zertifikate/tuev-sued-vorschau.webp",
