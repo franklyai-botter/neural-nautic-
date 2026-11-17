@@ -92,7 +92,7 @@ export const MENUE = {
 
 export const FUSS = {
   logo: { src: '/brand/nn-monogramm.png', alt: 'NeuralNautic', w: 805, h: 821 },
-  claim: 'Pragmatische KI-Beratung. Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.',
+  claim: 'Pragmatische KI-Beratung. Für den Mittelstand gebaut.',
   ort: 'Berlin · Bundesweit · DACH',
   cta: { text: 'Anfrage senden', href: '/kontakt' },
   // „Seiten“ = alle Seiten des Menüs (Brief: Footer mit allen Seiten); die drei weiteren Spalten wie Footer.tsx
