@@ -45,6 +45,7 @@ alle Texte.
 | Footer: 3 Spalten (Leistungen 7, Angebote 5, Kontakt 6 Links) | `navigation.js` → `SPALTEN` | Fußkarte | S |
 | Footer: „© Jahr · NeuralNautic · in Gründung · Frank Schütt“, Impressum, Datenschutz | `navigation.js` → `FUSS.copyright`, `FUSS.recht` | Fußkarte | S |
 | LinkedIn Frank, LinkedIn NeuralNautic, X, for42.ai | `site.js` → `LINKEDIN_URL`, `LINKEDIN_COMPANY_URL`, `X_URL`, `FOR42_URL` | L12 Fächer, Fußkarte | X |
+| (neu, Frank 17.11.2026) Facebook und Instagram: Halter im Fächer ohne Link, Adresse fehlt noch; gesetzt erscheinen sie auch in Linkzeile, Fußkarten und `sameAs` | `site.js` → `FACEBOOK_URL`, `INSTAGRAM_URL` (leer) | L12 Fächer | X |
 | KI-Chat: Hinweisblase, Knopf, Kopfzeile, DSGVO-Hinweis, Begrüßung, Eingabe, Haftungszeile, Fehlertexte, Regeln | `chat.js` → `CHAT` | alle Seiten, unten rechts | B4 |
 | Chat serverseitig: Systemanweisung, Modellliste, Grenzen, Fehlertexte | `backend.js` → `CHAT_SYSTEM`, `CHAT_API` | Worker | B4 |
 | Standard-Metadaten (Titel, Beschreibung, Keywords, Open Graph, Twitter-Karte, Viewport) | `site.js` → `META_STANDARD` | `<head>` | S |
@@ -73,7 +74,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 | „Hinter NeuralNautic stehen geprüfte Kompetenz …“ + Absatz + Link | `start.js` → `VERTRAUEN` | L11 | S |
 | Partner & Netzwerk (for42, spring.gate, Karlson) | `start.js` → `VERTRAUEN` | L11 Laufband | S |
 | Abschluss „Bereit für den ersten sinnvollen KI-Schritt?“ + Satz + Knopf + Beruhigung | `start.js` → `ABSCHLUSS` | L10, L12 | X |
-| (neu im Funnel) 8 Leistungskarten, Store-Teaser, Kanäle (KI-Film L7 entfallen 17.11.2026, Frank: „Video komplett raus“) | `start.js` → `LEISTUNGEN`, `STORE`, `KANAELE` | L8, L10, L12 | S |
+| (neu im Funnel) 8 Leistungskarten, Store-Teaser, Kanäle (KI-Film L7 entfallen 17.11.2026, Frank: „Video komplett raus“; Fächer seit 17.11.2026 Helm rechts · Frank rechts · Frank frontal · Frank links · Helm links, nur Brustbilder) | `start.js` → `LEISTUNGEN`, `STORE`, `KANAELE` | L8, L10, L12 | S |
 
 ## 4. `/leistungen` → Karten, die sich öffnen (Helm-Galerie groß)
 

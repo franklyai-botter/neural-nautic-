@@ -6,6 +6,7 @@
 
 import figuren from '../../figuren.json';
 import { REIFEGRAD, reifegradAuswerten } from './ki-im-unternehmen.js';
+import { FACEBOOK_URL, INSTAGRAM_URL } from './site.js';
 
 export const SITE = {
   name: 'NeuralNautic',
@@ -14,7 +15,11 @@ export const SITE = {
   linkedinNN: 'https://www.linkedin.com/company/neuralnautic/',
   x: 'https://x.com/FSchuettNN',
   for42: 'https://for42.ai',
+  facebook: FACEBOOK_URL,     // leer = noch keine Adresse (site.js)
+  instagram: INSTAGRAM_URL,
 };
+// Facebook und Instagram erscheinen in Linklisten erst, wenn ihre Adresse gesetzt ist
+const SOZIAL_NEU = [['Facebook', SITE.facebook], ['Instagram', SITE.instagram]].filter(([, href]) => href);
 
 export const BERUHIGUNG = '30 Minuten per Video, kostenlos und unverbindlich. Danach wissen Sie, wo KI bei Ihnen als Nächstes wirkt.';   // vorher „zuerst“ (Frank 15.11.2026)
 export const KI = 'KI-generiert';
@@ -108,7 +113,8 @@ export const FUSS = {
     ] },
     { titel: 'Kontakt', links: [
       ['Über mich', '/ueber-mich'], ['Anfrage senden', '/kontakt'], ['LinkedIn Frank ↗', SITE.linkedinFrank],
-      ['LinkedIn NeuralNautic ↗', SITE.linkedinNN], ['X @FSchuettNN ↗', SITE.x], ['FOR42.ai ↗', SITE.for42],
+      ['LinkedIn NeuralNautic ↗', SITE.linkedinNN], ['X @FSchuettNN ↗', SITE.x],
+      ...SOZIAL_NEU.map(([t, h]) => [`${t} ↗`, h]), ['FOR42.ai ↗', SITE.for42],
     ] },
   ],
   copyright: `© ${new Date().getFullYear()} · NeuralNautic · in Gründung · Frank Schütt`,
@@ -352,19 +358,25 @@ export const VERTRAUEN = {
 };
 
 /* ---------- L12: Kanäle und Abschluss ---------- */
+// Kartenfächer (Frank 17.11.2026): nur Brustbilder, symmetrisch, die Seitenansichten blicken zur Mitte (Dateinamen
+// wörtlich: „rechts“ blickt nach rechts). Von links: Helm rechts, Frank rechts, Frank frontal, Frank links, Helm links.
+// Vorher: Roboter Ganzkörper, Helm, Frank frontal, Frank Seitenansicht, Frank Ganzkörper (Ganzkörper ohne Link).
+// Facebook und Instagram: Halter ohne Link, bis die Adresse in site.js steht.
+const sozialKarte = (text, href) => (href ? { text, href } : { text, deko: true });
 export const KANAELE = {
   karten: [
-    { ...faecherBild('ganzExo', [0.5, 0.3]), deko: true },
     { ...faecherBild('exoRechts'), text: 'LinkedIn NeuralNautic', href: SITE.linkedinNN },
+    { ...faecherBild('fotoRechts'), ...sozialKarte('Facebook', SITE.facebook) },
     { ...faecherBild('fotoFrontal'), text: 'LinkedIn Frank', href: SITE.linkedinFrank },
-    { ...faecherBild('fotoLinks'), text: 'X @FSchuettNN', href: SITE.x },
-    { ...faecherBild('ganzFoto', [0.5, 0.3]), deko: true },
+    { ...faecherBild('fotoLinks'), ...sozialKarte('Instagram', SITE.instagram) },
+    { ...faecherBild('exoLinks'), text: 'X @FSchuettNN', href: SITE.x },
   ],
   hinweis: KI,
   links: [
     { text: 'LinkedIn Frank', href: SITE.linkedinFrank },
     { text: 'LinkedIn NeuralNautic', href: SITE.linkedinNN },
     { text: 'X @FSchuettNN', href: SITE.x },
+    ...SOZIAL_NEU.map(([text, href]) => ({ text, href })),
   ],
 };
 
