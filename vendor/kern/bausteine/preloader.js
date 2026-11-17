@@ -21,6 +21,9 @@ import './preloader.css';
  *                                     17.11.2026: Balken quer ueber dem Gesicht im Hero). Nur per Skript (inline opacity):
  *                                     ohne JavaScript, bei Reduced Motion und ohne Ladezeichen bleibt alles sofort sichtbar.
  * @param {number} [o.einblenden=0.28] Dauer des Einblendens der verdeckten Elemente in s
+ * @param {number} [o.verdecktAb=0]   Anteil der Oeffnung (0..1), ab dem sie verschwinden. 0 = von Anfang an (durch die Rose
+ *                                     ist nur der dunkle Grund zu sehen, die Rose selbst kaum); z. B. 0,55 = solange die Rose
+ *                                     klein ist, scheint die Seite durch, verdeckt wird erst, wenn die Zwickel zu Balken werden
  * @returns {Promise<void>} erfuellt, wenn die Seite frei ist
  */
 export function preloader(lader, o = {}) {
@@ -35,7 +38,8 @@ export function preloader(lader, o = {}) {
     const zustand = { g: 0 };
     const vmax = Math.max(window.innerWidth, window.innerHeight);
     const verdeckt = (o.verdeckt || []).flatMap((x) => (typeof x === 'string' ? [...document.querySelectorAll(x)] : [x])).filter(Boolean);
-    if (verdeckt.length) gsap.set(verdeckt, { opacity: 0 });   // vor dem ersten Bild der Oeffnung: nichts scheint durch
+    const ab = Math.min(1, Math.max(0, o.verdecktAb ?? 0));
+    if (verdeckt.length && !ab) gsap.set(verdeckt, { opacity: 0 });   // vor dem ersten Bild der Oeffnung: nichts scheint durch
     const frei = () => {
       weg();
       if (verdeckt.length) gsap.to(verdeckt, { opacity: 1, duration: o.einblenden ?? 0.28, ease: 'power1.out', clearProps: 'opacity' });
@@ -48,6 +52,7 @@ export function preloader(lader, o = {}) {
       .to(zustand, { g: 1, duration: dauer, ease: 'expo.in', onUpdate: () => {
         lader.style.setProperty('--bs-g', `${Math.round(60 + zustand.g * vmax * 14)}px`);
       } }, 0)
-      .to(lader, { autoAlpha: 0, duration: dauer * 0.22, ease: 'none' }, dauer * 0.8);
+      .to(lader, { autoAlpha: 0, duration: dauer * 0.22, ease: 'none' }, dauer * 0.8)
+      .call(() => { if (verdeckt.length && ab) gsap.set(verdeckt, { opacity: 0 }); }, null, dauer * ab);
   }));
 }
