@@ -514,11 +514,10 @@ main.after(fuss.el, k.daumen);
 /* ---------------- L1: Preloader, dann Bewegung verdrahten ---------------- */
 const heroBild = qs('.hero__bild img', heroBuehne);
 const bildDa = heroBild ? (heroBild.complete ? Promise.resolve() : new Promise((r) => { heroBild.addEventListener('load', r, { once: true }); heroBild.addEventListener('error', r, { once: true }); })) : Promise.resolve();
-// verdeckt (Frank 17.11.2026): Hero (Porträt, Canvas, Widget), Seitenkopf, Buchungsleiste und Chat bleiben während der
-// Öffnung der Kompassrose unsichtbar und blenden danach in 0,28 s ein. Vorher schien das Gesicht durch die Rose, und die
-// Zwickel zwischen den Strahlen zogen beim Aufzoomen als dunkle schräge Balken darüber (mobil blitzte die cyan Leiste durch).
-const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5,
-  verdeckt: [heroPin, k.el, k.daumen, '.nn-chat'] });
+// Die Kompassrose öffnet die Seite, das Gesicht ist durch sie zu sehen (Frank 17.11.2026). Als Maske dient die Silhouette
+// des Signets ohne seine innere S-Linie (public/brand/nn-stern-kompass-128-maske.png, tools/maske_aus_signet.py), sonst
+// zog die Linie beim Aufzoomen als dunkler schräger Balken über das Gesicht. Die Kern-Option `verdeckt` bleibt aus.
+const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5 });
 
 // KI-Chat wie auf den Kapitelseiten (Frank 15.11.2026: „wo ist mein Chatbot“), Server /api/chat
 document.body.append(chatWidget());
