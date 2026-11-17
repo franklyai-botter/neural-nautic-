@@ -514,6 +514,9 @@ main.after(fuss.el, k.daumen);
 /* ---------------- L1: Preloader, dann Bewegung verdrahten ---------------- */
 const heroBild = qs('.hero__bild img', heroBuehne);
 const bildDa = heroBild ? (heroBild.complete ? Promise.resolve() : new Promise((r) => { heroBild.addEventListener('load', r, { once: true }); heroBild.addEventListener('error', r, { once: true }); })) : Promise.resolve();
+// Die Kompassrose öffnet die Seite, das Gesicht ist durch sie zu sehen (Frank 17.11.2026). Als Maske dient die Silhouette
+// des Signets ohne seine innere S-Linie (public/brand/nn-stern-kompass-128-maske.png, tools/maske_aus_signet.py), sonst
+// zog die Linie beim Aufzoomen als dunkler schräger Balken über das Gesicht. Die Kern-Option `verdeckt` bleibt aus.
 const offen = preloader(document.querySelector('[data-lader]'), { bereit: bildDa, still: reduced, maxWarten: 300, dauer: 0.5 });
 
 // KI-Chat wie auf den Kapitelseiten (Frank 15.11.2026: „wo ist mein Chatbot“), Server /api/chat
@@ -569,7 +572,10 @@ async function heroStarten() {
   try {
     const [{ createHero }, { default: figuren }] = await heroModul();
     if (nr !== heroLaeuft || !heroNah()) return;
-    window.__hero = createHero(heroEl, { figuren: heroFiguren(figuren), lenis, phasen: HERO_PHASEN,
+    // leerlaufAb (Frank 17.11.2026, iPhone: „im ersten Moment ein fetter grüner Streifen auf meinem Gesicht“): Das erste
+    // Leerlauf-Scan-Band kam nach 2,4 s, also kaum dass das Gesicht stand; mobil füllt das Gesicht den Schirm und das
+    // Band (mint, 9 % der Höhe) läuft über die volle Breite. Jetzt zuerst 8 s ruhiges Porträt, dann wie bisher.
+    window.__hero = createHero(heroEl, { figuren: heroFiguren(figuren), lenis, phasen: HERO_PHASEN, leerlaufAb: 8,
       onBereit: (m) => { if (m === 'still') bk.el.classList.remove('nn-karte--vorhang'); } });   // ohne WebGL2: kein Vorhang
   } catch (e) {
     console.warn('[funnel] Hero nicht geladen, das Standbild bleibt stehen:', e?.message || e);

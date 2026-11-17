@@ -45,6 +45,7 @@ alle Texte.
 | Footer: 3 Spalten (Leistungen 7, Angebote 5, Kontakt 6 Links) | `navigation.js` → `SPALTEN` | Fußkarte | S |
 | Footer: „© Jahr · NeuralNautic · in Gründung · Frank Schütt“, Impressum, Datenschutz | `navigation.js` → `FUSS.copyright`, `FUSS.recht` | Fußkarte | S |
 | LinkedIn Frank, LinkedIn NeuralNautic, X, for42.ai | `site.js` → `LINKEDIN_URL`, `LINKEDIN_COMPANY_URL`, `X_URL`, `FOR42_URL` | L12 Fächer, Fußkarte | X |
+| (neu, Frank 17.11.2026) Facebook und Instagram: Halter im Fächer ohne Link, Adresse fehlt noch; gesetzt erscheinen sie auch in Linkzeile, Fußkarten und `sameAs` | `site.js` → `FACEBOOK_URL`, `INSTAGRAM_URL` (leer) | L12 Fächer | X |
 | KI-Chat: Hinweisblase, Knopf, Kopfzeile, DSGVO-Hinweis, Begrüßung, Eingabe, Haftungszeile, Fehlertexte, Regeln | `chat.js` → `CHAT` | alle Seiten, unten rechts | B4 |
 | Chat serverseitig: Systemanweisung, Modellliste, Grenzen, Fehlertexte | `backend.js` → `CHAT_SYSTEM`, `CHAT_API` | Worker | B4 |
 | Standard-Metadaten (Titel, Beschreibung, Keywords, Open Graph, Twitter-Karte, Viewport) | `site.js` → `META_STANDARD` | `<head>` | S |
@@ -73,7 +74,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 | „Hinter NeuralNautic stehen geprüfte Kompetenz …“ + Absatz + Link | `start.js` → `VERTRAUEN` | L11 | S |
 | Partner & Netzwerk (for42, spring.gate, Karlson) | `start.js` → `VERTRAUEN` | L11 Laufband | S |
 | Abschluss „Bereit für den ersten sinnvollen KI-Schritt?“ + Satz + Knopf + Beruhigung | `start.js` → `ABSCHLUSS` | L10, L12 | X |
-| (neu im Funnel) 8 Leistungskarten, Store-Teaser, Kanäle (KI-Film L7 entfallen 17.11.2026, Frank: „Video komplett raus“) | `start.js` → `LEISTUNGEN`, `STORE`, `KANAELE` | L8, L10, L12 | S |
+| (neu im Funnel) 8 Leistungskarten, Store-Teaser, Kanäle (KI-Film L7 entfallen 17.11.2026, Frank: „Video komplett raus“; Fächer seit 17.11.2026 Helm rechts · Frank rechts · Frank frontal · Frank links · Helm links, nur Brustbilder) | `start.js` → `LEISTUNGEN`, `STORE`, `KANAELE` | L8, L10, L12 | S |
 
 ## 4. `/leistungen` → Karten, die sich öffnen (Helm-Galerie groß)
 
@@ -83,7 +84,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 | Seitenkopf: Eyebrow, H1, Einleitung | `leistungen.js` → `KOPF` | Seitenkopf | S |
 | 8 Leistungen: Titel, Kurztext, Langtext, Häkchenliste, Ergebnis, Zusatzlink (2×) | `leistungen.js` → `LEISTUNGEN` | 8 Karten; Detailfeld mit Langtext, Liste, Ergebnis. Kurzform auf L8 | S |
 | Nummer 01–08, Knopf „KI-Potenzialcheck buchen“ je Leistung, Etikett „Ergebnis: “ | `leistungen.js` → `KARTE` | Karte / Detailfeld | X |
-| Abschluss „Bereit für den ersten Schritt?“ + Satz + Knopf | `leistungen.js` → `ABSCHLUSS` | Callout am Seitenende | X |
+| Abschluss „Sprechen wir über Ihren nächsten KI-Schritt.“ + Satz + Knopf (Frank 17.11.2026, vorher „Bereit für den ersten Schritt?“) | `leistungen.js` → `ABSCHLUSS` | Callout am Seitenende | X |
 
 ## 5. `/ki-im-unternehmen` → Vorlage Beweis (On Track)
 
@@ -250,3 +251,12 @@ Logos), `ki-logos/` und `frank-schuett-quadrat.jpeg` (Startseite, Bereich des Ag
     ist der Autor der Wertschöpfungsstufen (Punkt 1). **Das Checklisten-PDF selbst nennt in seinen
     Quellenangaben einen for42-Kollegen als Urheber des Readiness-Checks** (unverändert kopierte
     Datei). Vor dem Einsatz im Funnel entscheiden, ob das PDF so bleibt.
+
+## Änderungen 17.11.2026 abends (Frank: „a bis d ja, e B“)
+
+| Inhalt | Quelle | Platz | Art |
+|---|---|---|---|
+| Reifegrad-Check: „Ihre Stufe · Durchschnitt …“, „Empfohlener nächster Schritt:“, Intro „… Ihre Stufe mit einem empfohlenen nächsten Schritt.“ (vorher Einstiegsstufe/erster Schritt) | `ki-im-unternehmen.js` → `REIFEGRAD`, `start.js` → `CHECK` | Startseite L10, /ki-im-unternehmen | X |
+| /methode Abschluss „Sprechen wir über Ihren nächsten KI-Schritt.“ (vorher „Bereit, gemeinsam zu starten?“) | `methode.js` | Callout am Seitenende | X |
+| Chat: Titel „NeuralNautic KI-Assistent“ (Art. 50), Fehler „Bitte versuchen Sie es erneut.“, Hinweis wie Datenschutz Abschn. 8 („Ich speichere Ihre Fragen nicht. Zur Antwort gehen sie an Mistral AI …“) | `chat.js` → `CHAT` | Chat | X |
+| Chat-Knopf und Buchungsleiste bis 991 px beim Runterscrollen weg (Variante B); alle Breiten: weichen aus, solange sie einen Knopf verdecken würden | `src/seiten/chat.js`, `chat.css` | Seitenrand | S |

@@ -136,7 +136,7 @@ main.append(seitenkopf({
       return { kopf: RC.texte.ergebnisKopf(e.avg), stufe: e.stufe.n, name: e.stufe.name, hinweis: e.gekappt ? RC.texte.gekappt(e.vorlaeufig, e.finale) : '', label: RC.texte.schrittLabel, text: e.stufe.schritt, roh: e };
     },
     stufeWort: 'Stufe',
-    texte: { zaehler: (i) => RC.texte.zaehler(i), offen: (n) => RC.texte.offen(n), ergebnis: 'Ihre Einstiegsstufe', neu: RC.texte.neu },
+    texte: { zaehler: (i) => RC.texte.zaehler(i), offen: (n) => RC.texte.offen(n), ergebnis: 'Ihre Stufe', neu: RC.texte.neu },
     ctas: [{ ...RC.texte.cta, art: 'accent' }],
     fussnote: RC.texte.fussnote,
   });

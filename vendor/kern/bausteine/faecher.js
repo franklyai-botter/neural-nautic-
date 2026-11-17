@@ -19,7 +19,9 @@ import { el, esc, qs, qsa, ziel, kiHinweis, mobilMQ } from './hilfen.js';
 export function faecher(c) {
   const ton = c.ton || 'hell';
   const karte = (k) => {
-    const innen = `<img src="${esc(k.bild)}" alt="" loading="lazy" decoding="async"${k.position ? ` style="object-position:${esc(k.position)}"` : ''} />${kiHinweis(c.hinweis)}${k.text ? `<b>${esc(k.text)} <i aria-hidden="true">↗</i></b>` : ''}`;
+    // Pfeil nur an Karten, die ein Link sind; eine Karte mit Text ohne href ist ein Halter (z. B. Konto ohne Adresse)
+    const pfeil = k.href && !k.deko ? ' <i aria-hidden="true">↗</i>' : '';
+    const innen = `<img src="${esc(k.bild)}" alt="" loading="lazy" decoding="async"${k.position ? ` style="object-position:${esc(k.position)}"` : ''} />${kiHinweis(c.hinweis)}${k.text ? `<b>${esc(k.text)}${pfeil}</b>` : ''}`;
     return k.href && !k.deko
       ? `<li><a class="bs-faecher__karte" ${ziel({ href: k.href, extern: true })}>${innen}</a></li>`
       : `<li aria-hidden="true"><span class="bs-faecher__karte">${innen}</span></li>`;
@@ -34,6 +36,9 @@ export function faecher(c) {
   const li = qsa('li', feld);
   const n = li.length;
   const mitte = (n - 1) / 2;
+  // Rechts der Mitte liegt die naechste Karte zur Mitte hin links darueber: Beschriftung dort rechtsbuendig, sonst ist
+  // ihr Anfang verdeckt (faecher.css)
+  li.forEach((e, i) => e.classList.toggle('bs-faecher__rechts', i > mitte));
 
   const lage = (i) => {
     const o = i - mitte;

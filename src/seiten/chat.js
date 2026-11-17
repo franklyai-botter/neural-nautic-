@@ -4,8 +4,12 @@
 // importiert: es ist die Vorlage fuer den Worker und enthaelt die Systemanweisung.
 //
 // Aufbau: Hinweisblase („Fragen zu KI? Ich helfe.“), Knopf (Sprechblase aus Milchglas mit dem NN-Stern),
-// Fenster (Kopf, DSGVO-Hinweis, Verlauf, Eingabe, Haftungszeile). Mobil (< 640 px) als Blatt ueber dem Knopf,
-// an den sichtbaren Bereich (visualViewport) angepasst wie live.
+// Fenster (Kopf, DSGVO-Hinweis, Verlauf, Eingabe, Haftungszeile). Mobil (< 640 px) seit 17.11.2026 als Vollbild-Blatt
+// (Frank: „es deckt sich ständig irgendwas ab, vor allem der Eingabebereich“): deckt den ganzen sichtbaren Bereich
+// (visualViewport, also immer ueber der Tastatur), Eingabe unten, nur der Verlauf scrollt, die Seite dahinter ist
+// gesperrt (overflow, Lenis, inert), Knopf und „KI-Potenzialcheck buchen“ sind solange weg, Schliessen oben rechts,
+// Escape und die Zurueck-Taste schliessen. Vorher: halbdurchsichtiges Blatt ueber dem Knopf, Seitenkopf, Buchungsleiste
+// und Knopf lagen darueber bzw. daneben. Desktop und Tablet unveraendert.
 //
 // Sicherheit: Modellantworten gehen NIE als HTML in die Seite. markdownKnoten() baut DOM-Knoten mit
 // textContent (Absaetze, Listen, fett, kursiv, Code, Links nur http(s) und Pfade ab „/“).
@@ -230,12 +234,16 @@ export function chatWidget() {
           <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
       </button>
-      <section class="nn-chat__fenster" id="nn-chat-fenster" role="dialog" aria-modal="false" aria-labelledby="nn-chat-titel" data-lenis-prevent hidden>
-        <div class="nn-chat__griff" aria-hidden="true"></div>
+      <section class="nn-chat__fenster" id="nn-chat-fenster" role="dialog" aria-modal="false" aria-labelledby="nn-chat-titel" tabindex="-1" data-lenis-prevent hidden>
         <header class="nn-chat__kopf">
           <img src="${STERN}" alt="" width="40" height="40" decoding="async" />
           <p class="nn-chat__titel" id="nn-chat-titel">${esc(CHAT.kopf.titel)}</p>
           <p class="nn-chat__etikett">${esc(CHAT.kopf.etikett)}</p>
+          <button class="nn-chat__zu" type="button" aria-label="${esc(CHAT.knopf.ariaSchliessen)}">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+              <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
         </header>
         <div class="nn-chat__hinweis"></div>
         <div class="nn-chat__verlauf" role="region" aria-label="${esc(B.verlauf)}" tabindex="0" data-lenis-prevent>
@@ -325,39 +333,44 @@ export function chatWidget() {
   }
   tippZu.addEventListener('click', (e) => { e.stopPropagation(); tippWeg(); });
 
-  /* ---------- Lage: mobil als Blatt ueber dem Knopf, am sichtbaren Bereich ausgerichtet ---------- */
-  let sicherUnten = 0;
-  const probe = document.createElement('div');
-  probe.style.cssText = 'position:fixed;bottom:0;height:env(safe-area-inset-bottom,0px);pointer-events:none;visibility:hidden';
-  document.body.append(probe);
-  sicherUnten = probe.offsetHeight;
-  probe.remove();
+  /* ---------- Lage: mobil Vollbild-Blatt ueber dem sichtbaren Bereich (Tastatur bleibt darunter) ---------- */
+  let blatt = false;          // Vollbild-Blatt aktiv (offen und schmal)
+  let verlaufEintrag = false; // eigener Eintrag im Browserverlauf, damit „Zurueck“ den Chat schliesst
+  let gesperrt = [];          // Geschwister des Chats, die waehrend des Blatts inert sind
 
-  function kopfUnten() {
-    // Der Seitenkopf (Logo, Menue-Knopf) liegt ueber allem (z-index 800): das Blatt bleibt darunter.
-    const m = qs('.bs-kopf__menue');
-    const r = m && m.getBoundingClientRect();
-    return r && r.bottom > 0 ? r.bottom : 0;
+  /** Seite hinter dem Blatt sperren bzw. freigeben: kein Scrollen, kein Fokus, nicht vorgelesen. */
+  function blattSetzen(an) {
+    if (an === blatt) return;
+    blatt = an;
+    document.documentElement.classList.toggle('nn-chat-blatt', an);
+    fenster.setAttribute('aria-modal', String(an));
+    // DSGVO-Hinweis im Blatt als erster Eintrag des Verlaufs: steht beim Oeffnen oben, scrollt aber mit, statt bei
+    // offener Tastatur auf kleinen Handys fast den ganzen Platz ueber der Eingabe zu belegen
+    if (hinweisPlatz.isConnected) { if (an) verlauf.prepend(hinweisPlatz); else verlauf.before(hinweisPlatz); }
+    if (an) {
+      window.lenis?.stop();
+      gesperrt = [...document.body.children].filter((n) => n !== root && !n.inert && n.tagName !== 'SCRIPT');
+      gesperrt.forEach((n) => { n.inert = true; });
+    } else {
+      window.lenis?.start();
+      gesperrt.forEach((n) => { n.inert = false; });
+      gesperrt = [];
+      fenster.style.top = '';
+      fenster.style.height = '';
+      fenster.classList.remove('ist-tastatur');
+    }
   }
 
   function lage() {
-    if (!offen || !istMobil()) {
-      fenster.style.top = '';
-      fenster.style.height = '';
-      return;
-    }
+    blattSetzen(offen && istMobil());
+    if (!blatt) return;
     const vv = window.visualViewport;
     const vvH = vv ? vv.height : window.innerHeight;
-    const vvTop = vv ? vv.offsetTop : 0;
     if (!vvH) return;
-    const g = CHAT.knopf.groesse.mobil;
-    const knopfOben = g.hoehe + 12 + sicherUnten;                   // Knopf: 12 px ueber dem Rand (wie „KI-Check buchen“)
-    const oben = Math.max(8, kopfUnten() + 8);
-    const platz = Math.max(0, vvH - knopfOben - 8 - oben);
-    const hoehe = Math.min(CHAT.regeln.mobilMaxHoehe, Math.max(100, platz));
-    const top = Math.max(vvTop + oben, vvTop + vvH - knopfOben - 8 - hoehe);
-    fenster.style.top = `${Math.round(top)}px`;
-    fenster.style.height = `${Math.round(hoehe)}px`;
+    // iOS verkleinert bei offener Tastatur nur den sichtbaren Bereich und verschiebt ihn (offsetTop): das Blatt folgt ihm
+    fenster.style.top = `${Math.round(vv ? vv.offsetTop : 0)}px`;
+    fenster.style.height = `${Math.round(vvH)}px`;
+    fenster.classList.toggle('ist-tastatur', vvH < window.innerHeight * 0.8);   // Tastatur offen: unten ohne Safe-Area-Rand
   }
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', lage);
@@ -366,7 +379,7 @@ export function chatWidget() {
   window.addEventListener('resize', lage);
 
   /* ---------- Oeffnen / Schliessen ---------- */
-  function setzen(auf, { fokus = true } = {}) {
+  function setzen(auf, { fokus = true, ausVerlauf = false } = {}) {
     if (auf === offen) return;
     offen = auf;
     if (auf) tippWeg();
@@ -375,13 +388,24 @@ export function chatWidget() {
     knopf.setAttribute('aria-expanded', String(auf));
     knopf.setAttribute('aria-label', auf ? CHAT.knopf.ariaSchliessen : CHAT.knopf.ariaOeffnen);
     fenster.hidden = !auf;
+    if (!auf) document.documentElement.classList.remove('nn-unten-weg');   // nach dem Schliessen sind Knopf und Leiste da
     lage();
+    // Mobil: „Zurueck“ schliesst den Chat statt die Seite zu verlassen (eigener Verlaufseintrag, gleiche Adresse)
+    if (auf && blatt && !verlaufEintrag) {
+      try { history.pushState({ ...(history.state || {}), nnChat: true }, ''); verlaufEintrag = true; } catch { /* egal */ }
+    } else if (!auf && verlaufEintrag) {
+      verlaufEintrag = false;
+      if (!ausVerlauf && history.state?.nnChat) history.back();
+    }
     if (auf) {
-      if (fokus) eingabe.focus({ preventScroll: true });
+      // Mobil nicht ins Eingabefeld: die Tastatur kaeme sofort und deckte Hinweis und Verlauf. Fokus auf das Blatt.
+      if (fokus) (blatt ? fenster : eingabe).focus({ preventScroll: true });
       verlauf.scrollTop = verlauf.scrollHeight;
     } else if (fokus) knopf.focus({ preventScroll: true });
   }
   knopf.addEventListener('click', () => setzen(!offen));
+  qs('.nn-chat__zu', root).addEventListener('click', () => setzen(false));
+  window.addEventListener('popstate', () => { if (offen && verlaufEintrag) setzen(false, { ausVerlauf: true }); });
 
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape' || e.defaultPrevented) return;
@@ -498,6 +522,55 @@ export function chatWidget() {
     eingabe.focus({ preventScroll: true });
     fragen(text);
   });
+
+  /* ---------- Handy und Tablet (bis 991 px): Knopf und „KI-Potenzialcheck buchen“ beim Runterscrollen weg ----------
+     Frank 17.11.2026 (Variante B): beim Lesen nach unten blenden sie aus, beim Hochscrollen, beim Halten (0,7 s ohne
+     Scrollen) und am Seitenende wieder ein. Bei offenem Chat bleiben sie weg (Blatt). Desktop unveraendert. */
+  const untenMQ = window.matchMedia('(max-width: 991.98px)');
+  let letztY = window.scrollY;
+  let ruheUhr = 0;
+  const untenWeg = (weg) => document.documentElement.classList.toggle('nn-unten-weg', weg);
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const d = y - letztY;
+    letztY = y;
+    if (!untenMQ.matches || offen) return;
+    const ende = y + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (ende || d < -4) untenWeg(false);
+    else if (d > 6 && y > 120) { untenWeg(true); if (!tipp.hidden) tippWeg(); }
+    clearTimeout(ruheUhr);
+    ruheUhr = setTimeout(() => untenWeg(false), 700);
+  }, { passive: true });
+  untenMQ.addEventListener('change', () => untenWeg(false));
+
+  /* ---------- Alle Breiten: Knopf und Hinweisblase weichen aus, solange sie einen Knopf der Seite verdecken wuerden ----------
+     Pruefung (Ismajl-Check, 17.11.2026): am Desktop lagen beide ueber „KI-Potenzialcheck buchen“ der Bildkarte (Startseite).
+     Gemessen wird die Ruhelage (fixe Lage aus dem berechneten Stil), nicht die verschobene, sonst flackert es. */
+  const ruheLage = (e) => {
+    const cs = getComputedStyle(e);
+    const w = e.offsetWidth;
+    const h = e.offsetHeight;
+    const rechts = parseFloat(cs.right);
+    const l = cs.right === 'auto' || Number.isNaN(rechts) ? parseFloat(cs.left) : window.innerWidth - rechts - w;
+    const b = window.innerHeight - parseFloat(cs.bottom);
+    return { l, r: l + w, t: b - h, b };
+  };
+  let weichtBild = 0;
+  function weichtPruefen() {
+    weichtBild = 0;
+    if (offen) return;
+    const lagen = [ruheLage(knopf)];
+    if (!tipp.hidden) lagen.push(ruheLage(tipp));
+    const deckt = [...document.querySelectorAll('main .bs-knopf')].some((a) => {
+      const q = a.getBoundingClientRect();
+      return q.width > 0 && lagen.some((r) => q.left < r.r && r.l < q.right && q.top < r.b && r.t < q.bottom);
+    });
+    root.classList.toggle('weicht', deckt);
+  }
+  const weicht = () => { if (!weichtBild) weichtBild = requestAnimationFrame(weichtPruefen); };
+  window.addEventListener('scroll', weicht, { passive: true });
+  window.addEventListener('resize', weicht);
+  weicht();
 
   document.body.classList.add('nn-chat-da');   // Fusskarte haelt unten Platz frei (chat.css)
   return root;

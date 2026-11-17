@@ -1,6 +1,6 @@
 // /ueber-mich als Daten. Quelle: neural-nautic-live @ 447000b,
 // app/ueber-mich/page.tsx, app/components/NnFilm.tsx, NnHud.tsx, LinkedInButton.tsx. Wörtlich.
-import { LINKEDIN_COMPANY_URL, LINKEDIN_URL, SITE_URL, X_URL } from "./site.js";
+import { FACEBOOK_URL, INSTAGRAM_URL, LINKEDIN_COMPANY_URL, LINKEDIN_URL, SITE_URL, X_URL } from "./site.js";
 export { LINKEDIN_KNOPF } from "./navigation.js";
 
 export const ROUTE = "/ueber-mich";
@@ -30,7 +30,7 @@ export const PERSON_JSON_LD = {
   description: "Gemeinsam KI in Arbeitsprozesse bringen: Anwendungsfälle finden, Lösungen umsetzen, DSGVO und EU AI Act von Anfang an mitgedacht.",
   url: `${SITE_URL}/ueber-mich`,
   image: `${SITE_URL}/frank-portrait.webp`,
-  sameAs: [LINKEDIN_URL, X_URL],
+  sameAs: [LINKEDIN_URL, X_URL, FACEBOOK_URL, INSTAGRAM_URL].filter(Boolean),   // Facebook/Instagram erst mit Adresse
   worksFor: { "@type": "Organization", name: "NeuralNautic", url: SITE_URL, sameAs: [LINKEDIN_COMPANY_URL] },
   affiliation: { "@type": "Organization", name: "for42.ai", url: "https://for42.ai" },
   address: { "@type": "PostalAddress", addressLocality: "Berlin", addressCountry: "DE" },

@@ -8,6 +8,7 @@
 .bs-faecher__karte b { position: absolute; left: 0; right: 0; bottom: 0; padding: 44px 16px 16px; background: linear-gradient(transparent, rgba(6, 12, 14, .86));
   font: 700 clamp(15px, 1.4vw, 20px)/1.05 var(--bs-display); text-transform: uppercase; letter-spacing: .01em; display: flex; justify-content: space-between; gap: 8px; align-items: flex-end; }
 .bs-faecher__karte b i { font-style: normal; color: var(--bs-akzent); }
+.bs-faecher__rechts .bs-faecher__karte b { justify-content: flex-end; text-align: right; }   /* links liegt die Nachbarkarte darueber (faecher.js) */
 .bs-faecher__karte .bs-ki { left: 10px; top: 10px; bottom: auto; }
 a.bs-faecher__karte:hover b, a.bs-faecher__karte:focus-visible b { color: var(--bs-akzent); }
 .bs-faecher__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 34px; margin-top: 2vh; }

@@ -36,14 +36,16 @@ export const CHAT = {
 
   kopf: {
     logo: "/logo-star.png",
-    titel: "NeuralNautic Assistent",
+    titel: "NeuralNautic KI-Assistent",   // Frank 17.11.2026 (Art. 50 KI-VO: KI erkennbar), vorher „NeuralNautic Assistent“
     etikett: "DSGVO · EU AI Act",
   },
 
   // DSGVO-Hinweis oben im Fenster, mit „OK“ wegklickbar.
   hinweis: {
     teile: [
-      "Wir speichern Ihre Fragen nicht, und sie werden nicht zum Training von KI-Modellen genutzt. Bitte geben Sie keine personenbezogenen Daten ein. Anbieter: Mistral AI (Frankreich, EU). Mehr in der ",
+      // Frank 17.11.2026: an die Datenschutzerklärung (Abschnitt 8) angeglichen. Vorher „Wir speichern Ihre Fragen nicht,
+      // und sie werden nicht zum Training von KI-Modellen genutzt. … Anbieter: Mistral AI (Frankreich, EU).“ (zu absolut, „Wir“)
+      "Ich speichere Ihre Fragen nicht. Zur Antwort gehen sie an Mistral AI (Frankreich, EU), das sie nach eigenen Bedingungen begrenzt speichern kann; zum Training werden sie nicht genutzt. Bitte geben Sie keine personenbezogenen Daten ein. Mehr in der ",
       { text: "Datenschutzerklärung", href: "/datenschutz" },
       ".",
     ],
@@ -60,7 +62,7 @@ export const CHAT = {
 
   fehler: {
     antwortFehlt: "Fehler beim Laden der Antwort.",
-    verbindung: "Verbindungsfehler. Bitte versuche es erneut.",
+    verbindung: "Verbindungsfehler. Bitte versuchen Sie es erneut.",   // vorher Du-Form
   },
 
   regeln: {
@@ -69,9 +71,9 @@ export const CHAT = {
     // Während des Ladens drei pulsierende Punkte.
     // Der Verlauf lebt nur im Fenster (kein Speichern); beim Neuladen ist er weg.
     mobilBreiteUnter: 640,
-    // Auf dem Handy als Blatt von unten, Höhe höchstens 480 px, an den sichtbaren Bereich
-    // (visualViewport) angepasst; am Desktop Fenster über dem Knopf, Breite min(380px, 100vw − 40px).
-    mobilMaxHoehe: 480,
+    // Live: auf dem Handy als Blatt von unten, Höhe höchstens 480 px. Neubau seit 17.11.2026 (Frank: „es deckt sich
+    // ständig irgendwas ab“): unter 640 px Vollbild über dem sichtbaren Bereich (visualViewport, über der Tastatur),
+    // Seite gesperrt, Schließen oben. Am Desktop Fenster über dem Knopf, Breite min(380px, 100vw − 40px).
     desktopBreite: "min(380px, calc(100vw - 40px))",
     // Wie CHAT_API in backend.js: der Server nimmt die letzten 20 Nachrichten, je höchstens 2000 Zeichen.
     // Der Client schickt deshalb nicht mehr (Neubau, live schickt den ganzen Verlauf).
@@ -82,7 +84,7 @@ export const CHAT = {
 
   // Neubau, nicht live: Namen und Ansagen für Screenreader (live fehlen sie). Sichtbar wird davon nichts.
   barrierefrei: {
-    eingabe: "Ihre Frage an den NeuralNautic Assistenten",
+    eingabe: "Ihre Frage an den NeuralNautic KI-Assistenten",
     senden: "Frage senden",
     verlauf: "Gesprächsverlauf",
     ich: "Sie:",

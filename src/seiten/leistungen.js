@@ -3,7 +3,7 @@
 //
 // Aufbau: Seitenkopf mit Sprungleiste (8 Pillen) · die grosse Szene: 8 Leistungskarten, daneben am Desktop eine
 // gepinnte Leiste (position: sticky) mit rollender Nummer 01–08, dem Titel der aktiven Leistung und dem Verzeichnis
-// samt Fortschritt · Abschluss „Bereit für den ersten Schritt?“ · Weiter zum naechsten Kapitel · Fusskarte.
+// samt Fortschritt · Abschluss „Sprechen wir über Ihren nächsten KI-Schritt.“ · Weiter zum naechsten Kapitel · Fusskarte.
 // Jede Karte oeffnet sich beim Hereinscrollen (Clip von unten, dann das Detailfeld per Ellipse): Langtext,
 // Haekchenliste, Ergebnis, Knopf und Zusatzlink stehen vollstaendig im Text, nichts ist hinter einem Klick versteckt.
 // Anker: id = start.js → LEISTUNGEN.karten[].anker (die Startseite verlinkt /leistungen#<anker>).

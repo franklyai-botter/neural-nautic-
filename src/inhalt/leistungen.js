@@ -90,7 +90,9 @@ export const KARTE = {
 };
 
 export const ABSCHLUSS = {
-  h2: "Bereit für den ersten Schritt?",
+  // Frank 17.11.2026: kein „ersten Schritt“, viele Kunden sind schon beim dritten oder vierten. Sein Satz vom 15.11.
+  // (Startseite, Kontakt). Bisher: „Bereit für den ersten Schritt?“
+  h2: "Sprechen wir über Ihren nächsten KI-Schritt.",
   text: "Lassen Sie uns gemeinsam prüfen, welche Leistung zu Ihrer Situation passt.",
   cta: { text: "KI-Potenzialcheck buchen", href: KI_CHECK_BUCHEN, extern: true },
 };
