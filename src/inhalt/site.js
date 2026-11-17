@@ -37,7 +37,7 @@ export const META_STANDARD = {
     title: "NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen",
     description: "KI-Beratung für den Mittelstand: in Berlin, bundesweit und im DACH-Raum.",
     url: "/",
-    // Bild der Live-Seite: /og/neuralnautic-og.png (1200 × 627), byte-gleich nach public/og/ übernommen
+    // /og/neuralnautic-og.png (1200 × 627), seit 17.11.2026 neu erzeugt mit tools/og_bild.py (ohne „echte“, for42 einmal)
     // (16.11.2026, Welle 2 SEO), damit Link-Vorschauen beim Umschalten weiter funktionieren. Offen: Das Bild
     // trägt noch den alten Leitsatz mit „echte“; neu erzeugen nur aus public/brand/, Logo nicht nachbauen.
     images: [{ url: "/og/neuralnautic-og.png", width: 1200, height: 627, alt: "NeuralNautic: Gemeinsam KI in Arbeitsprozesse bringen" }],

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<!-- Vorschaubild fuer geteilte Links (Open Graph), 1200 x 627.
+     Erzeugt mit tools/og_bild.py (Playwright). Logos werden aus den Brand-Assets im Vault
+     eingebunden (__NN__, __FOR42__), nie nachgebaut. Schriften wie auf der Seite. -->
+<style>
+  @font-face { font-family: 'Inter Tight'; font-weight: 100 900; src: url('__INTER_TIGHT__') format('woff2'); }
+  @font-face { font-family: 'Inter'; font-weight: 100 900; src: url('__INTER__') format('woff2'); }
+  html, body { margin: 0; padding: 0; }
+  body { width: 1200px; height: 627px; overflow: hidden; background: #061419; }
+  .flaeche { position: relative; width: 1200px; height: 627px;
+    background: radial-gradient(ellipse 900px 520px at 78% 38%, #0e2b36 0%, #0a1f27 45%, #061419 100%); }
+  canvas { position: absolute; inset: 0; }
+  .text { position: absolute; left: 72px; top: 118px; width: 760px; }
+  .kicker { font: 600 19px/1 'Inter', sans-serif; letter-spacing: .22em; color: #6feff5; text-transform: uppercase; }
+  h1 { margin: 26px 0 0; font: 600 66px/1.06 'Inter Tight', sans-serif; letter-spacing: -.015em; color: #f5f2eb; }
+  .ort { margin-top: 28px; font: 400 24px/1.3 'Inter', sans-serif; color: #b9c8cc; }
+  .signet { position: absolute; right: 92px; top: 132px; height: 236px; }
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 118px;
+    border-top: 1px solid rgba(111, 239, 245, .28); background: rgba(6, 20, 25, .72);
+    display: flex; align-items: center; padding: 0 72px; box-sizing: border-box; gap: 28px; }
+  .band .kicker { font-size: 15px; color: #6fefc7; }
+  .band img { height: 34px; display: block; }
+  .band .adresse { margin-left: auto; font: 500 22px/1 'Inter', sans-serif; color: #b9c8cc; letter-spacing: .01em; }
+</style>
+</head>
+<body>
+<div class="flaeche">
+  <canvas id="netz" width="1200" height="627"></canvas>
+  <div class="text">
+    <div class="kicker">NeuralNautic · KI-Beratung</div>
+    <h1>Gemeinsam KI in<br>Arbeitsprozesse bringen.</h1>
+    <div class="ort">Mittelstand · Berlin · Bundesweit · DACH</div>
+  </div>
+  <img class="signet" src="__NN__" alt="">
+  <div class="band">
+    <span class="kicker">Partner &amp; Netzwerk</span>
+    <img src="__FOR42__" alt="FOR42.ai">
+    <span class="adresse">neuralnautic.de</span>
+  </div>
+</div>
+<script>
+  // Neuronales Netz im Hintergrund, fest geseedet: jedes Rendern ergibt dasselbe Bild.
+  let s = 42; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const c = document.getElementById('netz').getContext('2d');
+  const p = [];
+  for (let i = 0; i < 90; i++) {
+    // dichter rechts und oben, frei hinter der Schrift links
+    const x = 380 + Math.pow(r(), 0.7) * 860, y = r() * 470;
+    p.push([x, y]);
+  }
+  for (let i = 0; i < 18; i++) p.push([r() * 300, 40 + r() * 400]);
+  for (let i = 0; i < p.length; i++) for (let j = i + 1; j < p.length; j++) {
+    const d = Math.hypot(p[i][0] - p[j][0], p[i][1] - p[j][1]);
+    if (d < 135) { c.strokeStyle = `rgba(111,239,245,${(0.16 * (1 - d / 135)).toFixed(3)})`; c.lineWidth = 1;
+      c.beginPath(); c.moveTo(p[i][0], p[i][1]); c.lineTo(p[j][0], p[j][1]); c.stroke(); }
+  }
+  for (const [x, y] of p) { c.fillStyle = 'rgba(111,239,245,.55)'; c.beginPath(); c.arc(x, y, 1.8 + r() * 1.6, 0, 7); c.fill(); }
+</script>
+</body>
+</html>
