@@ -83,7 +83,7 @@ Die Daten der Startseite schreibt der Agent „Bühne“ in `src/inhalt/start.js
 | Seitenkopf: Eyebrow, H1, Einleitung | `leistungen.js` → `KOPF` | Seitenkopf | S |
 | 8 Leistungen: Titel, Kurztext, Langtext, Häkchenliste, Ergebnis, Zusatzlink (2×) | `leistungen.js` → `LEISTUNGEN` | 8 Karten; Detailfeld mit Langtext, Liste, Ergebnis. Kurzform auf L8 | S |
 | Nummer 01–08, Knopf „KI-Potenzialcheck buchen“ je Leistung, Etikett „Ergebnis: “ | `leistungen.js` → `KARTE` | Karte / Detailfeld | X |
-| Abschluss „Bereit für den ersten Schritt?“ + Satz + Knopf | `leistungen.js` → `ABSCHLUSS` | Callout am Seitenende | X |
+| Abschluss „Sprechen wir über Ihren nächsten KI-Schritt.“ + Satz + Knopf (Frank 17.11.2026, vorher „Bereit für den ersten Schritt?“) | `leistungen.js` → `ABSCHLUSS` | Callout am Seitenende | X |
 
 ## 5. `/ki-im-unternehmen` → Vorlage Beweis (On Track)
 

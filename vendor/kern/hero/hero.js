@@ -50,6 +50,9 @@ function srcset(pfad, name, bild) {
  * @param {{folge:string[], takt?:number}} [opt.ansichtLeerlauf]  ohne Eingabe langsamer Wechsel durch die Ansichten
  *                                      (je `takt` Sekunden, Vorgabe 4,5); Vorgabe: aus, die Figur kehrt zur Grundansicht zurueck
  * @param {number} [opt.leerlaufVoll=3] jeder n-te Leerlauf-Zyklus ist ein voller Wechsel zum Exo; 0 = nie (nur Scan-Band)
+ * @param {number} [opt.leerlaufAb=2.4] Sekunden ab Start der Buehne bis zum ersten Leerlauf-Scan-Band. Die Vorgabe legt das
+ *                                      erste Band in den ersten Eindruck (Gesicht gerade erschienen); groessere Werte halten
+ *                                      das Portraet zuerst ruhig
  * @param {(p:number)=>void} [opt.onFortschritt]  Scroll-Fortschritt 0..1 der gepinnten Strecke
  * @param {(z:'mensch'|'exo')=>void} [opt.onZustand]
  * @param {(figurId:string, ansicht:string)=>void} [opt.onAnsicht]
@@ -199,7 +202,7 @@ export function createHero(el, opt = {}) {
 
   const still = bewegungReduziert() || !webgl2Vorhanden() || opt.still === true;
   const Z = {
-    p: 0, zeit: 0, eingabe: -1e9, zeigerDa: false, zx: 0, zy: 0, auto: true, band: null, zyklus: 0, naechst: 2.4,
+    p: 0, zeit: 0, eingabe: -1e9, zeigerDa: false, zx: 0, zy: 0, auto: true, band: null, zyklus: 0, naechst: opt.leerlaufAb ?? 2.4,
     zustand: 'mensch', gesperrt: false, sichtbar: true, raf: 0, letzt: 0,
   };
   let T = {};           // Test-Uebersteuerung (api.test)
@@ -323,7 +326,27 @@ export function createHero(el, opt = {}) {
     cancelAnimationFrame(Z.raf);
     if (Z.gesperrt) sperre(false);
     bu.dispose(); bu = null;
-    el.classList.remove('hero--gl');
+    el.classList.remove('hero--gl', 'hero--gedeckt');
+  }
+
+  // Uebergabe Foto -> Canvas: Das Canvas blendet erst ein, wenn sein erstes Bild sicher auf dem Schirm ist (zwei Frames
+  // nach dem Zeichnen), und das Foto verschwindet erst, wenn das Canvas ganz deckt (Ende der Einblendung, hero.css
+  // .hero--gedeckt). Vorher verschwand das Foto fest 0,7 s nach hero--gl: stockte der Hauptfaden beim ersten Hochladen
+  // der Texturen (Handy), war es schon weg, waehrend das Canvas noch halb durchsichtig war, und das Gesicht dunkelte ab.
+  function einblenden(cv) {
+    let uhr = 0;
+    const gedeckt = () => {
+      clearTimeout(uhr);
+      cv.removeEventListener('transitionend', amEnde);
+      if (!tot && bu && bu.canvas === cv) el.classList.add('hero--gedeckt');
+    };
+    const amEnde = (e) => { if (e.target === cv && e.propertyName === 'opacity') gedeckt(); };
+    cv.addEventListener('transitionend', amEnde);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (tot || !bu || bu.canvas !== cv) return;
+      cv.classList.add('ist-da');
+      uhr = setTimeout(gedeckt, 1200);   // ohne Uebergang (z. B. abgeschaltete Animationen) kommt kein transitionend
+    }));
   }
 
   async function starte() {
@@ -349,7 +372,7 @@ export function createHero(el, opt = {}) {
     schritt(0.016);
     bu.zeichne(0.016);
     el.classList.add('hero--gl');
-    requestAnimationFrame(() => bu?.canvas.classList.add('ist-da'));
+    einblenden(bu.canvas);
     Z.letzt = performance.now();
     Z.raf = requestAnimationFrame(bild);
     opt.onBereit?.('gl');
@@ -570,7 +593,7 @@ export function createHero(el, opt = {}) {
     cancelAnimationFrame(Z.raf);
     for (const f of aufraeumen) f();
     bu?.dispose(); bu = null;
-    el.classList.remove('hero--gl', 'hero--gesperrt', 'hero--unterwegs', 'hero--extern');
+    el.classList.remove('hero--gl', 'hero--gedeckt', 'hero--gesperrt', 'hero--unterwegs', 'hero--extern');
   }
 
   return api;

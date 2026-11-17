@@ -69,9 +69,9 @@ export const CHAT = {
     // Während des Ladens drei pulsierende Punkte.
     // Der Verlauf lebt nur im Fenster (kein Speichern); beim Neuladen ist er weg.
     mobilBreiteUnter: 640,
-    // Auf dem Handy als Blatt von unten, Höhe höchstens 480 px, an den sichtbaren Bereich
-    // (visualViewport) angepasst; am Desktop Fenster über dem Knopf, Breite min(380px, 100vw − 40px).
-    mobilMaxHoehe: 480,
+    // Live: auf dem Handy als Blatt von unten, Höhe höchstens 480 px. Neubau seit 17.11.2026 (Frank: „es deckt sich
+    // ständig irgendwas ab“): unter 640 px Vollbild über dem sichtbaren Bereich (visualViewport, über der Tastatur),
+    // Seite gesperrt, Schließen oben. Am Desktop Fenster über dem Knopf, Breite min(380px, 100vw − 40px).
     desktopBreite: "min(380px, calc(100vw - 40px))",
     // Wie CHAT_API in backend.js: der Server nimmt die letzten 20 Nachrichten, je höchstens 2000 Zeichen.
     // Der Client schickt deshalb nicht mehr (Neubau, live schickt den ganzen Verlauf).

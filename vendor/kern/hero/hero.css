@@ -44,7 +44,8 @@
   opacity: 0; transition: opacity .45s ease;
 }
 .hero__canvas.ist-da, .szene__canvas.ist-da { opacity: 1; }
-.hero--gl .hero__bild { visibility: hidden; transition: visibility 0s .7s; }
+/* Foto erst weg, wenn das Canvas ganz deckt (hero.js einblenden: Ende der Einblendung); vorher fest 0,7 s nach hero--gl */
+.hero--gedeckt .hero__bild { visibility: hidden; }
 
 /* wechselnde Besetzung (wechsel: "besuch", ?mitte=): Fotos erst zeigen, wenn hero.js die Plaetze vergeben hat */
 .hero[data-wechsel]:not(.hero--geordnet) .hero__bild { visibility: hidden; }

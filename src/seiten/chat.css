@@ -1,7 +1,7 @@
 /* KI-Chat (Pruefpunkt A7). Masse wie live (src/inhalt/chat.js), Gestaltung wie der Neubau: Milchglas, Petrol, Cyan.
    Lage: Desktop rechts unten. Bis 991 px sitzt dort „KI-Check buchen“ (Kern .bs-daumen), der Chat-Knopf geht nach links.
-   Unter 640 px: kleiner Knopf (62 x 74) und das Fenster als Blatt ueber dem Knopf (Hoehe und Lage setzt chat.js).
-   Ebenen: ueber „KI-Check buchen“ (690), unter Menue-Vorhang (700) und Seitenkopf (800).
+   Unter 640 px: kleiner Knopf (62 x 74) und das Fenster als Vollbild-Blatt (Lage und Hoehe setzt chat.js aus visualViewport).
+   Ebenen: ueber „KI-Check buchen“ (690), unter Menue-Vorhang (700) und Seitenkopf (800); das Vollbild-Blatt liegt bei 900.
 
    Inhalt:  1 Grundwerte   2 Knopf   3 Hinweisblase   4 Fenster   5 Verlauf und Antworten   6 Eingabe
             7 Lage mobil und Tablet   8 Fusskarte haelt Platz frei (C1)   9 Bewegung */
@@ -55,11 +55,14 @@
   overflow: hidden; border: 1px solid var(--nc-linie); border-radius: 18px; background: var(--nc-flaeche); color: #fff;
   backdrop-filter: blur(18px) saturate(1.15); -webkit-backdrop-filter: blur(18px) saturate(1.15);
   box-shadow: 0 24px 64px rgba(0, 0, 0, .6), 0 0 0 1px rgba(63, 212, 224, .06); animation: nn-chat-auf .24s var(--nc-ease) both; }
-.nn-chat__griff { display: none; flex-shrink: 0; width: 36px; height: 4px; margin: 10px auto 2px; border-radius: 2px; background: rgba(255, 255, 255, .28); }
 .nn-chat__kopf { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 14px 18px; border-bottom: 1px solid var(--nc-linie); background: var(--nc-kopf); }
 .nn-chat__kopf img { flex-shrink: 0; width: 40px; height: 40px; object-fit: contain; }
 .nn-chat__titel { margin: 0; font: 600 14px/1.25 var(--bs-display, inherit); letter-spacing: .02em; }
 .nn-chat__etikett { margin: 0 0 0 auto; font: 500 10.5px/1.3 var(--bs-mono, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--nc-akzent); text-align: right; }
+/* Schliessen im Kopf: nur im Vollbild-Blatt (unter 640 px), am Desktop schliesst der runde Knopf unten */
+.nn-chat__zu { display: none; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(111, 239, 245, .35); border-radius: 50%;
+  background: rgba(10, 74, 74, .6); color: #fff; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.nn-chat__fenster:focus { outline: none; }
 .nn-chat__hinweis { flex-shrink: 0; margin: 12px 14px 0; padding: 10px 12px; border: 1px solid rgba(63, 212, 224, .22); border-radius: 10px; background: rgba(63, 212, 224, .06); }
 .nn-chat__hinweis-text { margin: 0; font: 400 12px/1.55 var(--bs-text, inherit); color: var(--nc-leise); }
 .nn-chat .nn-chat__hinweis-text a[href] { color: var(--nc-akzent); text-decoration: underline; text-underline-offset: 2px; }
@@ -127,12 +130,27 @@
   .nn-chat__stern { width: 40px; height: 40px; margin-top: -12px; }
   .nn-chat__tipp { bottom: calc(94px + env(safe-area-inset-bottom, 0px)); }
   .nn-chat__tipp::after { left: 25px; }
-  /* Blatt: Lage und Hoehe setzt chat.js aus visualViewport (wie live). Ohne Messung gilt das hier. */
-  .nn-chat__fenster { left: 8px; right: 8px; width: auto; bottom: calc(94px + env(safe-area-inset-bottom, 0px));
-    height: min(480px, calc(100vh - 94px - 80px)); height: min(480px, calc(100dvh - 94px - 80px)); max-height: none; border-radius: 20px; }
-  .nn-chat__griff { display: block; }
-  .nn-chat__kopf { padding: 8px 16px 12px; }
-  .nn-chat__haftung { padding-bottom: max(10px, env(safe-area-inset-bottom, 0px)); }
+  /* Vollbild-Blatt (Frank 17.11.2026): deckt den sichtbaren Bereich ganz, ueber Seitenkopf (800) und Buchungsleiste.
+     top und height setzt chat.js aus visualViewport (offene Tastatur bleibt darunter); ohne Messung gilt 100dvh. */
+  .nn-chat__fenster { z-index: 900; top: 0; left: 0; right: 0; bottom: auto; width: auto; height: 100vh; height: 100dvh; max-height: none;
+    border: 0; border-radius: 0; background: rgb(8, 22, 28); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none;
+    overscroll-behavior: contain; animation-duration: .2s; }
+  .nn-chat.ist-offen .nn-chat__knopf { display: none; }   /* Schliessen sitzt oben im Blatt */
+  .nn-chat__kopf { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: 12px; row-gap: 2px; align-items: center;
+    padding: max(10px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
+  .nn-chat__kopf img { grid-row: 1 / 3; width: 34px; height: 34px; }
+  .nn-chat__titel { grid-column: 2; align-self: end; font-size: 15px; }
+  .nn-chat__etikett { grid-column: 2; grid-row: 2; align-self: start; margin: 0; text-align: left; }
+  .nn-chat__zu { display: grid; grid-column: 3; grid-row: 1 / 3; }
+  .nn-chat__verlauf > .nn-chat__hinweis { flex-shrink: 0; margin: 0 0 2px; }   /* chat.js legt ihn im Blatt in den Verlauf */
+  .nn-chat__verlauf { padding: 14px 16px; }
+  .nn-chat__blase { max-width: 92%; }
+  .nn-chat__eingabe { padding: 10px max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px)); background: rgb(10, 28, 35); }
+  .nn-chat__haftung { padding: 4px 14px max(8px, env(safe-area-inset-bottom, 0px)); background: rgb(10, 28, 35); border-top: 0; }
+  .nn-chat__fenster.ist-tastatur .nn-chat__haftung { padding-bottom: 6px; }   /* ueber der Tastatur kein Safe-Area-Rand */
+  /* Seite dahinter: steht still, „KI-Potenzialcheck buchen“ ist weg, solange das Blatt offen ist */
+  html.nn-chat-blatt, html.nn-chat-blatt body { overflow: hidden; overscroll-behavior: none; }
+  html.nn-chat-blatt .bs-daumen { display: none; }
 }
 
 /* ---------- 8 C1: Fusskarte haelt unten Platz fuer den Knopf frei (am Seitenende liegt sonst „Datenschutz“ darunter) ----------

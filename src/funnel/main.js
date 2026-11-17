@@ -569,7 +569,10 @@ async function heroStarten() {
   try {
     const [{ createHero }, { default: figuren }] = await heroModul();
     if (nr !== heroLaeuft || !heroNah()) return;
-    window.__hero = createHero(heroEl, { figuren: heroFiguren(figuren), lenis, phasen: HERO_PHASEN,
+    // leerlaufAb (Frank 17.11.2026, iPhone: „im ersten Moment ein fetter grüner Streifen auf meinem Gesicht“): Das erste
+    // Leerlauf-Scan-Band kam nach 2,4 s, also kaum dass das Gesicht stand; mobil füllt das Gesicht den Schirm und das
+    // Band (mint, 9 % der Höhe) läuft über die volle Breite. Jetzt zuerst 8 s ruhiges Porträt, dann wie bisher.
+    window.__hero = createHero(heroEl, { figuren: heroFiguren(figuren), lenis, phasen: HERO_PHASEN, leerlaufAb: 8,
       onBereit: (m) => { if (m === 'still') bk.el.classList.remove('nn-karte--vorhang'); } });   // ohne WebGL2: kein Vorhang
   } catch (e) {
     console.warn('[funnel] Hero nicht geladen, das Standbild bleibt stehen:', e?.message || e);
