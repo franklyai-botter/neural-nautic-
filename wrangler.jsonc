@@ -6,7 +6,7 @@
   // Geheimnisse (nicht hier, sondern per `npx wrangler secret put`): RESEND_API_KEY, MISTRAL_API_KEY.
   // Ohne sie antworten Kontakt und Chat ehrlich mit 503; Downloads ohne Kontaktdaten gehen trotzdem.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "funnel-neuralnautic",
+  "name": "neural-nautic",   // Live-Worker mit neuralnautic.de, www und den Schluesseln; im Repo funnel-neuralnautic steht hier "funnel-neuralnautic" (Vorschau). Einzige Abweichung, beim Mergen behalten.
   "main": "src/worker/index.js",
   "compatibility_date": "2026-11-01",
   "assets": {
