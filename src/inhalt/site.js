@@ -16,8 +16,10 @@ export const X_URL = "https://x.com/FSchuettNN";
 // Halter“. Leer = Karte im Kartenfächer der Startseite ohne Link. Gesetzt = Link auf der Karte, in der Linkzeile darunter,
 // in beiden Fußzeilen und in sameAs (ueber-mich.js); nur die statischen strukturierten Daten in ueber-mich/index.html
 // von Hand nachziehen.
-export const FACEBOOK_URL = "";
-export const INSTAGRAM_URL = "";
+// Gesetzt 23.11.2026 (Frank): Facebook-Seite „Frank Schütt“, Instagram und TikTok @frankschuettnn.
+export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61596817190967";
+export const INSTAGRAM_URL = "https://www.instagram.com/frankschuettnn/";
+export const TIKTOK_URL = "https://www.tiktok.com/@frankschuettnn";
 // Buchungsseite KI-Potenzialcheck (Calendly, 30 Min, Google Meet). Bewusst Link statt eingebettetem
 // Kalender: Daten fließen erst an Calendly, wenn jemand klickt. Jeder „… buchen“-Knopf zeigt hierher.
 export const KI_CHECK_BUCHEN = "https://calendly.com/frankschuettai-neuralnautic/ki-potenzialcheck";

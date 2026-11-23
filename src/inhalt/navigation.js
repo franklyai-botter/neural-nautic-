@@ -1,6 +1,6 @@
 // Kopf und Fuß der Live-Seite als Daten. Quelle: neural-nautic-live @ 447000b
 // (app/components/Header.tsx, app/components/Footer.tsx, app/components/LinkedInButton.tsx).
-import { FACEBOOK_URL, INSTAGRAM_URL, KI_CHECK_BUCHEN, LINKEDIN_COMPANY_URL, LINKEDIN_URL, X_URL } from "./site.js";
+import { FACEBOOK_URL, INSTAGRAM_URL, KI_CHECK_BUCHEN, LINKEDIN_URL, TIKTOK_URL, X_URL } from "./site.js";
 
 // --- Kopf (Header.tsx) --------------------------------------------------------
 export const KOPF = {
@@ -62,10 +62,9 @@ export const SPALTEN = [
     ["Über mich",  "/ueber-mich"],
     ["Anfrage senden", "/kontakt"],
     ["LinkedIn Frank ↗", LINKEDIN_URL],
-    ["LinkedIn NeuralNautic ↗", LINKEDIN_COMPANY_URL],
     ["X @FSchuettNN ↗", X_URL],
     // Neubau: erst mit Adresse in site.js (Frank 17.11.2026, bis dahin nur Halter im Kartenfächer der Startseite)
-    ...[["Facebook ↗", FACEBOOK_URL], ["Instagram ↗", INSTAGRAM_URL]].filter(([, h]) => h),
+    ...[["Facebook ↗", FACEBOOK_URL], ["Instagram ↗", INSTAGRAM_URL], ["TikTok ↗", TIKTOK_URL]].filter(([, h]) => h),
     ["FOR42.ai ↗", "https://for42.ai"],
   ]],
 ];
