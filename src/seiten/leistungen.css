@@ -63,3 +63,6 @@
 
 /* ---------- Reduced Motion ---------- */
 .is-reduced .nn-ls__rolle, .is-reduced .nn-l, .is-reduced .nn-l::before { transition: none; }
+
+/* ---------- Was gehärtet heißt (#gehaertet), Frank 24.11.2026 ---------- */
+.nn-hart__text { margin: 0; font: 400 16px/1.55 var(--bs-text); color: color-mix(in srgb, var(--fg) 82%, transparent); text-wrap: pretty; }

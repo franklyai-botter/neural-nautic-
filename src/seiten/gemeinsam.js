@@ -19,6 +19,7 @@ import { gsap, ScrollTrigger, reduced, initScroll, autoWire, pageTransitions, pr
 import { kopf, menue, preloader, laufband, fusskarte, hilfen } from '@kern/bausteine/index.js';
 import { createNetz } from '@kern/netz/netz.js';
 import { netzHintergrund } from '../funnel/netz-hintergrund.js';
+import { claimVerlinken } from '../funnel/fuss-claim.js';
 import { KOPF, MENUE, FUSS, SITE } from '../inhalt/start.js';
 import { chatWidget } from './chat.js';
 import './gemeinsam.css';
@@ -74,6 +75,7 @@ export function kapitelseite(o = {}) {
 
   // Fusskarte mit Laufband, Daumen-CTA (mobil), KI-Chat
   const fuss = fusskarte(FUSS);
+  claimVerlinken(fuss.el, FUSS.claimHref);
   const fussBand = teil(laufband({ art: 'schrift', lenis, tempo: 70, eintraege: [`${esc(SITE.name)} ·`] }));
   fuss.band.appendChild(fussBand.el);
   main.after(fuss.el, k.daumen);

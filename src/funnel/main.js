@@ -15,6 +15,7 @@ import {
 } from '@kern/bausteine/index.js';
 import './funnel.css';
 import { netzHintergrund } from './netz-hintergrund.js';
+import { claimVerlinken } from './fuss-claim.js';
 import { chatWidget } from '../seiten/chat.js';
 import * as I from '../inhalt/start.js';
 import figuren from '../../figuren.json';
@@ -507,6 +508,7 @@ main.append(teil(faecher({ ...I.KANAELE, id: 'kanaele' })).el);
 const A = I.ABSCHLUSS;
 main.append(callout({ id: 'abschluss', ton: 'hell', gross: true, logo: A.logo, titel: esc(A.titel), text: A.text, knopf: A.cta, klein: A.beruhigung }).el);
 const fuss = fusskarte(I.FUSS);
+claimVerlinken(fuss.el, I.FUSS.claimHref);
 const fussBand = teil(laufband({ art: 'schrift', lenis, tempo: 70, eintraege: [`${esc(I.SITE.name)} ·`] }));
 fuss.band.appendChild(fussBand.el);
 main.after(fuss.el, k.daumen);

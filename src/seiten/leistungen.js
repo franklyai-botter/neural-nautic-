@@ -8,7 +8,7 @@
 // Haekchenliste, Ergebnis, Knopf und Zusatzlink stehen vollstaendig im Text, nichts ist hinter einem Klick versteckt.
 // Anker: id = start.js → LEISTUNGEN.karten[].anker (die Startseite verlinkt /leistungen#<anker>).
 import '@kern/base.css';
-import { kapitelseite, seitenkopf, weiterKapitel, gsap, ScrollTrigger, reduced, esc, el, qs, qsa, knopf, hilfen } from './gemeinsam.js';
+import { kapitelseite, seitenkopf, abschnitt, weiterKapitel, gsap, ScrollTrigger, reduced, esc, el, qs, qsa, knopf, hilfen } from './gemeinsam.js';
 import { callout } from '@kern/bausteine/index.js';
 import './leistungen.css';
 import * as L from '../inhalt/leistungen.js';
@@ -24,7 +24,7 @@ const anker = (titel) => ANKER[titel] || titel.toLowerCase().replace(/ä/g, 'ae'
 const STERN = '/brand/nn-stern-kompass-128.png';
 
 /* ---------------- Seitenkopf: Eyebrow, H1, Einleitung, darunter die 8 Leistungen als Sprungleiste ---------------- */
-S.main.append(seitenkopf({ ...L.KOPF, sprung: L.LEISTUNGEN.map((s) => ({ text: s.title, href: `#${anker(s.title)}` })) }));
+S.main.append(seitenkopf({ ...L.KOPF, sprung: [...L.LEISTUNGEN.map((s) => ({ text: s.title, href: `#${anker(s.title)}` })), { text: L.GEHAERTET.sprung, href: `#${L.GEHAERTET.id}` }] }));
 
 /* ---------------- Die grosse Szene: Leiste (gepinnt) + 8 Karten ---------------- */
 const karte = (s, i) => {
@@ -123,6 +123,19 @@ S.nachStart(() => {
     ScrollTrigger.create({ trigger: k, start: 'bottom top', once: true, onEnter: () => tl.progress(1) });
   });
 });
+
+/* ---------------- Was gehärtet heißt (Ziel des Footer-Slogans) ---------------- */
+const G = L.GEHAERTET;
+const ag = abschnitt({ id: G.id, kicker: G.kicker, titel: G.titel, intro: G.intro, ton: 'hell' });
+ag.inhalt.append(el(`
+  <div class="ks-drei nn-hart" data-reveal="up">
+    ${G.punkte.map((p) => `
+      <article class="ks-karte nn-hart__karte">
+        <h3 class="ks-karte__titel">${esc(p.titel)}</h3>
+        <p class="nn-hart__text">${esc(p.text)}</p>
+      </article>`).join('')}
+  </div>`));
+S.main.append(ag.el);
 
 /* ---------------- Abschluss und Weiter zum naechsten Kapitel ---------------- */
 const A = L.ABSCHLUSS;

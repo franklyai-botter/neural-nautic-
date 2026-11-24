@@ -93,6 +93,7 @@ export const MENUE = {
 export const FUSS = {
   logo: { src: '/brand/nn-monogramm.png', alt: 'NeuralNautic', w: 805, h: 821 },
   claim: 'KI-Beratung. Für den Mittelstand gebaut. Für regulierte Branchen gehärtet.',
+  claimHref: '/leistungen#gehaertet',   // Frank 24.11.2026: Slogan verlinkt auf die Erklaerung „Was gehärtet heißt“
   ort: 'Berlin · Bundesweit · DACH',
   cta: { text: 'Anfrage senden', href: '/kontakt' },
   // „Seiten“ = alle Seiten des Menüs (Brief: Footer mit allen Seiten); die drei weiteren Spalten wie Footer.tsx

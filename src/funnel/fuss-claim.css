@@ -1,0 +1,6 @@
+/* Footer-Slogan als Link (fuss-claim.js): sieht aus wie vorher, Hover und Fokus faerben ihn in der Akzentfarbe. */
+.nn-fuss-claim { display: block; color: inherit; text-decoration: none; border-radius: 4px; }
+.nn-fuss-claim:hover .bs-fuss__claim,
+.nn-fuss-claim:focus-visible .bs-fuss__claim { color: var(--accent); }
+.nn-fuss-claim:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.nn-fuss-claim .bs-fuss__claim { transition: color .25s ease; }

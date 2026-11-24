@@ -89,6 +89,24 @@ export const KARTE = {
   ergebnisLabel: "Ergebnis: ",
 };
 
+// Frank 24.11.2026: erklaert den Footer-Slogan „Für regulierte Branchen gehärtet.“ (FUSS.claimHref zeigt hierher).
+// Gehärtet = Software- und Datensicherheit nach Stand der Technik, ausdruecklich auch gegen Angriffe mit KI-Agenten.
+// Nur Massnahmen, die Frank heute selbst einsetzt; kein ISO-Bezug (kein Zertifikat).
+export const GEHAERTET = {
+  id: "gehaertet",
+  sprung: "Was gehärtet heißt",
+  kicker: "Gehärtet",
+  titel: "Gehärtet heißt: sicher auch gegen Angriffe mit KI-Agenten.",
+  intro: "KI-Agenten finden Schwachstellen in Minuten, schreiben täuschend echte Mails und lassen sich über versteckte Anweisungen in Dokumenten zu Handlungen verleiten. Klassische Sicherheitsnormen decken das kaum ab. Wir bauen dagegen:",
+  punkte: [
+    { titel: "Versteckte Anweisungen", text: "Inhalte aus Mails, Dokumenten und Webseiten behandelt der Agent als Daten, nie als Befehl." },
+    { titel: "Begrenzte Handlungen", text: "Agenten arbeiten mit den geringsten nötigen Rechten. Ein Wächter blockiert gefährliche Befehle, bevor sie laufen. Löschen, Versenden und Bezahlen gibt ein Mensch frei." },
+    { titel: "Kein Datenabfluss", text: "Ausgehender Verkehr nur zu freigegebenen Zielen. Namen, Kontaktdaten und Bankverbindungen werden gesperrt, bevor Text an ein externes Modell geht." },
+    { titel: "Datenklassen", text: "Vorab ist festgelegt, welches Modell welche Daten sehen darf. Vertrauliches bleibt auf lokalen Modellen in Ihrem Haus." },
+    { titel: "Grundschutz und Recht", text: "Server in der EU, Anmeldung nur per Schlüssel, automatische Sicherheitsupdates. DSGVO mit Auftragsverarbeitungsvertrag, EU AI Act von Anfang an mitgedacht." },
+  ],
+};
+
 export const ABSCHLUSS = {
   // Frank 17.11.2026: kein „ersten Schritt“, viele Kunden sind schon beim dritten oder vierten. Sein Satz vom 15.11.
   // (Startseite, Kontakt). Bisher: „Bereit für den ersten Schritt?“
