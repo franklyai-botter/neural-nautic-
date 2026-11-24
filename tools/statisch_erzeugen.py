@@ -356,6 +356,10 @@ def main():
         except subprocess.TimeoutExpired:
             proc.kill()
     print(f'[statisch] fertig, inhalt-sha256={hash_[:12]}...')
+    # lastmod der Sitemap aus dem Inhalt der Seiten (Frank 24.11.2026), siehe tools/sitemap_lastmod.py
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from sitemap_lastmod import aktualisieren
+    aktualisieren()
 
 
 if __name__ == '__main__':

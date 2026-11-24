@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Sitemap für https://neuralnautic.de, gleiche 11 Adressen und Prioritäten wie die alte Seite
      (neural-nautic-live/app/sitemap.ts). Adressen ohne Schrägstrich am Ende, wie die Canonicals.
-     lastmod = letzte inhaltliche Änderung der Seite (git log auf src/inhalt/<seite>.js und src/seiten/<seite>.*).
-     Neue Seite angelegt oder Inhalt geändert? Hier nachziehen, sonst findet Google sie spät.
+     lastmod = letzte inhaltliche Änderung der Seite, automatisch: tools/sitemap_lastmod.py läuft am Ende von
+     npm run statisch und setzt das Datum, sobald sich der Inhalt der Seite ändert (ohne Kopfnavigation und Fuß).
+     Nicht von Hand ändern. Neue Seite: nur <url> mit <loc>, <lastmod> und <priority> anlegen, den Rest macht das Werkzeug.
      /impressum und /datenschutz fehlen bewusst: sie tragen "noindex, follow" (wie live), eine Sitemap mit
      noindex-Seiten meldet die Search Console als Widerspruch. Live standen sie noch drin. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
