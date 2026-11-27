@@ -62,7 +62,9 @@
   <main id="inhalt" tabindex="-1">
     <!-- L2 + L3: Hero (aus @kern/hero) auf der Strecke der Bildkarte. Das Bild steht fuer den ersten Eindruck im HTML,
          den Rest (Wirbel, Texte) baut src/funnel/main.js aus src/inhalt/start.js. -->
-    <section class="bs-bildkarte" id="start" aria-label="Frank Schütt, im Wechsel Mensch und Exoskelett">
+    <!-- nn-hero und bs-ton-dunkel stehen schon hier (27.11.2026): Ohne sie lag das Standbild mobil bis zum Skriptstart
+         falsch (nur der Mantelkragen unten links), das Gesicht erschien erst nach main.js (LCP rund 2 s spaeter). -->
+    <section class="bs-bildkarte nn-hero bs-ton-dunkel" id="start" aria-label="Frank Schütt, im Wechsel Mensch und Exoskelett">
       <div class="bs-bildkarte__bahn" data-hero style="--hero-grund:#061419">
         <div class="bs-bildkarte__pin hero__pin">
           <div class="bs-bildkarte__buehne hero__buehne">
