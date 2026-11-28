@@ -200,7 +200,14 @@ export function createHero(el, opt = {}) {
   let ki = pin.querySelector('.hero__ki');
   if (!ki) { ki = anlegen(pin, 'p', 'hero__ki'); ki.textContent = B.ki || 'KI-generiert'; }
 
-  const still = bewegungReduziert() || !webgl2Vorhanden() || opt.still === true;
+  // Ohne WebGL2, aber mit erlaubter Bewegung: Bildmodus statt Standbild (gepinnte Strecke, Exo-Kante per DOM).
+  // Grund (Frank 28.11.2026): Ohne WebGL2 (Chrome ohne Grafikbeschleunigung, manche Linux-Rechner) kam beim Scrollen
+  // gar kein Effekt, der Hero rollte als 100svh-Standbild einfach weg. Mit ?hero=still laesst sich das Standbild erzwingen.
+  let heroWunsch = null;
+  try { heroWunsch = new URLSearchParams(location.search).get('hero'); } catch { /* egal */ }
+  const bildModus = !extern && opt.still !== true && !bewegungReduziert() && heroWunsch !== 'still'
+    && (heroWunsch === 'bild' || !webgl2Vorhanden());
+  const still = !bildModus && (bewegungReduziert() || !webgl2Vorhanden() || opt.still === true || heroWunsch === 'still');
   const Z = {
     p: 0, zeit: 0, eingabe: -1e9, zeigerDa: false, zx: 0, zy: 0, auto: true, band: null, zyklus: 0, naechst: opt.leerlaufAb ?? 2.4,
     zustand: 'mensch', gesperrt: false, sichtbar: true, raf: 0, letzt: 0,
@@ -223,7 +230,7 @@ export function createHero(el, opt = {}) {
     /** Ansicht des Portraets von aussen festlegen ('links' | 'frontal' | 'rechts'); null gibt sie wieder der Maus. */
     setAnsicht(name) { Z.ansichtExtern = name || null; return api; },
     get zustand() { return Z.zustand; },
-    get modus() { return still || kaputt ? 'still' : (bu ? 'gl' : 'laedt'); },
+    get modus() { return bildModus ? 'bild' : (still || kaputt ? 'still' : (bu ? 'gl' : 'laedt')); },
     /** Nur fuer Tests und Bildschirmfotos: Zustaende festhalten. test() ohne Argument gibt wieder frei. */
     test(t) { T = t || {}; Z.auto = T.auto !== false; if (!t) { Z.naechst = Z.zeit + 2; } return api; },
     stempel(ax, ay, bx, by, s) { bu?.stempel(ax, ay, bx, by, s); },
@@ -237,6 +244,90 @@ export function createHero(el, opt = {}) {
     opt.onBereit?.('still');
     fertig('still');
     return api;
+  }
+
+  if (bildModus) {
+    starteBildModus();
+    opt.onBereit?.('bild');
+    fertig('bild');
+    return api;
+  }
+
+  // Bildmodus: je Figur das Exo als zweites Bild ueber dem Foto, Kante und Aufdeckung folgen dem Scroll-Fortschritt
+  // der gepinnten Strecke (gleiche Phasen umVon/umBis/rueckVon/rueckBis wie im Canvas). Kein Zeiger, kein Leerlauf.
+  function starteBildModus() {
+    el.classList.add('hero--bild');
+    if (B.netz) import('../netz/netz.js').then(({ createNetz }) => { if (!tot) { const n = createNetz(stage, { ...B.netz, seed: B.netz.seed ?? 7 }); stage.prepend(n.canvas); aufraeumen.push(() => n.dispose()); } });
+    const ebene = anlegen(stage, 'div', 'hero__exo-ebene');
+    const kante = anlegen(stage, 'div', 'hero__kante');
+    for (const f of figs) {
+      const v = f.def.ansichten[f.basis];
+      if (!v.exo || !cfg.bilder[v.exo]) continue;
+      const bf = cfg.bilder[v.foto], be = cfg.bilder[v.exo];
+      const a = v.ausrichtung || { dx: 0, dy: 0, skala: 1, drehung: 0 };
+      const aspF = bf.b / bf.h, aspE = be.b / be.h, s = a.skala || 1;
+      const box = anlegen(ebene, 'div', 'hero__exo');
+      // gleiche Lage wie das Foto (dieselben Variablen), das Exo darin wie im Shader: Mitte um dx/dy versetzt,
+      // Hoehe skala x Fotohoehe (Einheit: Fotohoehe)
+      for (const n of ['--asp', '--ax', '--ay', '--ab', '--xd', '--yd', '--kd', '--xm', '--ym', '--km']) box.style.setProperty(n, f.pic.style.getPropertyValue(n));
+      const img = anlegen(box, 'img', '');
+      img.alt = ''; img.decoding = 'async';
+      img.sizes = '(max-width: 991px) 220vw, 110vw';
+      img.srcset = srcset(pfad, v.exo, be);
+      img.src = bildUrl(pfad, v.exo, Math.max(...be.breiten));
+      const st = img.style;
+      st.setProperty('--el', `${((aspF / 2 + a.dx - (s * aspE) / 2) / aspF) * 100}%`);
+      st.setProperty('--et', `${(0.5 + a.dy - s / 2) * 100}%`);
+      st.setProperty('--ew', `${((s * aspE) / aspF) * 100}%`);
+      st.setProperty('--eh', `${s * 100}%`);
+      st.setProperty('--edreh', `${((a.drehung || 0) * Math.PI) / 180}rad`);
+      st.setProperty('--hof-exo', `url("${bildUrl(pfad, v.exo, 'hof')}")`);
+      f.exoBox = box;
+    }
+    // Exo-Kante laeuft vom Kopf der obersten Figur bis knapp unter die Buehne, wie im Canvas (oben -= 0,05, unten = 1,04)
+    let raf = 0;
+    function zeichne() {
+      raf = 0;
+      if (tot) return;
+      const r = el.getBoundingClientRect(), sb = stage.getBoundingClientRect(), H = Math.max(1, sb.height);
+      const weg = r.height - H;
+      let p = weg > 4 ? klemme(-r.top / weg) : 0;
+      if (T.scroll != null) p = T.scroll;
+      if (Math.abs(p - Z.p) > 1e-4) { Z.p = p; opt.onFortschritt?.(p); el.classList.toggle('hero--unterwegs', p > 0.04); }
+      const um = klemme((p - PH.umVon) / (PH.umBis - PH.umVon)) * (1 - klemme((p - PH.rueckVon) / Math.max(1e-6, PH.rueckBis - PH.rueckVon)));
+      let oben = 1;
+      for (const f of figs) {
+        const pr = f.pic.getBoundingClientRect(), v = f.def.ansichten[f.basis];
+        // Kopfoberkante: Ankerpunkt minus etwa eine Kopfhoehe (anker.y/b in Fotoeinheiten)
+        const kopf = pr.top + pr.height * (v.anker.y - (v.anker.kh ?? v.anker.b * 1.45) * 0.6);
+        oben = Math.min(oben, (kopf - sb.top) / H);
+      }
+      oben = Math.max(0, oben - 0.05);
+      const y = um <= 0 ? oben : mische(oben, 1.04, glattIO(um));
+      el.style.setProperty('--kante', um <= 0 ? '0' : y.toFixed(4));
+      el.style.setProperty('--kante-an', um > 0 && um < 1 ? '1' : '0');
+      // Foto ab der Kante abwaerts, damit an der Silhouette nichts vom Foto neben dem Exo stehen bleibt
+      for (const f of figs) {
+        if (!f.exoBox) continue;
+        const pr = f.pic.getBoundingClientRect();
+        f.pic.style.clipPath = um <= 0 ? '' : `inset(${Math.max(0, sb.top + y * H - pr.top).toFixed(1)}px 0 0 0)`;
+      }
+      const zustand = um > 0.5 ? 'exo' : 'mensch';
+      if (zustand !== Z.zustand) { Z.zustand = zustand; opt.onZustand?.(zustand); }
+    }
+    const anfordern = () => { if (!raf && !tot) raf = requestAnimationFrame(zeichne); };
+    window.addEventListener('scroll', anfordern, { passive: true });
+    window.addEventListener('resize', anfordern);
+    opt.lenis?.on?.('scroll', anfordern);
+    aufraeumen.push(() => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', anfordern); window.removeEventListener('resize', anfordern);
+      opt.lenis?.off?.('scroll', anfordern);
+      ebene.remove(); kante.remove();
+      for (const f of figs) f.pic.style.clipPath = '';
+      el.classList.remove('hero--bild');
+    });
+    zeichne();
   }
 
   // ---------- Schalter mobil ----------

@@ -22,7 +22,7 @@
 }
 
 /* Erster Eindruck und Standbild: gleiche Rechnung wie layout.js (rechteckKopf) */
-.hero__bild {
+.hero__bild, .hero__exo {
   --x: var(--xd); --y: var(--yd); --k: var(--kd); --fmt: 1.5;
   --L: min(100cqh, calc(100cqw / var(--fmt)));
   --hh: calc(var(--L) * var(--k) / var(--ab));
@@ -31,12 +31,32 @@
   width: calc(var(--hh) * var(--asp));
   left: calc(100cqw * var(--x) - var(--hh) * var(--asp) * var(--ax));
   top: calc(100cqh * var(--y) - var(--hh) * var(--ay));
+}
+.hero__bild {
   -webkit-mask: var(--hof) center / 100% 100% no-repeat;
   mask: var(--hof) center / 100% 100% no-repeat;
 }
 .hero__bild img { width: 100%; height: 100%; max-width: none; }
 @media (max-width: 991px) {
-  .hero__bild { --x: var(--xm); --y: var(--ym); --k: var(--km); --fmt: 0.5; }
+  .hero__bild, .hero__exo { --x: var(--xm); --y: var(--ym); --k: var(--km); --fmt: 0.5; }
+}
+
+/* Bildmodus: kein WebGL2, aber Bewegung erlaubt. Gepinnte Strecke wie mit WebGL; beim Scrollen faehrt die Exo-Kante
+   vom Kopf zu den Fuessen (hero.js bildModus). Exo und Kante liegen in einer Ebene in Buehnengroesse, die von oben bis
+   zur Kante (--kante, 0..1 der Buehnenhoehe) aufgedeckt ist; das Foto wird ab der Kante abwaerts gezeigt. */
+.hero__exo-ebene { position: absolute; inset: 0; pointer-events: none; clip-path: inset(0 0 calc((1 - var(--kante, 0)) * 100%) 0); }
+.hero__exo img {
+  position: absolute; max-width: none;
+  left: var(--el); top: var(--et); width: var(--ew); height: var(--eh);
+  transform: rotate(var(--edreh, 0rad));
+  -webkit-mask: var(--hof-exo) center / 100% 100% no-repeat;
+  mask: var(--hof-exo) center / 100% 100% no-repeat;
+}
+.hero__kante {
+  position: absolute; left: 0; right: 0; top: calc(var(--kante, 0) * 100%); height: 2px; margin-top: -1px;
+  pointer-events: none; opacity: var(--kante-an, 0);
+  background: var(--hero-kante, #6feff5);
+  box-shadow: 0 0 14px 2px var(--hero-kante, #6feff5), 0 0 60px 8px color-mix(in srgb, var(--hero-kante, #6feff5) 35%, transparent);
 }
 
 .hero__canvas, .szene__canvas {
